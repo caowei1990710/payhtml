@@ -1,0 +1,164 @@
+<!-- Modal  w5c-form-submit="cashin.finishTask(-1,2)" -->
+<div id="edittran" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <form w5c-form-validate="validateOptions" role="form" class="no-margin"
+        name="editTranslate">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4 id="">
+        {{$root.lagconfig["开始转账"]}}:
+      </h4>
+    </div>
+    <div class="modal-body">
+      <div style="background: #d9d9d9;padding: 15px;">
+        <label class="control-label matchbankdeposit">
+          {{$root.lagconfig['源卡信息']}}
+        </label>
+        <div class="row-fluid">
+          <div class="span6">
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["所属银行"]}}:
+              </label>
+              <span>
+                {{cashin.editTask.scr_bank_id | nameTovalue:'id':'name':$root.banklist}}
+              </span>
+            </div>
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["所属类型"]}}:
+              </label>
+              <span>
+                {{cashin.editTask.src_type | nameTovalue:'id':'name':$root.cardtype}}
+              </span>
+            </div>
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["目前余额"]}}:
+              </label>
+            <span>
+              {{cashin.editTask.src_credit}}
+            </span>
+            </div>
+
+          </div>
+          <!--<div class="control-group">-->
+          <!--<label class="control-label">-->
+          <!--手续费:-->
+          <!--</label>-->
+          <!--<input type="text">-->
+          <!--</div>-->
+          <div class="span6">
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["开户姓名"]}}:
+              </label>
+            <span>
+              {{cashin.editTask.src_card_name}}
+            </span>
+            </div>
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["银行账号"]}}:
+              </label>
+            <span>
+              {{cashin.editTask.src_bank_card | bankFormal}}
+            </span>
+            </div>
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["开户行"]}}:
+              </label>
+            <span>
+              {{cashin.editTask.src_bank_address}}
+            </span>
+            </div>
+          </div>
+        </div>
+        <div style="width: 100%;height: 30px;padding-top: 10px;background: #1eaeff;text-align: center">
+          <span style="color: white"> {{$root.lagconfig["转账金额"]}}:</span><span selectid="editTaskamount"
+                                                                               selecttext="cashin.editTask.amount"
+                                                                               text-copye>{{cashin.editTask.amount}}</span>
+        </div>
+        <label class="control-label matchbankdeposit">
+          {{$root.lagconfig['目标卡信息']}}
+        </label>
+        <div class="row-fluid">
+          <div class="span6">
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["所属银行"]}}:
+              </label>
+              <span>
+                {{cashin.editTask.dest_bank_id | nameTovalue:'id':'name':$root.banklist}}
+              </span>
+            </div>
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["所属平台"]}}:
+              </label>
+              <span>
+                {{cashin.editTask.dest_platformId | nameTovalue:'id':'name':$root.platformlist}}
+              </span>
+            </div>
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["银行账号"]}}:
+              </label>
+              <span selecttext="cashin.editTask.dest_bank_card" selectid="dest_bank_card" text-copye>
+                {{cashin.editTask.dest_bank_card | bankFormal}}
+              </span>
+            </div>
+          </div>
+          <div class="span6">
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["开户姓名"]}}:
+              </label>
+            <span selecttext="cashin.editTask.dest_card_name" selectid="dest_card_name" text-copye>
+              {{cashin.editTask.dest_card_name}}
+            </span>
+            </div>
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["目前余额"]}}:
+              </label>
+            <span selecttext="cashin.editTask.dest_credit" selectid="dest_credit" text-copye>
+              {{cashin.editTask.dest_credit}}
+            </span>
+            </div>
+            <div class="control-group divinput">
+              <label>
+                {{$root.lagconfig["开户行"]}}:
+              </label>
+            <span>
+              {{cashin.editTask.dest_bank_address}}
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="control-group textcenter">
+        {{$root.lagconfig["手续费"]}}:
+        <input ng-model="cashin.editTask.handCredit" name="handCredit"
+               style="margin-top: 10px"
+               type="text" required/>
+        <!--<input type="text" ng-model="cashin.editTask.handCredit" ng-pattern="/^0\.([1-9]|\d[1-9])$|^[1-9]\d{0,8}\.\d{0,2}$|^[1-9]\d{0,8}$/" ng-pattern="/^0\.([1-9]|\d[1-9])$|^[1-9]\d{0,8}\.\d{0,2}$|^[1-9]\d{0,8}$/" name="handcredit">-->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button click="cashin.finishTask" clickvalue="2" data="user.roleitem" value="完成"></click-button>
+      <click-button click="cashin.finishTask" clickvalue="0" href="createBank" data="user.roleitem"
+                    value="取消任务"></click-button>
+      <!--<click-button click="bc.showeditMoney" value="调整余额"></click-button>-->
+      <!--<button class="btn btn-primary" ng-click="cashin.finishTask(-1,2)">-->
+      <!--{{$root.lagconfig["完成"]}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" ng-click="cashin.finishTask(-1,0)" aria-hidden="true">-->
+      <!--{{$root.lagconfig["取消任务"]}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>

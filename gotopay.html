@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>付款中</title>
+</head>
+<body>
+
+</body>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script>
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var str = getval;
+  var strs = new Array();
+  strs = str.split(","); //字符分割
+//      $.ajax({
+//        type: 'GET', url: 'http://www.wandapay88.com:8081/getProposaldeposit?depositNumber=' + strs[0], dataType: 'json',
+//        success: function (str) {
+//          $.ajax({
+//            type: "POST",
+//            url: "http://www.hp168168.com:8081/setTurnOn",
+//            data: {
+//              "depositNumber": strs[0],
+//              "remark": str.data.remark
+//            },
+//            success: function (data) {
+//
+//            }
+//          });
+//        }
+//      })
+  function ready(a) {
+    window.AlipayJSBridge ? a && a() : document.addEventListener("AlipayJSBridgeReady", a, false);
+  }
+
+  ready(function () {
+//    $.ajax({
+//      type: 'GET', url: 'http://api.wandapay88.com/getProposaldeposit?depositNumber=' + strs[0], dataType: 'json',
+//      success: function (str) {
+    ap.alert('请勿修改金额，银行提示2小时内（实际到账2分钟）。若加载失败请点击刷新。祝您游戏愉快');
+//      }
+//    });
+    //AlipayJSBridge.call('toast', {content:'请勿修改带入金额，直接付款，银行实际到账2分钟，祝你游戏愉快'});
+  });
+  //  setTimeout(function(){
+  //    AlipayJSBridge.call('toast', {content: '请勿修改带入金额，直接付款，银行实际到账2分钟，祝你游戏愉快'}));
+  //  },2000);
+//  var thisURL = document.URL;
+//  var getval = thisURL.split('id=')[1];
+//  var str = getval;
+//  strs = str.split(",");
+  var weblist = ["http://www.morepic.club/", "http://www.wannapay.me/", "http://wannanghapp.com/", "http://wannangwanloe.com/"];
+  window.location.href = weblist[parseInt(Math.random() * 4)] + "phone.php?command=tohpay&orderid=" + strs[0];
+</script>
+</html>

@@ -1,0 +1,197 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, user-scalable=yes,minimum-scale=1.0,maximum-scale=1.0">
+  <title>支付订单</title>
+  <script>
+
+  </script>
+  <!--<link rel="stylesheet" href="https://pay.16cc.com.cn/static/weipay/css/href.css" type="text/css">-->
+  <!--<link rel="stylesheet" href="https://pay.16cc.com.cn/static/weipay/css/testpay.css" type="text/css">-->
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <!--<link rel="stylesheet" href="https://pay.16cc.com.cn/static/weipay/css/href.css" type="text/css">-->
+  <link rel="stylesheet" href="demo.css" type="text/css">
+  <!--<script type="text/javascript" src="https://pay.16cc.com.cn/static/js/layer.js"></script>-->
+  <!--<link rel="stylesheet" href="https://pay.16cc.com.cn/static/js/skin/layer.css" id="layui_layer_skinlayercss" style="">-->
+
+</head>
+
+<body>
+<!--头部  star-->
+<header>
+  <a href="###">
+    <span>支付订单</span></a>
+</header>
+<!--头部 end-->
+<!--内容 star-->
+<script>
+  var goherf;
+  var index = 0;
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var bIsIpad = sUserAgent.match(/ipad/i) == 'ipad';
+  var bIsIphoneOs = sUserAgent.match(/iphone os/i) == 'iphone os';
+  function checkpay(userRemark) {
+//    alert("开始支付,window.ope" + userRemark);
+//    var norurl = "http://localhost:8081/";
+    var norurl = "http://www.wandapay88.com:8081/";
+//      var userRemark = $('#depositnumber').val();
+//      alert(norurl + "getPosal?userRemark=" + userRemark);
+    $.ajax({
+      type: "GET",
+//      url: "http://zhifudemo.com:8081/getPosal?userRemark=" + userRemark,
+      url: norurl + "getPosal?userRemark=" + userRemark,
+      success: function (data) {
+//        alert("开始支付" + data.msg);
+
+//        window.location.href = data.msg;
+//        window.open(data.msg);
+//        goto(data.msg);
+        goherf = data.msg;
+//        alert(window.location.href);
+        $("#payUrl").attr("src", "http://qr.liantu.com/api.php?text=" + data.msg.replace(/&/g, "%26"));
+//        userRemark = data.data.account;
+//            checkDeposit(false);
+        console.log(data.msg.substring(data.msg.indexOf("("), data.msg.indexOf(")")));
+        $("#note").html("<span>" + data.msg.substring(data.msg.indexOf("("), data.msg.length) + "</span>")
+        setTimeout(function () {
+          $("#payUrl").css("display", "inline-block");
+          $("#topay").css("display", "inline-block");
+          gotoPay();
+          if (!bIsIpad && !bIsIphoneOs) {
+            checktopay();
+          }
+//                $("#qr").css("display", "block");
+//                $("#qr img").css("display", "inline")
+        }, 1000);
+        // https://ds.alipay.com/?from=mobilecodec&scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FsaId%3D10000007%26clientVersion%3D3.7.0.0718%26qrcode%3Dhttp%3A%2F%2Fwww.baidu.com%2Fgetpay-Z120212401391684.html
+
+
+        //;   https://ds.alipay.com/?from=mobilecodec&scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FsaId%3D10000007%26clientVersion%3D3.7.0.0718%26qrcode%3http%3a%2f%2fdownload.wandapay88.com%2fpaydemo.html%3famount%3d10"
+//        if (data.msg.split("&")[data.msg.split("&").length - 1] == "EXECUTED") {
+//          alert("付款已完成")
+//          window.close();
+//          return
+//        } else if (data.msg.split("&")[data.msg.split("&").length - 1] == "OVERTIME") {
+//          alert("提案已超时")
+//          window.close();
+//          return
+//        }
+//        setTimeout(function () {
+//          checkpay(userRemark);
+//        }, 2000)
+      }
+    })
+  }
+  function checktopay() {
+    index++
+    if (index > 3)
+      return;
+    setTimeout(function () {
+      gotoPay();
+      checktopay();
+    }, 2000);
+  }
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) {
+        return pair[1];
+      }
+    }
+    return (false);
+  }
+  function gotoPay() {
+//    if (bIsIpad || bIsIphoneOs) {
+    window.open(goherf);
+    window.location.href = goherf;
+//    } else {
+//      index++;
+//      if (index > 3)
+//        return
+//      window.open(goherf.substring(0, goherf.indexOf("(")));
+//      window.location.href = goherf.substring(0, goherf.indexOf("("));
+//      setTimeout(function () {
+//        gotoPay()
+//      },2000)
+//    }
+
+  }
+  //  setTimeout(function () {
+  checkpay(getQueryVariable("userRemark"))
+  //  }
+</script>
+<div class="contaniner fixed-cont">
+  <div class="payTime">
+    <li>订单号:<span class="order"></span></li>
+  </div>
+  <div style="text-align: center"><img id="payUrl"
+                                       style="display: none"
+                                       src=""/>
+    <label>如果多次不能跳转，请长按二维码支付，或者保存图片到本地用扫码支付，谢谢</label>
+  </div>
+
+  <!--<div class="log_warp">-->
+  <!--<div class="w_1200 cle">-->
+  <!--<div class="form fr">-->
+  <!--<div align="center" id="qr" class="margin-top" style="display:none;text-align: center"></div>-->
+  <!--<div class="title">-->
+  <!--付款测试-->
+  <!--</div>-->
+
+  <!--<div class="list">-->
+  <!--<input type="text" id="depositnumber" placeholder="提案号...">-->
+  <!--</div>-->
+
+  <!--<div class="list">-->
+  <!--<input type="text" id="amount" placeholder="输入金额...">-->
+  <!--</div>-->
+
+
+  <!--<div class="but">-->
+  <!--<input type="button" onclick="goLogin()" value="付 款">-->
+  <!--</div>-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="log_warp">-->
+  <!--<div class="w_1200 cle">-->
+  <!--<div class="form fr">-->
+  <!--<div align="center" id="qr" class="margin-top" style="display:none;text-align: center"></div>-->
+  <!--<div class="title">-->
+  <!--付款测试-->
+  <!--</div>-->
+
+  <!--<div class="list">-->
+  <!--<input type="text" id="depositnumber" placeholder="提案号...">-->
+  <!--</div>-->
+
+  <!--<div class="list">-->
+  <!--<input type="text" id="amount" placeholder="输入金额...">-->
+  <!--</div>-->
+
+
+  <!--<div class="but">-->
+  <!--<input type="button" onclick="goLogin()" value="付 款">-->
+  <!--</div>-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <div class="pay">
+    <div class="showimg">
+      <a onclick="gotoPay()" id="topay" style="display: none;">启动支付宝APP支付</a>
+    </div>
+    <!--<p><img src="https://pay.16cc.com.cn/static/weipay/images/zfbpay.png" class="payimg"></p>-->
+    <p style="color:red;" id="note">请勿修改金额和备注,否则将延误24小时到账</p>
+    <p>如需校验姓名</span>，请准确输入姓完成验证</p>
+  </div>
+</div>
+
+</body>
+</html>

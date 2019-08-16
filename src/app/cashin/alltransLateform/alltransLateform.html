@@ -1,0 +1,122 @@
+<div class="tab-content">
+  <form w5c-form-validate="validateOptions" class="form-inline am-form-query" w5c-submit="cashin.loadingTrank(1);"
+        name="queryForm">
+        <span>
+          <label class="control-label">{{$root.lagconfig['源卡信息']}}</label>
+          <input ng-model="cashin.query.srcbankcardinput" name="bankCard" type="text">
+        </span>
+    <span>
+        <span>
+          <label class="control-label">{{$root.lagconfig['转账单号']}}</label>
+          <input type="text" ng-model="cashin.query.taskId" name="taskId">
+        </span>
+       <span>
+          <label class="control-label">{{$root.lagconfig['所属银行']}}</label>
+         <select-list ng-model="cashin.query.bankId" name="banklist" type="1"></select-list>
+         <!--<input type="text" ng-model="cashin.query.bankId" name="bankId">-->
+        </span>
+        <label class="control-label">{{$root.lagconfig['任务状态']}}</label>
+          <select-list ng-model="cashin.query.status" name="transtate" type="1"></select-list>
+        </span>
+    <span>
+          <label class="control-label textright" style="width: 60px">{{$root.lagconfig['所属平台']}}</label>
+          <select-list ng-model="cashin.query.platformId" name="platformlist" type="1"></select-list>
+        </span>
+    <span>
+          <button type="submit" class="departmentbutton btn btn-primary ng-binding toselet">{{$root.lagconfig['查询']}}
+          </button>
+        <label class="control-label">{{$root.lagconfig['开始时间']}}</label>
+          <date-select selectid="beginTimer" init="1" ng-model="cashin.query.begintimer"></date-select>
+    </span>
+    <span>
+        <label class="control-label">{{$root.lagconfig['结束时间']}}</label>
+          <date-select selectid="endTimer" init="2" ng-model="cashin.query.endtimer"></date-select>
+    </span>
+    <span>
+          <label class="control-label textright" style="width: 60px">{{$root.lagconfig['所属类型']}}</label>
+          <select-list ng-model="cashin.query.bankType" name="cardtype" type="1"></select-list>
+    </span>
+    <!--<span>-->
+    <!--<label class="control-label textright" style="width: 60px">{{$root.lagconfig['源卡卡号']}}</label>-->
+    <!--<input ng-model="cashin.query.srcbankcard"/>-->
+    <!--</span>-->
+
+    <label>
+      {{$root.lagconfig['单页数量']}}:
+    </label>
+    <page-number ng-model="cashin.pagesize" dispaly="username"></page-number>
+  </form>
+  <div class="tabbleout">
+    <table class="table">
+      <thead>
+      <tr ng-model="cashin.translateList"
+          data="[{id:'task_id'},{id:'src_bank_card'},{id:'creator_id'},{id:'operate_user'},{id:'bankType'},{id:'createtime'},{id:'dest_bank_card'},{id:'amount'},{id:'status'}]"
+          from-stryle>
+        <th>{{$root.lagconfig['转账单号']}}</th>
+        <th>{{$root.lagconfig['源卡信息']}}</th>
+        <th>{{$root.lagconfig['创建人']}}</th>
+        <th>{{$root.lagconfig['操作员']}}</th>
+        <th>{{$root.lagconfig['所属类型']}}</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['目标卡信息']}}</th>
+        <th>{{$root.lagconfig['转账额度']}}</th>
+        <th>{{$root.lagconfig['任务状态']}}</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in cashin.translateList">
+        <td>
+          {{item.task_id}}
+        </td>
+        <td>
+          <span style="display: block">{{item.src_bank_card | bankFormal}}</span>
+        </td>
+        <td>
+          {{item.creator_id}}
+        </td>
+        <td>
+          {{item.operate_user}}
+        </td>
+        <td>
+          {{item.bankType | nameTovalue:'id':'name':$root.cardtype | itemTolish}}
+        </td>
+        <td>
+          {{item.createtime}}
+        </td>
+        <td>
+          <span style="display: block">{{item.dest_bank_card | bankFormal}}</span>
+        </td>
+
+        <td style="color: red">
+          {{item.amount}}
+        </td>
+        <td>
+          <type-style value="item.status" list="transtate"></type-style>
+        </td>
+        <!--<td>-->
+        <!--<a target="_self" type="submit" role="button" data-toggle="modal" data-original-title=""-->
+        <!--class="btn btn-primary" ng-if="item.lockstate == 0" ng-click="cashin.finishTask($index,1)">{{$root.lagconfig['领取任务']}}</a>-->
+        <!--<a target="_self" type="submit" role="button" data-toggle="modal" data-original-title=""-->
+        <!--class="btn btn-primary"-->
+        <!--ng-if="item.lockstate == 1 && item.status != 1 && $root.user.account==item.operate_user"-->
+        <!--ng-click="cashin.finishTask($index,-1)">{{$root.lagconfig['继续任务']}}</a>-->
+        <!--&lt;!&ndash;<a target="_self" type="submit" role="button" data-toggle="modal" data-original-title=""&ndash;&gt;-->
+        <!--&lt;!&ndash;class="btn btn-primary"&ndash;&gt;-->
+        <!--&lt;!&ndash;ng-if="item.lockstate == 1 && item.status != 1 && $root.username!=item.operate_user"&ndash;&gt;-->
+        <!--&lt;!&ndash;ng-click="cashin.finishTask($index,-1)">{{$root.lagconfig['操作员']}}:</a>&ndash;&gt;-->
+        <!--<span-->
+        <!--ng-if="(item.status == 1)||(item.lockstate == 1 && item.status != 1 && $root.user.account!=item.operate_user)">{{$root.lagconfig['操作员']}}:{{item.operate_user}}</span>-->
+        <!--&lt;!&ndash;<span  ng-if="item.status == 1">{{item.user}}</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-if="item.lockstate == 2" ng-click="cashin.finishTask($index,-1)">{{$root.lagconfig['操作员']}}:{{item.operateuser}}</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<span  ng-if="item.status == 2">{{item.user}}</span>&ndash;&gt;-->
+        <!--</td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination page="cashin.page" total="cashin.total" size="cashin.size"
+              trigger="cashin.loadingTrank(page)"></pagination>
+  <div ng-include="'app/cashin/alltransLateform/alleditTranslate.html'"></div>
+
+</div>

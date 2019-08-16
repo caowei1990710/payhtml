@@ -1,0 +1,115 @@
+<div class="cont_warp">
+  <div class="title">
+    提现提案
+  </div>
+
+  <div class="m3 cle m6">
+    <div class="child_nav cle">
+      <a class="fl on" id="outputlist" ng-click="three.changeStyle(1)">提现提案</a>
+      <a class="fl" id="outputsend" ng-click="three.changeStyle(2)">申请提现</a>
+    </div>
+    <div ng-show="three.bankindex==2" class="m7">
+      <ul style="line-height: 30px">
+        <li class="cle"><span class="fl">银行类型</span>
+          <input type="text" class="text" ng-model="three.withrawitem.destType"> *
+        </li>
+        <li class="cle">
+          <span class="fl">账户姓名</span>
+          <input type="text" ng-model="three.withrawitem.destName" class="text"> *
+        </li>
+        <li class="cle">
+          <span class="fl">账户帐号</span>
+          <input type="text" class="text" ng-model="three.withrawitem.bankDest"> *
+        </li>
+        <li class="cle">
+          <span class="fl">提现金额</span>
+          <input type="text" class="text" ng-model="three.withrawitem.amount"> *
+        </li>
+        <li class="cle">
+          <span class="fl">支付密码</span>
+          <input type="password" class="text" ng-model="three.withrawitem.payword"> *
+        </li>
+        <li class="cle" ng-show="$root.user.paySafe =='on'">
+          <span class="fl">谷歌验证码</span>
+          <input type="password" class="text" ng-model="three.withrawitem.google"> *
+        </li>
+      </ul>
+    </div>
+    <div ng-show="three.bankindex==1" class="fl cle info" style="width: 70%">
+      <div class="fl cle list i3" style="width:30%;">
+        <label class="fl" style="float: left">提案状态</label>
+        <!--<span class="fl">结算状态</span>-->
+        <select-list ng-model="three.query.state" name="bankcardstatus" type="1"></select-list>
+      </div>
+      <div class="fl cle list i3" style="width:30%;">
+        <div>
+          <label class="fl" style="float: left">开始时间</label>
+          <!--<span class="fl">开始时间</span>-->
+          <date-select selectid="allhellobegin" init="1" ng-model="three.query.beginTime"></date-select>
+
+        </div>
+      </div>
+
+      <div class="fl cle list i3" style="width:30%;">
+        <div>
+          <label class="fl" style="float: left">截至时间</label>
+          <!--<span class="fl">截至时间</span>-->
+          <date-select selectid="allhello1end" init="2" ng-model="three.query.endTime"></date-select>
+        </div>
+      </div>
+
+    </div>
+    <div ng-show="three.bankindex==1" class="fl but cle">
+      <input type="button" ng-click="three.get(1)" value="搜索" class="fl">
+      <input type="button" ng-click="three.outList()" value="导出" class="fl">
+    </div>
+  </div>
+  <div ng-show="three.bankindex==2" class="m5">
+    <input type="button" ng-click="three.withrawCreate()" value="提交" class="i1">
+    <input type="button" ng-click="three.clear()" value="清空" class="i2">
+  </div>
+  <div ng-show="three.bankindex==1">
+    <div class="m2 m2s">
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+          <td>{{$root.lagconfig['目标卡信息']}}</td>
+          <td>{{$root.lagconfig['付款人']}}</td>
+          <!--<th>{{$root.lagconfig['绑定电话']}}</th>-->
+          <td>{{$root.lagconfig['转账余额']}}</td><!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+          <td>{{$root.lagconfig['手续费']}}</td><!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+          <td>{{$root.lagconfig['当前状态']}}</td>
+          <td>{{$root.lagconfig['创建时间']}}</td>
+          <td>{{$root.lagconfig['处理时间']}}</td>
+          <td>{{$root.lagconfig['备注']}}</td>
+          <!--<td width="120">操作</td>-->
+        </tr>
+        <tr ng-repeat="item in three.recrodList track by $index">
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.bankDest}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.destName}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.amount}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">2</td>
+          <td>
+            <span>{{item.state| nameTovalue:'id':'name':$root.bankcardstatus}}</span>
+            <!--<type-style value="item.state" list="bankcardstatus"></type-style>-->
+            <!--<select-list ng-model="item.state" name="bankcardstatus" type="1"></select-list>-->
+          </td>
+          <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.state}}</td>-->
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.createTime}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.finshTime}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+            {{item.remark | stringLeng}}
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="text-align: center">总计{{three.totalSum}}小计{{three.nowSum}}</div>
+    <pagination page="three.page" total="three.total" size="three.sizePerPage"
+                trigger="three.get(page)"></pagination>
+  </div>
+</div>

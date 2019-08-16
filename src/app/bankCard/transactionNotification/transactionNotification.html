@@ -1,0 +1,55 @@
+<div class="tab-content">
+    <table class="table">
+        <thead>
+            <tr  ng-model = "bc.notificationList" data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'platformId'},{id:'credit'},{id:'promptCredit'},{id:'createDate'}]" index="bc.bancktranindex" from-stryle>
+                <th>{{$root.lagconfig['所属银行']}}</th>
+                <th>{{$root.lagconfig['银行账号']}}</th>
+                <th>{{$root.lagconfig['开户姓名']}}</th>
+                <th>{{$root.lagconfig['所属平台']}}</th>
+                <th>{{$root.lagconfig['目前余额']}}</th>
+                <th>{{$root.lagconfig['余额限制']}}</th>
+                <th>{{$root.lagconfig['生成时间']}}</th>
+                <th>{{$root.lagconfig['操作提示']}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in bc.notificationList" ng-class="{acolor:bc.bancktranindex == $index}" ng-click="bc.bancktranindex = $index">
+                <td ng-class="{colorwhite:bc.bancktranindex == $index}">
+                  {{item.bankId | nameTovalue:'id':'name':$root.banklist | itemTolish}}
+                    <!--<bank-id-to-name ng-model="item.bankId"></bank-id-to-name>-->
+                </td>
+                <td ng-class="{colorwhite:bc.bancktranindex == $index}">{{item.bankCard | bankFormal}}</td>
+                <td ng-class="{colorwhite:bc.bancktranindex == $index}">{{item.cardName}}</td>
+                <td ng-class="{colorwhite:bc.bancktranindex == $index}">
+                  {{item.platformId | nameTovalue:'id':'name':$root.platformlist}}
+                </td>
+                <td ng-class="{colorwhite:bc.bancktranindex == $index}" style="color: red">{{item.credit}}</td>
+                <td ng-class="{colorwhite:bc.bancktranindex == $index}">{{item.promptCredit}}</td>
+                <td ng-class="{colorwhite:bc.bancktranindex == $index}">{{item.createDate}}</td>
+                <td ng-class="{colorwhite:bc.bancktranindex == $index}">
+                    <!--<button type="submit" class="btn btn-danger btn-small">删除</button>-->
+                    <a ng-href="#createTask" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary" ng-click="bc.createTask($index,id);">{{$root.lagconfig['生成转账']}}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+   <div class="userbuttonright">
+    <!--<click-button click="bc.showeditBank" data="user.roleitem" value="生产转账"></click-button>-->
+    <!--<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" ng-click="bc.showeditBank()"-->
+    <!--target="_self"-->
+    <!--type="submit" role="button" data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['更新']}}-->
+    <!--</button>-->
+    <!--<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" href="#createBank" target="_self"-->
+    <!--type="submit"-->
+    <!--role="button" data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['创建']}}-->
+    <!--</button>-->
+    <!--<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" ng-click="bc.showeditMoney()"-->
+    <!--target="_self"-->
+    <!--type="submit" role="button" data-toggle="modal" data-original-title="">{{$root.lagconfig['调整余额']}}-->
+    <!--</button>-->
+  </div>
+    <pagination page="bc.page" total="bc.total" size="bc.transize" trigger="bc.alertLoadingBankCard(page)"></pagination>
+</div>
+<div ng-include="'app/bankCard/transactionNotification/transactionNotification.popup.html'"></div>

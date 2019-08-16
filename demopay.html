@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style type="text/css">
+    ul, ol {
+      margin: 0;
+      padding: 0;
+      padding: 5px 0px;
+    }
+  </style>
+  <script type=text/javascript src=jquery.min.js></script>
+  <script type=text/javascript src=md5.js></script>
+
+  <script>
+
+
+    //    $.ajax({
+    //      type: 'GET',
+    //      // url: "http://192.168.11.128:8081/" + url,
+    ////           url: "http://localhost:8081/midpay?platform=" + getQueryVariable("platform") + "&username=" + getQueryVariable("username") + "&amount=" + getQueryVariable("amount") + "&from=" + getQueryVariable("from"),
+    //      url: "http://midpaydemo.com:8080/midpay?platform=" + getQueryVariable("platform") + "&username=" + getQueryVariable("username") + "&amount=" + getQueryVariable("amount") + "&from=" + getQueryVariable("from"),
+    //      success: function (data) {
+    //        if (data.code != 200) {
+    //          alert("信息错误")
+    //          return
+    //        }
+    //        amount = data.data.amount;
+    //        account = data.data.account;
+    //        nickname = data.data.nickname;
+    //        realname = data.data.realname;
+    //        username = data.data.username;
+    //        imgurlsrc = data.data.url;
+    //      },
+    //      error: function (data) {
+    //
+    //      }
+    //    });
+    var amount, account, nickname, realname, username, imgurlsrc;
+    //    var sign = "70db1cfd91b84c71"//商户签名
+    //    var merchat = {
+    //      "version": "1.0",
+    //      "MerchaantNo": "PFH",
+    //      "type": "alapi"
+    //    }
+    var sign = "46cf8988fc1f2604"//商户签名
+    var merchat = {
+      "version": "1.0",
+      "MerchaantNo": "AYN",
+      "type": "alapi"
+    }
+    function flush() {
+      window.location.reload();
+      setTimeout(function () {
+        flush();
+      }, 30000)
+    }
+    function playMusic() {
+      var player = $("#player")[0];
+      /*jquery对象转换成js对象*/
+      if (player.paused) { /*如果已经暂停*/
+        player.play();
+        /*播放*/
+      } else {
+        player.pause();
+        /*暂停*/
+      }
+    }
+//    setTimeout(function () {
+//      document.getElementsByTagName('audio')[0].src = "http://tsn.baidu.com/text2audio?lan=zh&ctp=1&cuid=abcdxxx&tok=24.236a158a2a83f5b1130f709a7e843d9f.2592000.1533801311.282335-11516706&tex=没有可用的商户,请注意及时处理&vol=9&per=0&spd=5&pit=5";
+//    }, 500);
+    //    setTimeout(function () {
+    //      flush();
+    //    }, 15000)
+    merchat.amount = getQueryVariable("amount");
+    merchat.payer = getQueryVariable("username");
+    merchat.userRemark = getQueryVariable("userRemark");
+    merchat.RealName ="test";
+    console.log(merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign);
+    merchat.sign = hex_md5(merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign);
+    console.log(merchat.sign);
+    var apiDeposit = {
+        "BankCode":"ALIPAY",
+        "CallBackUrl":"http://www.google.com",
+        "CustomerId":"13540310012",
+        "Message":"test",
+        "Mode":"8",
+        "Money":"10.00",
+        "ReturnUrl":"http://www.google.com",
+        "UserId":"shunfu001"
+    }
+    var result =  "BankCode=" + apiDeposit.BankCode + "&CallBackUrl=" + apiDeposit.CallBackUrl + "&CustomerId" + apiDeposit.CustomerId
+      + "&Message=" + apiDeposit.Message + "&Mode=" + apiDeposit.Mode + "&Money=" + apiDeposit.Money + "&ReturnUrl=" + apiDeposit.ReturnUrl + "&UserId=" + apiDeposit.UserId + "&Key="
+      + "a7925f7886bd2451";
+    console.log("result:"+result + " sign:"+hex_md5(result));
+    apiDeposit.sign = hex_md5(result);
+    setTimeout(function () {
+      $.ajax({
+        type: 'post',
+        // url: 'http://midpaydemo.com:8080/midpay',
+        // url: 'http://103.205.121.9:8081/midpay',
+//        url: 'http://www.shunfu68.com:8089/midpay',
+//        url: 'http://zhifukaui111.info:8081/setProposal',
+        url: 'http://localhost:8081/api_deposit',
+//        url: 'http://localhost:8081/setProposal',
+        data: apiDeposit,
+        success: function (data) {
+          console.log(data);
+          if (data.code != 200) {
+//            playMusic();
+//            var utterThis = new window.SpeechSynthesisUtterance('没有可用的商户，请注意及时处理！');
+//            window.speechSynthesis.speak(utterThis);
+            alert(data.msg);
+            return
+          }
+//          amount = data.data.amount;
+//          account = data.data.account;
+//          nickname = data.data.nickname;
+//          realname = data.data.realname;
+//          username = data.data.username;
+//          imgurlsrc = data.data.url;
+        },
+        error: function (data) {
+        }
+      })
+    }, 2000);
+    function getQueryVariable(variable) {
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+          return pair[1];
+        }
+      }
+      return (false);
+    }
+    setTimeout(function () {
+      for (var i = 0; i < $('.amount').length; i++) {
+        $('.amount').eq(i).text(amount)
+      }
+      for (var i = 0; i < $('.zhanghao').length; i++) {
+        $('.zhanghao').eq(i).text(account)
+      }
+      for (var i = 0; i < $('.remark').length; i++) {
+        $('.remark').eq(i).text(username)
+      }
+      for (var i = 0; i < $('.nickName').length; i++) {
+        $('.nickName').eq(i).text(nickname + "(" + realname + ")")
+      }
+//      $('#paysrc').attr("src", "data:image/png;base64," + imgurlsrc);
+      $('#paysrc').attr("src", imgurlsrc);
+    }, 5000);
+
+  </script>
+</head>
+
+<body>
+<button onclick="playMusic()">播放</button>
+<audio id="player" controls="controls">
+  <source src="7711.mp3"/>
+</audio>
+<div style="background-color: #eaf7ff;width: 1300px;height: 600px">
+  <div style="padding: 100px 200px">
+    <img id="paysrc" src="alipay.png"
+         style="width: 200px;border-style: solid;border-color: yellow;float: left;margin-right: 30px">
+    <div style="display: inline-block;width: 300px;letter-spacing: 1px;">
+      <h2 style="margin: 0px">
+        充值流程
+      </h2>
+      <ul>
+        <ol>1.向支付宝账号:<span class="zhanghao" style="font-weight: bold">v652593@163.com</span><br>(真实姓名:*飞云)转账,也可以通过左侧扫一扫转账(注意:支付宝账号不定期更换,每笔充值前请确定核对订单信息)
+        </ol>
+        <ol>2.付款金额请填写:<span class="amount" style="font-weight: bold">888.88</span>元</ol>
+        <ol>3.付款说明请填写:<span class="remark" style="font-weight: bold">etestjudy</span>(注意:请确定核对以免充值失败)</ol>
+      </ul>
+    </div>
+    <div style="display: inline-block;width: 300px;letter-spacing: 1px;float: right;position: relative">
+      <label class="nickName" style="position: absolute;left: 100px;top: 102px;color: #ff6700;font-weight: bold;">飞云(*飞云)</label>
+      <label class="amount"
+             style="position: absolute;left: 25px;top: 172px;color: #ff6700;font-weight: bold;">888.88</label>
+      <label class="remark"
+             style="position: absolute;left: 15px;top: 196px;color: #ff6700;font-weight: bold;">etestjudy</label>
+      <img src="alipayback.png"
+           style="width: 200px;border-style: solid;border-color: yellow;float: left;margin-right: 30px">
+    </div>
+  </div>
+</div>
+</body>
+</html>

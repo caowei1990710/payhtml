@@ -1,0 +1,254 @@
+<div class="tab-content" style="padding-top: 0px"
+     ng-init="user.roleindex = 0;user.rolelistindex = 0;user.roleitemindex=0;">
+  <div>
+    <div class="userrow">
+      <ul class="userrowul bigsize">
+        <li class="span2 userli" ng-class="{uservister:user.roleindex == 0}" ng-click=" user.roleindex = 0">
+          <icon-title value="用户" index="1" default="1" select="user.roleindex == 0" dewidth="170"></icon-title>
+          <!--<div class="ng-binding" style="position: relative;line-height: 50px;width: 80%;padding-left: 20%;">-->
+          <!--<i style="left: 50px;top: 9px;background: url(assets/images/icon.png) no-repeat;width: 34px;height: 39px;background-size:1700% 200%;position: absolute;background-position: -34px -39px;display: inline-block;">-->
+          <!--</i>-->
+          <!--用户-->
+          <!--</div>-->
+
+          <!--<i>{{$root.lagconfig['用户']}}</i>-->
+          <!--<div></div>-->
+        </li>
+        <li class="span2 userli" ng-class="{uservister:user.roleindex == 1}" ng-click="user.roleindex = 1">
+          <icon-title value="角色" index="2" default="0" select="user.roleindex == 1" dewidth="170"></icon-title>
+        </li>
+        <!--<li class="span2 userli" ng-class="{uservister:user.roleindex == 2}" ng-click="user.roleindex = 2"><a>{{$root.lagconfig['平台']}}</a>-->
+        <!--</li>-->
+      </ul>
+      <div ng-show="user.roleindex == 0" class="userrowfirst">
+        <form class="form-inline textleft" name="queryForm">
+          <span>
+            <label class="control-label">{{$root.lagconfig['用户名']}}</label>
+            <input ng-model="user.query.username" type="text">
+          </span>
+          <span>
+          <label class="control-label">{{$root.lagconfig['创建者']}}</label>
+          <input ng-model="user.query.creator" type="text">
+          </span>
+          <label>
+            {{$root.lagconfig['单页数量']}}:
+          </label>
+          <page-number ng-model="user.size"></page-number>
+          <button type="submit" class="departmentbutton toselet btn btn-primary" ng-click="user.select(1);">
+            {{$root.lagconfig['查询']}}
+          </button>
+        </form>
+        <div class="tabbleout">
+          <table class="table">
+            <thead>
+            <tr ng-model="user.alluserList"
+                data="[{id:'username'},{id:'password'},{id:'nickname'},{id:'createDates'},{id:'creator'}]"
+                index="user.bankindex" from-stryle>
+              <th>{{$root.lagconfig['用户名']}}</th>
+              <!--<th>{{$root.lagconfig['密码']}}</th>-->
+              <th>{{$root.lagconfig['昵称']}}</th>
+              <th>{{$root.lagconfig['创建时间']}}</th>
+              <th>{{$root.lagconfig['创建者']}}</th>
+              <th>{{$root.lagconfig['所属平台']}}</th>
+              <th ng-show="false">{{$root.lagconfig['功能']}}</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="outline: none;height: 50px" ng-repeat="item in user.alluserList"
+                ng-class="{acolor:user.bankindex == $index}"
+                ng-click="user.editUser($index)">
+              <td ng-class="{colorwhite:user.bankindex == $index}"><span style="cursor: pointer" html="123"
+                                                                         alert-povper>{{item.username}}</span>
+              </td>
+              <!--<td ng-class="{colorwhite:user.bankindex == $index}">{{item.password}}</td>-->
+              <td ng-class="{colorwhite:user.bankindex == $index}">{{item.nickname}}</td>
+              <td ng-class="{colorwhite:user.bankindex == $index}">{{item.createDate}}</td>
+              <td ng-class="{colorwhite:user.bankindex == $index}">{{item.creator}}</td>
+              <td ng-class="{colorwhite:user.bankindex == $index}">{{item.platformId |
+                nameTovalue:'id':'name':$root.platformlist}}
+              </td>
+              <td ng-show="false" ng-class="{colorwhite:user.bankindex == $index}">
+                <div style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:160px">{{item.function}}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--<div class="pull-right accordion-body">-->
+        <!--<a ng-click="user.showCreatuser()" target="_self" type="submit"-->
+        <!--role="button" data-toggle="modal" data-original-title=""-->
+        <!--class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+        <!--<a ng-click="user.showEdituser()" target="_self" type="submit"-->
+        <!--role="button" data-toggle="modal" data-original-title=""-->
+        <!--class="btn btn-primary">{{$root.lagconfig['更新']}}</a>-->
+        <!--</div>-->
+
+        <pagination page="user.page" total="user.total" size="user.size"
+                    trigger="user.select(page)"></pagination>
+        <div class="accordion-body userbuttonright">
+          <click-button click="user.showCreatuser" value="创建用户"></click-button>
+          <click-button click="user.showOpeartuser" value="查看操作员"></click-button>
+          <click-button click="user.showEdituser" value="更新"></click-button>
+          <!--<button class="departmentbutton btn btn-primary" ng-click="user.showCreatuser()" target="_self"-->
+          <!--role="button" data-toggle="modal" data-original-title=""-->
+          <!--class="btn btn-primary">{{$root.lagconfig['创建']}}-->
+          <!--</button>-->
+          <!--<button ng-click="user.showEdituser()" target="_self" type="submit"-->
+          <!--role="button" data-toggle="modal" data-original-title=""-->
+          <!--class="departmentbutton btn btn-primary">{{$root.lagconfig['更新']}}-->
+          <!--</button>-->
+        </div>
+        <!--<a ng-click="user.setAble(1,2)" target="_self" type="submit" role="button"-->
+        <!--data-toggle="modal" data-original-title=""-->
+        <!--class="btn btn-primary">{{$root.lagconfig['修改权限']}}</a>-->
+
+      </div>
+      <div ng-show="user.roleindex == 1" style="height: 745px;padding:20px;position: relative">
+        <div>
+          <div style="text-align: left;height: 126px">
+            <ul class="userroleul">
+              <li ng-class="{true:'userrolelihover',false:'userroleulli'}[user.rolelistindex==$index]"
+                  ng-repeat="item in user.rolelist track by $index"
+                  ng-click="user.setRoleindex($index,user.rolelistindex==$index)">
+                <div style="position: relative;padding-left: 20px;">
+                  <div ng-class="{true:'userroleitemsel',false:'userroleitemnor'}[user.rolelistindex==$index]"></div>
+                  <span>{{item.name|itemTolish}}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div style="background-color: white;height: 526px">
+            <!--<div class="userroletitle"><label class="control-label colorwhite no-margin" style="padding: 15px">{{$root.lagconfig['权限管理']}}</label>-->
+            <!--</div>-->
+            <select-role typeid="user.roleitem.id" ng-model="user.rolePermiss">
+
+            </select-role>
+            <!--<ul class="pull-left userrolefun">-->
+            <!--<li class="textcenter" ng-cla`ss="{defalutcolor:user.roleitemindex== $index}" style="padding: 10px"-->
+            <!--ng-repeat="item in user.permission"-->
+            <!--ng-click="user.itemable($index)">-->
+            <!--<input type="checkbox" ng-checked="user.ablelist[$index+1]" disabled><span> {{item.name}}</span>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--<div style="height: 300px;margin-left: 150px;position: relative">-->
+            <!--<div ng-repeat="item in user.roleable.children">-->
+            <!--<input type="checkbox" ng-model="user.ablelist[$index+ user.defaultindex]"-->
+            <!--id="{{item.parentId}}_{{item.id}}"><span>{{item.name}}</span>-->
+            <!--</div>-->
+            <!--<a type="submit" ng-click="user.updateRleable()" style="position: absolute;right: 20px;bottom: 50px;"-->
+            <!--role="button" data-toggle="modal" data-original-title=""-->
+            <!--class="btn btn-primary pull-right">{{$root.lagconfig['确定']}}</a>-->
+            <!--</div>-->
+          </div>
+          <div class="accordion-body userbuttonright">
+            <click-button href="updateRoler" data="user.roleitem" value="更新"></click-button>
+            <click-button click="user.deleteRole" data="user.roleitem" value="删除"></click-button>
+            <click-button href="createRoler" value="创建"></click-button>
+          </div>
+          <!--<button href="#updateRoler" target="_self" type="submit"-->
+          <!--role="button" data-toggle="modal" data-original-title=""-->
+          <!--class="btn btn-primary departmentbutton" style="margin-left:460px">{{$root.lagconfig['更新']}}</button>-->
+          <!--<button target="_self" ng-click="user.deleteRole()" type="submit"-->
+          <!--role="button" data-toggle="modal" data-original-title=""-->
+          <!--class="btn btn-primary departmentbutton">{{$root.lagconfig['删除']}}</button>-->
+          <!--<button href="#createRoler" target="_self" type="submit"-->
+          <!--role="button" data-toggle="modal" data-original-title=""-->
+          <!--class="btn btn-primary departmentbutton">{{$root.lagconfig['创建']}}</button>-->
+          <!--<a ng-click="user.setAble(1,2)"  type="submit" role="button"-->
+          <!--data-toggle="modal" data-original-title=""-->
+          <!--class="btn btn-primary">{{$root.lagconfig['修改权限']}}</a>-->
+        </div>
+      </div>
+      <!--<div ng-show="user.roleindex == 2">{{$root.lagconfig['平台']}}</div>-->
+      <!--<label>{{$root.lagconfig['用户']}}</label>-->
+      <!--<label>{{$root.lagconfig['角色']}}  ng-click="user.roleitemindex = $index;user.roleable=user.permission[$index]"</label>-->
+      <!--<label>{{$root.lagconfig['平台']}}</label>-->
+    </div>
+    <div style="background:#eaf7ff;height: 850px;width: 302px;overflow: auto;">
+      <div class="colorclick departmentdiv">
+        <icon-title value="部门" default="1" dewidth="150" class="colorwhite"></icon-title>
+        <!--<img src="assets/images/deparment.png">-->
+        <!--<span style="color: white">{{$root.lagconfig['部门']}}</span>-->
+      </div>
+      <div style="height: 720px">
+        <deparat-ment data="user.departmentlist" ng-model="user.departmentitem"></deparat-ment>
+      </div>
+      <div class="accordion-body">
+        <!--<click-button href="updateRoler" data="user.roleitem" value="更新"></click-button>-->
+        <!--<click-button click="user.deleteRole"  data="user.roleitem" value="删除"></click-button>-->
+        <!--<click-button href="createRoler" value="创建"></click-button>-->
+        <click-button href="createDeparment" data="user.departmentitem.numbers" value="创建"></click-button>
+        <click-button click="user.deletepartment" data="user.departmentitem.numbers" value="删除"></click-button>
+        <!--<click-button href="createDeparment" data="user.departmentitem.numbers" value="创建"></click-button>-->
+        <!--<click-button click="user.deletepartment" data="user.departmentitem.numbers" value="删除"></click-button>-->
+        <!--<button class="departmentbutton btn btn-primary" href="#createDeparment" target="_self"-->
+        <!--role="button" ng-disabled="!user.departmentitem.numbers" data-toggle="modal" data-original-title=""-->
+        <!--class="btn btn-primary">{{$root.lagconfig['创建']}}-->
+        <!--</button>-->
+        <!--<button ng-disabled="!user.departmentitem.numbers" ng-click="user.deletepartment()" target="_self" type="submit"-->
+        <!--role="button" data-toggle="modal" data-original-title=""-->
+        <!--class="departmentbutton btn btn-primary">{{$root.lagconfig['删除']}}-->
+        <!--</button>-->
+      </div>
+    </div>
+
+    <!--<div>-->
+    <!--<form class="form-inline am-form-query" name="queryForm">-->
+    <!--<span>-->
+    <!--<label class="control-label">{{$root.lagconfig['用户名']}}</label>-->
+    <!--<input ng-model="user.query.username" type="text">-->
+    <!--</span>-->
+    <!--<label class="control-label">{{$root.lagconfig['创建者']}}</label>-->
+    <!--<input ng-model="user.query.creator" type="text">-->
+    <!--</span>-->
+    <!--<button type="submit" class="btn btn-primary toselet" style="margin-right: 150px" ng-click="user.select(1);">-->
+    <!--{{$root.lagconfig['查询']}}-->
+    <!--</button>-->
+    <!--</form>-->
+    <!--<table style="width: 70%" class="table">-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<th>{{$root.lagconfig['用户名']}}</th>-->
+    <!--<th>{{$root.lagconfig['密码']}}</th>-->
+    <!--<th>{{$root.lagconfig['昵称']}}</th>-->
+    <!--<th>{{$root.lagconfig['创建时间']}}</th>-->
+    <!--<th>{{$root.lagconfig['创建者']}}</th>-->
+    <!--<th ng-show="false">{{$root.lagconfig['功能']}}</th>-->
+    <!--<th></th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr style="outline: none" ng-repeat="item in user.alluserList" ng-class="{acolor:user.bankindex == $index}"-->
+    <!--ng-click="user.editUser($index)">-->
+    <!--<td ng-class="{colorwhite:user.bankindex == $index}"><span style="cursor: pointer" html="123" alert-povper>{{item.username}}</span>-->
+    <!--</td>-->
+    <!--<td ng-class="{colorwhite:user.bankindex == $index}">{{item.password}}</td>-->
+    <!--<td ng-class="{colorwhite:user.bankindex == $index}">{{item.nickname}}</td>-->
+    <!--<td ng-class="{colorwhite:user.bankindex == $index}">{{item.createDate | dateFormate}}</td>-->
+    <!--<td ng-class="{colorwhite:user.bankindex == $index}">{{item.creator}}</td>-->
+    <!--<td ng-show="false" ng-class="{colorwhite:user.bankindex == $index}">-->
+    <!--<div style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:160px">{{item.function}}</div>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+    <!--<pagination page="user.page" style="padding-left: 300px;display: block" total="user.total" size="user.size"-->
+    <!--trigger="user.select(page)"></pagination>-->
+    <!--<a ng-click="user.showCreatuser()" style="margin-left: 1000px" target="_self" type="submit"-->
+    <!--role="button" data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+    <!--<a ng-click="user.showEdituser()" target="_self" type="submit"-->
+    <!--role="button" data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['更新']}}</a>-->
+    <!--<a ng-click="user.setAble(1,2)" target="_self" type="submit" role="button"-->
+    <!--data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['修改权限']}}</a>-->
+
+    <!--</div>-->
+  </div>
+  <div ng-include="'app/user/user.popup.html'"></div>
+  <!--<tabbar tabs="[{text:'账号管理',link:'am'},{text:'监控状态',link:'ms'},{text:'转账提醒',link:'tn'},{text:'转账监控',link:'tm'}];"></tabbar>-->
+  <!--<tabbar tabs="[{text:'用户管理',link:'ul'}];" index = "1"></tabbar>-->
+</div>

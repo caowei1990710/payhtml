@@ -1,0 +1,92 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <label class="control-label textright">{{$root.lagconfig['所属平台']}}</label>
+      <select-more data="$root.platformlist" attrid="platlists" ng-model="list.query.platformId"></select-more>
+      <!--<select-more data="$root.listtypes" ng-model="list.query.type"></select-more>-->
+      <!--<select-list ng-model="list.query.platformId" name="platformlist" type="1"></select-list>-->
+      <label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>
+      <select-list ng-model="list.query.status" name="popusaltypes" type="1"></select-list>
+      <re-flush flush="list.flush"></re-flush>
+      <label class="control-label textright">{{$root.lagconfig['所属类型']}}:</label>
+      <!--<select-list ng-model="list.query.inputType" name="listtypes" type="1"></select-list>-->
+      <!--<label ng-repeat="item in $root.listtypes track by $index" style="width: auto !important;"><input name="types" style="width: 20px !important;" type="checkbox" value="{{item.id}}"/>{{item.name}}</label>-->
+      <select-more data="$root.listtypes" attrid="listtypes" ng-model="list.query.type"></select-more>
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="list.queryList(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="list.proposalList"
+          data="[{id:'platFromId'},{id:'Proposal_id'},{id:'realName'},{id:'proposaltype'},{
+            id:'status'},{id:'userName'},{id:'amount'},{id:'createTime'},{id:'flag'},{id:'type'},{id:'remark'}]"
+          index="list.bankindex"
+          from-stryle>
+        <th>{{$root.lagconfig['所属平台']}}</th>
+        <th>{{$root.lagconfig['提案号']}}</th>
+        <th>{{$root.lagconfig['用户名']}}</th>
+        <th>{{$root.lagconfig['所属类型']}}</th>
+        <th>{{$root.lagconfig['状态']}}</th>
+        <th>{{$root.lagconfig['游戏账号']}}</th>
+        <th>{{$root.lagconfig['金额']}}</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['倒数时间']}}</th>
+        <th>{{$root.lagconfig['客户等级']}}</th>
+        <th>{{$root.lagconfig['备注']}}</th>
+        <th>{{$root.lagconfig['实时信息']}}</th>
+        <th>{{$root.lagconfig['提案明细']}}</th>
+      </tr>
+      </thead>
+      <!--<tbody data="list.bankindex" ng-model="list.bankList" index="list.bankindex" move-change>-->
+      <tbody data="list.bankindex" ng-model="list.bankList" index="list.bankindex">
+      <tr ng-repeat="item in list.proposalList track by $index" ng-class="{acolor:list.bankindex == $index}"
+          ng-click="list.bankindex == $index" class="repeat-animation">
+        <!--<td ng-class="{colorwhite:list.bankindex == $index}">{{item.deviceId| nameTovalue:'id':'name':$root.devicelist}}-->
+        <!--</td>-->
+        <td ng-class="{colorwhite:list.bankindex == $index}">
+          {{item.platFromId | nameTovalue:'id':'name':$root.platformlist}}
+        </td>
+        <td ng-class="{colorwhite:list.bankindex == $index}">
+          {{item.Proposal_id}}
+        </td>
+        <td ng-class="{colorwhite:list.bankindex == $index}">{{item.realName}}</td>
+        <td ng-class="{colorwhite:list.bankindex == $index}">
+          {{item.proposaltype}}
+        </td>
+        <td>
+          <type-style value="item.status" list="popusaltypes"></type-style>
+        </td>
+        <td ng-class="{colorwhite:list.bankindex == $index}">{{item.userName}}</td>
+        <td ng-class="{colorwhite:list.bankindex == $index}">{{item.amount}}</td>
+        <td ng-class="{colorwhite:list.bankindex == $index}">{{item.createTime}}</td>
+        <td ng-class="{colorwhite:list.bankindex == $index}"></td>
+        <td ng-class="{colorwhite:list.bankindex == $index}"></td>
+        <td ng-class="{colorwhite:list.bankindex == $index}">{{item.remark}}</td>
+        <td ng-class="{colorwhite:list.bankindex == $index}"></td>
+        <td ng-class="{colorwhite:list.bankindex == $index}"></td>
+
+        <!--<td ng-class="{colorwhite:list.bankindex == $index}">-->
+        <!--{{item.createDate}}-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:list.bankindex == $index}">-->
+        <!--<span type="accountManage" html="item.merchant.id" alert-povper>{{item.merchant.name}}</span>-->
+        <!--&lt;!&ndash;{{item.merchant.name}}&ndash;&gt;-->
+        <!--</td>-->
+
+        <!--<td ng-class="{colorwhite:list.bankindex == $index}">-->
+        <!--{{item.remark | stringLeng}}-->
+        <!--</td>-->
+        <!--<a href="#editBank" ng-click="list.editBank($index,item.bankId);" target="_self" type="submit" role="button"-->
+        <!--data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a></td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div><span>共</span>{{list.size}}条</div>
+  <!--<pagination page="list.page" total="list.total" size="list.sizePerPageFromResponse"-->
+  <!--trigger="list.loadingBankCard(page)"></pagination>-->
+</div>

@@ -1,0 +1,124 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <label class="control-label textright">{{$root.lagconfig['银行账号']}}</label>
+      <!--<input ng-model="usepic.query.name" name="name" type="text">-->
+      <chang-listitem ng-model="usepic.query.name" empty="0" data="$root.allbanklist"
+                      type="wechatName" ids="merchatlists"></chang-listitem>
+      <label class="control-label textright">{{$root.lagconfig['金额']}}</label>
+      <input ng-model="usepic.query.amount" name="amount" type="text">
+      <!--<select ng-model="usepic.query.amount" name="amount" type="text">-->
+        <!--<option>10000</option>-->
+        <!--<option>5000</option>-->
+        <!--<option>3000</option>-->
+        <!--<option>2000</option>-->
+        <!--<option>1000</option>-->
+        <!--<option>500</option>-->
+        <!--<option>200</option>-->
+        <!--<option>100</option>-->
+      <!--</select>-->
+      <!--<input ng-model="thridyoutput.query.fromBank" name="bankCard" type="text">-->
+      <label class="control-label textright">{{$root.lagconfig['可用']}}</label>
+      <select ng-model="usepic.query.nickName" name="nickName" type="text">
+        <option></option>
+        <option>可用</option>
+        <option>不可用</option>
+      </select>
+      <!--<input ng-model="thridyoutput.query.nickName" name="nickName" type="text">-->
+      <label class="control-label textright">{{$root.lagconfig['二维码地址']}}</label>
+      <select ng-model="usepic.query.qrurl" name="nickName" type="text">
+        <option></option>
+        <option>没有</option>
+        <option>赋值</option>
+      </select>
+
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['创建时间']}}</label>-->
+      <!--<date-select selectid="allhello" init="1" ng-model="thridyoutput.query.beginTime"></date-select>-->
+      <!--</span>-->
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['到']}}</label>-->
+      <!--<date-select selectid="allhello1" init="2" ng-model="thridyoutput.query.endTime"></date-select>-->
+      <!--</span>-->
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="usepic.get(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="usepic.bankList"
+          data="[{id:'wechatName'},{id:'amount'},{id:'url'},{id:'creatTime'},{id:'overTime'},{id:'lastUsetime'},{
+          id:'note'},{id:'nickName'},{id:'imageName'},{id:'qrurl'},{id:'state'}]"
+          index="bc.bankindex" from-stryle>
+        <th>{{$root.lagconfig['银行账号']}}</th>
+        <th>{{$root.lagconfig['金额']}}</th>
+        <!--<th>{{$root.lagconfig['回调地址']}}</th>-->
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['超时时间']}}</th>
+        <th>{{$root.lagconfig['最后使用时间']}}</th>
+        <th>{{$root.lagconfig['备注']}}</th>
+        <th>{{$root.lagconfig['昵称']}}</th>
+        <!--<th>{{$root.lagconfig['真实地址']}}</th>-->
+        <th>{{$root.lagconfig['备注']}}</th>
+        <th>{{$root.lagconfig['二维码地址']}}</th>
+
+        <th>{{$root.lagconfig['当前状态']}}</th>
+        <!--<th>{{$root.lagconfig['创建人']}}</th>-->
+      </tr>
+      </thead>
+      <!--<tbody data="bc.bankindex" ng-model="bc.bankList" index="bc.bankindex" move-change>-->
+      <tbody data="usepic.bankindex" ng-model="usepic.bankList" index="usepic.bankindex">
+
+      <tr ng-repeat="item in usepic.bankList track by $index"
+          ng-class="{acolor:thirdyrplist.bankindex == $index}"
+          ng-click="thirdyaccount.editBank($index)" class="repeat-animation">
+
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">
+          {{item.wechatName}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.amount}}
+        </td>
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">-->
+          <!--{{item.url}}-->
+        <!--</td>-->
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.creatTime}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.overTime}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.lastUsetime}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.note}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.nickName}}
+        </td>
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.realUrl}}</td>-->
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.sign}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.qrurl}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.state}}</td>
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">-->
+        <!--{{item.remark | stringLeng}}-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.createUser}}</td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: center">总计{{usepic.totalSum}}小计{{usepic.bankList.length}}</div>
+  <pagination page="usepic.page" total="usepic.totalSum" size="usepic.sizePerPage"
+              trigger="usepic.get(usepic.page)"></pagination>
+  <div class="pull-right buttonpost">
+    <click-button href="createTask" data="user.roleitem" value="创建"></click-button>
+    <!--<click-button click="bc.showeditMoney" value="调整余额"></click-button>-->
+  </div>
+</div>
+<div ng-include="'app/bankCard/transactionNotification/transactionNotification.createTask.html'"></div>

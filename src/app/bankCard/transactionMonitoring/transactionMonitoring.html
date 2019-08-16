@@ -1,0 +1,58 @@
+<div class="tab-content">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{$root.lagconfig['收款卡信息']}}</th>
+                <th>{{$root.lagconfig['账号余额']}}</th>
+                <th>{{$root.lagconfig['创建时间']}}</th>
+                <th>{{$root.lagconfig['转账卡信息']}}</th>
+                <th>{{$root.lagconfig['转账金额']}}</th>
+                <th>{{$root.lagconfig['任务状态']}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in bc.transactionList">
+                <td>
+                    <div>
+                        <b>{{$root.lagconfig['所属银行']}}：</b>
+                        <bank-id-to-name ng-model="item.receiveBankId"></bank-id-to-name>
+                    </div>
+                    <div><b>{{$root.lagconfig['银行账号']}}：</b> {{item.receiveBankCard}}
+                    </div>
+                    <div><b>{{$root.lagconfig['开户姓名']}}：</b> {{item.receiveCardName}}
+                    </div>
+                    <div><b>{{$root.lagconfig['所属平台']}}：</b>
+                        <platform-id-to-name ng-model="item.receivePlatformId"></platform-id-to-name>
+                    </div>
+                </td>
+                <td>{{bc["balance" + item.receiveBankCard]}}
+                    <button class="btn btn-mini btn-primary" ng-click="bc.getBankCardBalance(item.receiveBankCard);">
+                      {{$root.lagconfig['查询余额']}}
+                      </button></td>
+                <td>{{item.createTime}}</td>
+                <td>
+                    <div>
+                        <b>{{$root.lagconfig['所属银行']}}：</b>
+                        <bank-id-to-name ng-model="item.sendBankId"></bank-id-to-name>
+                    </div>
+                    <div><b>{{$root.lagconfig['银行账号']}}：</b> {{item.sendBankCard}}
+                    </div>
+                    <div><b>{{$root.lagconfig['开户姓名']}}：</b> {{item.sendCardName}}
+                    </div>
+                    <div><b>{{$root.lagconfig['所属类型']}}：</b>
+                        <card-type-to-name ng-model="item.remark"></card-type-to-name>
+                    </div>
+                </td>
+                <td>{{item.receiveBalance}}</td>
+                <td>{{item.limitCredit}}</td>
+                <td>
+                    <span class="label label-info">
+                    <!--{{item.status}}-->
+                    {{$root.lagconfig['已完成']}}
+                  </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination page="bc.page" total="bc.total" size="bc.size" trigger="bc.loadingTransferTask(page)"></pagination>
+</div>

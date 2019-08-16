@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+
+<!--<head>-->
+<!--<meta charset="utf-8" />-->
+<!--<title>顺付商户管理中心</title>-->
+<!--<meta name="keywords" content="" />-->
+<!--<meta name="description" />-->
+
+<!--<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+<!--<meta name="format-detection" content="telephone=yes">-->
+
+<!--&lt;!&ndash;<link rel="stylesheet" href="css/base.css" />&ndash;&gt;-->
+<!--&lt;!&ndash;<link rel="stylesheet" href="css/project.css" />&ndash;&gt;-->
+<!--&lt;!&ndash;<link rel="stylesheet" href="css/common.css" />&ndash;&gt;-->
+<!--&lt;!&ndash;<link rel="stylesheet" href="css/animate.min.css" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;<link rel="stylesheet" href="css/css3.css" />&ndash;&gt;-->
+<!--&lt;!&ndash;<script type="text/javascript" src="js/jQuery.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script type="text/javascript" src="js/index.js"></script>&ndash;&gt;-->
+
+<!--</head>-->
+
+<!--<body>-->
+
+<!--1-->
+<div class="zz"></div>
+<div class="head cle">
+  <div class="box fl cle">
+				<span class="fl title_name">
+				顺付商户管理中心
+				</span>
+    <div class="fr head_info">
+      <span>欢迎{{$root.user.name}}</span>/
+      <!--<a href="#">公告信息</a> /-->
+      <span ng-click="maincontent.logout()">退出</span>
+    </div>
+  </div>
+  <span class="click_nav" id="phone_show">
+				<img src="img/men.png"/>
+			</span>
+</div>
+<!--2-->
+<div class="warp cle w">
+  <div class="war_dome">
+    <!--left-->
+    <div class="fl left_warp">
+      <div style="text-align: center;font-size: 20px;padding: 20px 0;" id="first">
+        <a ng-click="maincontent.goOther(1)">
+          商户首页
+        </a>
+      </div>
+      <div class="list">
+        <div class="c_t i1">
+        </div>
+      </div>
+      <div style="text-align: center;font-size: 20px;padding: 20px 0;" id="second">
+        <a ng-click="maincontent.goOther(2)">
+          交易管理
+        </a>
+      </div>
+      <div class="list"  id="secondlist">
+        <div class="c_t i2">
+        </div>
+        <ul class="cle">
+
+          <li class="fl">
+            <a ng-click="maincontent.goOther(3)" class="txtov">
+              提案列表
+            </a>
+          </li>
+          <li class="fl">
+            <a ng-click="maincontent.goOther(12)" class="txtov">
+              报表明细
+            </a>
+          </li>
+
+        </ul>
+      </div>
+      <div style="text-align: center;font-size: 20px;padding: 20px 0;" id="thirdy">
+        <a ng-click="maincontent.goOther(4)">
+          结算管理
+        </a>
+      </div>
+      <div class="list" id="thirdylist">
+        <div class="c_t i3">
+        </div>
+        <ul class="cle">
+
+          <li class="fl">
+            <a ng-click="maincontent.goOther(5)" class="txtov">
+              提现列表
+            </a>
+          </li>
+          <li class="fl">
+            <a ng-click="maincontent.goOther(6)" class="txtov">
+              申请提现
+            </a>
+          </li>
+          <!--<li class="fl">-->
+          <!--<a ng-click="maincontent.goOther(7)" class="txtov">-->
+          <!--提现银行卡-->
+          <!--</a>-->
+          <!--</li>-->
+        </ul>
+      </div>
+      <div style="text-align: center;font-size: 20px;padding: 20px 0;" id="forth">
+        <a ng-click="maincontent.goOther(8)">
+          帐户管理
+        </a>
+      </div>
+      <div class="list"  id="forthlist">
+        <div class="c_t i4">
+          <!--<a ng-click="maincontent.goOther(8)">-->
+            <!--帐户管理-->
+          <!--</a>-->
+        </div>
+        <ul class="cle">
+          <li class="fl">
+            <a ng-click="maincontent.goOther(9)" class="txtov">
+              修改登录密码
+            </a>
+          </li>
+          <li class="fl">
+            <a ng-click="maincontent.goOther(10)" class="txtov">
+              修改支付密码
+            </a>
+          </li>
+          <!--<li class="fl">-->
+            <!--<a ng-click="maincontent.goOther(11)" class="txtov">-->
+              <!--绑定谷歌验证-->
+            <!--</a>-->
+          <!--</li>-->
+        </ul>
+
+      </div>
+      <!--<div style="text-align: center;font-size: 20px;padding: 20px 0;" id="five">-->
+        <!--<a ng-click="maincontent.goOther(18)">-->
+          <!--操作设置-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<div class="list"  id="fivelist">-->
+        <!--<div class="c_t i4">-->
+          <!--&lt;!&ndash;<a ng-click="maincontent.goOther(8)">&ndash;&gt;-->
+            <!--&lt;!&ndash;操作设置&ndash;&gt;-->
+          <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<ul class="cle">-->
+          <!--<li class="fl">-->
+            <!--<input type="checkbox" id="select_more" style="float: left;margin-left: 90px">-->
+            <!--<a class="txtov">-->
+              <!--多窗口-->
+            <!--</a>-->
+          <!--</li>-->
+        <!--</ul>-->
+
+      <!--</div>-->
+    </div>
+    <!--edn left-->
+    <div class="cont_warp">
+      <ui-view name="content"></ui-view>
+    </div>
+    <!--内容-->
+    <!--<div class="cont_warp">-->
+    <!--<div class="title">-->
+    <!--商户帐户信息-->
+    <!--</div>-->
+    <!--<div class="m1">-->
+    <!--<div class="list cle">-->
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+    <!--<span class="fl">-->
+    <!--商户名-->
+    <!--</span>-->
+    <!--<input type="text" class="fl" />-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+    <!--<span class="fl">-->
+    <!--商户 ID-->
+    <!--</span>-->
+    <!--<input type="text" class="fl" />-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</div>-->
+
+    <!--<div class="list cle">-->
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+    <!--<span class="fl">-->
+    <!--商户余额-->
+    <!--</span>-->
+    <!--<input type="text" class="fl" />-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+    <!--<span class="fl">-->
+    <!--冻结金额-->
+    <!--</span>-->
+    <!--<input type="text" class="fl" />-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</div>-->
+
+    <!--<div class="list cle">-->
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+    <!--<span class="fl">-->
+    <!--商户状态-->
+    <!--</span>-->
+    <!--<input type="text" class="fl" />-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+    <!--<span class="fl">-->
+    <!--历史登陆次数-->
+    <!--</span>-->
+    <!--<input type="text" class="fl" />-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</div>-->
+
+    <!--<div class="list cle">-->
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+    <!--<span class="fl">-->
+    <!--最后登陆 IP-->
+    <!--</span>-->
+    <!--<input type="text" class="fl" />-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+    <!--<span class="fl">-->
+    <!--最后登陆时间-->
+    <!--</span>-->
+    <!--<input type="text" class="fl" />-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--<div class="title">-->
+    <!--最近支付记录-->
+    <!--</div>-->
+
+    <!--<div class="m2">-->
+    <!--&lt;!&ndash;-->
+    <!--作者：1154667112@qq.com-->
+    <!--时间：2018-07-26-->
+    <!--描述：PC状态下-->
+    <!--&ndash;&gt;-->
+    <!--<table cellpadding="0" cellspacing="0" width="100%">-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<td>-->
+    <!--平台订单号-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--商户订单号-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--支付方式-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--订单金额-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--交易金额-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--交易费用-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--订单状态-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--通知状态-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--创建时间-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--操作-->
+    <!--</td>-->
+
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+
+    <!--&lt;!&ndash;-->
+    <!--作者：1154667112@qq.com-->
+    <!--时间：2018-07-26-->
+    <!--描述：720以下表格已经会变形了，所以换一个样式-->
+    <!--&ndash;&gt;-->
+
+    <!--<div class="phone_table">-->
+    <!--<ul class="cle">-->
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--平台订单号-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--20180726140400001-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--商户订单号-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--20180726140400001-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--支付方式-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--微信-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--订单金额-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--￥2015.00-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--交易金额-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--￥2015.00-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--交易费用-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--￥2015.00-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--订单状态-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--已成功-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--通知状态-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--已通知-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--创建时间-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--2018-7-26 14:25:30-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--操作-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--<a href="#">操作按钮</a>| <a href="#">操作按钮</a>-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--</ul>-->
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--<div class="title">-->
+    <!--最近结算记录-->
+    <!--</div>-->
+
+    <!--<div class="m2 m3">-->
+    <!--&lt;!&ndash;-->
+    <!--作者：1154667112@qq.com-->
+    <!--时间：2018-07-26-->
+    <!--描述：PC状态下-->
+    <!--&ndash;&gt;-->
+    <!--<table cellpadding="0" cellspacing="0" width="100%">-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<td>-->
+    <!--NO.-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--银行-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--姓名-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--帐户-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--结算金额-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--创建时间-->
+    <!--</td>-->
+
+    <!--<td>-->
+    <!--操作-->
+    <!--</td>-->
+
+    <!--<td width="100">-->
+
+    <!--</td>-->
+
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--<td>-->
+
+    <!--</td>-->
+
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+
+    <!--<div class="phone_table">-->
+    <!--<ul class="cle">-->
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--NO.-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--001-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--银行-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--中国光大银行-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--姓名-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--张三-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--帐户-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--609999456421574872-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--结算金额-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--￥2015.00-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--状态-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--已支付-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--创建时间-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--2018-7-26 14:25:30-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--<li class="cle fl">-->
+    <!--<div class="box cle">-->
+
+    <!--<span class="fl t">-->
+    <!--操作-->
+    <!--</span>-->
+    <!--<span class="c">-->
+    <!--<a href="#">操作按钮</a>| <a href="#">操作按钮</a>-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</li>-->
+
+    <!--</ul>-->
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--edn 内容-->
+  </div>
+</div>
+<!--</body>-->
+
+<!--</html>-->

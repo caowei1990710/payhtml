@@ -1,0 +1,96 @@
+<div class=" tab-content">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="tab" class="btn-group" data-toggle="buttons-radio">
+                <a ng-repeat="item in user.roleList" href="" target="_self" class="btn" ng-class="{'active':user.selectedRoleId==item.id}" data-toggle="tab" data-original-title="" ng-click="user.getRoleHasPermission(item.id,item.name,item.description)">{{item.description}}</a></div>
+        </div>
+    </div>
+    <div class="row-fluid" ng-show="user.showCreation">
+        <div class="span12">
+            <form class="form-inline" name="roleCreationForm">
+                <input type="text" name="roleName" ng-model="user.creation.roleName" placeholder="角色名称">
+                <input type="text" name="roleDesc" ng-model="user.creation.roleDesc" placeholder="角色说明">
+                <button type="submit" class="btn" ng-click="user.addRole();">创建</button>
+                <button class="btn" ng-click="user.showCreation = false;">取消</button>
+            </form>
+        </div>
+    </div>
+    <div class="row-fluid" ng-show="user.showEdition">
+        <div class="span12">
+            <form class="form-inline" name="roleEditionForm">
+                <input type="hidden" name="roleId" ng-model="user.edition.roleId">
+                <input type="text" name="roleName" ng-model="user.edition.roleName" placeholder="角色名称">
+                <input type="text" name="roleDesc" ng-model="user.edition.roleDesc" placeholder="角色说明">
+                <button type="submit" class="btn" ng-click="user.updateRole();">修改</button>
+                <button class="btn" ng-click="user.showEdition = false;">取消</button>
+            </form>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="" class="accordion no-margin">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a href="" data-parent="" data-toggle="collapse" class="accordion-toggle" target="_self" data-original-title="">
+                            <i class="icon-user icon-white">
+                          </i> 权限管理
+                        </a>
+                    </div>
+                    <div class="accordion-body in collapse" id="" style="height: auto;">
+                        <div class="row-fluid">
+                            <div class="span4">
+                                <button ng-repeat="item in user.permissionList" class="btn btn-block" type="button" ng-click="user.changePermissionSubList(item.id,item.name,item.description)" ng-class="{'btn-primary':user.selectedPermsId==item.id}">
+                                    <span ng-init="user['children'+item.name]=item.children"></span>
+                                    {{item.description}}</button>
+                            </div>
+                            <div class="span8" ng-show="user.showSubPermission">
+                                <div id="" class="accordion no-margin">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a href="" data-parent="" data-toggle="collapse" class="accordion-toggle" target="_self" data-original-title="">
+                                                <i class="icon-user icon-white">
+                          </i> {{user.permissionSubListTitle}}
+                                            </a>
+                                        </div>
+                                        <div class="accordion-body in collapse" id="" style="height: auto;">
+                                            <div class="row-fluid">
+                                                <div class="span1"></div>
+                                                <div class="span10">
+                                                    <div id="" class="accordion no-margin" ng-repeat="item in user.permissionSubList">
+                                                        <div class="accordion-group">
+                                                            <div class="accordion-heading">
+                                                                <a href="" data-parent="" data-toggle="collapse" class="accordion-toggle" target="_self" data-original-title="">
+                                                                    <i class="icon-user icon-white">
+                          </i> {{item.description}}
+                                                                </a>
+                                                            </div>
+                                                            <div class="accordion-body in collapse" id="" style="height: auto;padding: 10px;">
+                                                                <div class="row-fluid">
+                                                                    <span ng-repeat="item in item.children">{{item.description}}
+                                                    <input type="checkbox" value="{{item.id}}" ng-model="user.perms['checked'+item.id]" ng-change="user.addOrDelRolePermission(item.id)">
+                                                </span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="pull-right" style="margin-top: 30px;">
+                <a href="" target="_self" type="submit" role="button" data-original-title="" ng-click="user.showCreation = true;" class="btn btn-primary">创建</a>
+                <a href="" target="_self" type="submit" role="button" data-original-title="" ng-show="user.selectedRoleId" ng-click="user.showEdition = true;" class="btn btn-primary">更新</a>
+            </div>
+        </div>
+    </div>
+</div>

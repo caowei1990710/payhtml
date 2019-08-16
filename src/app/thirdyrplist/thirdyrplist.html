@@ -1,0 +1,139 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <label class="control-label textright">{{$root.lagconfig['存款单号']}}</label>
+      <input ng-model="thirdyrplist.query.depositNumber" name="depositNumber" type="text">
+      <!--<select-list ng-model="thirdyrplist.query.type" name="banklist" type="1"></select-list>-->
+      <label class="control-label textright">{{$root.lagconfig['银行账号']}}</label>
+      <input ng-model="thirdyrplist.query.wechatName" name="bankCard" type="text">
+      <label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>
+      <select-list ng-model="thirdyrplist.query.state" name="depositstate" type="1"></select-list>
+      <span>
+      <label class="control-label">{{$root.lagconfig['存款时间']}}</label>
+         <date-select selectid="allhello" init="1" ng-model="thirdyrplist.query.beginTime"></date-select>
+      </span>
+      <span>
+      <label class="control-label">{{$root.lagconfig['到']}}</label>
+         <date-select selectid="allhello1" init="2" ng-model="thirdyrplist.query.endTime"></date-select>
+      </span>
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thirdyrplist.getList();">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <label class="control-label textright">{{$root.lagconfig['所属ip']}}</label>
+      <input ng-model="thirdyrplist.query.ip" name="bankCard" type="text">
+      <label class="control-label textright">{{$root.lagconfig['所属类型']}}</label>
+      <select-list ng-model="thirdyrplist.query.payType" name="banklist" type="1"></select-list>
+      <label class="control-label textright">{{$root.lagconfig['所属平台']}}</label>
+      <select-list ng-model="thirdyrplist.query.platfrom" name="platfromlist" type="1"></select-list>
+      <label class="control-label textright">{{$root.lagconfig['提案号']}}</label>
+      <input ng-model="thirdyrplist.query.userRemark" name="userRemark" type="text">
+      <!--<select-list ng-model="thirdyrplist.query.userRemark" name="platfromlist" type="1"></select-list>-->
+      <label class="control-label textright">{{$root.lagconfig['自动刷新']}}</label>
+      <select-list ng-model="thirdyrplist.query.flush" name="flushstate" type="0"></select-list>
+      <!--<label class="control-label textright">{{$root.lagconfig['所属平台']}}</label>-->
+      <!--<select-list ng-model="thirdyrplist.query.platfrom" name="platfromlist" type="1"></select-list>-->
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thirdyrplist.outList();">
+        {{$root.lagconfig['导出']}}
+      </button>
+      <label class="control-label textright">收款类型</label>
+      <select-list ng-model="thirdyrplist.query.inType" name="proposaltype" type="1"></select-list>
+      <label class="control-label textright">月份</label>
+      <select-list ng-model="thirdyrplist.query.month" name="monthtype" type="0"></select-list>
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="thirdyrplist.DepositList"
+          data="[{id:'depositNumber'},{id:'wechatName'},{id:'ip'},{id:'amount'},{id:'payAccount'},{id:'nickName'},{
+          id:'note'},{id:'transferTime'},{id:'creatTime'},{id:'platfrom'},{id:'createUser'}]"
+          index="thirdyrplist.bankindex" ng-click="thirdyrplist.editBank($index)" from-stryle>
+        <th>{{$root.lagconfig['存款单号']}}</th>
+        <th>{{$root.lagconfig['银行账号']}}</th>
+        <th>{{$root.lagconfig['所属ip']}}</th>
+        <th>{{$root.lagconfig['所属类型']}}</th>
+        <th>收款类型</th>
+        <th>提案金额</th>
+        <th>{{$root.lagconfig['金额']}}</th>
+        <th>手续费</th>
+        <th>{{$root.lagconfig['付款人']}}</th>
+        <!--<th>{{$root.lagconfig['昵称']}}</th>-->
+        <th>{{$root.lagconfig['备注']}}</th>
+        <th>提案时间</th>
+        <th>{{$root.lagconfig['存款时间']}}</th>
+        <th>{{$root.lagconfig['执行时间']}}</th>
+        <th>{{$root.lagconfig['所属平台']}}</th>
+        <th>{{$root.lagconfig['创建人']}}</th>
+        <th>{{$root.lagconfig['游戏方备注']}}</th>
+        <th>{{$root.lagconfig['状态']}}</th>
+      </tr>
+      </thead>
+      <tbody data="thirdyrplist.bankindex" ng-model="thirdyrplist.bankList" index="thirdyrplist.bankindex">
+      <tr ng-repeat="item in thirdyrplist.DepositList track by $index"
+          ng-class="{acolor:thirdyrplist.bankindex == $index}"
+          ng-click="thirdyrplist.editBank($index)" class="repeat-animation">
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">
+          {{item.depositNumber}}
+        </td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">
+          {{item.wechatName}}
+        </td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.ip}}</td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.payType|
+          nameTovalue:'id':'name':$root.banklist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.inType|
+          nameTovalue:'id':'name':$root.proposaltype}}
+        </td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.realAmount}}</td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.amount}}</td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.tranfee}}</td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.payAccount}}</td>
+        <!--<td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.nickName}}</td>-->
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}"><label>{{item.note}}</label></td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.creatTime}}</td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.transferTime}}</td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.excuteTime}}</td>
+        <!--<td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.platfrom}}</td>-->
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.platfrom|
+          nameTovalue:'id':'name':$root.platfromlist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.createUser}}</td>
+        <td ng-if="item.state!='EXECUTED'&&!item.edit"
+            ng-class="{colorwhite:thirdyrplist.bankindex == $index}"><input style="width: 100px" type="text"
+                                                                            ng-model="item.userRemark">
+        </td>
+        <td ng-if="item.state=='EXECUTED'||item.edit"
+            ng-class="{colorwhite:thirdyrplist.bankindex == $index}">{{item.userRemark}}
+        </td>
+        <td>
+          <!--<input type="text">-->
+          <select-list ng-if="item.state!='EXECUTED'&&item.edit" style="width: 100px" ng-model="thirdyrplist.platfrom"
+                       name="platfromlist" type="0"></select-list>
+          <!--<type-style value="item.state" list="depositstate"></type-style>-->
+          <!--<button ng-if="item.state!='EXECUTED'&&!item.edit" ng-click="thirdyrplist.updateBefore($index)">补单</button>-->
+          <!--<button ng-if="item.state!='EXECUTED'&&item.edit"-->
+          <!--ng-click="thirdyrplist.editBefore($index)">修改-->
+          <!--</button>-->
+          <!--<label>{{item.state}}</label>-->
+          <type-style value="item.state" list="depositstate"></type-style>
+          <!--<button ng-if="item.state!='EXECUTED'" ng-click="thirdyrplist.rebuild($index)">补单</button>-->
+          <button  ng-if="item.state!='NOMATCHING'" ng-click="thirdyrplist.rebuild($index)">补单</button>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: center">总计{{thirdyrplist.totalSum}}小计{{thirdyrplist.nowSum}}</div>
+  <div style="text-align: center">总计{{thirdyrplist.totalFee}}小计{{thirdyrplist.nowFee}}</div>
+  <pagination page="thirdyrplist.page" total="thirdyrplist.total" size="thirdyrplist.sizePerPage"
+              trigger="thirdyrplist.get(page)"></pagination>
+  <div class="pull-right buttonpost">
+    <click-button click="thirdyrplist.doubleDelete" value="删除"></click-button>
+    <click-button click="thirdyrplist.doubleMatch" value="匹配"></click-button>
+    <click-button click="thirdyrplist.doubleUpdate" value="修正"></click-button>
+  </div>
+</div>

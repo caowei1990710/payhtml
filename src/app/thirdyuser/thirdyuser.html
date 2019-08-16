@@ -1,0 +1,70 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <!--<label class="control-label textright">{{$root.lagconfig['用户名']}}</label>-->
+      <!--<select-list ng-model="thirdyaccount.query.type" name="banklist" type="1"></select-list>-->
+      <label class="control-label textright">{{$root.lagconfig['用户名']}}</label>
+      <input ng-model="thirdyuser.query.name" name="user" type="text">
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thirdyuser.get(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <label class="control-label textright">{{$root.lagconfig['创建人']}}</label>
+      <input ng-model="thirdyuser.query.create" name="create" type="text">
+      <!--<select-list ng-model="thirdyaccount.query.state" name="banktypecardstatus" type="1"></select-list>-->
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr>
+        <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+        <th>{{$root.lagconfig['角色']}}</th><!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+        <th>{{$root.lagconfig['用户名']}}</th>
+        <th>{{$root.lagconfig['创建者']}}</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['登录时间']}}</th>
+        <th>{{$root.lagconfig['状态']}}</th>
+        <!--<th>{{$root.lagconfig['绑定银行卡']}}</th>&lt;!&ndash;<th>{{$root.lagconfig['绑定商户号']}}</th>&ndash;&gt;-->
+        <!--<th>{{$root.lagconfig['当前状态']}}</th>-->
+        <!--<th>{{$root.lagconfig['所属平台']}}</th>-->
+        <!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+
+        <th>{{$root.lagconfig['备注']}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in thirdyuser.bankList track by $index"
+          ng-class="{acolor:thirdyuser.bankindex == $index}"
+          ng-click="thirdyuser.bankindex =$index" class="repeat-animation">
+        <td ng-class="{colorwhite:thirdyuser.bankindex == $index}">
+          <span ng-if="item.role=='admin'">管理员</span>
+          <span ng-if="item.role!='admin'">普通用户</span>
+        </td>
+        <td ng-class="{colorwhite:thirdyuser.bankindex == $index}">{{item.name}}</td>
+        <td ng-class="{colorwhite:thirdyuser.bankindex == $index}">{{item.createrUser}}</td>
+        <td ng-class="{colorwhite:thirdyuser.bankindex == $index}">{{item.crateTime}}</td>
+        <td ng-class="{colorwhite:thirdyuser.bankindex == $index}">{{item.lastLoginTime}}</td>
+        <td>
+          <type-style value="item.state" list="banktypecardstatus"></type-style>
+        </td>
+
+        <td ng-class="{colorwhite:thirdyuser.bankindex == $index}">
+          {{item.remark | stringLeng}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: center">总计{{thirdyuser.totalSum}}小计{{thirdyuser.bankList.length}}</div>
+  <pagination page="thirdyuser.page" total="thirdyuser.totalSum" size="thirdyuser.sizePerPage"
+              trigger="thirdyuser.get(page)"></pagination>
+  <div class="pull-right buttonpost">
+    <click-button click="thirdyuser.editBank" value="更新"></click-button>
+    <click-button href="userRole" data="user.roleitem" value="创建"></click-button>
+    <!--<click-button click="bc.showeditMoney" value="调整余额"></click-button>-->
+  </div>
+</div>
+
+<div ng-include="'app/user/user.popup.html'"></div>
+<!--<div ng-include="'app/bankCard/accountManagement/accountManagement.editBank.html'"></div>-->

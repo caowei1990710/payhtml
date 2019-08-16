@@ -1,0 +1,143 @@
+<div class="tab-content" id="myTabContent">
+  <form class="form-inline am-form-query" name="queryForm">
+        <span>
+        <label class="control-label">{{$root.lagconfig['所属银行']}}</label>
+        <select ng-model="deposit.query.bankId" name="bankId">
+          <option></option>
+          <option ng-repeat="item in deposit.bankTypeList" ng-selected="bc.query.bankId == item.id" value="{{item.id}}">
+            {{item.name}}
+          </option>
+        </select>
+        </span>
+        <span>
+        <label class="control-label">{{$root.lagconfig['所属类型']}}</label>
+        <select ng-model="deposit.query.type" name="type">
+          <option></option>
+          <option ng-repeat="item in deposit.cardTypeList" ng-selected="bc.query.type == item.code"
+                  value="{{item.code}}">{{item.text}}
+          </option>
+        </select>
+        </span>
+        <span>
+        <label class="control-label">{{$root.lagconfig['所属平台']}}</label>
+        <select ng-model="deposit.query.platformId" name="platformId">
+          <option></option>
+          <option ng-repeat="item in deposit.platformList" ng-selected="bc.query.platformId == item.id"
+                  value="{{item.id}}">{{item.name}}
+          </option>
+        </select>
+        </span>
+        <span>
+        <label class="control-label">{{$root.lagconfig['银行账号']}}</label>
+        <input ng-model="deposit.query.bankCard" name="bankCard" type="text">
+        </span>
+    <!--<span>-->
+    <!--<label class="control-label">单页数量</label>-->
+    <!--<input ng-model="bc.sizePerPage" name="size" type="text" style="width: 50px;">-->
+    <!--</span>-->
+  </form>
+  <div id="accordion1" class="accordion no-margin">
+    <div ng-repeat="item in deposit.cardDepositList">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a href="#collapse_{{$index}}" target="_self" data-parent="#accordion1" data-toggle="collapse"
+             class="accordion-toggle" data-original-title="">
+            <i class="icon-th icon-white">
+            </i>{{item.deviceName}}
+          </a>
+          <div class="accordion-body in collapse" id="collapse_{{$index}}" style="height: auto;">
+            <div class="accordion-inner">
+              <!--<div class="accordion-inner">-->
+              <!--<div class="bank-block">-->
+              <!--<div class="pull-left">招商银行</div>-->
+              <!--<div class="pull-right">正当</div>-->
+              <!--<div class="pull-left">银行账号：622 3700 7533 1070</div>-->
+              <!--<div class="pull-left">银行账号：622 3700 7533 1070</div>-->
+              <!--<div class="pull-left">收款时间：2016年6月6日 12：59：59</div>-->
+              <!--<div class="pull-left">账号余额：10.0000.00</div>-->
+              <!--</div>-->
+              <div class="bank-block bank-content" ng-repeat="bankCard in item.bankCards">
+                <div class="pull-left">{{bankCard.bankTypeCode}}</div>
+                <div class="pull-right">{{bankCard.depositStatus}}</div>
+                <div>{{bankCard.cardName}}</div>
+                <div>银行账号：<span style="color: white">{{bankCard.bankCard}}</span></div>
+                <!--<div class="pull-left">银行账号：622 3700 7533 1070</div>-->
+                <div>收款时间：<span style="color: white">{{bankCard.depositTime}}</span></div>
+                <div>账号余额：<span style="color: white">{{bankCard.credit}}</span></div>
+              </div>
+              <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="accordion-group">-->
+    <!--<div class="accordion-heading">-->
+    <!--<a href="#collapseTwo" target="_self" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle" data-original-title="">-->
+    <!--<i class="icon-th icon-white">-->
+    <!--</i> Portfolio-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">-->
+    <!--<div class="accordion-inner">-->
+    <!--<div class="bank-block">-->
+    <!--<div class="pull-left">招商银行</div>-->
+    <!--<div class="pull-right">正当</div>-->
+    <!--<div class="pull-left">银行账号：622 3700 7533 1070</div>-->
+    <!--<div class="pull-left">银行账号：622 3700 7533 1070</div>-->
+    <!--<div class="pull-left">收款时间：2016年6月6日 12：59：59</div>-->
+    <!--<div class="pull-left">账号余额：10.0000.00</div>-->
+    <!--</div>-->
+    <!--<div class="bank-block">-->
+    <!--<div>招商银行</div>-->
+    <!--<div>正当</div>-->
+    <!--<div>银行账号：622 3700 7533 1070</div>-->
+    <!--<div>收款时间：2016年6月6日 12：59：59</div>-->
+    <!--<div>账号余额：10.0000.00</div>-->
+    <!--</div>-->
+    <!--<div class="bank-block">-->
+    <!--<div>招商银行</div>-->
+    <!--<div>正当</div>-->
+    <!--<div>银行账号：622 3700 7533 1070</div>-->
+    <!--<div>收款时间：2016年6月6日 12：59：59</div>-->
+    <!--<div>账号余额：10.0000.00</div>-->
+    <!--</div>-->
+    <!--<div class="bank-block">-->
+    <!--<div>招商银行</div>-->
+    <!--<div>正当</div>-->
+    <!--<div>银行账号：622 3700 7533 1070</div>-->
+    <!--<div>收款时间：2016年6月6日 12：59：59</div>-->
+    <!--<div>账号余额：10.0000.00</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="accordion-group">-->
+    <!--<div class="accordion-heading">-->
+    <!--<a href="#collapseOne" target="_self" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle" data-original-title="">-->
+    <!--<i class="icon-user icon-white">-->
+    <!--</i> About me :)-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="accordion-body in collapse" id="collapseOne" style="height: auto;">-->
+    <!--<div class="accordion-inner">-->
+    <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor-->
+    <!--</div>-->
+    <!--<button ng-click="deposit.detecting()">Test autoDepositMonitoring.html</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="accordion-group">-->
+    <!--<div class="accordion-heading">-->
+    <!--<a href="#collapseThree" target="_self" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle" data-original-title="">-->
+    <!--<i class="icon-envelope icon-white">-->
+    <!--</i> Contact me-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="accordion-body collapse" id="collapseThree" style="height: 0px;">-->
+    <!--<div class="accordion-inner">-->
+    <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+  </div>
+</div>

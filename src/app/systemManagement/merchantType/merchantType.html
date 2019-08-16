@@ -1,0 +1,142 @@
+<div class="tab-content">
+  <div class="span2" style="width: 302px;margin: 0">
+    <div id="accordion1" class="accordion no-margin">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a href="#collapseOne"
+             data-toggle="collapse" class="accordion-toggle headingtitle" target="_self"
+             data-original-title="">
+            </i> {{$root.lagconfig['商户类型']}}</a>
+        </div>
+        <div class="accordion-body in collapse" style="height: 550px;">
+          <div>
+            <table class="table">
+              <tbody>
+              <tr ng-repeat="item in sm.merchantTypeList"
+                  ng-click="sm.itemMerchantType($index)"
+                  ng-class="{'acolor':sm.selectedindex == $index}">
+                <td ng-class="{colorwhite:sm.selectedindex == $index}">{{item.name}}</td>
+                <td ng-class="{colorwhite:sm.selectedindex == $index}">{{item.code}}</td>
+                <!--<td><img ng-src="{{item.iconUrl}}" style="height: 24px;"></td>-->
+                <!--<td><a href="#editMerchantType" ng-click="sm.editMerchantType($index,item.id);" target="_self"-->
+                <!--type="submit" role="button" data-toggle="modal" data-original-title=""-->
+                <!--class="btn btn-mini btn-primary">{{$root.lagconfig['修改']}}</a>-->
+                <!--<a href="" ng-show="$root.username=='admin'" ng-click="sm.deleteMerchantType(item.id);" target="_self"-->
+                <!--type="submit" role="button"-->
+                <!--data-toggle="modal" data-original-title="" class="btn btn-mini btn-danger">{{$root.lagconfig['删除']}}</a>-->
+                <!--</td>-->
+              </tr>
+              </tbody>
+            </table>
+            <!--<div>-->
+            <!--<a href="#creatMerchantType" target="_self" type="submit" role="button" data-toggle="modal"-->
+            <!--data-original-title="" class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+            <!--</div>-->
+          </div>
+        </div>
+        <div>
+          <click-button click="sm.deleteMerchantType" data="user.roleitem" value="删除"></click-button>
+          <click-button href="creatMerchantType" data="user.roleitem" value="创建"></click-button>
+          <!--<a href="" ng-click="merchant.openCreateMerchantForm();" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+        </div>
+        <div style="text-align: left;padding: 10px 20px">
+          <click-button href="editMerchantType" href="editMerchantType" value="更新"></click-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="span7" style="width: 830px;margin-left: 20px">
+    <div id="accordion2" class="accordion no-margin">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a href="#collapseTwo" class="accordion-toggle headingtitle" target="_self"
+             data-original-title="">
+            </i> {{$root.lagconfig['网关地址']}}
+          </a>
+        </div>
+        <div class="accordion-body in collapse">
+          <div class="accordion-inner"  style="height: 300px;overflow: auto">
+            <table class="table">
+              <tbody>
+              <tr ng-repeat="item in sm.gatewayList" ng-click="sm.editWay($index)"
+                  ng-class="{'acolor':sm.wayindex == $index}">
+                <td ng-class="{colorwhite:sm.wayindex == $index}">{{item.name}}</td>
+                <td ng-class="{colorwhite:sm.wayindex == $index}">{{item.address}}</td>
+                <!--<td>-->
+                  <!--<a href="#editGateway" ng-click="sm.editGateway($index,item.id);" target="_self" type="submit"-->
+                     <!--role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a>-->
+                  <!--<a href="" target="_self" ng-click="sm.deleteGateway(item.id);" type="submit" role="button"-->
+                     <!--data-toggle="modal" ng-show="$root.username=='admin'" data-original-title=""-->
+                     <!--class="btn btn-danger">{{$root.lagconfig['删除']}}</a>-->
+                <!--</td>-->
+              </tr>
+              </tbody>
+            </table>
+            <!--<div>-->
+              <!--<a href="#creatGateway" target="_self" type="submit" role="button" data-toggle="modal"-->
+                 <!--data-original-title="" class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+            <!--</div>-->
+          </div>
+          <div>
+            <click-button click="sm.deleteGateway" data="user.roleitem" value="删除"></click-button>
+            <click-button href="creatGateway" data="user.roleitem" value="创建"></click-button>
+            <click-button href="editGateway" href="editMerchantType" value="更新"></click-button>
+            <!--<a href="" ng-click="merchant.openCreateMerchantForm();" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+          </div>
+        </div>
+      </div>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a href="#collapseThree" data-toggle="collapse" class="accordion-toggle headingtitle" target="_self"
+             data-original-title="">
+            </i> {{$root.lagconfig['交易限额']}}
+          </a>
+        </div>
+        <div class="accordion-body in collapse" style="height: auto;">
+          <div class="accordion-inner" style="height: 200px;overflow: auto">
+            <table class="table">
+              <thead>
+              <tr>
+                <td>{{$root.lagconfig['名称']}}</td>
+                <td>{{$root.lagconfig['日总限额']}}</td>
+                <td>{{$root.lagconfig['玩家单日限额']}}</td>
+                <td>{{$root.lagconfig['单笔限额']}}</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr style="height: 50px" ng-repeat="item in sm.limitList"  ng-click="sm.editMit($index)"
+                  ng-class="{'acolor':sm.limitindex == $index}">
+                <td ng-class="{colorwhite:sm.limitindex == $index}">{{item.displayName}}</td>
+                <td ng-class="{colorwhite:sm.limitindex == $index}">{{item.dayTransaction}}</td>
+                <td ng-class="{colorwhite:sm.limitindex == $index}">{{item.transactionForPlayerOneDay}}</td>
+                <td ng-class="{colorwhite:sm.limitindex == $index}">{{item.limitPerTransaction}}</td>
+                <!--<td>-->
+                  <!--<a href="#editLimit" ng-click="sm.editLimit($index,item.merchantlimitsId);" target="_self"-->
+                     <!--type="submit"-->
+                     <!--role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a>-->
+                  <!--<a href="" target="_self" ng-click="sm.deleteLimit(item.merchantlimitsId);" type="submit"-->
+                     <!--role="button"-->
+                     <!--data-toggle="modal" ng-show="$root.username=='admin'" data-original-title=""-->
+                     <!--class="btn btn-danger">{{$root.lagconfig['删除']}}</a>-->
+                <!--</td>-->
+              </tr>
+              </tbody>
+            </table>
+            <!--<div>-->
+              <!--<a href="#createLimit" target="_self" type="submit" role="button" data-toggle="modal"-->
+                 <!--data-original-title="" class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+            <!--</div>-->
+          </div>
+
+          <div>
+            <click-button click="sm.deleteLimit" data="user.roleitem" value="删除"></click-button>
+            <click-button href="createLimit" data="user.roleitem" value="创建"></click-button>
+            <click-button href="editLimit" href="editMerchantType" value="更新"></click-button>
+            <!--<a href="" ng-click="merchant.openCreateMerchantForm();" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/systemManagement/merchantType/merchantType.popup.html'"></div>

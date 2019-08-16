@@ -1,0 +1,202 @@
+<!-- Modal -->
+<div id="matchWindow" style="width: 1200px;left: 28%;" class="modal hide fade in" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4 id="">
+      {{$root.lagconfig['手工匹配']}}
+    </h4>
+  </div>
+  <div class="modal-body" style="position: initial">
+    <form class="no-margin" style="width: 1170px;left: 28%" name="createTaskForm">
+      <div>
+        <label class="control-label matchdeposit">
+          {{$root.lagconfig['提交存款单']}}
+        </label>
+        <table class="table" style="background: #eaf7ff">
+          <thead>
+          <div class="control-group">
+            <th>{{$root.lagconfig['提交单号']}}</th>
+            <!--<th>{{$root.lagconfig['所属银行']}}</th>-->
+            <th>{{$root.lagconfig['所属平台']}}</th>
+            <th>{{$root.lagconfig['银行账号']}}</th>
+            <th>{{$root.lagconfig['真实姓名']}}</th>
+            <th>{{$root.lagconfig['游戏账号']}}</th>
+            <th>{{$root.lagconfig['所属平台']}}</th>
+            <th>{{$root.lagconfig['存款方式']}}</th>
+            <th>{{$root.lagconfig['付款金额']}}</th>
+            <th>{{$root.lagconfig['创建时间']}}</th>
+            <th>{{$root.lagconfig['过期时间']}}</th>
+            <th>{{$root.lagconfig['地址']}}</th>
+            <th>{{$root.lagconfig['备注']}}</th>
+            <th>{{$root.lagconfig['状态']}}</th>
+          </div>
+          </thead>
+          <tr style="outline: none" ng-repeat="item in match.matchcashitem">
+            <td>{{item.proposalId | stringLeng}}</td>
+            <!--<td>{{item.bankId| nameTovalue:'id':'name':$root.banklist}}</td>-->
+            <td>{{item.platformId| nameTovalue:'id':'name':$root.platformlist}}
+            </td>
+            <td>{{item.bankCard| bankFormal}}</td>
+            <td>{{item.realName}}</td>
+            <td>{{item.userName}}</td>
+            <td>{{item.platformId |
+              nameTovalue:'id':'name':$root.platformlist}}
+            </td>
+            <td style="color: red">{{item.depositMethod}}</td>
+            <td style="color: red">{{item.amount}}</td>
+            <td>{{item.createTime}}</td>
+            <td>{{item.depositTime}}</td>
+            <th>{{item.address}}</th>
+            <td>{{item.remark}}</td>
+            <!--<a href="#editBank" ng-click="bc.editBank($index,item.bankId);" target="_self" type="submit" role="button"-->
+            <!--data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a></td>-->
+          </tr>
+        </table>
+      </div>
+      <div>
+        <!--<span class="control-label">{{$root.lagconfig['银行账号']}}</span>-->
+        <!--<input type="text" ng-model="match.depositquery.depositBankCard" style="width: 100px">-->
+        <!--<span class="control-label">{{$root.lagconfig['开户姓名']}}</span>-->
+        <!--<input type="text" ng-model="match.depositquery.payer" style="width: 100px">-->
+        <!--<span class="control-label">{{$root.lagconfig['备注']}}</span>-->
+        <!--<input type="text" ng-model="match.depositquery.remark" style="width: 100px">-->
+        <!--<button type="submit" class="btn btn-primary toselet" ng-click="match.queryMatchDepositList(1);">{{$root.lagconfig['查询']}}-->
+        <!--</button>-->
+        <!--<div class="span12">-->
+
+        <!--<button class="btn btn-large btn-info btn-block" type="button" ng-click="match.queryMatchDepositList(1);">-->
+        <!--请选择匹配到银行卡列表-->
+        <!--</button>-->
+        <!--</div>-->
+        <div class="tabbleout" style="height: 270px">
+          <label class="control-label matchbankdeposit">
+            {{$root.lagconfig['银行存款单']}}
+          </label>
+          <div style="height: 190px;overflow: auto">
+            <table class="table">
+              <thead>
+              <div class="control-group">
+                <!--<th>{{$root.lagconfig['所属银行']}}</th>-->
+                <th>{{$root.lagconfig['存款单号']}}</th>
+                <th>{{$root.lagconfig['所属平台']}}</th>
+                <th>{{$root.lagconfig['银行账号']}}</th>
+                <th>{{$root.lagconfig['真实姓名']}}</th>
+                <th>{{$root.lagconfig['操作方式']}}</th>
+                <th>{{$root.lagconfig['付款金额']}}</th>
+                <th>{{$root.lagconfig['手续费']}}</th>
+                <th>{{$root.lagconfig['创建时间']}}</th>
+                <th>{{$root.lagconfig['存款时间']}}</th>
+                <th>{{$root.lagconfig['地址']}}</th>
+                <th>{{$root.lagconfig['备注']}}</th>
+              </div>
+              </thead>
+              <tbody>
+              <tr ng-repeat="item in match.matchdepositlist" ng-click="match.depositMatch($index)"
+                  ng-class="{acolor:match.despositindex == $index}">
+                <td ng-class="{colorwhite:match.despositindex == $index}">{{item.depositId | stringLeng}}</td>
+                <!--<td ng-class="{colorwhite:match.despositindex == $index}">{{item.depositBankId}}</td>-->
+                <td ng-class="{colorwhite:match.despositindex == $index}"> {{item.platformName|
+                  nameTovalue:'id':'name':$root.platformlist}}
+                </td>
+                <td ng-class="{colorwhite:match.despositindex == $index}">{{item.receiveBankCard| bankFormal}}</td>
+                <td ng-class="{colorwhite:match.despositindex == $index}">{{item.payer}}</td>
+                <td ng-class="{colorwhite:match.despositindex == $index}">{{item.paymentType}}</td>
+                <td style="color: red">{{item.amount}}</td>
+                <td style="color: red">{{item.handCharge}}</td>
+                <td ng-class="{colorwhite:match.despositindex == $index}">{{item.createtime}}</td>
+                <td ng-class="{colorwhite:match.despositindex == $index}">{{item.depositTime}}</td>
+                <!--<td ng-class="{colorwhite:bc.bancktranindex == $index}">{{item.createDate | dateFormate}}</td>-->
+                <td ng-class="{colorwhite:match.despositindex == $index}">{{item.depositAddress}}</td>
+                <td ng-class="{colorwhite:match.despositindex == $index}">{{item.remark}}</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <pagination page="match.depositpage" total="match.deposittotal" size="match.pagesize"
+                      trigger="match.queryMatchDepositList(page)"></pagination>
+        </div>
+      </div>
+      <!--<div class="row-fluid" ng-show="bc.subListSelected">-->
+      <!--<div class="span6">-->
+      <!--<div class="control-group">-->
+      <!--<label class="control-label">-->
+      <!--所属银行-->
+      <!--</label>-->
+      <!--<div class="controls">-->
+      <!--<bankcard-dropdown ng-model="bc.createTaskForm.toBankId" name="createTaskFormToBankId"></bankcard-dropdown>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="control-group">-->
+      <!--<label class="control-label">-->
+      <!--银行账号-->
+      <!--</label>-->
+      <!--<div class="controls">-->
+      <!--<input ng-model="bc.createTaskForm.toBankCard" name="createTaskFormToBankCard" type="text" />-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="control-group">-->
+      <!--<label class="control-label">-->
+      <!--开户姓名-->
+      <!--</label>-->
+      <!--<div class="controls">-->
+      <!--<input ng-model="bc.createTaskForm.toCardName" name="createTaskFormToCardName" type="text" />-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="span6">-->
+      <!--<div class="control-group">-->
+      <!--<label class="control-label">-->
+      <!--所属平台-->
+      <!--</label>-->
+      <!--<div class="controls">-->
+      <!--<platform-dropdown ng-model="bc.createTaskForm.toPlatformId" name="createTaskFormToPlatformId"></platform-dropdown>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="control-group">-->
+      <!--<label class="control-label">-->
+      <!--所属类型-->
+      <!--</label>-->
+      <!--<div class="controls">-->
+      <!--<select ng-model="bc.createTaskForm.toCardType" name="createTaskFormToCardType">-->
+      <!--<option ng-repeat="item in bc.cardTypeList" ng-selected="bc.query.type == item.code" value="{{item.code}}">{{item.text}}</option>-->
+      <!--</select>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="control-group">-->
+      <!--<label class="control-label">-->
+      <!--转入金额-->
+      <!--</label>-->
+      <!--<div class="controls">-->
+      <!--<input ng-model="bc.createTaskForm.toCredit" name="createTaskFormToCredit" type="text" />-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;<div class="control-group pull-right">-->
+      <!--<button type="submit" class="btn btn-primary btn-small" ng-click="bc.createTransferTaskBankCard();">创建</button>-->
+      <!--<button type="submit" class="btn btn-danger btn-small">删除</button>-->
+      <!--</div>&ndash;&gt;-->
+      <!--</div>-->
+      <!--</div>-->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div style="display: inline-block;margin-right: 150px">
+      {{$root.lagconfig["手续费"]}}:
+      <!--<select ng-model="match.handCharge" ng-options="item.value for item in match.handfees"></select>-->
+      <input ng-model="match.handCharge" name="handCredit"
+             style="margin-top: 10px;margin-right: 150px"
+             type="text" required/>
+    </div>
+    <click-button click="match.matchDeposit" data="user.departmentitem.numbers" value="确认"></click-button>
+    <click-button data-dismiss="modal" value="取消"></click-button>
+    <!--<button class="btn btn-primary" ng-click="match.matchDeposit();">-->
+    <!--{{$root.lagconfig['确认']}}-->
+    <!--</button>-->
+    <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+    <!--{{$root.lagconfig['取消']}}-->
+    <!--</button>-->
+  </div>
+</div>

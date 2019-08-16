@@ -1,0 +1,10 @@
+<div style="position: relative">
+  <ul style="background-color: #288BE0;height: 60px;font-weight: bold;">
+    <li class="userli span2" ng-repeat="tab in vm.changtabs" ng-class="{uservister: vm.selected.link == tab.link}" ng-click="vm.changTab($index,vm.todo)">
+      <icon-title innervalue="tab.text" default="1" select="vm.selected.link == tab.link" dewidth="170"></icon-title>
+      <!--<click-button click="user.showCreatuser" innervalue="tab.text" select="vm.selected.link == tab.link"></click-button>-->
+      <!--<a href="" target="_self">{{tab.text}}</a>-->
+    </li>
+  </ul>
+  <div class="tab-div" style="height: 790px;background: #eaf7ff" ng-repeat="tab in vm.changtabs" ui-view="{{tab.link}}" ng-show="tab.link == vm.selected.link"></div>
+</div>

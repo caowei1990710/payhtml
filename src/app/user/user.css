@@ -1,0 +1,264 @@
+.department {
+  /*padding-right: 0px !important;
+  padding-left: 0px !important;*/
+}
+
+.dep-list div {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.dep-list .selected {
+  background-color: #67C0FA;
+  color: white;
+}
+
+.dep-item {
+  /*padding-left: 10px;*/
+}
+
+.left-block {
+  width: 10px;
+  display: inline-block;
+}
+
+.userli {
+  display: inline-block;
+  text-align: center;
+  line-height: 50px;
+  margin: 10px 20px 0px 20px;
+  color: white;
+  border-radius: 5px 5px 0px 0px;
+}
+
+/*.userli:hover {*/
+  /*color: #457e88;*/
+  /*background: white;*/
+/*}*/
+
+.uservister {
+  text-align: center;
+  line-height: 50px;
+  margin: 10px 20px 0px 20px;
+  color: #457e88;
+  background: white;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.userroleul {
+  height: 40px;
+  background: #EAF7FF;
+  line-height: 40px;
+}
+
+.userroleulli {
+  color: #68c0f9;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+}
+
+.userrolelihover {
+  background: #68c0f9;
+  border-radius: 5px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  color: white;
+}
+
+.userroleul li:hover {
+  background: #68c0f9;
+  border-radius: 5px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+}
+
+.useroleli {
+  margin: 10px;
+  background: #eaf7ff;
+  height: 40px;
+}
+
+.userolelihover {
+  background: #68c0f9;
+}
+
+.userroleitemnor {
+  background: url(../../assets/images/role.png);
+  position: absolute;
+  width: 23px;
+  height: 29px;
+  top: 5px;
+  left: 10px
+}
+
+.userroleitemsel {
+  background: url(../../assets/images/role.png);
+  position: absolute;
+  width: 23px;
+  height: 29px;
+  background-position: 0px -29px;
+  top: 5px;
+  left: 10px
+}
+
+.userroletitle {
+  text-align: center;
+  background-color: #457e88;
+  height: 50px;
+  line-height: 20px
+}
+
+.defalutcolor {
+  background-color: #457e88;
+}
+
+.whitebg {
+  background-color: white;
+}
+
+.userrolefun {
+  margin: 10px;
+  background: #EAF7FF;
+}
+
+.userrolefun li:hover {
+  background: #457e88;
+}
+
+.userrolefun li:focus {
+  background: #457e88;
+}
+
+.padding {
+  padding: 10px;
+}
+
+.tabbleout {
+  height: 480px;
+  overflow: auto
+}
+
+.userrowfirst {
+  height: 745px;
+  padding: 20px;
+  position: relative
+}
+
+.userrow {
+  background-color: #eaf7ff;
+  width: 878px;
+  float: right;
+  height: 850px
+}
+
+.userrowul {
+  background-color: #288BE0;
+  height: 60px;
+  font-weight: bold
+}
+
+.iocnimg {
+
+}
+
+.userbuttonright {
+  position: absolute;
+  right: 20px;
+  bottom: 20px
+}
+
+.departmentdiv {
+  font-size: 12px;
+  line-height: 60px;
+  height: 50px;
+  padding-left: 37px;
+  text-align: left;
+  padding: 5px 0px;
+}
+
+.uidiv {
+  position: absolute;
+  left: 0px;
+  right: 0px
+}
+
+.table tr {
+  height: 50px;
+}
+
+.tableoutwidth {
+  /*width: 1800px !important;*/
+}
+
+.divinput {
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  padding: 5px;
+  margin: auto;
+  width: 330px;
+}
+
+select-list{
+  min-width: 150px;
+  display: inline-block;
+}
+
+.divinput label {
+  width: 90px !important;
+  float: left;
+  padding-right: 10px;
+  text-align: right;
+}
+
+.divinput input {
+  margin: 0 !important;
+}
+
+.divinput select {
+  margin: 0 !important;
+}
+
+.headingtitle {
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px
+}
+
+.boldtext {
+  font-weight: bold;
+}
+
+.inputcheck {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.matchdeposit {
+  width: 100px;
+  background: #288ce2;
+  text-align: center;
+  height: 30px;
+  color: white;
+  line-height: 30px;
+}
+.matchbankdeposit{
+  width: 100px;
+  background: #288ce2;
+  text-align: center;
+  height: 30px;
+  color: white;
+  line-height: 30px;
+}
+/*.department li:focus{*/
+/*background: #457e88;*/
+/*}*/
+/*.userli a{*/
+/*color: white;*/
+/*}*/
+/*.userli a:hover ,a:visited{*/
+/*color: #53B6F7;*/
+/*}*/

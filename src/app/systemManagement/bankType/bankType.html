@@ -1,0 +1,42 @@
+<div class="tab-content" style="padding-top: 20px">
+  <div class="tabbleout">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>{{$root.lagconfig['所属银行']}}</th>
+        <th>{{$root.lagconfig['银行代码']}}</th>
+        <th>{{$root.lagconfig['优先等级']}}</th>
+        <!--<th>{{$root.lagconfig['操作']}}</th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in sm.bankTypeList" ng-class="{acolor:sm.index == $index}" ng-click="sm.edit($index)"
+          data="[{id:'name'},{id:'code'},{id:'priority'}]"
+          index="sm.index">
+        <td ng-class="{colorwhite:sm.index == $index}">{{item.name}}</td>
+        <td ng-class="{colorwhite:sm.index == $index}">{{item.code}}</td>
+        <td ng-class="{colorwhite:sm.index == $index}">{{item.priority}}</td>
+        <!--<td>-->
+        <!--<a href="#editBankType" ng-click="sm.editBank($index,item.id)" target="_self" type="submit" role="button"-->
+        <!--data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a>-->
+        <!--<a ng-show="$root.username=='admin'" ng-click="sm.deleteBank(item.id)" target="_self" type="submit"-->
+        <!--role="button" data-toggle="modal"-->
+        <!--data-original-title="" class="btn btn-danger">{{$root.lagconfig['删除']}}</a>-->
+        <!--</td>-->
+      </tr>
+      </tbody>
+    </table>
+    <!--<div class="pull-right" style="margin-top: 30px;">-->
+    <!--<a href="#createBankType" target="_self" type="submit" role="button" data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+
+    <!--</div>-->
+  </div>
+  <div class="pull-right buttonpost">
+    <click-button click="sm.deleteBank" data="user.roleitem" value="删除"></click-button>
+    <click-button href="createBankType" data="user.roleitem" value="创建"></click-button>
+    <click-button href="editBankType" value="更新"></click-button>
+    <!--<a href="" ng-click="merchant.openCreateMerchantForm();" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+  </div>
+</div>
+<div ng-include="'app/systemManagement/bankType/bankType.popup.html'"></div>

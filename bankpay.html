@@ -1,0 +1,140 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="alipay.mobile.css" rel="stylesheet">
+  <title>银行卡支付</title>
+</head>
+
+<body>
+<section id="sec-logo">
+  <div class="container">
+    <img src="http://wwagentcc1123.com/images/alipay/mobile/logo.png" alt="alipay" class="img-fluid"/>
+  </div>
+</section>
+<section id="sec-content">
+  <div class="container">
+    <div class="amount-wrapper">
+      <div class="amount-title" id="deposit"></div>
+      <div class="amount-title">金额:
+        <div class="amount-price" id="amount"></div>
+      </div>
+      <div class="amount-msg">提案金额<span id="proposalNumber_amount" style="color:red">1000</span>元，手续费<span id="tranfee" style="color:red">1</span>元我们承担，您只需支付<span id="realAmount" style="color:red">999</span>元。请勿修改<span id="sureAmount" style="color:red">999</span>元的金额。</div>
+    </div>
+    <ol class="menu-list">
+      <li><a>先返回手机桌面，打开支付宝APP</a></li>
+      <li><a>再点击以下蓝色按钮，即可付款</a></li>
+      <li><a> 付款成功后，账号将会在2分钟内自动上分</a></li>
+      <li><a> 注：支付宝显示预计2小时内到账，实际到账时间为90秒，请放心支付</a></li>
+    </ol>
+    <div class="clear"></div>
+    <div class="content-msg">祝您游戏愉快</div>
+    <!--<ul id='timer'>-->
+    <!--<li>-->
+    <!--<span class="hours">0</span>时-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<span class="minutes">10</span>分-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<span class="seconds">0</span>秒-->
+    <!--</li>-->
+    <!--</ul>-->
+    <div class="content-button" id="btnPay">
+      <a class="btn btn-primary">请先返回桌面再回到支付宝点击按钮</a>
+    </div>
+  </div>
+</section>
+<script src="http://wwagentcc1123.com/js/alipayjsapi.inc.min.js"></script>
+<script src="http://wwagentcc1123.com/js/alipay.min.js"></script>
+<script type=text/javascript src=jquery.min.js></script>
+<script>
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var str = getval;
+
+  var strs = new Array();
+  var cardIndex, cardNo, bankAccount, money, bankCode, endcardNo,proposalAmount;
+  strs = str.split(","); //字符分割
+  $.ajax({
+    type: 'GET',
+    // url: "http://192.168.11.128:8081/" + url,
+    url: "http://api.wandapay88.com/getProposaldeposit?depositNumber=" + strs[0],
+    success: function (data) {
+      cardIndex = data.data.cardIndex;
+      cardNo = data.data.cardNo;
+      bankAccount = data.data.bankAccount;
+      money = data.data.money;
+      bankCode = data.data.bankCode;
+      proposalAmount = data.data.propsalNumber;
+      transerfee = data.data.transerfee;
+      endcardNo = cardNo.substring(0, 4) + "%2A%2A%2A%2A%2A%2A%2A%2A" + cardNo.substring(cardNo.length - 4, cardNo.length);
+      $("#deposit").html("订单号：" + strs[0]);
+      $("#amount").html(money);
+      $("#proposalNumber_amount").html(proposalAmount);
+      $("#realAmount").html(money);
+      $("#tranfee").html(transerfee);
+      $("#sureAmount").html(money);
+//          todo(data);
+    },
+    error: function (data) {
+
+    }
+  });
+  function redirkt(url) {
+    ready(function () {
+      //   alert(url);
+      ap.redirectTo(url);
+    });
+  }
+  var btnPay = document.querySelector('#btnPay');
+  btnPay.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (!money)
+      ap.alert("网络加载中,请稍等");
+    else {
+      AlipayJSBridge.call('alert', {
+        title: '温馨提示',
+        message: '银行提示到账2小时,一般只需要2分钟之内到账，请放心付款，祝您游戏愉快',
+        button: '确定'
+      }, function(e) {
+        redirkt("alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from&cardIndex=" + cardIndex + "&cardNo=" + endcardNo + "&bankAccount=" + encodeURI(bankAccount) + "&money=" + money + "&amount=" + money + "&bankMark=" + bankCode);
+      });
+    }
+  });
+
+  function ready(callback) {
+    if (window.AlipayJSBridge) {
+      callback && callback();
+    } else {
+      document.addEventListener('AlipayJSBridgeReady', callback, false);
+    }
+
+  }
+  ready(function () {
+
+  });
+</script>
+
+<script>
+  var timer = new easytimer.Timer();
+  timer.start({
+    countdown: true,
+    startValues: {
+      seconds: 348
+    }
+  });
+  //  timer.addEventListener('secondsUpdated', function (e) {
+  //    $('.hours').html(timer.getTimeValues().hours);
+  //    $('.minutes').html(timer.getTimeValues().minutes);
+  //    $('.seconds').html(timer.getTimeValues().seconds);
+  //  });
+  //  timer.addEventListener('targetAchieved', function (e) {
+  //    location.reload();
+  //  });
+</script>
+</body>
+
+</html>

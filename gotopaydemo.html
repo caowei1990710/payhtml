@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>付款中</title>
+</head>
+<body>
+
+</body>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+<script type=text/javascript src=jquery.min.js></script>
+<script>
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var str = getval;
+  var proposalAmount, realAmount;
+  strs = str.split(",");
+  var redirurl;
+  console.log("alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo="+strs[0]+"&bankAccount="+decodeURI(strs[1])+"&money="+strs[2]+"&amount="+strs[2]+"&bankMark="+strs[4]+"&bankName="+decodeURI(strs[3])+"&cardIndex="+strs[5]+"&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from");
+  function redirkt(url) {
+    ready(function () {
+      //   alert(url);
+      ap.redirectTo(url);
+    });
+  }
+  function ready(a) {
+    window.AlipayJSBridge ? a && a() : document.addEventListener("AlipayJSBridgeReady", a, false);
+  }
+
+  ready(function () {
+    ap.alert('请勿修改金额，银行提示2小时内（实际到账2分钟）。若加载失败请点击刷新。祝您游戏愉快');
+//    ap.alert('请勿修改金额，银行提示2小时内（实际到账2分钟）。若加载失败请点击刷新。祝您游戏愉快');
+//    $.ajax({
+//      type: 'GET', url: 'http://api.hp168168.com/getTurnOn?depositNumber=' + strs[0],
+//      dataType: 'json',
+//      success: function (str) {
+//        redirurl = str.data.remark;
+        redirkt("alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo="+strs[0]+"&bankAccount="+decodeURI(strs[1])+"&money="+strs[2]+"&amount="+strs[2]+"&bankMark="+strs[4]+"&bankName="+decodeURI(strs[3])+"&cardIndex="+strs[5]+"&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from");
+//      }
+//    });
+//      setTimeout(function(){
+//      },2000);
+    //AlipayJSBridge.call('toast', {content:'请勿修改带入金额，直接付款，银行实际到账2分钟，祝你游戏愉快'});
+  });
+
+  //  window.location.href = "http://www.morepic.club/pay.php?command=test&orderid=" + strs[0];
+
+</script>
+</html>

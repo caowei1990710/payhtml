@@ -1,0 +1,338 @@
+ /*初始化类*/
+ 
+ @charset "UTF-8";
+ html {
+ 	font-family: sans-serif;
+ 	-moz-osx-font-smoothing: grayscale;
+ 	-webkit-font-smoothing: antialiased;
+ 	text-rendering: optimizeLegibility;
+ }
+ 
+ html,
+ body {
+ 	-webkit-touch-callout: none;
+ 	width: 100%;
+ 	font-family: "微软雅黑", "Microsoft Yahei", "Arial";
+ 	position: relative;
+ 	background: #fff;
+ }
+ 
+ body {
+ 	line-height: 1.5;
+ 	font-size: 16px;
+ 	color: #000;
+ 	outline: 0;
+ }
+ 
+ html,
+ body,
+ header,
+ section,
+ footer,
+ div,
+ ul,
+ ol,
+ li,
+ img,
+ a,
+ span,
+ em,
+ del,
+ legend,
+ center,
+ strong,
+ var,
+ fieldset,
+ form,
+ label,
+ dl,
+ dt,
+ dd,
+ cite,
+ input,
+ hr,
+ time,
+ mark,
+ code,
+ figcaption,
+ figure,
+ textarea,
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6,
+ p {
+ 	margin: 0;
+ 	border: 0;
+ 	padding: 0;
+ 	font-style: normal;
+ }
+ 
+ ul,
+ li {
+ 	list-style: none;
+ }
+ 
+ b,
+ strong {
+ 	font-weight: 700;
+ }
+ 
+ pre {
+ 	overflow: auto;
+ }
+ 
+ img {
+ 	border: none;
+ 	vertical-align: middle;
+ 	max-width: 100%;
+ }
+ 
+ p {
+ 	margin-top: 0;
+ 	margin-bottom: 0;
+ }
+ 
+ a {
+ 	text-decoration: none;
+ 	color: #333;
+ 	-webkit-transition: all .3s ease-in-out;
+ 	transition: all .3s ease-in-out;
+ }
+ 
+ a:hover {
+ 	outline: 0;
+ }
+ 
+ textarea {
+ 	overflow: hidden;
+ 	resize: none;
+ }
+ 
+ button {
+ 	overflow: visible;
+ }
+ 
+ button,
+ select {
+ 	text-transform: none;
+ }
+ 
+ button,
+ input,
+ optgroup,
+ select,
+ textarea {
+ 	margin: 0;
+ 	font: inherit;
+ 	color: inherit;
+ }
+ 
+ hr {
+ 	height: 0;
+ 	-webkit-box-sizing: content-box;
+ 	-moz-box-sizing: content-box;
+ 	box-sizing: content-box;
+ }
+ 
+ pre {
+ 	overflow: auto;
+ }
+ 
+ .cle:after {
+ 	visibility: hidden;
+ 	display: block;
+ 	font-size: 0;
+ 	content: " ";
+ 	clear: both;
+ 	height: 0
+ }
+ 
+ .cle {
+ 	zoom: 1
+ }
+ 
+ .fl,
+ .fr {
+ 	display: inline
+ }
+ 
+ .fl {
+ 	float: left
+ }
+ 
+ .fr {
+ 	float: right
+ }
+ 
+ .txtov {
+ 	overflow: hidden;
+ 	text-overflow: ellipsis;
+ 	white-space: nowrap
+ }
+ 
+ input,
+ textarea,
+ select,
+ button {
+ 	outline: none;
+ 	vertical-align: middle;
+ 	font-size: inherit;
+ 	font-family: inherit;
+ }
+ 
+ textarea {
+ 	resize: none;
+ 	overflow-y: auto;
+ }
+ 
+ input[type="submit"],
+ input[type="reset"],
+ input[type="button"],
+ button {
+ 	cursor: pointer;
+ 	-webkit-appearance: none;
+ }
+ 
+ hr {
+ 	height: 0;
+ 	border-width: 1px 0 0 0;
+ 	border-style: solid;
+ 	margin: 0;
+ 	color: #ddd;
+ }
+ 
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+ 	font-weight: normal;
+ 	margin: 0;
+ }
+ 
+ ul,
+ ol,
+ li {
+ 	list-style: none;
+ 	-webkit-padding-start: 0
+ }
+ 
+ dt,
+ dd {
+ 	padding: 0;
+ 	margin: 0;
+ 	list-style: none;
+ }
+ 
+ html {
+ 	width: 100%;
+ 	margin: 0px auto;
+ }
+ 
+ body {
+ 	margin: 0px auto;
+ }
+ 
+ .h_normal {
+ 	font-weight: normal;
+ }
+ 
+ .w {
+ 	width: 90%;
+    
+ 	margin: 0px auto;
+ 	clear: both;
+ }
+ 
+ .ww {
+ 	background: #242424;
+ }
+ 
+ input {
+ 	outline: medium;
+ }
+ /*阑珊*/
+ 
+ .span12 {
+ 	width: 100%;
+ }
+ 
+ .span11 {
+ 	width: 91.66666667%;
+ }
+ 
+ .span10 {
+ 	width: 83.33333333%;
+ }
+ 
+ .span9 {
+ 	width: 75%;
+ }
+ 
+ .span8 {
+ 	width: 66.66666667%;
+ }
+ 
+ .span7 {
+ 	width: 58.33333333%;
+ }
+ 
+ .span6 {
+ 	width: 50%;
+ }
+ 
+ .span5 {
+ 	width: 41.66666667%;
+ }
+ 
+ .span4 {
+ 	width: 33.33333333%;
+ }
+ 
+ .span3 {
+ 	width: 25%;
+ }
+ 
+ .span2 {
+ 	width: 16.66666667%;
+ }
+ 
+ .span1 {
+ 	width: 8.33333333%;
+ }
+ 
+ .span1,
+ .span2,
+ .span3,
+ .span4,
+ .span5,
+ .span6,
+ .span7,
+ .span8,
+ .span9,
+ .span10,
+ .span11,
+ .span12 {
+ 	display: block;
+ 	margin: 0px auto;
+ }
+ 
+ .img_box {
+ 	overflow: hidden;
+ }
+ 
+ .img_box img {
+ 	width: 100%;
+ 	-webkit-transition: all .3s ease-in-out;
+ 	transition: all .3s ease-in-out;
+ }
+ 
+ .img_box:hover img {
+ 	-webkit-transform: scale(1.2, 1.2);
+ 	-ms-transform: scale(1.2, 1.2);
+ 	transform: scale(1.2, 1.2);
+ }

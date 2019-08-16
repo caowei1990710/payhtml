@@ -1,0 +1,46 @@
+<div class="tab-content">
+    <div class="row-fluid container-fluid">
+        <div class="span5" style="">
+            <div id="accordion1" class="accordion no-margin">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a href="#collapseOne" data-parent="" data-toggle="collapse" class="accordion-toggle" target="_self" data-original-title="">
+                            <i class="icon-user icon-white">
+                          </i> {{$root.lagconfig['自动付款']}}
+
+                        </a>
+
+                    </div>
+                    <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
+                        <div class="accordion-inner">
+                            <div class="fancy-inputs">
+                                <div class="slide-three pull-left">
+                                    <input type="checkbox" value="None" id="slideThree" name="check">
+                                    <label for="slideThree"></label>
+                                </div>
+                            </div>
+                            <form class="no-margin" name="createMerchantTypeForm">
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <div class="control-group">
+                                            <label class="control-label">
+                                              {{$root.lagconfig['设定限额']}}
+                      </label>
+                                            <div class="controls">
+                                                <input name="name" type="text" ng-model="sm.creation.name" />
+                                            </div>
+                                            <button class="btn btn-primary" ng-click="sm.addMerchantType();">
+                                              {{$root.lagconfig['更新']}}
+                      </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

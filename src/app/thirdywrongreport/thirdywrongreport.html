@@ -1,0 +1,56 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <!--<label class="control-label textright">{{$root.lagconfig['用户名']}}</label>-->
+      <!--<select-list ng-model="thirdyaccount.query.type" name="banklist" type="1"></select-list>-->
+      <label class="control-label textright">平台</label>
+      <select-list ng-model="thirdywrongreport.query.platfrom" name="platfromlist" type="1"></select-list>
+      <label class="control-label textright">几天前</label>
+      <!--<select-list ng-model="thirdywrongreport.query.platfrom" name="platfromlist" type="1"></select-list>-->
+      <input ng-model="thirdywrongreport.query.days" name="create" type="text">
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thirdywrongreport.get(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <!--  <label class="control-label textright">几天前</label>
+        <input ng-model="thirdywrongreport.query.create" name="create" type="text">-->
+      <!--<select-list ng-model="thirdyaccount.query.state" name="banktypecardstatus" type="1"></select-list>-->
+    </div>
+  </form>
+  <table cellpadding="0" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+      <td>存款单号</td>
+      <td>所属类型</td>
+      <td>创建时间</td>
+      <td>实际金额</td>
+      <td>金额账变</td>
+      <td>锁定金额</td>
+      <td>账变之前</td>
+      <!--<td>通知状态</td>-->
+      <td>账变之后</td>
+      <td>提案号</td>
+      <!--<td>创建时间</td>-->
+      <!--<td>游戏方备注</td>-->
+      <!--<td>操作</td>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in thirdywrongreport.DetailList track by $index">
+      <td>{{item.id}}</td>
+      <td>{{item.type | nameTovalue:'id':'name':$root.userrplisttype}}</td>
+      <td>{{item.createTime}}</td>
+      <td>{{item.realMoney}}</td>
+      <td>{{item.changeMoney}}</td>
+      <td>{{item.lockMoney}}</td>
+      <td>{{item.befroeMoney}}</td>
+      <!--<td>{{item.state}}</td>-->
+      <td>{{item.nowMoney}}</td>
+      <td>{{item.remark}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--<div ng-include="'app/user/user.popup.html'"></div>-->
+<!--<div ng-include="'app/bankCard/accountManagement/accountManagement.editBank.html'"></div>-->

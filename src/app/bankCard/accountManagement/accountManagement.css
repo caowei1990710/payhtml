@@ -1,0 +1,62 @@
+.am-form-query {
+  margin: 0px 5px 30px 0px;
+  text-align: left;
+  line-height: 40px;
+}
+
+.am-form-query label {
+  width: 60px;
+  text-align: right;
+}
+
+.am-form-query input {
+  width: 136px !important;
+}
+
+.control-group input, .controls input {
+  width: 136px;
+}
+
+.controltextheight {
+  line-height: 40px;
+}
+
+.textpadding {
+  padding: 10px;
+}
+
+.dialoglabel {
+  width: 80px;
+  display: inline-block;
+  text-align: right;
+}
+
+.buttonpost {
+  position: absolute;
+  margin: 100px 0px 0px 660px;
+}
+
+.contentout {
+  position: relative;
+  text-align: center;
+  background-color: #eeeeee;
+  height: 890px
+}
+
+.contentdiv {
+  position: relative;
+  opacity: 1;
+  width: 1200px;
+  background-color: #eeeeee;
+  display: inline-block;
+  margin: 20px 0px;
+  height: 850px
+}
+.downloading{
+  background-color: #eeeeee;
+  width: 350px;
+  top:0px;
+  height: 870px;
+  position: absolute;
+  z-index: 999;
+}

@@ -1,0 +1,170 @@
+<div class="tab-content">
+  <div ng-show="!thirdyproposal.pay">
+    <form class="form-inline am-form-query" name="queryForm">
+      <div class="textleft">
+        <label class="control-label textright">{{$root.lagconfig['所属平台']}}</label>
+        <select-list ng-model="thirdyproposal.query.platfrom" name="platfromlist" type="1"></select-list>
+        <!--<label class="control-label textright">{{$root.lagconfig['银行账号']}}</label>-->
+        <!--<input ng-model="thirdyaccount.query.name" name="bankCard" type="text">-->
+        <label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>
+        <select-list ng-model="thirdyproposal.query.state" name="bankcardstatus" type="1"></select-list>
+        <span>
+        <label class="control-label">{{$root.lagconfig['存款时间']}}</label>
+           <date-select selectid="allhello" init="1" ng-model="thirdyproposal.query.beginTime"></date-select>
+        </span>
+        <span>
+        <label class="control-label">{{$root.lagconfig['到']}}</label>
+           <date-select selectid="allhello1" init="2" ng-model="thirdyproposal.query.endTime"></date-select>
+      </span>
+        <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+                ng-click="thirdyproposal.getList();">
+          {{$root.lagconfig['查询']}}
+        </button>
+        <label class="control-label textright">{{$root.lagconfig['自动刷新']}}</label>
+        <select-list ng-model="thirdyproposal.query.flush" name="flushstate" type="1"></select-list>
+        <!--<button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"-->
+        <!--ng-click="thirdyproposal.create();">-->
+        <!--{{$root.lagconfig['创建']}}-->
+        <!--</button>-->
+        <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+                ng-click="thirdyproposal.outList();">
+          {{$root.lagconfig['导出']}}
+        </button>
+        <label class="control-label textright">{{$root.lagconfig['目标卡信息']}}</label>
+        <input ng-model="thirdyproposal.query.bankDest" name="bankCard" type="text">
+      </div>
+    </form>
+    <div class="tabbleout">
+      <table class="table tableoutwidth">
+        <thead>
+        <tr>
+          <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+          <th>{{$root.lagconfig['提案号']}}</th><!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+          <th>{{$root.lagconfig['所属平台']}}</th><!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+          <!--<th>{{$root.lagconfig['代理名']}}</th>&lt;!&ndash;<th>{{$root.lagconfig['银行网点']}}</th>&ndash;&gt;-->
+          <th>{{$root.lagconfig['银行账号']}}</th>
+          <th>{{$root.lagconfig['目标卡信息']}}</th>
+          <th>{{$root.lagconfig['目标卡类型']}}</th>
+          <th>{{$root.lagconfig['付款人']}}</th>
+          <th>{{$root.lagconfig['转账余额']}}</th><!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+          <th>{{$root.lagconfig['当前状态']}}</th>
+          <th>ip</th>
+          <th>地址</th>
+          <th>{{$root.lagconfig['创建时间']}}</th>
+          <th>{{$root.lagconfig['处理时间']}}</th>
+          <th>{{$root.lagconfig['备注']}}</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody data="thirdyaccount.bankindex" ng-model="thirdyaccount.bankList" index="thirdyaccount.bankindex">
+        <tr ng-repeat="item in thirdyproposal.bankList track by $index"
+            ng-class="{acolor:thirdyproposal.bankindex == $index}"
+            ng-click="thirdyproposal.editBank($index)" class="repeat-animation">
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.id}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+            {{item.platfrom | nameTovalue:'id':'name':$root.platfromlist}}
+          </td>
+          <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.angentName}}</td>-->
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.bankCard}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.bankDest}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.destType}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.destName}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.amount}}</td>
+          <td>
+            <type-style value="item.state" list="bankcardstatus"></type-style>
+            <!--<select-list ng-model="item.state" name="bankcardstatus" type="1"></select-list>-->
+          </td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.ip}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.content}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.createTime}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.finshTime}}</td>
+          <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+            {{item.remark | stringLeng}}
+          </td>
+          <td>
+            <button ng-click="thirdyproposal.topay($index)" ng-show="item.state == 'BEGINING'">付款</button>
+            <button ng-click="thirdyproposal.update($index)" ng-show="item.state == 'BEGINING'">执行</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="text-align: center">总计{{thirdyproposal.totalSum}}小计{{thirdyproposal.nowSum}}</div>
+    <pagination page="thirdyproposal.page" total="thirdyproposal.total" size="thirdyproposal.sizePerPage"
+                trigger="thirdyproposal.get(page)"></pagination>
+  </div>
+  <div ng-show="thirdyproposal.pay">
+    <div>
+      <button ng-click="thirdyproposal.goback()">返回</button>
+      <span>开始付款</span>
+    </div>
+    <div>
+      <div>
+        <table class="table tableoutwidth">
+          <thead>
+          <tr ng-model="bc.bankList"
+              data="[{id:'bankId'},{id:'bankCard'},{id:'cardName'},{id:'credit'},{
+          id:'transactionForToday'},{id:'platformId'},{id:'type'},{id:'user'},{id:'lastLockTime'},{id:'telephone'},{id:'merchant'},{id:'flag'},{id:'remark'}]"
+              index="bc.bankindex">
+            <th>{{$root.lagconfig['所属平台']}}</th><!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+            <th>{{$root.lagconfig['目标卡信息']}}</th>
+            <th>{{$root.lagconfig['付款人']}}</th>
+            <th>{{$root.lagconfig['转账余额']}}</th><!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+            <th>{{$root.lagconfig['当前状态']}}</th>
+            <th>{{$root.lagconfig['创建时间']}}</th>
+            <th>{{$root.lagconfig['备注']}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{thirdyproposal.item.platfrom | nameTovalue:'id':'name':$root.platfromlist}}</td>
+            <td>{{thirdyproposal.item.bankDest}}</td>
+            <td>{{thirdyproposal.item.destName}}</td>
+            <td>{{thirdyproposal.item.amount}}</td>
+            <td>{{thirdyproposal.item.state}}</td>
+            <td>{{thirdyproposal.item.createTime}}</td>
+            <td>{{thirdyproposal.item.remark}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="width: 1300px;height: 1px;background-color: black"></div>
+      <div>
+        <table class="table tableoutwidth">
+          <thead>
+          <tr ng-model="bc.bankList"
+              data="[{id:'bankId'},{id:'bankCard'},{id:'cardName'},{id:'credit'},{
+          id:'transactionForToday'},{id:'platformId'},{id:'type'},{id:'user'},{id:'lastLockTime'},{id:'telephone'},{id:'merchant'},{id:'flag'},{id:'remark'}]"
+              index="bc.bankindex">
+            <th></th>
+            <th>{{$root.lagconfig['所属平台']}}</th><!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+            <th>{{$root.lagconfig['所属银行']}}</th>
+            <th>{{$root.lagconfig['余额']}}</th>
+            <th>{{$root.lagconfig['转账卡信息']}}</th>
+            <th>{{$root.lagconfig['手续费']}}</th>
+            <th>{{$root.lagconfig['转账余额']}}</th><!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><input id="payonecheck" type="checkbox" checked="checked" disabled></td>
+            <td>{{thirdyproposal.payone.plaftfrom | nameTovalue:'id':'name':$root.platfromlist}}</td>
+            <td>{{thirdyproposal.payone.type}}</td>
+            <td>{{thirdyproposal.payone.amount}}</td>
+            <td><input type="text" ng-model="thirdyproposal.payitem.payoneBankcard"
+                       style="width: 100px">
+              <button ng-click="thirdyproposal.getPayone()" style="margin-bottom: 10px">获取</button>
+            </td>
+            <td><input type="text" style="width: 100px" ng-model="thirdyproposal.payitem.payonefee"></td>
+            <td><input type="text" style="width: 100px" ng-model="thirdyproposal.payitem.tranonemoney"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <input type="text" style="width: 150px" value="备注" ng-model="thirdyproposal.payitem.remark">
+      <click-button ng-click="thirdyproposal.payal()" value="付款"></click-button>
+      <click-button ng-click="thirdyproposal.cancel()" value="取消"></click-button>
+    </div>
+  </div>
+</div>
+

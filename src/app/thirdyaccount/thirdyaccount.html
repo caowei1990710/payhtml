@@ -1,0 +1,139 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <label class="control-label textright">{{$root.lagconfig['所属银行']}}</label>
+      <select-list ng-model="thirdyaccount.query.type" name="banklist" type="1"></select-list>
+      <label class="control-label textright">{{$root.lagconfig['银行账号']}}</label>
+      <input ng-model="thirdyaccount.query.name" name="bankCard" type="text">
+      <label class="control-label textright">{{$root.lagconfig['所属ip']}}</label>
+      <input ng-model="thirdyaccount.query.ip" name="bankCard" type="text">
+      <label class="control-label textright">{{$root.lagconfig['绑定银行卡']}}</label>
+      <input ng-model="thirdyaccount.query.belongbank" name="bankCard" type="text">
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thirdyaccount.getList();">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>
+      <select-list ng-model="thirdyaccount.query.state" name="banktypecardstatus" type="1"></select-list>
+      <label class="control-label textright">{{$root.lagconfig['组别']}}</label>
+      <select-list ng-model="thirdyaccount.query.wechatId" name="originlist" type="1"></select-list>
+      <label class="control-label textright">{{$root.lagconfig['自动刷新']}}</label>
+      <select-list ng-model="thirdyaccount.query.flush" name="flushstate" type="0"></select-list>
+      <!--<label class="control-label textright">收款类型</label>-->
+      <!--<select-list ng-model="thirdyaccount.query.paytype" name="paytypes" type="1"></select-list>-->
+      <label class="control-label textright">卡层次</label>
+      <select-list ng-model="thirdyaccount.query.payBanktype" name="paybanktypes" type="1"></select-list>
+      <label class="control-label textright">{{$root.lagconfig['所属平台']}}</label>
+      <select-list ng-model="thirdyaccount.query.platfrom" name="platfromlist" type="1"></select-list>
+      <label class="control-label textright">卡类型:</label>
+      <select-list ng-model="thirdyaccount.query.banktype" name="getbanktype" type="1"></select-list>
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thirdyaccount.outList();">
+        {{$root.lagconfig['导出']}}
+      </button>
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="thirdyaccount.bankList"
+          data="[{id:'bankId'},{id:'type'},{id:'wechatName'},{id:'daysucces'},{id:'nickName'},{
+          id:'ip'},{id:'realName'},{id:'payType'},{id:'bankType'},{id:'amount'},{id:'dayamount'},{id:'teleNumber'},{id:'belongbankCard'},{id:'state'},{id:'plaftfrom'},{id:'daylimit'},{id:'wechatId'},{id:'autowithrow'},{id:'remark'}]"
+          index="bc.bankindex" from-stryle>
+        <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+        <th>
+          <button ng-click="thirdyaccount.selectAll()">全选</button>
+          <button ng-click="thirdyaccount.allNot()">反选</button>
+        </th>
+        <th>{{$root.lagconfig['所属银行']}}</th><!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+        <th>{{$root.lagconfig['银行账号']}}</th>
+        <th>成功/总数/连续</th>
+        <th ng-if="thirdyaccount.query.type!=0">{{$root.lagconfig['昵称']}}</th>
+        <th ng-if="thirdyaccount.query.type==0">{{$root.lagconfig['银行类型']}}</th>
+        <th>{{$root.lagconfig['所属ip']}}</th>
+        <th>{{$root.lagconfig['真实姓名']}}</th>
+        <th>收款类型</th>
+        <th>卡类型</th>
+        <th>{{$root.lagconfig['目前余额']}}</th>
+        <th>{{$root.lagconfig['今日交易']}}</th>
+        <th>卡层次</th>
+        <th ng-if="thirdyaccount.query.type!=0">{{$root.lagconfig['绑定银行卡']}}</th>
+        <!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <th>{{$root.lagconfig['当前状态']}}</th>
+        <th>{{$root.lagconfig['所属平台']}}</th>
+
+        <th>{{$root.lagconfig['最低额度']}}</th>
+        <th>{{$root.lagconfig['最高额度']}}</th>
+        <th>{{$root.lagconfig['交易限额']}}</th>
+        <th ng-if="thirdyaccount.query.type!=0">{{$root.lagconfig['组别']}}</th>
+        <th>{{$root.lagconfig['提现额度']}}</th>
+        <!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <th>{{$root.lagconfig['备注']}}</th>
+      </tr>
+      </thead>
+      <tbody data="thirdyaccount.bankindex" ng-model="thirdyaccount.bankList" index="thirdyaccount.bankindex">
+      <tr ng-repeat="item in thirdyaccount.bankList track by $index"
+          ng-class="{acolor:thirdyaccount.bankindex == $index}"
+          ng-click="thirdyaccount.editBank($index)" class="repeat-animation">
+        <td><input id="id_{{$index}}" type="checkbox"></td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.type | nameTovalue:'id':'name':$root.banklist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.wechatName | bankFormal}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.daysucces}}/{{item.daynumber}}/{{item.nosucces}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.nickName}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.ip}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.realName}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          <type-style value="item.payType" list="paytypes"></type-style>
+        </td>
+        <td>
+          <type-style value="item.bankType" list="getbanktype"></type-style>
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.amount}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.dayamount}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.payBanktype |
+          nameTovalue:'id':'name':$root.paybanktypes}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}" ng-if="thirdyaccount.query.type!=0">
+          {{item.belongbankCard}}
+        </td>
+        <td>
+          <type-style value="item.state" list="banktypecardstatus"></type-style>
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.plaftfrom|
+          nameTovalue:'id':'name':$root.platfromlist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.lowlimit}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.hightlimit}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.daylimit}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}" ng-if="thirdyaccount.query.type!=0">
+          {{item.wechatId |
+          nameTovalue:'id':'name':$root.originlist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.autowithrow}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.remark | stringLeng}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: center">
+    金额总计{{thirdyaccount.moneySum}}金额小计{{thirdyaccount.nowSum}}总计{{thirdyaccount.totalSum}}小计{{thirdyaccount.bankList.length}}
+  </div>
+  <pagination page="thirdyaccount.page" total="thirdyaccount.totalSum" size="thirdyaccount.sizePerPage"
+              trigger="thirdyaccount.get(page)"></pagination>
+  <div class="pull-right buttonpost">
+    <click-button click="thirdyaccount.delete" value="删除" style="display: none"></click-button>
+    <click-button click="thirdyaccount.showClear" value="批量清空"></click-button>
+    <click-button click="thirdyaccount.showeditBank" data="user.roleitem" value="更新"></click-button>
+    <click-button href="createBank" data="user.roleitem" value="创建"></click-button>
+    <click-button click="thirdyaccount.showeditMoney" value="调整余额"></click-button>
+  </div>
+</div>
+
+<div ng-include="'app/bankCard/accountManagement/accountManagement.createBank.html'"></div>
+<div ng-include="'app/bankCard/accountManagement/accountManagement.editBank.html'"></div>

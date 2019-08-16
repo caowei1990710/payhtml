@@ -1,0 +1,161 @@
+<!-- Modal -->
+<div id="createUser" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="false">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                      </button>
+        <h4 id="myModalLabel1">
+                        创建用户
+                      </h4>
+    </div>
+    <div class="modal-body">
+        <form class="no-margin" name="createUserForm">
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label">
+                        用户名
+                      </label>
+                        <div class="controls">
+                            <input name="username" type="text" ng-model="user.creation.username" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                        密码
+                      </label>
+                        <div class="controls">
+                            <input name="password" type="password" ng-model="user.creation.password" />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">
+                            姓名
+                      </label>
+                        <div class="controls">
+                            <input name="voip" type="text" ng-model="user.creation.nickname" />
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label">
+                        邮箱
+                      </label>
+                        <div class="controls">
+                            <input name="email" type="text" ng-model="user.creation.email" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                        确认密码
+                      </label>
+                        <div class="controls">
+                            <input name="confirmPass" type="password" ng-model="user.creation.confirmPass" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                        VOIP
+                      </label>
+                        <div class="controls">
+                            <input name="voip" type="text" ng-model="user.creation.voip" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+      <click-button click="user.createUser" data="user.departmentitem.numbers" value="确认"></click-button>
+      <click-button  data-dismiss="modal"  value="取消"></click-button>
+        <!--<button class="btn btn-primary" ng-click="user.createUser();">-->
+                        <!--确认-->
+                      <!--</button>-->
+        <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+                        <!--取消-->
+                      <!--</button>-->
+    </div>
+</div>
+<div id="editUser" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="false">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                      </button>
+        <h4 id="myModalLabel2">
+                        创建用户
+                      </h4>
+    </div>
+    <div class="modal-body">
+        <form class="no-margin" name="editUserForm">
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label">
+                        用户名
+                      </label>
+                        <div class="controls">
+                            <input name="username" type="text" ng-model="user.edition.username" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                        密码
+                      </label>
+                        <div class="controls">
+                            <input name="password" type="password" ng-model="user.edition.password" />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">
+                            姓名
+                      </label>
+                        <div class="controls">
+                            <input name="voip" type="text" ng-model="user.edition.nickname" />
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+                        <label class="control-label">
+                        邮箱
+                      </label>
+                        <div class="controls">
+                            <input name="email" type="text" ng-model="user.edition.email" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                        确认密码
+                      </label>
+                        <div class="controls">
+                            <input name="confirmPass" type="password" ng-model="user.edition.confirmPass" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                        VOIP
+                      </label>
+                        <div class="controls">
+                            <input name="voip" type="text" ng-model="user.edition.voip" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+      <click-button click="user.updateUser" data="user.departmentitem.numbers" value="确认"></click-button>
+      <click-button  data-dismiss="modal"  value="取消"></click-button>
+        <!--<button class="btn btn-primary" ng-click="user.updateUser();">-->
+                        <!--确认-->
+                      <!--</button>-->
+        <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+                        <!--取消-->
+                      <!--</button>-->
+    </div>
+</div>

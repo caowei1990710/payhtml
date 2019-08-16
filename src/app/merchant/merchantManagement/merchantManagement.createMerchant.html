@@ -1,0 +1,354 @@
+<!-- Modal -->
+<div id="createMerchant" class="modal hide fade in" tabindex="-1" style="width: 700px" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="false">
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="merchant.createMerchant();" class="no-margin"
+        name="createMerchantForm">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4 id="">
+        {{$root.lagconfig['创建商户号']}}
+      </h4>
+    </div>
+    <div class="modal-body">
+      <!--<form class="no-margin" name="createMerchantForm">-->
+      <div class="row-fluid">
+        <!--<div class="span4">-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['名称']}}：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="merchant.createMerchantForm.name" name="createMerchantFormName" type="text" required>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['商户号']}}：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="merchant.createMerchantForm.merchantNo" name="createMerchantFormMerchantNo" type="text"-->
+        <!--required>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['商户地址']}}：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="merchant.createMerchantForm.merchantAddress" name="createMerchantFormMerchantAddress"-->
+        <!--type="text" required>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['付款类型']}}：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<select-list ng-model="merchant.createMerchantForm.topUpType" name="paymenttype"></select-list>-->
+        <!--&lt;!&ndash;<select ng-model="merchant.createMerchantForm.topUpType" name="createMerchantFormTopUpType">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option ng-repeat="item in merchant.paymentType"&ndash;&gt;-->
+        <!--&lt;!&ndash;ng-selected="merchant.createMerchantForm.topUpType == item.code" value="{{item.code}}">&ndash;&gt;-->
+        <!--&lt;!&ndash;{{item.text}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['所属平台']}}：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<select-list ng-model="merchant.createMerchantForm.platformId" name="platformlist"></select-list>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['用途']}}：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<select-list ng-model="merchant.createMerchantForm.purpose" name="merchantpurpose"></select-list>-->
+        <!--&lt;!&ndash;<select ng-model="merchant.createMerchantForm.purpose" name="createMerchantFormPurpose">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option ng-repeat="item in merchant.merchantPurpose"&ndash;&gt;-->
+        <!--&lt;!&ndash;ng-selected="merchant.createMerchantForm.purpose == item.code" value="{{item.code}}">&ndash;&gt;-->
+        <!--&lt;!&ndash;{{item.text}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="span4">-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['商户类型']}}：-->
+        <!--</label>-->
+        <!--<select-list ng-model="merchant.createMerchantForm.merchantTypeId" name="merchanttypelist"-->
+        <!--required></select-list>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['网关地址']}}：-->
+        <!--</label>-->
+        <!--<select-list ng-model="merchant.createMerchantForm.gateWayId" name="gatewaylist"></select-list>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['交易限额']}}：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<select-list ng-model="merchant.createMerchantForm.limitId" name="limitlist" dispaly="displayName"-->
+        <!--id="merchantlimitsId"></select-list>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['使用平台']}}：-->
+        <!--</label>-->
+        <!--<select-list ng-model="merchant.createMerchantForm.device" name="devicetype"></select-list>-->
+        <!--&lt;!&ndash;<select ng-model="merchant.createMerchantForm.device" name="editMerchantFormDevice">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option ng-repeat="item in merchant.deviceType"&ndash;&gt;-->
+        <!--&lt;!&ndash;ng-selected="merchant.createMerchantForm.device == item.code" value="{{item.code}}">&ndash;&gt;-->
+        <!--&lt;!&ndash;{{item.text}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['状态']}}：-->
+        <!--</label>-->
+        <!--<select-list ng-model="merchant.createMerchantForm.device" name="merchantstatus"></select-list>-->
+        <!--&lt;!&ndash;<select ng-model="merchant.createMerchantForm.status" name="createMerchantFormStatus">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option ng-repeat="item in merchant.merchantStatus"&ndash;&gt;-->
+        <!--&lt;!&ndash;ng-selected="merchant.createMerchantForm.status == item.code" value="{{item.code}}">&ndash;&gt;-->
+        <!--&lt;!&ndash;{{item.text}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="span4">-->
+        <!--<div class="control-group" style="height: 65px">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['商户']}}logo：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<upload-file ng-model="merchant.createMerchantForm.iconUrl"-->
+        <!--name="createMerchantFormIconUrl"></upload-file>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--System App ID：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="merchant.createMerchantForm.appId" name="createMerchantFormAppId" type="text">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--View ID：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="merchant.createMerchantForm.viewId" name="createMerchantFormViewId" type="text">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--Style ID：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="merchant.createMerchantForm.styleId" name="createMerchantFormStyleId" type="text">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--User ID：-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="merchant.createMerchantForm.userId" name="createMerchantFormUserId" type="text">-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--</div>-->
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['名称']}}：
+            </label>
+            <input ng-model="merchant.createMerchantForm.name" name="createMerchantFormName" type="text" required>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['商户号']}}：
+            </label>
+            <input ng-model="merchant.createMerchantForm.merchantNo" name="createMerchantFormMerchantNo" type="text"
+                   required>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['商户类型']}}：
+            </label>
+            <select-list ng-model="merchant.createMerchantForm.merchantTypeId" name="merchanttypelist"
+                         required></select-list>
+            <!--<input type="date"  ng-model="bc.createBankForm.downTime">-->
+            <!--<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>-->
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['商户支付类型']}}：
+            </label>
+            <select-list ng-model="merchant.createMerchantForm.topUpType" name="paymenttype"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['使用平台']}}：
+            </label>
+            <select-list ng-model="merchant.createMerchantForm.device" name="devicetype"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['状态']}}：
+            </label>
+            <select-list ng-model="merchant.createMerchantForm.status" name="merchantstatus"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              'Style ID'：
+            </label>
+            <input ng-model="merchant.createMerchantForm.styleId" name="createMerchantFormStyleId" type="text">
+            <!--<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>-->
+          </div>
+          <div class="control-group divinput">
+            <label>
+              'User ID'：
+            </label>
+            <input ng-model="merchant.createMerchantForm.userId" name="createMerchantFormUserId" type="text">
+            <!--<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>-->
+          </div>
+          <div class="control-group divinput">
+            <label>
+              BusinessKey：
+            </label>
+            <input ng-model="merchant.createMerchantForm.key" name="createMerchantFormKey" type="text"/>
+          </div>
+          <!--<div class="control-group">-->
+          <!--<label class="control-label pull-left dialoglabel">-->
+          <!--{{$root.lagconfig['User ID']}}：-->
+          <!--</label>-->
+          <!--<input ng-model="merchant.createMerchantForm.userId" name="createMerchantFormUserId" type="text">-->
+          <!--&lt;!&ndash;<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>&ndash;&gt;-->
+          <!--</div>-->
+          <!--<div class="control-group">-->
+          <!--<label class="control-label pull-left dialoglabel">-->
+          <!--{{$root.lagconfig['User ID']}}：-->
+          <!--</label>-->
+          <!--<input ng-model="merchant.createMerchantForm.userId" name="createMerchantFormUserId" type="text">-->
+          <!--&lt;!&ndash;<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>&ndash;&gt;-->
+          <!--</div>-->
+        </div>
+        <div class="span6">
+        <!--  <div class="control-group">
+            <label class="control-label pull-left dialoglabel">
+              {{$root.lagconfig['商户']}}logo:
+            </label>
+            <div style="display: inline-block;height: 40px">
+              <upload-file ng-model="merchant.createMerchantForm.iconUrl"
+                           name="createMerchantFormIconUrl"></upload-file>
+            </div>
+          </div>-->
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['商户地址']}}：
+            </label>
+            <input ng-model="merchant.createMerchantForm.merchantAddress" name="createMerchantFormMerchantAddress"
+                   type="text" required>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['网关地址']}}：
+            </label>
+            <select-list ng-model="merchant.createMerchantForm.gateWayId" name="gatewaylist"></select-list>
+            <!--<input type="date"  ng-model="bc.createBankForm.downTime">-->
+            <!--<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>-->
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['交易限额']}}：
+            </label>
+            <select-list ng-model="merchant.createMerchantForm.limitId" name="limitlist" dispaly="displayName"
+                         id="merchantlimitsId"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属平台']}}：
+            </label>
+            <select-list ng-model="merchant.createMerchantForm.platformId" name="platformlist"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['用途']}}：
+            </label>
+            <select-list ng-model="merchant.createMerchantForm.purpose" name="merchantpurpose"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              'SystemAppID'：
+            </label>
+            <input ng-model="merchant.createMerchantForm.appId" name="createMerchantFormStyleId" type="text">
+            <!--<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>-->
+          </div>
+          <div class="control-group divinput">
+            <label>
+              'View ID'：
+            </label>
+            <input ng-model="merchant.createMerchantForm.viewId" name="createMerchantFormViewId" type="text">
+            <!--<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>-->
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['备注']}}：
+            </label>
+            <input ng-model="merchant.createMerchantForm.remark" name="createMerchantFormRemark" type="text"/>
+          </div>
+          <!--<div class="control-group">-->
+          <!--<label class="control-label pull-left dialoglabel">-->
+          <!--{{$root.lagconfig['User ID']}}：-->
+          <!--</label>-->
+          <!--<input ng-model="merchant.createMerchantForm.userId" name="createMerchantFormUserId" type="text">-->
+          <!--&lt;!&ndash;<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>&ndash;&gt;-->
+          <!--</div>-->
+          <!--<div class="control-group">-->
+          <!--<label class="control-label pull-left dialoglabel">-->
+          <!--{{$root.lagconfig['User ID']}}：-->
+          <!--</label>-->
+          <!--<input ng-model="merchant.createMerchantForm.userId" name="createMerchantFormUserId" type="text">-->
+          <!--&lt;!&ndash;<select-list ng-model="bc.createBankForm.deviceId" name="devicelist"></select-list>&ndash;&gt;-->
+          <!--</div>-->
+        </div>
+      </div>
+      <!--<div class="row-fluid">-->
+        <!--<div class="span12">-->
+
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row-fluid">-->
+        <!--<div class="span12">-->
+         <!---->
+        <!--</div>-->
+      <!--</div>-->
+
+    </div>
+    <div class="modal-footer">
+      <click-button data="user.departmentitem.numbers" value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+
+</div>

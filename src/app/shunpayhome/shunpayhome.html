@@ -1,0 +1,21 @@
+<div>
+  <div class="contentout">
+    <div class="contentdiv">
+      <div style="position: relative">
+        <ul style="background-color: #288BE0;height: 60px;font-weight: bold;">
+          <button style="right: 30px;top: 15px;position: absolute;" ng-click="shunpayhome.logout()">退出</button>
+          <li class="userli span2" ng-repeat="tab in shunpayhome.changtabs"
+              ng-class="{uservister: shunpayhome.selected.link == tab.link}"
+              ng-click="shunpayhome.changTab($index,thirdyhome.todo)">
+            <icon-title innervalue="tab.text" default="1" select="shunpayhome.selected.link == tab.link"
+                        dewidth="170"></icon-title>
+          </li>
+        </ul>
+        <div class="tab-div" style="height: 790px;background: #eaf7ff">
+          <ui-view name="content"></ui-view>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

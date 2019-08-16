@@ -1,0 +1,349 @@
+<!-- Modal -->
+<div id="creatMerchantType" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>{{$root.lagconfig["创建商户类型"]}}:</h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="sm.addMerchantType();" class="no-margin"
+        name="createMerchantTypeForm">
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["商户类型"]}}:
+            </label>
+            <input name="createMerchantTypeFormName" type="text" ng-model="sm.createMerchantTypeForm.name" required/>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["代码"]}}:
+            </label>
+            <input name="createMerchantTypeFormCode" type="text" ng-model="sm.createMerchantTypeForm.code" required/>
+          </div>
+        </div>
+        <!--<div class="span6">-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label dialoglabel">-->
+        <!--{{$root.lagconfig["商户"]}}:LOGO-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<upload-file name="createMerchantTypeFormIconUrl"-->
+        <!--ng-model="sm.createMerchantTypeForm.iconUrl"></upload-file>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary">-->
+      <!--{{$root.lagconfig["确认"]}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig["取消"]}}-->
+      </button>
+    </div>
+  </form>
+
+
+</div>
+<div id="editMerchantType" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig["修改商户类型"]}}:
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="sm.updateMerchantType();" class="no-margin"
+        name="editMerchantTypeForm">
+    <div class="modal-body">
+      <input name="editMerchantTypeFormId" type="hidden" ng-model="sm.editMerchantTypeForm.id" required/>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label class="control-label">
+              {{$root.lagconfig["商户类型"]}}:
+            </label>
+            <input name="editMerchantTypeFormName" type="text" ng-model="sm.editMerchantTypeForm.name" required/>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group divinput">
+            <label class="control-label">
+              {{$root.lagconfig["代码"]}}:
+            </label>
+            <input name="editMerchantTypeFormCode" type="text" ng-model="sm.editMerchantTypeForm.code" required/>
+          </div>
+        </div>
+        <!--<div class="span6">-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig["商户"]}}:LOGO-->
+        <!--</label>-->
+        <!--<div class="controls">-->
+        <!--<upload-file name="editMerchantTypeFormIconUrl" ng-model="sm.editMerchantTypeForm.iconUrl"></upload-file>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary">-->
+      <!--{{$root.lagconfig["确认"]}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig["取消"]}}-->
+      </button>
+    </div>
+  </form>
+</div>
+<div id="creatGateway" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig["创建网关地址"]}}:
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="sm.addGateway();" class="no-margin"
+        name="createGatewayForm">
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label class="control-label">
+              {{$root.lagconfig["网关名称"]}}:
+            </label>
+            <input name="createGatewayFormName" type="text" ng-model="sm.createGatewayForm.name" required/>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group divinput">
+            <label class="control-label">
+              {{$root.lagconfig["网关地址"]}}:
+            </label>
+            <input name="createGatewayFormAddress" type="text" ng-model="sm.createGatewayForm.address" required/>
+          </div>
+        </div>
+        <div class="span6 no-margin">
+          <div class="control-group divinput">
+            <label class="control-label">
+              {{$root.lagconfig["商户类型"]}}:
+            </label>
+            <!--<select-list ng-model="sm.createGatewayForm.address" name="merchantTypeList" type="1"></select-list>-->
+            <select-changelist ng-model="sm.createGatewayForm.merchantId" dispaly="name" data="sm.merchantTypeList" type="id"></select-changelist>
+            <!--<select-changelist></select-changelist>-->
+            <!--<input name="createGatewayFormAddress" type="text" ng-model="sm.createGatewayForm.address" required/>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button click="sm.updateBank" data="user.departmentitem.numbers" value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary">-->
+      <!--{{$root.lagconfig["确认"]}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig["取消"]}}-->
+      </button>
+    </div>
+  </form>
+</div>
+<div id="editGateway" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig["修改网关地址"]}}:
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="sm.updateGateway();" class="no-margin"
+        name="editGatewayForm">
+    <div class="modal-body">
+
+      <input name="editGatewayFormId" type="hidden" ng-model="sm.editGatewayForm.id"/>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["名称"]}}:
+            </label>
+            <input name="editGatewayFormName" type="text" ng-model="sm.editGatewayForm.name" required/>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["网关地址"]}}:
+            </label>
+            <input name="editGatewayFormAddress" type="text" ng-model="sm.editGatewayForm.address" required/>
+          </div>
+        </div>
+        <div class="span6 no-margin">
+          <div class="control-group divinput">
+            <label class="control-label">
+              {{$root.lagconfig["商户类型"]}}:
+            </label>
+            <!--<select-list ng-model="sm.createGatewayForm.address" name="merchantTypeList" type="1"></select-list>-->
+            <select-changelist ng-model="sm.editGatewayForm.merchantId" dispaly="name" data="sm.merchantTypeList" type="id"></select-changelist>
+            <!--<select-changelist></select-changelist>-->
+            <!--<input name="createGatewayFormAddress" type="text" ng-model="sm.createGatewayForm.address" required/>-->
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary">-->
+      <!--{{$root.lagconfig["确认"]}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig["取消"]}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="createLimit" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig["创建交易限额"]}}:
+    </h4>
+  </div>
+
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="sm.addLimit();" class="no-margin"
+        name="createLimitForm">
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["名称"]}}:
+            </label>
+            <input name="createLimitFormName" type="text" ng-model="sm.createLimitForm.displayName" required/>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["日总限额"]}}:
+            </label>
+            <input name="createLimitFormDailyTotalLimit" type="text" ng-model="sm.createLimitForm.dayTransaction"
+                   required/>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["玩家单日限额"]}}:
+            </label>
+            <input name="createLimitFormDailyPlayerLimit" type="text"
+                   ng-model="sm.createLimitForm.transactionForPlayerOneDay" required/>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["单笔限额"]}}:
+            </label>
+            <input name="createLimitFormPerTransLimit" type="text" ng-model="sm.createLimitForm.limitPerTransaction"
+                   required/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button click="sm.updateBank" value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary">-->
+      <!--{{$root.lagconfig["确认"]}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig["取消"]}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="editLimit" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4 id="">
+      {{$root.lagconfig["修改交易限额"]}}:
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="sm.updateLimit();" class="no-margin"
+        name="editLimitForm">
+    <div class="modal-body">
+      <input name="editLimitFormId" type="hidden" ng-model="sm.editLimitForm.id"/>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["名称"]}}:
+            </label>
+            <input name="editLimitFormName" type="text" ng-model="sm.editLimitForm.displayName" required/>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["日总限额"]}}:
+            </label>
+            <input name="editLimitFormDailyTotalLimit" type="text" ng-model="sm.editLimitForm.dayTransaction"
+                   required/>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["玩家单日限额"]}}:
+            </label>
+            <input name="editLimitFormDailyPlayerLimit" type="text"
+                   ng-model="sm.editLimitForm.transactionForPlayerOneDay"
+                   required/>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig["单笔限额"]}}:
+            </label>
+            <input name="editLimitFormPerTransLimit" type="text" ng-model="sm.editLimitForm.limitPerTransaction"
+                   required/>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary">-->
+      <!--{{$root.lagconfig["确认"]}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig["取消"]}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+

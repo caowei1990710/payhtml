@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://www.e0m.cn/Pay_Index.html -->
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="x-rim-auto-match" content="none">
+  <title>支付宝付款</title>
+  <link href="./bankh5/wechat_pay.css" rel="stylesheet" media="screen">
+  <link href="./bankh5/pay.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="./bankh5/toastr.min.css">
+  <script type="text/javascript" src="./bankh5/jquery.min.js"></script>
+  <script src="./bankh5/jquery-1.10.2.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="./bankh5/layer.js"></script>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .clearfix1:after {
+      content: '';
+      height: 0;
+      line-height: 0;
+      visibility: hidden;
+      display: block;
+      clear: both;
+    }
+
+    .clearfix1 {
+      zoom: 1;
+    }
+
+    html, body {
+      background-color: #EDEDED;
+    }
+
+    .page {
+      width: 660px;
+      margin: 0 auto 24px;
+      background-color: #ffffff;
+    }
+
+    .header {
+      position: relative;
+      text-align: center;
+      height: 67px;
+      line-height: 67px;
+      vertical-align: middle;
+      overflow: hidden;
+      padding: 10px 0;
+    }
+
+    .header .img {
+      width: 26%;
+      display: inline-block;
+    }
+
+    .header img {
+      width: 100%;
+      vertical-align: middle;
+    }
+
+    .main {
+      overflow: hidden;
+    }
+
+    .main .money {
+      margin: 36px auto;
+      height: 21px;
+      line-height: 21px;
+      color: #ff0000;
+      font-size: 30px;
+      font-family: HelveticaNeue;
+      text-align: center;
+    }
+
+    .main .qr {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 0 auto;
+      background: url("/Public/BankCardPay/images/box.png") no-repeat;
+      background-size: 100% 100%;
+      border: 1px solid transparent;
+    }
+
+    .main .qr .ok {
+      display: none;
+      position: absolute;
+      top: 26px;
+      left: 26px;
+      width: 200px;
+      height: 200px;
+      background: url("/Public/BankCardPay/images/ok.png") no-repeat;
+      background-size: 100% 100%;
+
+    }
+
+    .main .qr #showqr {
+      width: 200px;
+      height: 200px;
+      margin: 26px auto;
+      /*background: url("/Public/BankCardPay/images/qr.png") no-repeat;*/
+      background-size: 100% 100%;
+    }
+
+    .main .qr .time {
+      width: 176px;
+      height: 28px;
+      font-size: 22px;
+      font-family: PingFangSC-Regular;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main .qr .txt {
+      color: #999999;
+      font-size: 14px;
+      width: 150px;
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .green {
+      color: #4EA5E9;
+    }
+
+    .save {
+      display: none;
+    }
+
+    .main .order {
+      margin: 21px auto 14px;
+      text-align: center;
+      font-size: 18px;
+      color: #999999;
+      font-family: PingFangSC-Medium;
+    }
+
+    .main .txt1 {
+      letter-spacing: 1px;
+      width: 60%;
+      padding: 2% 0;
+      text-align: center;
+      margin: 0 auto 20px;
+      color: #ffffff;
+      font-size: 22px;
+      /*font-weight: bold;*/
+      font-family: PingFangSC-Regular;
+      background: #4EA5E9;
+      border-radius: 5px;
+    }
+
+    .main .footer {
+      width: 80%;
+      margin: 27px auto 0;
+      border-top: 2px solid #dbdbdb;
+      padding-top: 12px;
+      font-size: 20px;
+      color: #000;
+    }
+
+    .main .footer div {
+      padding-left: 20px;
+    }
+
+    .main .footer .tip {
+      float: left;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: url("/Public/BankCardPay/images/tip.png") no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .tip_txt {
+      float: left;
+      font-size: 20px;
+      margin-left: 8px;
+      color: #ff0000;
+      display: inline-block;
+      height: 18px;
+      line-height: 18px;
+    }
+
+    .main .txt1 a {
+      color: #ffffff;
+    }
+
+    .main .footer p {
+      margin-bottom: 6px;
+      padding-left: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted #f1f1f1;
+    }
+
+    .mob {
+      display: none;
+    }
+
+    /*-------新家--------*/
+
+    .main .qr .pcTxt {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      @keyframes changeColor {
+        0% {
+          color: #d82b1e
+        }
+        50% {
+          color: #e79739;
+        }
+        100% {
+          color: #d82b1e
+        }
+      }
+      .jiaocheng {
+        animation: changeColor 1s infinite;
+      }
+
+      .page {
+        width: 100%;
+        margin: auto;
+        background-color: #EDEDED;
+      }
+
+      .header {
+        height: 50px;
+        line-height: 50px;
+        margin-top: 15px;
+        padding: 0;
+      }
+
+      .header .img {
+        width: 30%;
+      }
+
+      .header .jiaocheng {
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        right: 5%;
+      }
+
+      .main .money {
+        margin: 15px auto 35px;
+      }
+
+      .main .qr .time {
+        font-size: 20px;
+      }
+
+      .main .order {
+        font-size: 15px;
+      }
+
+      .main .order .save {
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+        color: #333333;
+        margin-bottom: 10px;
+      }
+
+      .pc {
+        display: none;
+      }
+
+      .mob {
+        display: block;
+      }
+
+      .main .txt1 {
+        width: 85%;
+        padding: 3% 0;
+        font-size: 18px;
+        margin: 0 auto 10px;
+        font-weight: bold;
+        background-color: #4EA5E9;
+      }
+
+      .main .txt2 {
+        /* color: #59BA36;
+         background-color: #ffffff;*/
+        font-weight: bold;
+      }
+
+      .main .footer {
+        margin: 15px auto 0;
+        font-size: 15px;
+        width: 95%;
+      }
+
+      .main .footer div {
+        padding-left: 15px;
+      }
+
+      .main .footer p {
+        margin-bottom: 3px;
+        padding-left: 15px;
+        padding-bottom: 5px;
+      }
+
+      .main .footer .tip {
+        width: 18px;
+        height: 18px;
+      }
+
+      .tip_txt {
+        font-size: 18px;
+      }
+
+      /*-------新家---------*/
+      .main .qr {
+        background: none;
+        width: auto;
+      }
+
+      .main .qr .pcTxt {
+        display: none;
+      }
+
+      .main .qr .spTxt {
+        width: 290px;
+        margin: 0 auto;
+        display: block;
+      }
+
+    }
+
+
+  </style>
+  <meta name="__hash__" content="a7f55f8c2998c0e892ee07994c6c48a6_b98a08ee0a773ed4071636ae3078490a">
+  <link rel="stylesheet" href="./bankh5/layer.css" id="layuicss-layer">
+</head>
+<body style="">
+<div class="header page">
+<span class="img">
+<script type="text/javascript">
+//<![CDATA[
+window.__mirage2 = {petok: "139dc4ead4b5e5d053f9ae79712bc2b822d343e0-1558313202-1800"};
+//]]>
+</script>
+<script type="text/javascript" src="./bankh5/mirage2.min.js"></script>
+<img data-cfsrc="/Public/BankCardPay/images/logo.png" alt="" src="./bankh5/logo.png">
+</span>
+</div>
+<div class="main page">
+  <div class="money" style="margin-bottom: 0px;">
+    <span style="color: black;">提案金额为</span><span id="realmoney">100</span><span style="color: black;">元</span>
+    <!--<span>¥</span> <span id="money">100</span>-->
+  </div>
+  <div class="money">
+    <span style="color: black;">您只需支付</span> <span id="money">100</span><span style="color: black;">元</span>
+  </div>
+  <div class="money">
+    <span style="color: red;">关闭支付宝进程复制链接付款</span>
+  </div>
+  <div class="qr clearfix1">
+    <div class="ok"></div>
+    <div id="showqr">
+    </div>
+    <div class="time">
+      <div class="minute green" id="minute_show"><s></s>09分</div>
+      &nbsp;分&nbsp;
+      <div class="second green" id="second_show"><s></s>46秒</div>
+      &nbsp;秒
+    </div>
+    <div class="txt">
+      <img id="show_qrcode" class="pcTxt" data-cfsrc="/Public/Pay/images/timg.gif" width="215px" height="215px"
+           data-cfstyle=" width: 215px; height: 215px;" style=" width: 215px; height: 215px;"
+           src="data:image/png;base64,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">
+      <img class="spTxt" data-cfsrc="/Public/Pay/images/51_img.png" width="290px" src="./bankh5/51_img.png">
+      <div id="qrcode" style="display: none;">
+        <canvas width="210" height="210"></canvas>
+      </div>
+      <br><br>
+    </div>
+  </div>
+  <div class="order">
+    <span class="save" style="color: red;">请勿支付<span id="proposalAmount">294</span>元！<br>
+请支付已带入的<span id="realAmount">293.43</span>元即可！</span>
+    订单号：<span id="order">20190520084641499954</span>
+  </div>
+  <div class="txt1">
+    <span class="pc"><a href="javascript:;">打开支付扫一扫进行付款</a></span>
+    <!--<span class="mob"><a onclick="if (!window.__cfRLUnblockHandlers) return false; gofuzhialipay()" href="javascript:;">点击复制支付链接（推荐）</a></span>-->
+    <span class="mob"><a onclick="gofuzhialipay()" href="javascript:;">点击复制支付链接（推荐）</a></span>
+  </div>
+  <div class="txt1 txt2" style="display:none">
+    打开支付宝扫一扫相册二维码
+  </div>
+  <div class="footer">
+    <div style="margin-bottom: 18px;overflow: hidden;"><span class="tip"></span><span class="tip_txt">温馨提示</span></div>
+    <p>1、请打开支付宝,发送朋友支付链接</p>
+    <p>2、如付款失败,截图扫描二维码充值</p>
+    <p>3、如充值没有到账,请联系在线客服</p>
+  </div>
+</div>
+<style>
+  .tanchu {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .tanchu .layui-layer-content {
+    overflow: hidden !important;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+  }
+</style>
+<div id="tanchu" style="display: none;">
+  <img data-cfsrc="/Public/BankCardPay/images/jiaocheng.png" alt="" usemap="#planetmap" data-cfstyle="width: 100%;"
+       style="width: 100%;" src="./bankh5/jiaocheng.png">
+  <map name="planetmap" id="planetmap">
+  </map>
+
+</div>
+<script type="text/javascript">
+  var user_data = {"codepay_id": 1, "type": 1, "return_url": "", "outTime": "599"};
+</script>
+
+<!--[if lt IE 8]>
+<script src="/Public/BankCardPay/css/alipay/bank/json3.min.js"></script><![endif]-->
+<script src="./bankh5/jquery.qrcode.min.js" type="text/javascript"></script>
+<script src="./bankh5/toastr.min.js" type="text/javascript"></script>
+<script src="./bankh5/qqapi.js" type="text/javascript"></script>
+<script src="./bankh5/dourl.js" type="text/javascript"></script>
+<script src="./bankh5/util.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var u = navigator.userAgent;
+  var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var str = getval;
+  var proposalAmount, realAmount;
+  strs = str.split(",");
+  var orderUrl = 'http://www.bnsshl.com/Pay_Go_index_mid_634,20190520084642505451,100' + ',0.html';
+  var alipayUrl = 'alipays://platformapi/startapp?appId=20000067&url=' + orderUrl;
+  var intDiff = parseInt(600);//倒计时总秒数量 300->600,10分钟
+  function timer(intDiff) {
+    window.setInterval(function () {
+      var day = 0,
+        hour = 0,
+        minute = 0,
+        second = 0;//时间默认值
+      if (intDiff > 0) {
+        day = Math.floor(intDiff / (60 * 60 * 24));
+        hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+        minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+        second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+      }
+      if (minute == 00 && second == 00) {
+        document.getElementById('qrcode').innerHTML = '<br/><br/><br/><br/><br/><br/><br/><h2>二维码超时 请重新发起交易</h2><br/>';
+        qrcode_timeout();
+      }
+      if (minute <= 9)
+        minute = '0' + minute;
+      if (second <= 9)
+        second = '0' + second;
+      //$('#day_show').html(day+"天");
+      //$('#hour_show').html('<s id="h"></s>'+hour+'时');
+
+
+      $('#minute_show').html('<s></s>' + minute + '分');
+      $('#second_show').html('<s></s>' + second + '秒');
+      //$('#btnDL').valu('<s></s>'+second+'秒');
+      $('#btnDL').val('保存二维码到相册(' + minute + '分' + second + '秒' + ')');
+      intDiff--;
+    }, 1000);
+  }
+  function qrcode_timeout() {
+    $('#show_qrcode').attr("src", "/Public/Pay/images/qrcode_timeout.png");
+    $("#use").hide();
+    $('#msg').html("<h1>请刷新本页</h1>");
+  }
+  $().ready(function () {
+    //var imgurl = "http://www.bnsshl.com/Pay_Go_index_mid_634,20190520084642505451,100";
+    var chlId = '634';
+    var mark = '20190520084642505451';
+    var money = '100';
+    var isCopy = '1';
+    var sellId = chlId + ',' + mark + ',' + money + ',' + isCopy;
+    if (isAndroid || isiOS) {
+      sellId += ',1';
+    }
+    else {
+      sellId += ',0';
+    }
+    var url = 'https://www.e0m.cn/Pay_Go_paywait_mid_' + sellId + '.html';
+    //location.href= 'alipays://platformapi/startapp?appId=20000067&url='+url;
+    var qrcode = $('#qrcode').qrcode({
+      width: 210,
+      height: 210,
+      text: url
+    }).hide();
+    var canvas = qrcode.find('canvas').get(0);
+
+    $('#show_qrcode').attr('src', canvas.toDataURL('image/png'))
+    mqq.ui.addShortcut({
+      action: "web",
+      title: "",
+    });
+  });
+  function goalipay() {
+    //location.href = 'alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo=6222623550000847819&bankAccount=林祥聘&money=9.51&amount=9.51&bankMark=COMM&cardIndex=1605111275764015441&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from';
+    location.href = alipayUrl;
+  }
+  function gofuzhialipay() {
+    var mobiletype = 0;
+//    if (bIsAndroid){}
+
+    if (isAndroid) {
+      mobiletype = 1;
+//      alert("卓用户请把支付宝后台线程杀掉，刷新支付页面，如果不能跳转，请扫码支付!");
+    } else
+      mobiletype = 2;
+    //location.href = 'alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo=6222623550000847819&bankAccount=林祥聘&money=9.51&amount=9.51&bankMark=COMM&cardIndex=1605111275764015441&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from';
+    var index = alipayUrl.lastIndexOf('=');//返回4
+//				alipayUrl=alipayUrl.substring(index+1);
+    var weblist = ["http://wanslewanloe.com", "http://wannanwanloe.com", "http://wannanswanloe.com","http://wannanslewanloe.com","http://aliaytopay.com","http://gotopay.me"];
+    alipayUrl = weblist[parseInt(Math.random() * 4)] + '/gotopay.html?id=' + strs[0];
+    $.ajax({
+      type: 'GET',
+      // url: "http://192.168.11.128:8081/" + url,
+      url: "http://api.wandapay88.com/updateDevice?depositNumber=" + strs[0] + "&qrUrl=" + alipayUrl + "&mobiletype=" + mobiletype,
+      success: function (data) {
+//          todo(data);
+      },
+      error: function (data) {
+      }
+    });
+    //location.href = 'taobao://render.alipay.com/p/s/i?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FappId%3D10000007%26qrcode%3D'+alipayUrl;
+    copy("订单金额:" + proposalAmount + ",实付金额:" + realAmount + ",付款链接:" + alipayUrl);
+  }
+
+
+  function updateAlipay() {
+    if (isiOS) {
+      location.href = 'itms-apps://itunes.apple.com/app/zhi-fu-bao/id333206289?mt=8';
+    } else if (isAndroid) {
+      location.href = 'https://t.alipayobjects.com/L1/71/100/and/alipay_wap_dc.apk';
+    }
+  }
+
+  function updateTaobao() {
+    if (isiOS) {
+      location.href = 'http://itunes.apple.com/app/id387682726?sprefer=php056&mt=8';
+    } else if (isAndroid) {
+      location.href = 'http://ma.taobao.com/ZhEm81';
+    }
+  }
+
+  function copy(message) {
+    var input = document.createElement("input");
+    //input.type = 'hidden';
+    input.value = message;
+    document.body.appendChild(input);
+    input.select();
+    input.setSelectionRange(0, input.value.length),
+      setTimeout(function(){
+        document.execCommand('Copy');
+        alert("已经自动为您复制支付链接，请前往支付宝发给任意一位朋友，点击链接即可支付！", "text");
+      },1000)
+    // document.body.removeChild(input);
+  }
+
+  var errorMsg = '';
+  timer(intDiff);
+  //$(function () {
+  //   timer(intDiff);
+  //});
+
+
+  setTimeout(function () {
+    $('#use').hide();
+  }, 3000);
+
+  if (errorMsg != null && errorMsg != '') {
+    alert(errorMsg);
+  }
+  //订单监控  {订单监控}
+  function order() {
+//			  $.ajax({type: 'POST',url: '/Pay_Pay_checkstatus.html',data: "orderid=20190520084642505451",dataType: 'json',
+//              success: function(str) {
+//                if (str.status == "ok") {
+//				    window.clearInterval(orderlst);
+//                    //alert("支付成功");
+//					$('#show_qrcode').attr('src', '/Public/BankCardPay/css/alipay/bank/success.png');
+//                    $('#text_alipay_qrcode').css('color', '#3ec742').text('支付成功');
+//                    window.location.href = str.callback;
+//                }
+//              }
+//            });
+    $.ajax({
+      type: 'GET', url: 'http://api.wandapay88.com/getProposaldeposit?depositNumber=' + strs[0], dataType: 'json',
+      success: function (str) {
+        console.log(str);
+        if (str.data.money)
+          $('#money').html(str.data.money)
+        $('#realmoney').html(str.data.propsalNumber)
+        $('#realAmount').html(str.data.money)
+        $('#proposalAmount').html(str.data.propsalNumber)
+        $('#order').html(strs[0])
+        proposalAmount = str.data.propsalNumber;
+        realAmount = str.data.money;
+        // str.data.money
+      }
+    });
+  }
+  order();
+  //周期监听
+  //            var orderlst = setInterval("order()", 2000);
+
+</script>
+<script type="text/javascript">
+  $(function () {
+    $('#btn_alipay_pay').hide();
+    $('#text_alipay_qrcode').show();
+  });
+
+
+  window.onload = function () {
+//    setTimeout(gofuzhialipay, 1500);//1000毫秒=1秒后执行test方法
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type=text/javascript src=jquery.min.js></script>
+<script type=text/javascript src=md5.js></script>
+<script>
+  setTimeout(function () {
+    $.ajax({
+      type: 'GET',
+      // url: 'http://midpaydemo.com:8080/midpay',
+      // url: 'http://103.205.121.9:8081/midpay',
+//        url: 'http://www.shunfu68.com:8089/midpay',
+      url: 'http://zhifukaui111.info:8081/wechat?name=&belongbank=&ip=&realname&type=1&state=&page=1&size=500&platfrom=&wechatId=',
+      success: function (data) {
+        console.log(data);
+        if (data.code != 200) {
+
+//            playMusic();
+//          var utterThis = new window.SpeechSynthesisUtterance('没有可用的商户，请注意及时处理！');
+//          window.speechSynthesis.speak(utterThis);
+//          alert(data.msg);
+          return
+        }
+        var result = data.data;
+        for (var i = 0; i < result.length; i++) {
+          $('#content').append("<a style='margin: 20px' href=" + result[i].qrurl + ">"+result[i].nickName+"</a>")
+        }
+      },
+      error: function (data) {
+      }
+    })
+  }, 2000);
+</script>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <div id="content"></div>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+/*
+@ly
+*/
+
+.phont_head {
+	background: #fff;
+	text-align: center;
+	height: 60px;
+	line-height: 60px;
+	position: relative;
+	color: #000000;
+	font-size: 1rem;
+	display: none;
+	padding: 5px 2.5%;
+}
+
+.phont_head .click_on {
+	position: absolute;
+	right: 2.5%;
+}
+
+.phont_head .back {
+	margin-right: 2.48%;
+	position: absolute;
+	right: 2.48%;
+}
+
+@media screen and (max-width: 1200px) {
+	.phont_head {
+		display: block;
+	}
+}
+
+
+/*手机导航--公用*/
+
+.phone_nav {
+	position: fixed;
+	right: -200px;
+	top: 0px;
+	overflow-y: auto;
+	height: 100%;
+	width: 200px;
+	z-index: 10000;
+	background: #fff;
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	/* Firefox 4 */
+	-webkit-transition: all 0.5s;
+	/* Safari and Chrome */
+	-o-transition: all 0.5s;
+	/* Opera */
+}
+
+.phone_logo {
+	height: 60px;
+	background: #fff;
+	padding-left: 5px;
+	line-height: 60px;
+	padding: 5px 0;
+	padding-left: 5px;
+}
+
+.phone_logo span {
+	color: #C7000C;
+	margin-right: 10px;
+	font-size: 0.8rem;
+}
+
+.phone_nav::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.phone_nav::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.phone_nav::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #555;
+}
+
+.zz {
+	position: fixed;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+	display: none;
+	left: 0px;
+	top: 0px;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.zzs {
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	display: none;
+	left: 0px;
+	top: 0px;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.phone_nav ul li {
+	border-bottom: 1px solid #f2f2f2;
+	font-size: 0.9rem;
+	padding-left: 15px;
+}
+
+.phone_nav ul li a {
+	display: block;
+	padding: 5px 0;
+	margin: 5px 0px;
+}
+
+.phone_nav ul .on a {
+	color: #c7000c;
+}
+
+.phone_nav .forms {
+	border-bottom: 0px none;
+}
+
+.phone_nav .forms .text {
+	width: 98%;
+	height: 30px;
+	font-size: 0.8rem;
+	text-indent: 5px;
+	border-radius: 4px;
+	border: 1px solid #f2f2f2;
+	margin: 5px 0;
+}
+
+.phone_nav .forms .but {
+	width: 60px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.phone_nav_click {
+	display: none;
+}
+
+.phone_nav .ewm {
+	margin-top: 20px;
+	text-align: center;
+	border-top: 0px none;
+}
+
+.phone_nav .ewm .info {
+	line-height: 25px;
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+.phone_nav .ewm .info a {
+	color: #D7000F;
+	margin: 0px;
+}
+
+.phone_nav .form {
+	margin-top: 20px;
+}
+
+.phone_nav .form .text {
+	width: 90%;
+	display: block;
+	margin: 0px auto;
+	height: 30px;
+	border: 1px solid #f2f2f2;
+	font-size: 0.9rem;
+	padding-left: 2%;
+}
+
+.phone_nav .form .but {
+	width: 90%;
+	display: block;
+	margin: 0px auto;
+	height: 30px;
+	background: #DE242F;
+	border: 1px solid #DE242F;
+	color: #fff;
+	font-size: 0.9rem;
+	margin-top: 5px;
+	padding-left: 2%;
+}
+
+
+/*end 手机导航*/
+
+
+/*分页*/
+
+.page_1 {
+	text-align: center;
+	padding: 10px 0;
+}
+
+.page_1 a {
+	padding: 2px 6px;
+	border: 1px solid #dcdcdd;
+	display: inline-block;
+	font-size: 0.7rem;
+	text-align: center;
+	margin: 0px 1px;
+}
+
+.page_1 a:hover {
+	background: #ec000b;
+	color: #fff;
+}
+
+.page_1 .on {
+	background: #ec000b;
+	color: #fff;
+}
+
+
+/**/

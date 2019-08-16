@@ -1,0 +1,166 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <label class="control-label textright">{{$root.lagconfig['所属银行']}}</label>
+      <select-list ng-model="rp.query.bankCardType" name="banklist" type="1"></select-list>
+      <!--<bank-list ng-model="bc.query.bankId"></bank-list>-->
+      <!--<select ng-model="bc.query.bankId" name="bankId">-->
+      <!--<option></option>-->
+      <!--<option ng-repeat="item in bc.bankTypeList" ng-selected="bc.query.bankId == item.id" value="{{item.id}}">{{item.name}}</option>-->
+      <!--</select>-->
+      <!--</span>-->
+      <label class="control-label textright">{{$root.lagconfig['银行账号']}}</label>
+      <input ng-model="rp.query.bankCard" name="bankCard" type="text">
+      <label class="control-label textright">{{$root.lagconfig['操作员']}}</label>
+      <input ng-model="rp.query.userName" name="userName" type="text">
+      <label class="control-label textright">{{$root.lagconfig['提案号']}}</label>
+      <!--<select ng-model="bc.query.type" name="type">-->
+      <!--<option></option>-->
+      <!--<option ng-repeat="item in bc.cardTypeList" ng-selected="bc.query.type == item.code" value="{{item.code}}">{{ittem.text}}</option>-->
+      <!--</select>-->
+      <input ng-model="rp.query.proposalId" name="proposalId" type="text">
+      <!--<select-list ng-model="rp.query.type" name="cardtype" type="1"></select-list>-->
+      <!--<card-type ng-model="bc.query.type"></card-type>-->
+      <label class="control-label textright">{{$root.lagconfig['所属平台']}}</label>
+      <select-list ng-model="rp.query.platform" name="platformlist" type="1"></select-list>
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="rp.loadingBankCard(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <!--<platform-list ng-model="bc.query.platformId"></platform-list>-->
+      <!--<select ng-model="bc.query.platformId" name="platformId">-->
+      <!--<option></option>-->
+      <!--<option ng-repeat="item in bc.platformList" ng-selected="bc.query.platformId == item.id" value="{{item.id}}">{{item.name}}</option>-->
+      <!--</select>-->
+      <label class="control-label textright">{{$root.lagconfig['事件动作']}}</label>
+      <select-list ng-model="rp.query.action" name="actiontype" type="1"></select-list>
+      <!--<label class="control-label textright">{{$root.lagconfig['绑定商户号']}}</label>-->
+      <!--<select-list ng-model="rp.query.mentchatId" name="merchantlists" type="1"></select-list>-->
+      <!--<chang-listitem ng-model="bc.query.mentchatId" data="bc.merchantlists" type="name" ids="querymerchatlists"></chang-listitem>-->
+      <!--<input ng-model="bc.query.time" name="bankCard" type="text">-->
+      <label class="control-label textright">{{$root.lagconfig['时间段']}}</label>
+      <!--<input ng-model="bc.query.time" name="bankCard" type="text">-->
+      <date-select selectid="hello" init="1"  ng-model="rp.query.start"></date-select>
+      <label>{{$root.lagconfig['到']}}</label>
+      <date-select selectid="hello1" init="2" ng-model="rp.query.end"></date-select>
+      <label class="control-label textright">{{$root.lagconfig['金额段']}}</label>
+      <!--<input ng-model="bc.query.time" name="bankCard" type="text">-->
+      <input ng-model="rp.query.startremit" name="proposalId" type="text">
+      <label>{{$root.lagconfig['到']}}</label>
+      <input ng-model="rp.query.endremit" name="proposalId" type="text">
+      <page-number ng-model="rp.sizePerPage" dispaly="username"></page-number>
+      <!--<input ng-model="rp.sizePerPage" name="size" type="text" style="width: 60px;">-->
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="rp.recordlist"
+          data="[{id:'bankindex'},{id:'bank_Card'},{id:'platformId'},{id:'type'},{id:'operator'},{id:'createtime'},{id:'remit'},{id:'currentCredit'},{id:'newCredit'},{id:'remark'}]"
+          from-stryle>
+        <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+        <th>{{$root.lagconfig['提案号']}}</th>
+        <th>{{$root.lagconfig['银行卡卡号']}}</th>
+        <th>{{$root.lagconfig['所属平台']}}</th>
+        <th>{{$root.lagconfig['事件动作']}}</th>
+        <th>{{$root.lagconfig['操作员']}}</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['金额变动']}}</th>
+        <th>{{$root.lagconfig['前余额']}}</th>
+        <th>{{$root.lagconfig['后余额']}}</th>
+        <th>{{$root.lagconfig['备注']}}</th>
+        <!--<th>{{$root.lagconfig['当前状态']}}</th>-->
+        <!--<th>{{$root.lagconfig['创建时间']}}</th>-->
+        <!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <!--<th>{{$root.lagconfig['证书到期日']}}</th>-->
+        <!--<th>{{$root.lagconfig['备注']}}</th>-->
+      </tr>
+      </thead>
+      <!--<tbody data="bc.bankindex" ng-model="bc.bankList" index="bc.bankindex" move-change>-->
+      <tbody data="rp.recordlist" ng-model="rp.recordlist" index="rp.bankindex">
+      <tr ng-repeat="item in rp.recordlist track by $index" ng-class="{acolor:rp.bankindex == $index}"
+          ng-click="rp.bankindex = $index" class="repeat-animation">
+        <td ng-class="{colorwhite:rp.bankindex == $index}">{{item.proposalId}}</td>
+        <td ng-class="{colorwhite:rp.bankindex == $index}">
+          {{item.bank_Card}}
+          <!--{{item.bankTypeCode}}-->
+          <!--{{bc['bankTypeList' + item.bankId].name;}}-->
+        </td>
+        <td>{{item.platformId | nameTovalue:'id':'name':$root.platformlist}}</td>
+        <td ng-class="{colorwhite:rp.bankindex == $index}">{{item.type | nameTovalue:'id':'name':$root.actiontype}}</td>
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">{{item.deviceId| nameTovalue:'id':'name':$root.devicelist}}-->
+        <!--</td>-->
+        <td ng-class="{colorwhite:rp.bankindex == $index}">{{item.operator}}</td>
+        <td ng-class="{colorwhite:rp.bankindex == $index}">{{item.createtime}}</td>
+        <td ng-class="{colorwhite:rp.bankindex == $index}">{{item.remit}}</td>
+        <td ng-class="{colorwhite:rp.bankindex == $index}">{{item.currentCredit}}</td>
+        <td ng-class="{colorwhite:rp.bankindex == $index}">{{item.newCredit}}</td>
+        <td ng-class="{colorwhite:rp.bankindex == $index}">{{item.remark|stringLeng}}</td>
+        <!--<a href="#editBank" ng-click="bc.editBank($index,item.bankId);" target="_self" type="submit" role="button"-->
+        <!--data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a></td>-->
+      </tr>
+      <!--<tr style="outline: none" ng-repeat="item in bc.bankList" ng-class="{acolor:bc.bankindex == $index}" ng-click="bc.editBank($index)"  class="repeat-animation">-->
+      <!--<td>-->
+      <!--{{item.bankId | nameTovalue:'id':'name':$root.banklist | itemTolish}}-->
+      <!--&lt;!&ndash;{{item.bankTypeCode}}&ndash;&gt;-->
+      <!--&lt;!&ndash;{{bc['bankTypeList' + item.bankId].name;}}&ndash;&gt;-->
+      <!--</td>-->
+
+      <!--<td>{{item.bankCard | bankFormal}}</td>-->
+      <!--<td>{{item.deviceId| nameTovalue:'id':'name':$root.devicelist}}</td>-->
+      <!--<td>{{item.cardName}}</td>-->
+      <!--<td>{{item.telephone}}</td>-->
+      <!--<td>{{item.transactionForToday}}</td>-->
+      <!--<td style="color: red">{{item.credit | currency : '￥'}}</td>-->
+      <!--<td>-->
+      <!--{{item.platformId | nameTovalue:'id':'name':$root.platformlist}}-->
+      <!--</td>-->
+      <!--<td ng-class="{colorwhite:bc.bankindex == $index}">-->
+      <!--{{item.type | nameTovalue:'id':'name':$root.cardtype | itemTolish}}-->
+      <!--</td >-->
+      <!--<td>-->
+      <!--<type-style value="item.flag" list="bankcardstatus"></type-style>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--&lt;!&ndash;<a href="#editBank" ng-click="bc.editBank($index,item.bankId);" target="_self" type="submit" role="button"&ndash;&gt;-->
+      <!--&lt;!&ndash;data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a></td>&ndash;&gt;-->
+      <!--</tr>-->
+      </tbody>
+    </table>
+  </div>
+  <!--<table class="table table-bordered" id="data-tables"></table>-->
+  <!--<from-stryle datas="[{id:'bankId',name:'所属银行'},{id:'所属银行',name:'bankId'},{id:'所属银行',name:'银行账号'},{id:'所属银行',name:'所属设备'},{id:'所属银行',name:'开户姓名'},{id:'所属银行',name:'绑定电话'},{id:'所属银行',name:'今日交易'},{id:'所属银行',name:'bankId'}]" model="bc.bankList" click="bc.editBank"></from-stryle>-->
+  <!--<img-tobase64></img-tobase64>-->
+  <!--<div class="pull-right buttonpost">-->
+  <!--<click-button click="bc.showeditBank" data="user.roleitem" value="更新"></click-button>-->
+  <!--<click-button href="createBank" data="user.roleitem" value="创建"></click-button>-->
+  <!--<click-button click="bc.showeditMoney" value="调整余额"></click-button>-->
+  <!--&lt;!&ndash;<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" ng-click="bc.showeditBank()"&ndash;&gt;-->
+  <!--&lt;!&ndash;target="_self"&ndash;&gt;-->
+  <!--&lt;!&ndash;type="submit" role="button" data-toggle="modal" data-original-title=""&ndash;&gt;-->
+  <!--&lt;!&ndash;class="btn btn-primary">{{$root.lagconfig['更新']}}&ndash;&gt;-->
+  <!--&lt;!&ndash;</button>&ndash;&gt;-->
+  <!--&lt;!&ndash;<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" href="#createBank" target="_self"&ndash;&gt;-->
+  <!--&lt;!&ndash;type="submit"&ndash;&gt;-->
+  <!--&lt;!&ndash;role="button" data-toggle="modal" data-original-title=""&ndash;&gt;-->
+  <!--&lt;!&ndash;class="btn btn-primary">{{$root.lagconfig['创建']}}&ndash;&gt;-->
+  <!--&lt;!&ndash;</button>&ndash;&gt;-->
+  <!--&lt;!&ndash;<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" ng-click="bc.showeditMoney()"&ndash;&gt;-->
+  <!--&lt;!&ndash;target="_self"&ndash;&gt;-->
+  <!--&lt;!&ndash;type="submit" role="button" data-toggle="modal" data-original-title="">{{$root.lagconfig['调整余额']}}&ndash;&gt;-->
+  <!--&lt;!&ndash;</button>&ndash;&gt;-->
+  <!--</div>-->
+  <pagination page="rp.page" total="rp.total" size="rp.sizePerPage"
+              trigger="rp.loadingBankCard(page)"></pagination>
+  {{$root.lagconfig['总计']}}:<span style="color: red">{{rp.totalsum}}</span>
+  {{$root.lagconfig['小计']}}:<span style="color: red">{{rp.Subtotal}}</span>
+  <!--<a  title="Popover title"-->
+  <!--data-container="body" data-toggle="popover" data-placement="top"-->
+  <!--data-content="顶部的 Popover 中的一些内容">-->
+  <!--顶部的 Popover-->
+  <!--</a>-->
+  <!--$("#LinkDIV").html('<button type="btn btn-lg btn-primary" data-toggle="popover" id="temp3">弹出框3</button>');-->
+
+</div>
+<div ng-include="'app/bankCard/accountManagement/accountManagement.createBank.html'"></div>
+<div ng-include="'app/bankCard/accountManagement/accountManagement.editBank.html'"></div>

@@ -1,0 +1,57 @@
+<div>
+  <div class="textcenter">
+    <div class="maintitle">
+      <img src="assets/images/logo.png" class="navbar-logo"/>
+    </div>
+  </div>
+  <div style="width: 100%;height: 460px;background-color: #288ce2;text-align: center">
+    <div style="width: 1200px;display:inline-block;">
+      <div style="float: left">
+        <img src="assets/images/login_log.png" style="vertical-align: top;text-align: left"/>
+      </div>
+      <div class="signup no-margin" style="display: inline-block;padding:40px 100px 0 0">
+        <form w5c-form-validate="validateOptions" role="form" w5c-submit="shunpaylogin.login()" class="signup-wrapper"
+              name="loginForm" style="text-align: center">
+          <div class="header">
+            <h2 style="color: #2785ef">{{$root.lagconfig["用户登录"]}}</h2>
+            <!--<p style="color: #2785ef">Fill out the form below to login to your control panel.</p>-->
+          </div>
+          <div class="content">
+            <div>
+              <label>{{$root.lagconfig["用户"]}}:</label>
+              <input class="input" name="loginName" ng-model="shunpaylogin.user.loginName" placeholder="请输入你的账号"
+                     required="required" type="text" ng-blur="login.getOperator()" value="">
+            </div>
+            <div>
+              <label>{{$root.lagconfig["密码"]}}:</label>
+              <input class="input" name="password" ng-model="shunpaylogin.user.password" placeholder="请输入你的密码"
+                     required="required" type="password">
+            </div>
+            <div ng-show="shunpaylogin.secured == '0'">
+              <label >{{$root.lagconfig["验证码"]}}:</label>
+              <input class="input" style="width: 140px;margin: 0" name="src" ng-model="shunpaylogin.srcpwd"
+                     placeholder="请输入验证码"
+                      type="text">
+              <img ng-click="shunpaylogin.reflushsrc()" src="{{shunpaylogin.imgsrc}}">
+            </div>
+          </div>
+          <div class="content">
+          </div>
+          <div class="actions">
+            <button class="btn btn-info btn-large" style="margin-left:50px;background: #68c0f9;width: 220px;"
+                    type="submit">
+              {{$root.lagconfig['登录']}}
+            </button>
+            <!--<button class="btn btn-info btn-large" style="margin-left:50px;background: #68c0f9;width: 220px;"-->
+            <!--type="submit">-->
+            <!--{{$root.lagconfig['登录']}}-->
+            <!--</button>-->
+            <div class="clearfix"></div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <!--<div ng-include="'app/components/navbar/updateDevice.html'"></div>-->
+</div>

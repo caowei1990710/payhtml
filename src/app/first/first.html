@@ -1,0 +1,172 @@
+<div class="cont_warp">
+  <div class="title">
+    商户帐户信息
+  </div>
+  <div class="m1">
+    <div class="list cle">
+      <li class="cle fl">
+        <div class="box cle" style="line-height: 20px;text-align: right;">
+          <span class="fl" style="float: left">商户名:</span><label><b>{{$root.user.name}}</b></label>
+          <!--<input type="text" ng-model="$root.user.name" class="fl" disabled>-->
+        </div>
+      </li>
+      <li class="cle fl">
+        <div class="box cle" style="line-height: 20px;text-align: right;">
+          <span class="fl">商户余额:</span><label><b>{{$root.user.amount}}</b></label>
+          <!--<input type="text" ng-model="$root.user.amount" class="fl" disabled>-->
+        </div>
+      </li>
+      <li class="cle fl">
+        <div class="box cle" style="line-height: 20px;text-align: right;">
+          <span class="fl">最后登陆时间:</span><label><b>{{first.lastLoginTime}}</b></label>
+          <!--<input type="text" ng-model="first.lastLoginTime" class="fl" disabled>-->
+        </div>
+      </li>
+    </div>
+    <div class="list cle">
+      <li class="cle fl">
+        <div class="box cle" style="line-height: 20px;text-align: right;">
+          <span class="fl">状态:</span><label><b>{{first.state}}</b></label>
+          <!--<input type="text" ng-model="first.state" class="fl" disabled>-->
+        </div>
+      </li>
+      <li class="cle fl">
+        <div class="box cle" style="line-height: 20px;text-align: right;">
+          <span class="fl">冻结金额:</span><label><b>{{$root.user.lockMoney}}</b></label>
+          <!--<input type="text" ng-model="$root.user.lockMoney" class="fl" disabled>-->
+        </div>
+      </li>
+    </div>
+  </div>
+
+  <div class="title">
+    最近支付记录
+  </div>
+
+  <div class="m2">
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <thead>
+      <tr>
+        <td>支付宝单号</td>
+        <td>提案号</td>
+        <td>支付方式</td>
+        <td>交易金额</td>
+        <td>订单状态</td>
+        <td>交易时间</td>
+        <td>创建时间</td>
+        <!--<td>备注</td>-->
+      </tr>
+      <tr>
+        <td>{{first.moneyfirst.depositNumber}}</td>
+        <td>{{first.moneyfirst.userRemark}}</td>
+        <td>{{first.moneyfirst.payType | nameTovalue:'id':'name':$root.banklist}}</td>
+        <td>{{first.moneyfirst.amount}}</td>
+        <td>{{first.moneyfirst.state | nameTovalue:'id':'name':$root.depositstate}}</td>
+        <td>{{first.moneyfirst.transferTime }}</td>
+        <td>{{first.moneyfirst.creatTime | dateFormate}}</td>
+        <!--<td>{{first.moneyfirst.note}}</td>-->
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <div class="phone_table">
+      <ul class="cle">
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">平台订单号</span>
+            <span class="c">20180726140400001</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">商户订单号</span>
+            <span class="c">20180726140400001</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">支付方式</span>
+            <span class="c">微信</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">订单金额</span>
+            <span class="c">￥2015.00</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">交易金额</span>
+            <span class="c">￥2015.00</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">交易费用</span>
+            <span class="c">￥2015.00</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">订单状态</span>
+            <span class="c">已成功</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">通知状态</span>
+            <span class="c">已通知</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">创建时间</span>
+            <span class="c">2018-7-26 14:25:30</span>
+          </div>
+        </li>
+        <li class="cle fl">
+          <div class="box cle">
+            <span class="fl t">操作</span>
+            <span class="c"><a href="#">操作按钮</a>| <a href="#">操作按钮</a></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="title">
+    最近结算记录
+  </div>
+  <div class="m2 m3">
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <thead>
+      <tr>
+        <td>NO.</td>
+        <td>银行</td>
+        <td>姓名</td>
+        <td>帐户</td>
+        <td>结算金额</td>
+        <td>创建时间</td>
+        <td>状态</td>
+      </tr>
+      <tr>
+        <td>{{first.outfirst.id}}</td>
+        <td>{{first.outfirst.destType}}</td>
+        <td>{{first.outfirst.destName}}</td>
+        <td>{{first.outfirst.bankDest}}</td>
+        <td>{{first.outfirst.amount}}</td>
+        <td>{{first.outfirst.createTime|dateFormate}}</td>
+        <td>{{first.outfirst.state| nameTovalue:'id':'name':$root.bankcardstatus}}</td>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+
+  </div>
+
+</div>

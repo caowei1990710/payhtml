@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<script type=text/javascript src=jquery.min.js></script>
+<script type=text/javascript src=md5.js></script>
+<script>
+
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var bIsIpad = sUserAgent.match(/ipad/i) == 'ipad';
+  var bIsIphone = sUserAgent.match(/iphone os/i) == 'iphone os';
+  var bIsMidp = sUserAgent.match(/midp/i) == 'midp';
+  var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == 'rv:1.2.3.4';
+  var bIsUc = sUserAgent.match(/ucweb/i) == 'web';
+  var bIsCE = sUserAgent.match(/windows ce/i) == 'windows ce';
+  var bIsWM = sUserAgent.match(/windows mobile/i) == 'windows mobile';
+  var bIsAndroid = sUserAgent.match(/android/i) == 'android';
+  var sign = "a7925f7886bd2451"//商户签名
+  var merchat = {
+    "version": "1.0",
+    "MerchaantNo": "shunfu001",
+    "type": "alapi"
+  }
+  merchat.amount = getQueryVariable("amount");
+  merchat.userRemark = getQueryVariable("userRemark");
+  merchat.payer = "username";
+  //    merchat.RealName ="张三";
+  //    console.log(merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign);
+  merchat.sign = hex_md5(merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign);
+  console.log(merchat.sign);
+  setTimeout(function () {
+    $.ajax({
+      type: 'post',
+      // url: 'http://midpaydemo.com:8080/midpay',
+      // url: 'http://103.205.121.9:8081/midpay',
+//        url: 'http://www.shunfu68.com:8089/midpay',
+//        url: 'http://zhifukaui111.info:8081/setProposal',
+//      url: 'http://localhost:8081/setPosal',
+      url: 'http://zhifudemo.com:8081/setPosal',
+      data: merchat,
+      success: function (data) {
+        console.log(data);
+        if (data.code != 200) {
+//            playMusic();
+//            var utterThis = new window.SpeechSynthesisUtterance('没有可用的商户，请注意及时处理！');
+//            window.speechSynthesis.speak(utterThis);
+          alert(data.msg);
+
+          return
+        }
+//          amount = data.data.amount;
+//          account = data.data.account;
+//          nickname = data.data.nickname;
+//          realname = data.data.realname;
+//          username = data.data.username;
+//          imgurlsrc = data.data.url;
+        window.open(data.data.qrurl)
+      },
+      error: function (data) {
+      }
+    })
+  }, 2000);
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) {
+        return pair[1];
+      }
+    }
+    return (false);
+  }
+</script>
+<body>
+<form method="get" style="margin-top: 150px;margin-left: 250px;">
+  <p>提案号: <input id="username" type="text" name="fname"/></p>
+  <p>付款金额: <input id="amount" type="number" name="lname"/></p>
+  <input onclick="toPay()" type="button" value="Submit" style="margin-left: 100px"/>
+</form>
+
+</body>
+</html>

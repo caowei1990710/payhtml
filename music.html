@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type=text/javascript src=jquery.min.js></script>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <button onclick="playMusic()">播放</button>
+  <audio id="player" controls="controls">
+    <source src="src/7711.mp3"/>
+  </audio>
+  <script>
+    function playMusic() {
+      var player = $("#player")[0];
+      /*jquery对象转换成js对象*/
+      if (player.paused) { /*如果已经暂停*/
+        player.play();
+        /*播放*/
+      } else {
+        player.pause();
+        /*暂停*/
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

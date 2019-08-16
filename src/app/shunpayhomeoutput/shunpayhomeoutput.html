@@ -1,0 +1,69 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>
+    <select-list ng-model="shunpayhomeoutput.query.state" name="bankcardstatus" type="1"></select-list>
+    <label class="control-label">{{$root.lagconfig['创建时间']}}</label>
+    <date-select selectid="allhello" init="1" ng-model="shunpayhomeoutput.query.beginTime"></date-select>
+    </span>
+    <span>
+  <label class="control-label">{{$root.lagconfig['到']}}</label>
+  <date-select selectid="allhello1" init="2" ng-model="shunpayhomeoutput.query.endTime"></date-select>
+  </span>
+    <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+            ng-click="shunpayhomeoutput.get(1);">
+      {{$root.lagconfig['查询']}}
+    </button>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr>
+        <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+        <!--<th>{{$root.lagconfig['所属平台']}}</th>&lt;!&ndash;<th>{{$root.lagconfig['银行网点']}}</th>&ndash;&gt;-->
+        <!--<th>{{$root.lagconfig['代理名']}}</th>&lt;!&ndash;<th>{{$root.lagconfig['银行网点']}}</th>&ndash;&gt;-->
+        <!--<th>{{$root.lagconfig['银行账号']}}</th>-->
+        <th>{{$root.lagconfig['目标卡信息']}}</th>
+        <th>{{$root.lagconfig['付款人']}}</th>
+        <!--<th>{{$root.lagconfig['绑定电话']}}</th>-->
+        <th>{{$root.lagconfig['转账余额']}}</th><!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <th>{{$root.lagconfig['手续费']}}</th><!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <th>{{$root.lagconfig['当前状态']}}</th>
+        <th>ip</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['处理时间']}}</th>
+        <th>{{$root.lagconfig['备注']}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in shunpayhomeoutput.recrodList track by $index">
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">-->
+        <!--{{item.platfrom | nameTovalue:'id':'name':$root.platfromlist}}-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.angentName}}</td>-->
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.bankCard}}</td>-->
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.bankDest}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.destName}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.amount}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">2</td>
+        <td>
+          <type-style value="item.state" list="bankcardstatus"></type-style>
+          <!--<select-list ng-model="item.state" name="bankcardstatus" type="1"></select-list>-->
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.ip}}</td>
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.state}}</td>-->
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.createTime}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.finshTime}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.remark | stringLeng}}
+        </td>
+        <!--<td>-->
+        <!--<button ng-click="thirdyproposal.topay($index)" ng-show="item.state == 'BEGINING'">付款</button>-->
+        <!--</td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: center">总计{{shunpayhomeoutput.totalSum}}小计{{shunpayhomeoutput.nowSum}}</div>
+  <pagination page="shunpayhomeoutput.page" total="shunpayhomeoutput.total" size="shunpayhomeoutput.sizePerPage"
+              trigger="shunpayhomeoutput.get(page)"></pagination>
+</div>

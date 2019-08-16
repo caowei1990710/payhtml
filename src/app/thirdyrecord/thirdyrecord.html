@@ -1,0 +1,91 @@
+<div class="tab-content" id="myTabContent">
+  <!--<div ng-show="!$root.allbanklist.length" style="margin-top: 20px">-->
+  <!--<span>{{$root.lagconfig['用户没绑定有效的收款卡']}}</span>-->
+  <!--</div>-->
+  <div>
+    <div class="row-fluid">
+      <form w5c-form-validate="validateOptions" class="editform"
+            w5c-submit="thirdyrecord.doubleCreate();"
+            name="loginForm" role="form" class="form-horizontal am-form-query" type="1" novalidate>
+        <div style="height: 300px;padding-right: 40px">
+          <div class="span4" style="margin-left: 400px">
+            <div class="control-group ">
+              <label class="control-label span3 pull-left textright">
+                {{$root.lagconfig['支付宝账号']}}:
+              </label>
+              <chang-listitem ng-model="thirdyrecord.manualForm.wechatName" empty="0" data="$root.allbanklist"
+                              type="wechatName" ids="merchatlists"></chang-listitem>
+            </div>
+            <!--<div class="control-group " style="height: 40px">-->
+            <!--<label class="control-label span3 pull-left textright">-->
+            <!--{{$root.lagconfig['存款日期']}}：-->
+            <!--</label>-->
+            <!--<date-select bewidth="200" selectid="hello3" style="display: inline-block"-->
+            <!--ng-model="thirdyrecord.manualForm.tranTime"></date-select>-->
+            <!--</div>-->
+            <div class="control-group " style="width:402px;">
+              <label class="control-label span3 pull-left textright">
+                {{$root.lagconfig['存款单号']}}：
+              </label>
+              <input style="width: 200px" ng-pattern="/^[0-9]*$/" ng-model="thirdyrecord.manualForm.depositNumber"
+                     name="depositnumber" type="text"
+                     required>
+              <input ng-click="thirdyrecord.setDepositNumber()" type="button" style="margin-bottom: 10px"
+                     value="生成"></input>
+            </div>
+            <div class="control-group " style="height: 40px">
+              <label class="control-label span3 pull-left textright">
+                {{$root.lagconfig['存款日期']}}：
+              </label>
+              <input style="width: 200px" ng-model="thirdyrecord.manualForm.date" name="date"
+                     type="text" required>
+            </div>
+            <div class="control-group " style="height: 40px">
+              <label class="control-label span3 pull-left textright">
+                {{$root.lagconfig['存款时间']}}：
+              </label>
+              <input style="width: 200px" ng-model="thirdyrecord.manualForm.time" name="time"
+                     type="text" required>
+            </div>
+            <div class="control-group ">
+              <label class="control-label span3 pull-left textright">
+                {{$root.lagconfig['存款金额']}}：
+              </label>
+              <input style="width: 200px" ng-model="thirdyrecord.manualForm.amount"
+                     ng-pattern="/^0\.([1-9]|\d[1-9])$|^[1-9]\d{0,8}\.\d{0,2}$|^[1-9]\d{0,8}$/" name="amount"
+                     type="text"
+                     required>
+            </div>
+            <!-- <div class="control-group ">
+               <label class="control-label span3 pull-left textright">
+                 {{$root.lagconfig['存款人姓名']}}：
+               </label>
+               <input style="width: 200px" ng-model="thirdyrecord.manualForm.nickName" name="payer" type="text">
+             </div>-->
+            <div class="control-group ">
+              <label class="control-label span3 pull-left textright">
+                {{$root.lagconfig['昵称']}}：
+              </label>
+              <input style="width: 200px" ng-model="thirdyrecord.manualForm.payAccount" name="payAccount" type="text">
+            </div>
+            <div class="control-group ">
+              <label class="control-label span3 pull-left textright">
+                {{$root.lagconfig['其他备注']}}：
+              </label>
+              <input style="width: 200px" ng-model="thirdyrecord.manualForm.note" name="remark" type="text" required>
+            </div>
+            <!--<div class="control-group ">-->
+            <!--<label class="control-label span3 pull-left textright">-->
+            <!--{{$root.lagconfig['创建人']}}：-->
+            <!--</label>-->
+            <!--<input style="width: 200px" ng-model="thirdyrecord.manualForm.createUser" name="payer" type="text">-->
+            <!--</div>-->
+          </div>
+        </div>
+        <div style="text-align: right;padding-right: 280px;">
+          <click-button value="创建"></click-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

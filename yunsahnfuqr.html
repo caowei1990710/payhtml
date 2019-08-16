@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>付款中</title>
+  <script src="qrcode.min.js"></script>
+</head>
+
+<body>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+<script type=text/javascript src=jquery.min.js></script>
+<script type="text/javascript" src="qrcode.min.js"></script>
+
+<div style="text-align: center">
+  <div align="center" id="qr" class="margin-top" style="text-align: center;display: inline-block">
+    <img id="loading"
+         src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPScxMDBweCcgaGVpZ2h0PScxMDBweCcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiIGNsYXNzPSJ1aWwtcmluZyI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9Im5vbmUiIGNsYXNzPSJiayI+PC9yZWN0PjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQwIiBzdHJva2UtZGFzaGFycmF5PSIxNjMuMzYyODE3OTg2NjY5MjYgODcuOTY0NTk0MzAwNTE0MiIgc3Ryb2tlPSIjZGMzYjQwIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjIwIj48YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgdmFsdWVzPSIwIDUwIDUwOzE4MCA1MCA1MDszNjAgNTAgNTA7IiBrZXlUaW1lcz0iMDswLjU7MSIgZHVyPSIxLjVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgYmVnaW49IjBzIj48L2FuaW1hdGVUcmFuc2Zvcm0+PC9jaXJjbGU+PC9zdmc+">
+  </div>
+</div>
+<script>
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var str = getval;
+  var strs = new Array();
+  strs = str.split(","); //字符分割
+  //  var qrcode = new QRCode(document.getElementById("qr"), {
+  //    width: 500,
+  //    height: 500
+  //  });
+  //  qrcode.makeCode("otpauth://totp/test1?secret=BAUIEVWMG6OFXEO2");
+  //    alert("等待二维码，3秒后刷新");
+  setTimeout(function () {
+    $.ajax({
+      type: 'get',
+      url: 'http://www.hp168168.com:8081/getProposalid?proposalId=' + strs[0],
+      success: function (data) {
+        console.log(data);
+        var qrcode = new QRCode(document.getElementById("qr"), {
+          width: 500,
+          height: 500
+        });
+        if (data.data.remark != 'default') {
+          $('#loading').css("display", "none");
+          qrcode.makeCode(data.data.remark);
+        }
+        else {
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000)
+        }
+      },
+      error: function (data) {
+      }
+    })
+  }, 3000);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<div id="editDepositlist" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="bc.updateCreate();" class="no-margin"
+        name="editMoneyBankForm">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4>
+        {{$root.lagconfig['更新收款明细']}}
+      </h4>
+    </div>
+    <div class="modal-body">
+      <input ng-model="bc.editBankForm.id" name="editBankFormId" type="hidden">
+      <div class="row-fluid">
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['付款人']}}:</label> <input ng-model="deposit.tranListitem.payer"
+                                                            style="margin-left: 15px" name="payer" type="text" required>
+          <!--<select-list ng-model="bc.editBankForm.bankId" name="banklist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['存款地址']}}:</label><input ng-model="deposit.tranListitem.depositAddress"
+                                                            name="depositAddress" type="text" required>
+          <!--<input ng-model="bc.editBankForm.cardName" name="editBankFormCardName" type="text" readonly required>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['支付类型']}}:</label>
+          <select-list ng-model="deposit.tranListitem.paymentType"
+                       name="paytypelist"></select-list>
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="platformlist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['存款时间']}}:</label>
+          <date-select selectid="hellotime"
+                       ng-model="deposit.tranListitem.depositTime"></date-select>
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="platformlist" canselect="1"></select-list>-->
+        </div>
+        <!--<div class="span3" style="text-align: right">-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['所属银行']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['开户姓名']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['所属平台']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['银行账号']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['目前余额']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['添加扣除']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['项目']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['金额']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+        <!--<label class="control-label">-->
+        <!--{{$root.lagconfig['备注']}}:-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="span6">-->
+        <!--<div class="controls">-->
+        <!--&lt;!&ndash;<span>{{bc.editBankForm.bankId| nameTovalue:'id':'name':$root.banklist}}</span>&ndash;&gt;-->
+        <!--<select-list ng-model="bc.editBankForm.bankId" name="banklist" canselect="1"></select-list>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="bc.editBankForm.cardName"-->
+        <!--name="editBankFormCardName" type="text" readonly required>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--&lt;!&ndash;<span>{{bc.editBankForm.platformId | nameTovalue:'id':'name':$root.platformlist}}</span>&ndash;&gt;-->
+        <!--<select-list ng-model="bc.editBankForm.platformId" name="platformlist" canselect="1"></select-list>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="bc.editBankForm.bankCard" type="text"-->
+        <!--name="editBankFormBankCard" readonly required>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="bc.editBankForm.credit" type="text"-->
+        <!--name="editBankFormBankCard" readonly>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<select-list ng-model="bc.bankCardCredit.action" change="bc.setAction" name="plusormultilist"></select-list>-->
+        <!--&lt;!&ndash;<input ng-model="bc.editBankForm.action" name="editBankFormCredit" type="text"/>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--&lt;!&ndash;<input ng-model="bc.bankCardCredit.type" name="list" type="text"/>&ndash;&gt;-->
+        <!--<select ng-options="item.name for item in bc.valuelist" ng-model="bc.valueitem"></select>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="bc.bankCardCredit.money" name="addmoney" ng-pattern="/^0\.([0-9]|\d[0-9])$|^[0-9]\d{0,8}\.\d{0,2}$|^[0-9]\d{0,8}$/" type="text"/>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<input ng-model="bc.bankCardCredit.remark" name="addnote" type="text"/>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+      <div class="modal-footer">
+        <!--<button class="btn btn-primary">-->
+        <!--{{$root.lagconfig['确认']}}-->
+        <!--</button>-->
+        <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+        <!--{{$root.lagconfig['取消']}}-->
+        <!--</button>-->
+        <click-button click="deposit.editItem" value="确认"></click-button>
+        <click-button data-dismiss="modal" value="取消"></click-button>
+      </div>
+    </div>
+  </form>
+</div>

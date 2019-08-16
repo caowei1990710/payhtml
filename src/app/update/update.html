@@ -1,0 +1,42 @@
+<div class="container-fluid" style="text-align: center">
+  <div class="modal-header">
+    <h4>
+      {{$root.lagconfig['修改密码']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="update.updatePwd();" class="no-margin"
+        name="updateRoleForm">
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="control-group divinput">
+          <label>
+            {{$root.lagconfig['旧密码']}}:
+          </label>
+          <input ng-model="update.user.password" name="username" type="password" required>
+        </div>
+        <div class="control-group divinput">
+          <label>
+            {{$root.lagconfig['新密码']}}:
+          </label>
+          <input ng-model="update.user.newPassword" name="password" type="password" ng-pattern="/^(?!\D+$)(?![^a-z]+$)[a-zA-Z\d]{8,}$/" required>
+        </div>
+        <div class="control-group divinput">
+          <label>
+            {{$root.lagconfig['确认密码']}}:
+          </label>
+          <input ng-model="update.user.repeatPassword" w5c-repeat="password" name="repassword" type="password" required>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" style="width: 260px;margin: auto">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary" ng-click="user.updateRole()">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>

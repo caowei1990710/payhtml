@@ -1,0 +1,6 @@
+<button ng-model="vm.ngModel" name="vm.name" type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
+        accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" ng-disabled="vm.ngDisabled">
+  {{$root.lagconfig['点击选择文件'] | itemTolish}}
+</button>
+<img ng-src="{{vm.ngModel}}" ng-show="vm.ngModel" style="width: 60px;vertical-align: top;margin-top: -20px">
+<img src="black-forest/img/loading-red.gif" alt="loading red" ng-show="vm.loading">

@@ -1,0 +1,4 @@
+<select ng-model="vm.ngModel" name="vm.name" ng-disabled="vm.ngDisabled">
+    <option></option>
+    <option ng-repeat="item in vm.list" ng-selected="item.id == vm.ngModel" value="{{item.id}}" selected="selected">{{item.name}}</option>
+</select>

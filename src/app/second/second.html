@@ -1,0 +1,198 @@
+<div class="cont_warp" ng-show="second.bankIndex ==0">
+  <div class="title">
+    提案列表
+  </div>
+
+  <div class="m3 cle">
+    <div class="fl cle info">
+      <div class="fl cle list i2"  style="width:20%;">
+        <div class="cle box"><span class="fl">提案号</span>
+          <input style="width: 100px;min-width: 100px!important;" type="text" ng-model="second.query.userRemark"
+                 class="text">
+        </div>
+      </div>
+      <div class="fl cle list i2" style="width:20%;">
+        <div class="cle box"><span class="fl">支付宝单号</span>
+          <input style="width: 100px;min-width: 100px!important;" type="text" ng-model="second.query.depositNumber"
+                 class="text">
+        </div>
+      </div>
+      <div class="fl cle list i1"  style="width:20%;">
+        <div class="cle box">
+          <span class="fl" style="left: 25px;">订单状态</span>
+          <select-list style="width: 100px;min-width: 100px!important;" ng-model="second.query.state"
+                       name="depositstate" type="1"></select-list>
+        </div>
+      </div>
+      <div class="fl but cle" style="margin: 0;float: right">
+        <input type="button" ng-click="second.get(1);" value="搜索" class="fl">
+        <input type="button" ng-click="second.outList();" value="导出" class="fl">
+      </div>
+    </div>
+
+    <div class="fl cle info">
+      <div class="fl cle list i2">
+        <div class="cle box">
+          <span class="fl">开始时间</span>
+          <date-select selectid="allhello" init="1" ng-model="second.query.beginTime"></date-select>
+        </div>
+      </div>
+      <div class="fl cle list i2">
+        <div class="cle box">
+          <span class="fl">截至时间</span>
+          <date-select selectid="allhello1" init="2" ng-model="second.query.endTime"></date-select>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <div class="m2">
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <thead>
+      <tr>
+        <td>支付宝单号</td>
+        <td>提案号</td>
+        <td>备注</td>
+        <td>支付方式</td>
+        <td>交易金额</td>
+        <td>提案金额</td>
+        <td>手续费</td>
+        <td>付款人</td>
+        <!--<td>备注</td>-->
+        <!--<td>通知状态</td>-->
+        <td>交易时间</td>
+        <td>创建时间</td>
+
+        <td>操作</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in second.DepositList track by $index">
+        <td>{{item.depositNumber}}</td>
+        <td>
+          <!--<span ng-if="item.userRemark!=' '">{{item.userRemark}}</span>-->
+          <span >{{item.userRemark}}</span>
+          <!--<input style="width: 100px" ng-if="item.state!='EXECUTED'" type="text"-->
+                 <!--ng-model="item.userRemarkedit">-->
+        </td>
+        <td>{{item.note}}</td>
+        <td>{{item.payType| nameTovalue:'id':'name':$root.banklist}}</td>
+        <td>{{item.realAmount}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.tranfee}}</td>
+        <td>{{item.payAccount}}</td>
+        <!--<td>{{item.note}}</td>-->
+        <!--<td>{{item.state}}</td>-->
+        <td>{{item.transferTime}}</td>
+        <td>{{item.creatTime}}</td>
+        <!--<td ng-if="item.userRemark==null&&item.state!='EXECUTED'"><input style="width: 150px" type="text"-->
+        <!--ng-model="item.userRemarkedit"></td>-->
+        <td>
+          <!--<span>{{}}</span>-->
+          <span>{{item.state| nameTovalue:'id':'name':$root.depositstate}}</span>
+          <!--<type-style ng-if="item.state=='EXECUTED'" value="item.state" list="depositstate"></type-style>-->
+          <button ng-click="second.updateBefore($index)">重发</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div style="text-align: center">总计{{second.totalSum}}小计{{second.nowSum}}</div>
+  <pagination page="second.page" total="second.total" size="second.sizePerPage"
+              trigger="second.get(page)"></pagination>
+</div>
+<div class="cont_warp" ng-show="second.bankIndex ==1">
+  <div class="title">
+    报表明细
+  </div>
+
+  <div class="m3 cle">
+    <div class="fl cle info">
+      <div class="fl cle list i1">
+        <div class="cle box">
+          <span class="fl">报表类型</span>
+          <select-list style="width: 150px;min-width: 100px!important;" ng-model="second.query.type"
+                       name="userrplisttype" type="1"></select-list>
+        </div>
+      </div>
+      <div class="fl cle list i1">
+        <div class="cle box">
+          <span class="fl" style="padding-left: 75px;">提案号</span>
+          <input type="text" class="text ng-pristine ng-valid ng-empty ng-touched" ng-model="second.query.remark" aria-invalid="false" style="width: 70%;margin-left: 50px;">
+        </div>
+      </div>
+      <div class="fl cle list i1">
+        <div class="cle box">
+          <span class="fl" style="padding-left: 75px;">数目</span>
+          <input type="text" class="text ng-pristine ng-valid ng-empty ng-touched" ng-model="second.outputsize" aria-invalid="false" style="width: 70%;margin-left: 50px;">
+        </div>
+      </div>
+      <div class="fl but cle" style="margin: 0;padding-left:290px;float: right">
+        <input type="button" ng-click="second.getDetail(1);" value="搜索" class="fl">
+        <input type="button" ng-click="second.outDepositList();" value="导出" class="fl">
+      </div>
+    </div>
+
+    <div class="fl cle info">
+      <div class="fl cle list i2">
+        <div class="cle box">
+          <span class="fl">开始时间</span>
+          <date-select selectid="alldetail" init="1" ng-model="second.query.beginSelect"></date-select>
+        </div>
+      </div>
+      <div class="fl cle list i2">
+        <div class="cle box">
+          <span class="fl">截至时间</span>
+          <date-select selectid="alldetail1" init="2" ng-model="second.query.endSelect"></date-select>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <div class="m2">
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <thead>
+      <tr>
+        <td>存款单号</td>
+        <td>所属类型</td>
+        <td>创建时间</td>
+        <td>实际金额</td>
+        <td>金额账变</td>
+        <td>锁定金额</td>
+        <td>账变之前</td>
+        <!--<td>通知状态</td>-->
+        <td>账变之后</td>
+        <td>提案号</td>
+        <!--<td>创建时间</td>-->
+        <!--<td>游戏方备注</td>-->
+        <!--<td>操作</td>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in second.DetailList track by $index">
+        <td>{{item.id}}</td>
+        <td>{{item.type | nameTovalue:'id':'name':$root.userrplisttype}}</td>
+        <td>{{item.createTime}}</td>
+        <td>{{item.realMoney}}</td>
+        <td>{{item.changeMoney}}</td>
+        <td>{{item.lockMoney}}</td>
+        <td>{{item.befroeMoney}}</td>
+        <!--<td>{{item.state}}</td>-->
+        <td>{{item.nowMoney}}</td>
+        <td>{{item.remark}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div style="text-align: center">总计{{second.DetailtotalSum}}小计{{second.DetailnowSum}}</div>
+  <pagination page="second.detailpage" total="second.Detailtotal" size="second.sizePerPage"
+              trigger="second.getDetail(page)"></pagination>
+</div>

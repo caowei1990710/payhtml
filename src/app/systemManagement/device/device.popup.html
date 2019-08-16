@@ -1,0 +1,138 @@
+<!-- Modal -->
+<div id="createDeviceitem" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <form class="no-margin" name="createDeviceForm">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4 id="">
+        增加设备
+      </h4>
+    </div>
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group">
+            <label class="control-label">
+              名称（必填）：
+            </label>
+            <div class="controls">
+              <input ng-model="sm.createDeviceitem.name" name="createDeviceFormName" type="text" required>
+              <div class="has-error" ng-messages="createDeviceForm.createDeviceFormName.$error"
+                   ng-if="createDeviceForm.createDeviceFormName.$touched">
+                <div ng-message="required"><span style="color: red;" translate>ERROR_REQUIRED</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">
+              密码（必填）：
+            </label>
+            <div class="controls">
+              <input ng-model="sm.createDeviceitem.password" name="createDeviceFormPassword" type="password" required>
+              <div class="has-error" ng-messages="createDeviceForm.createDeviceFormPassword.$error"
+                   ng-if="createDeviceForm.createDeviceFormPassword.$touched">
+                <div ng-message="required"><span style="color: red;" translate>ERROR_REQUIRED</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">
+              付款类型（必填）：
+            </label>
+            <div class="controls">
+              <select ng-model="sm.createDeviceitem.platformId" name="createDeviceFormPlatformId" required>
+                <option></option>
+                <option ng-repeat="item in sm.platformList" ng-selected="sm.createDeviceForm.platformId == item.id"
+                        value="{{item.id}}">{{item.name}}
+                </option>
+              </select>
+              <div class="has-error" ng-messages="createDeviceForm.createDeviceFormPlatformId.$error"
+                   ng-if="createDeviceForm.createDeviceFormPlatformId.$touched">
+                <div ng-message="required"><span style="color: red;" translate>ERROR_REQUIRED</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+
+      <button class="btn btn-primary" ng-click="sm.addDevice();" ng-disabled="createDeviceForm.$invalid">
+        确认
+      </button>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">
+        取消
+      </button>
+    </div>
+  </form>
+</div>
+
+<div id="editDeviceitem" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <form class="no-margin" name="editDeviceForm">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4 id="">
+        修改设备
+      </h4>
+    </div>
+    <div class="modal-body">
+      <div >
+        <div class="control-group">
+          <label class="control-label pull-left span1">
+            {{$root.lagconfig["名称"]}}：
+          </label>
+          <div class="controls">
+            <input ng-model="sm.editDeviceForm.id" name="editDeviceFormId" type="hidden">
+            <input ng-model="sm.editDeviceForm.name" name="editDeviceFormName" type="text" required>
+            <div class="has-error" ng-messages="editDeviceForm.editDeviceFormName.$error"
+                 ng-if="editDeviceForm.editDeviceFormName.$touched">
+              <div ng-message="required"><span style="color: red;" translate>ERROR_REQUIRED</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label pull-left span1">
+            {{$root.lagconfig["密码"]}}：
+          </label>
+          <div class="controls">
+            <input ng-model="sm.editDeviceForm.password" name="editDeviceFormPassword" type="password" required>
+            <div class="has-error" ng-messages="editDeviceForm.editDeviceFormPassword.$error"
+                 ng-if="editDeviceForm.editDeviceFormPassword.$touched">
+              <div ng-message="required"><span style="color: red;" translate>ERROR_REQUIRED</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label pull-left span1">
+            {{$root.lagconfig["所属平台"]}}：
+          </label>
+          <div class="controls">
+            <select ng-model="sm.editDeviceForm.platformId" name="editDeviceFormPlatformId" required>
+              <option></option>
+              <option ng-repeat="item in sm.platformList" ng-selected="sm.editDeviceForm.platformId == item.id"
+                      value="{{item.id}}">{{item.name}}
+              </option>
+            </select>
+            <div class="has-error" ng-messages="editDeviceForm.editDeviceFormPlatformId.$error"
+                 ng-if="editDeviceForm.editDeviceFormPlatformId.$touched">
+              <div ng-message="required"><span style="color: red;" translate>ERROR_REQUIRED</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="sm.updateDevice();" ng-disabled="editDeviceForm.$invalid">
+        确认
+      </button>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">
+        取消
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,39 @@
+<!--<div style="position: absolute;height: 1px;width: 100%;background-color: #e5e5e5;bottom: 150px;"></div>-->
+<div style="position: absolute;width: 95%">
+  <div class="pagination">
+    <ul style="float: left">
+      <li class="{{vm.classPrev}}">
+        <a href="" target="_self" data-original-title="" ng-click="vm.changePage('prev');">
+          {{$root.lagconfig['上一页']}}
+        </a>
+      </li>
+      <li ng-show="vm.perprepage && vm.page == vm.totalPage">
+        <a target="_self"  style="width: 40px" data-original-title="" ng-click="vm.changePage(vm.perprepage);">{{vm.perprepage}}</a>
+      </li>
+      <li ng-show="vm.prepage">
+        <a target="_self"  style="width: 40px" data-original-title="" ng-click="vm.changePage(vm.prepage);">{{vm.prepage}}</a>
+      </li>
+      <li class="active">
+        <a target="_self"  style="width: 40px" data-original-title="" ng-click="vm.changePage(vm.page);">{{vm.page}}</a>
+      </li>
+      <li ng-show="vm.nextpage">
+        <a target="_self"  style="width: 40px" data-original-title="" ng-click="vm.changePage(vm.nextpage);">{{vm.nextpage}}</a>
+      </li>
+      <li ng-show="vm.nextnextpage && vm.page == 1">
+        <a target="_self"  style="width: 40px" data-original-title="" ng-click="vm.changePage(vm.nextnextpage);">{{vm.nextnextpage}}</a>
+      </li>
+      <li class="{{vm.classNext}}">
+        <a href="" target="_self" data-original-title="" ng-click="vm.changePage('next');">
+          {{$root.lagconfig['下一页']}}
+        </a>
+      </li>
+    </ul>
+    <div style="text-align: left;line-height: 26px">
+      <input ng-model="vm.inputpage" style="width: 50px;text-align: center" class="input" name="page">
+      <button class="btn btn-info btn-small" style="background: #000000;margin: 0 5px" ng-click="vm.changePage(vm.inputpage);" type="submit">
+        {{$root.lagconfig['跳转']}}
+      </button>
+      <span>{{$root.lagconfig['共']}}{{vm.total}}{{$root.lagconfig['条']}}{{vm.totalPage}}{{$root.lagconfig['页']}}</span>
+    </div>
+  </div>
+</div>

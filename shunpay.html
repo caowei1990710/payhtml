@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<script>
+  function gopay() {
+//    alert('开始付款');
+//    window.open("https://ds.alipay.com/?from=mobilecodec&scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FsaId%3D10000007%26clientVersion%3D3.7.0.0718%26qrcode%3Dhttps%253A%252F%252Fqr.alipay.com%252FFKX06360UBSEIKQSHV8AF2%253F_s%253Dweb-other");
+    if ($('#username').val() != "" && $('#amount').val() != "") {
+//      window.location.reload('/demo.html');http://zhifudemo.com/images/PSDPAY.html?id=1&platform=1&username=test&amount=100&from=H5
+      var url = "http://midpaydemo.com/images/DGDEMO.html?id=1&platform=1&username=" + $('#username').val() + "&amount=" + $('#amount').val() + "&from=H5";
+      console.log("url:" + url);
+      window.location.href = url;
+    }
+//    $('#username').val();
+//    $('#amount').val();
+  }
+</script>
+<script type=text/javascript src=jquery.min.js></script>
+<body>
+<form method="get" style="margin-top: 150px;margin-left: 250px;">
+  <p>游戏账号: <input id="username" type="text" name="fname"/></p>
+  <p>付款金额: <input id="amount" type="number" name="lname"/></p>
+  <input onclick="gopay()" type="button" value="Submit" style="margin-left: 100px"/>
+</form>
+
+</body>
+</html>

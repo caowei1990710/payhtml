@@ -1,0 +1,156 @@
+<!-- Modal -->
+<div id="createBank" style="width: 700px" class="modal hide fade in" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="thirdyaccount.createBankCard()" class="no-margin"
+        name="editBankForm">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4 id="">
+        {{$root.lagconfig['创建银行卡账号']}}
+      </h4>
+    </div>
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属银行']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.createBankForm.type" name="banklist" type="1" required></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['账号']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.wechatName"
+                   name="createBankFormBankCard" type="text"
+                   required>
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.createBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['昵称']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.nickName" ng-pattern="/^([\u4E00-\u9FA5]+，?)+$/"
+                   name="createBankFormCardName" type="text">
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.createBankForm.type==0">
+            <label>
+              {{$root.lagconfig['银行类型']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.nickName" ng-pattern="/^([\u4E00-\u9FA5]+，?)+$/"
+                   name="createBankFormCardName" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['真实姓名']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.realName" name="realName" type="text" required>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属ip']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.ip" name="ip" type="text">
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.createBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['绑定银行卡']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.belongbankCard" name="belong" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['支付key']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.pid" name="belong" type="text">
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['绑定电话']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.teleNumber" name="createBankFormTelephone" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['当前状态']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.createBankForm.state" type="1" name="banktypecardstatus"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['目前余额']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.amount" name="createBankFormCredit" type="text"
+                   ng-pattern="/^0\.([0-9]|\d[0-9])$|^[0-9]\d{0,8}\.\d{0,2}$|^[0-9]\d{0,8}$/"
+                   ng-init="thirdyaccount.createBankForm.credit=0"/>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['备注']}}:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.remark" type="text" name="remark"/>
+            <!--<select-list ng-model="thirdyaccount.createBankForm.deviceId"  ng-pattern="/^(\d{16}|\d{19})$/" name="devicelist"></select-list>-->
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属平台']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.createBankForm.plaftfrom" name="platfromlist" type="0"></select-list>
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.createBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['组别']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.createBankForm.wechatId" name="originlist" type="1"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['固码类型']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.createBankForm.payType" name="paytypes" type="0"></select-list>
+          </div>
+          <div class="control-group divinput" ng-if="thirdyaccount.createBankForm.type==0">
+            <label>
+              银行卡类型:
+            </label>
+            <select-list ng-model="thirdyaccount.createBankForm.bankType" name="getbanktype" type="1"></select-list>
+            <!--<input ng-model="thirdyaccount.createBankForm.bankType" type="text" name="bankType"/>-->
+            <!--<select-list ng-model="thirdyaccount.createBankForm.deviceId"  ng-pattern="/^(\d{16}|\d{19})$/" name="devicelist"></select-list>-->
+          </div>
+          <div class="control-group divinput" ng-if="thirdyaccount.createBankForm.type==0">
+            <label>
+              所属卡商:
+            </label>
+            <input ng-model="thirdyaccount.createBankForm.belongKsname" type="text" name="belongKsname"/>
+            <!--<select-list ng-model="thirdyaccount.createBankForm.deviceId"  ng-pattern="/^(\d{16}|\d{19})$/" name="devicelist"></select-list>-->
+          </div>
+          <!--<div class="control-group divinput" ng-show="thirdyaccount.createBankForm.bankId == 170">-->
+          <!--<label>-->
+          <!--{{$root.lagconfig['二维码']}}:-->
+          <!--</label>-->
+          <!--&lt;!&ndash;<chang-listitem ng-model="thirdyaccount.createBankForm.merchant.id" data="thirdyaccount.merchantlists" type="name" ids="merchatlists"></chang-listitem>&ndash;&gt;-->
+          <!--<upload-file ng-model="thirdyaccount.createBankForm.image" name="createMerchantFormIconUrl"></upload-file>-->
+          <!--&lt;!&ndash;<input type="file" style="width: 150px" fileread="thirdyaccount.createBankForm.image">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div></div>&ndash;&gt;-->
+          <!--&lt;!&ndash;<img-tobase64 ng-model="thirdyaccount.createBankForm.src"></img-tobase64>&ndash;&gt;-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>

@@ -1,0 +1,62 @@
+<div class="tab-content">
+    <form class="form-inline am-form-query" name="queryForm">
+        <span>
+        <label class="control-label">{{$root.lagconfig['所属银行']}}</label>
+        <bankcard-dropdown ng-model="bc.query.bankId" name="bankId"></bankcard-dropdown>
+        </span>
+        <span>
+        <label class="control-label">{{$root.lagconfig['所属类型']}}</label>
+        <select ng-model="bc.query.type" name="type">
+            <option ng-repeat="item in bc.cardTypeList" ng-selected="bc.query.type == item.code" value="{{item.code}}">{{item.text}}</option>
+            </select>
+        </span>
+        <span>
+        <label class="control-label">{{$root.lagconfig['所属平台']}}</label>
+        <platform-dropdown ng-model="bc.query.platformId" name="platformId"></platform-dropdown>
+        </span>
+        <span>
+        <label class="control-label">{{$root.lagconfig['银行账号']}}</label>
+        <input ng-model="bc.query.bankCard" name="bankCard" type="text">
+        </span>
+        <!--<span>-->
+            <!--<label class="control-label">{{$root.lagconfig['单页数量']}}</label>-->
+            <!--<input ng-model="bc.sizePerPage" name="size" type="text" style="width: 50px;">-->
+        <!--</span>-->
+        <button type="submit" class="btn btn-primary" ng-click="bc.loadingBankCard(1);">{{$root.lagconfig['查询']}}</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{$root.lagconfig['所属银行']}}</th>
+                <th>{{$root.lagconfig['银行账号']}}</th>
+                <th>{{$root.lagconfig['开户姓名']}}</th>
+                <th>{{$root.lagconfig['绑定电话']}}</th>
+                <th>{{$root.lagconfig['今日交易']}}</th>
+                <th>{{$root.lagconfig['目前余额']}}</th>
+                <th>{{$root.lagconfig['所属平台']}}</th>
+                <th>{{$root.lagconfig['所属类型']}}</th>
+                <th>{{$root.lagconfig['当前状态  ']}}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in bc.bankList">
+                <td>{{item.bankId}}</td>
+                <td>{{item.bankCard}}</td>
+                <td>{{item.cardName}}</td>
+                <td>{{item.telephone}}</td>
+                <td>{{item.transactionForToday}}</td>
+                <td>{{item.credit}}</td>
+                <td>{{item.platformId}}</td>
+                <td>{{item.type}}</td>
+                <td><span class="badge badge-success">{{item.flag}}</span></td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination page="bc.page" total="bc.total" size="bc.sizePerPageFromResponse" trigger="bc.loadingBankCard(page)"></pagination>
+    <div class="pull-right" style="margin-top: 30px;">
+    </div>
+</div>
+<div ng-include="'app/bankCard/accountManagement/accountManagement.popup.html'"></div>

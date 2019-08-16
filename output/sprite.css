@@ -1,0 +1,102 @@
+/*!**/
+  /*SASS variables are information about icon's compiled state, stored under its original file name*/
+
+  /*.icon-home*/
+    /*width: $icon-home-width*/
+
+  /*The large array-like variables contain all information about a single icon*/
+  /*$icon-home: x y offset_x offset_y width height total_width total_height image_path*/
+
+  /*At the bottom of this section, we provide information about the spritesheet itself*/
+  /*$spritesheet: width height image $spritesheet-sprites*/
+  /**!*/
+/*.syin*/
+/*display: inline-block*/
+/*$imageurl: ''*/
+/*$android-icon-144x144: (1307px, 0px, -1307px, 0px, 144px, 144px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-android-icon-144x144')*/
+/*$android-icon-192x192: (2441px, 0px, -2441px, 0px, 192px, 192px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-android-icon-192x192')*/
+/*$android-icon-36x36: (242px, 0px, -242px, 0px, 36px, 36px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-android-icon-36x36')*/
+/*$android-icon-48x48: (282px, 0px, -282px, 0px, 48px, 48px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-android-icon-48x48')*/
+/*$android-icon-72x72: (609px, 0px, -609px, 0px, 72px, 72px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-android-icon-72x72')*/
+/*$android-icon-96x96: (865px, 0px, -865px, 0px, 96px, 96px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-android-icon-96x96')*/
+/*$apple-icon-114x114: (1065px, 0px, -1065px, 0px, 114px, 114px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-114x114')*/
+/*$apple-icon-120x120: (1183px, 0px, -1183px, 0px, 120px, 120px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-120x120')*/
+/*$apple-icon-144x144: (1455px, 0px, -1455px, 0px, 144px, 144px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-144x144')*/
+/*$apple-icon-152x152: (1905px, 0px, -1905px, 0px, 152px, 152px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-152x152')*/
+/*$apple-icon-180x180: (2061px, 0px, -2061px, 0px, 180px, 180px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-180x180')*/
+/*$apple-icon-57x57: (334px, 0px, -334px, 0px, 57px, 57px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-57x57')*/
+/*$apple-icon-60x60: (395px, 0px, -395px, 0px, 60px, 60px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-60x60')*/
+/*$apple-icon-72x72: (533px, 0px, -533px, 0px, 72px, 72px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-72x72')*/
+/*$apple-icon-76x76: (685px, 0px, -685px, 0px, 76px, 76px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-76x76')*/
+/*$apple-icon-precomposed: (2637px, 0px, -2637px, 0px, 192px, 192px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon-precomposed')*/
+/*$apple-icon: (2245px, 0px, -2245px, 0px, 192px, 192px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-apple-icon')*/
+/*$device: (765px, 0px, -765px, 0px, 96px, 88px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-device')*/
+/*$expenddown: (205px, 0px, -205px, 0px, 33px, 32px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-expenddown')*/
+/*$expendup: (97px, 0px, -97px, 0px, 32px, 32px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-expendup')*/
+/*$favicon-16x16: (0px, 0px, 0px, 0px, 16px, 16px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-favicon-16x16')*/
+/*$favicon-32x32: (133px, 0px, -133px, 0px, 32px, 32px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-favicon-32x32')*/
+/*$favicon-96x96: (965px, 0px, -965px, 0px, 96px, 96px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-favicon-96x96')*/
+/*$ms-icon-144x144: (1603px, 0px, -1603px, 0px, 144px, 144px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-ms-icon-144x144')*/
+/*$ms-icon-150x150: (1751px, 0px, -1751px, 0px, 150px, 150px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-ms-icon-150x150')*/
+/*$ms-icon-310x310: (2833px, 0px, -2833px, 0px, 310px, 310px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-ms-icon-310x310')*/
+/*$ms-icon-70x70: (459px, 0px, -459px, 0px, 70px, 70px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-ms-icon-70x70')*/
+/*$people: (169px, 0px, -169px, 0px, 32px, 32px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-people')*/
+/*$role: (70px, 0px, -70px, 0px, 23px, 58px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-role')*/
+/*$usernor: (45px, 0px, -45px, 0px, 21px, 26px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-usernor')*/
+/*$usersel: (20px, 0px, -20px, 0px, 21px, 26px, 3143px, 310px, ($imageurl + 'sprite.png'), 'syin-usersel')*/
+/*$spritesheet-sprites: ($android-icon-144x144, $android-icon-192x192, $android-icon-36x36, $android-icon-48x48, $android-icon-72x72, $android-icon-96x96, $apple-icon-114x114, $apple-icon-120x120, $apple-icon-144x144, $apple-icon-152x152, $apple-icon-180x180, $apple-icon-57x57, $apple-icon-60x60, $apple-icon-72x72, $apple-icon-76x76, $apple-icon-precomposed, $apple-icon, $device, $expenddown, $expendup, $favicon-16x16, $favicon-32x32, $favicon-96x96, $ms-icon-144x144, $ms-icon-150x150, $ms-icon-310x310, $ms-icon-70x70, $people, $role, $usernor, $usersel, )*/
+
+/*!**/
+  /*The provided mixins are intended to be used with the array-like variables*/
+
+  /*.icon-home*/
+    /*@include sprite-width($icon-home)*/
+
+  /*.icon-email*/
+    /*@include sprite($icon-email)*/
+
+  /*Example usage in HTML:*/
+    /*`display: block` sprite:*/
+    /*<div class="icon-home"></div>*/
+
+  /*To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:*/
+    /*// CSS*/
+    /*.icon {*/
+      /*display: inline-block;*/
+    /*}*/
+
+    /*// HTML*/
+    /*<i class="icon icon-home"></i>*/
+  /**!*/
+/*@mixin sprite-width($sprite)*/
+  /*width: nth($sprite, 5)*/
+
+/*@mixin sprite-height($sprite)*/
+  /*height: nth($sprite, 6)*/
+
+/*@mixin sprite-position($sprite)*/
+  /*$sprite-offset-x: nth($sprite, 3)*/
+  /*$sprite-offset-y: nth($sprite, 4)*/
+  /*background-position: $sprite-offset-x  $sprite-offset-y*/
+
+/*@mixin sprite-image($sprite)*/
+  /*$sprite-image: nth($sprite, 9)*/
+  /*background-image: url(#{$sprite-image})*/
+
+/*@mixin sprite($sprite)*/
+  /*@include sprite-image($sprite)*/
+  /*@include sprite-position($sprite)*/
+  /*@include sprite-width($sprite)*/
+  /*@include sprite-height($sprite)*/
+
+/*!**/
+  /*The `sprites` mixin generates identical output to the CSS template*/
+    /*but can be overridden inside of SASS*/
+
+  /*@include sprites($spritesheet-sprites)*/
+  /**!*/
+/*@mixin sprites($sprites)*/
+  /*@each $sprite in $sprites*/
+    /*$sprite-name: nth($sprite, 10)*/
+    /*.#{$sprite-name}*/
+      /*@include sprite($sprite)*/

@@ -1,0 +1,197 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>顺付商户管理中心</title>
+  <meta name="keywords" content="">
+  <meta name="description">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=yes">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/project.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+
+  <link rel="stylesheet" href="css/css3.css">
+  <script type="text/javascript" src="js/jQuery.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/Calendar.js"></script>
+
+  <script>
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == 'ipad';
+    var bIsIphone = sUserAgent.match(/iphone os/i) == 'iphone os';
+    var bIsMidp = sUserAgent.match(/midp/i) == 'midp';
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == 'rv:1.2.3.4';
+    var bIsUc = sUserAgent.match(/ucweb/i) == 'web';
+    var bIsCE = sUserAgent.match(/windows ce/i) == 'windows ce';
+    var bIsWM = sUserAgent.match(/windows mobile/i) == 'windows mobile';
+    var bIsAndroid = sUserAgent.match(/android/i) == 'android';
+    var sign = "a7925f7886bd2451"//商户签名
+    var merchat = {
+      "version": "1.0",
+      "MerchaantNo": "shunfu001",
+      "type": "alapi"
+    }
+    function toPay() {
+      merchat.amount = $('#amount').val();
+      merchat.payer = "username";
+      merchat.userRemark = $('#depositnumber').val();
+      //    merchat.RealName ="张三";
+//    console.log(merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign);
+      merchat.sign = hex_md5(merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign);
+      console.log(merchat.sign);
+      setTimeout(function () {
+        $.ajax({
+          type: 'post',
+          // url: 'http://midpaydemo.com:8080/midpay',
+          // url: 'http://103.205.121.9:8081/midpay',
+//        url: 'http://www.shunfu68.com:8089/midpay',
+//        url: 'http://zhifukaui111.info:8081/setProposal',
+//      url: 'http://localhost:8081/setPosal',
+//          url: 'http://www.shunfu.me:8081/setDefaultPosal',
+          url: 'http://localhost:8081/setDefaultPosal',
+          data: merchat,
+          success: function (data) {
+            console.log(data);
+            if (data.code != 200) {
+//            playMusic();
+//            var utterThis = new window.SpeechSynthesisUtterance('没有可用的商户，请注意及时处理！');
+//            window.speechSynthesis.speak(utterThis);
+              alert(data.msg);
+
+              return
+            }
+//          amount = data.data.amount;
+//          account = data.data.account;
+//          nickname = data.data.nickname;
+//          realname = data.data.realname;
+//          username = data.data.username;
+//          imgurlsrc = data.data.url;
+            window.open(data.data.qrurl)
+          },
+          error: function (data) {
+          }
+        })
+      }, 2000);
+    }
+    function goLogin() {
+//    alert('开始付款');
+//    window.open("https://ds.alipay.com/?from=mobilecodec&scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FsaId%3D10000007%26clientVersion%3D3.7.0.0718%26qrcode%3Dhttps%253A%252F%252Fqr.alipay.com%252FFKX06360UBSEIKQSHV8AF2%253F_s%253Dweb-other");
+      if ($('#username').val() != "" && $('#amount').val() != "") {
+        var sign = "a7925f7886bd2451"//商户签名
+        var merchat = {
+          "version": "1.0",
+          "MerchaantNo": "shunfu001",
+          "type": "alapi",
+//                "url": "http://zhifudemo.com:8081/wechatitem"
+        }
+        merchat.amount = $('#amount').val();
+        merchat.payer = "username";
+        merchat.userRemark = $('#depositnumber').val();
+        //    function flush() {
+        //      window.location.reload();
+        //      setTimeout(function () {
+        //        flush();
+        //      }, 30000)
+        //    }
+        //    setTimeout(function () {
+        //      flush();
+        //    }, 30000)
+
+        console.log('sign:' + (merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign));
+        merchat.amount = $('#amount').val();
+//            merchat.payer = $('#username').val();
+        merchat.sign = hex_md5(merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign);
+//      window.location.reload('/demo.html');
+//      var url = "http://zhifudemo.com/images/moredemo.html?id=1&platform=1&username=" + $('#username').val() + "&amount=" + $('#amount').val() + "&from=H5";
+//      console.log("url:" + url);
+//      window.location.href = url;
+        $.ajax({
+          type: 'post',
+//       url: 'http://midpaydemo.com:8080/picmidpay',
+//          url: 'http://zhifudemo.com:8081/setPosal',
+          url: 'http://10.10.32.153:8081//setDefaultPosal',
+//      url: 'http://103.205.121.9:8081/midpay',
+
+          //url: 'http://47.75.144.122:8089/midpay',
+
+//      url: 'http://localhost:8081/picmidpay',
+          data: merchat,
+          success: function (data) {
+            console.log(data);
+            if (data.code != 200) {
+              alert(data.msg)
+              return
+            }
+//        time = new Date(data.data.overTime);
+//        amount = data.data.amount;
+//        account = data.data.account;
+//        nickname = data.data.nickname;
+//        realname = data.data.realname;
+//        username = data.data.username;
+//        imgurlsrc = data.data.url;
+//        qrurl = data.data.qrurl;
+            if (bIsIpad || bIsIphone || bIsMidp || bIsUc7 || bIsUc || bIsCE || bIsWM || bIsAndroid) {
+//                        alert(data.data.qrurl);
+//                        if (data.data.qrurl)
+              window.open(data.data.qrurl);
+            } else
+              alert("pc端不支持");
+          },
+          error: function (data) {
+          }
+        })
+      }
+//    $('#username').val();
+//    $('#amount').val();
+    }
+    //    function goLogin() {
+    //        window.location.href = "订单列表.html";
+    //    }
+  </script>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="md5.js"></script>
+</head>
+
+
+<body>
+<style>
+  html,
+  body {
+    background: #fff;
+  }
+</style>
+<!--<div class="log_head cle">-->
+  <!--<img src="img/img5.jpg" class="fl">-->
+<!--</div>-->
+
+<div class="log_warp">
+  <div class="w_1200 cle">
+    <div class="form fr">
+      <div class="title">
+        付款测试
+      </div>
+
+      <div class="list">
+        <input type="text" id="depositnumber" placeholder="提案号...">
+      </div>
+
+      <div class="list">
+        <input type="text" id="amount" placeholder="输入金额...">
+      </div>
+
+
+      <div class="but">
+        <input type="button" onclick="toPay()" value="付 款">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<div class="tab-content" style="padding-top: 20px">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div>
+    <span>
+        <label class="control-label" style="width: 100px">{{$root.lagconfig['提案号']}}</label>
+        <input ng-model="online.query.proposalId" name="bankCard" type="text">
+      <!--<select-list ng-model="bc.query.bankId" name="banklist" type="1"></select-list>-->
+    </span>
+    <span>
+    <label class="control-label" style="width: 100px">{{$root.lagconfig['所属平台']}}</label>
+      <select-list ng-model="online.query.platformId" name="platformlist" type="1"></select-list>
+    </span>
+    <span>
+      <label class="control-label" style="width: 100px">{{$root.lagconfig['绑定商户号']}}</label>
+      <select-list ng-model="online.query.merchantName" id="name" name="merchantlists" type="1"></select-list>
+    </span>
+    <label>
+      {{$root.lagconfig['单页数量']}}:
+    </label>
+    <page-number ng-model="online.pagesize" dispaly="username"></page-number>
+    <button type="submit" class="btn btn-primary toselet" ng-click="online.querylist(1);">
+      {{$root.lagconfig['查询']}}
+    </button>
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table">
+      <thead>
+        <tr ng-model="online.onlinelist"
+            data="[{id:'proposalId'},{id:'merchantName'},{id:'status'},{id:'billNo'},{id:'merchantName'},{id:'realName'},{id:'platformId'},{id:'amount'},{id:'ip'},{id:'createTime'}]" from-stryle>
+          <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+          <th>{{$root.lagconfig['提案号']}}</th>
+          <th>{{$root.lagconfig['支付平台']}}</th>
+          <th>{{$root.lagconfig['状态']}}</th>
+          <th>{{$root.lagconfig['流水号']}}</th>
+          <th>{{$root.lagconfig['商户号']}}</th>
+          <th>{{$root.lagconfig['姓名']}}</th>
+          <th>{{$root.lagconfig['所属平台']}}</th>
+          <th>{{$root.lagconfig['金额']}}</th>
+          <th>{{$root.lagconfig['来源IP']}}</th>
+          <th>{{$root.lagconfig['加入时间']}}</th>
+          <th>{{$root.lagconfig['返回处理时间']}}</th>
+          <th>{{$root.lagconfig['补单']}}</th>
+        </tr>
+      </thead>
+      <!--<tbody data="bc.bankindex" ng-model="bc.bankList" index="bc.bankindex" move-change>-->
+      <tbody data="online.bankindex" ng-model="online.bankList" index="online.bankindex">
+      <tr style="outline: none;height: 50px" ng-repeat="item in online.onlinelist track by $index"
+          ng-class="{redcolor:item.singleFlag == 1}"
+          ng-click="online.bankindex == $index" class="repeat-animation">
+        <td ng-class="{colorwhite:bc.bankindex == $index}">
+          {{item.proposalId}}
+        </td>
+        <td ng-class="{colorwhite:online.bankindex == $index}">{{item.merchantName}}</td>
+        <td ng-class="{colorwhite:online.bankindex == $index}">{{item.status |
+          nameTovalue:'id':'name':$root.cashouttype}}
+        </td>
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">{{item.deviceId| nameTovalue:'id':'name':$root.devicelist}}-->
+        <!--</td>-->
+        <td>{{item.billNo}}</td>
+        <td ng-class="{colorwhite:online.bankindex == $index}">{{item.merchantName}}</td>
+        <td ng-class="{colorwhite:online.bankindex == $index}">{{item.realName}}</td>
+        <td ng-class="{colorwhite:online.bankindex == $index}">{{item.platformId |
+          nameTovalue:'id':'name':$root.platformlist}}
+        </td>
+        <td ng-class="{colorwhite:online.bankindex == $index}">{{item.amount}}</td>
+        <td ng-class="{colorwhite:online.bankindex == $index}">{{item.ip}}</td>
+        <td ng-class="{colorwhite:online.bankindex == $index}">
+          {{item.createTime}}
+        </td>
+        <td ng-class="{colorwhite:bc.bankindex == $index}">
+          {{item.type | nameTovalue:'id':'name':$root.cardtype | itemTolish}}
+        </td>
+        <td>
+          <a ng-click="online.updatePay($index)" class="btn btn-primary btn-small">{{$root.lagconfig['补单']}}</a>
+          <a href="" ng-show="item.singleFlag == 1" ng-click="online.cancePluRedOnLineCashin($index);" target="_self"
+             type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-danger btn-small">{{$root.lagconfig['取消']}}</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination page="online.page" size="online.pagesize" total="online.total"
+              trigger="online.querylist(page)"></pagination>
+</div>

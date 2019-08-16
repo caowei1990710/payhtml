@@ -1,0 +1,362 @@
+<!-- Modal -->
+<div id="editBank" style="width: 700px" class="modal hide fade in" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="thirdyaccount.updateBankCard();" class="no-margin"
+        name="editBankForm">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4 ng-if="thirdyaccount.editBankForm.type ==0">
+        {{$root.lagconfig['修改银行卡账号']}}
+      </h4>
+      <h4 ng-if="thirdyaccount.editBankForm.type !=0">
+        {{$root.lagconfig['修改支付宝账号']}}
+      </h4>
+    </div>
+    <div class="modal-body">
+      <input ng-model="thirdyaccount.editBankForm.id" name="editBankFormId" type="hidden">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属银行']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.editBankForm.type" name="banklist"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['账号']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.wechatName" type="text" name="editBankFormBankCard"
+                   required>
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.editBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['昵称']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.nickName" name="nickName" type="text">
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.editBankForm.type==0">
+            <label>
+              {{$root.lagconfig['银行类型']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.nickName" name="nickName" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['真实姓名']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.realName" name="realName" type="text" required>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属ip']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.ip" name="ip" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['备注']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.remark" type="text" name="remark"/>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['绑定银行卡']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.belongbankCard" name="belong" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['支付key']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.pid" name="belong" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['二维码跳转']}}:
+            </label>
+            {{thirdyaccount.editBankForm.qrurl}}
+            <!--<input ng-model="thirdyaccount.editBankForm.qrurl" name="belong" type="text">-->
+          </div>
+          <div class="control-group divinput" style="padding-top: 30px;">
+            <label>
+              {{$root.lagconfig['二维码']}}:
+            </label>
+            <!--<img-tobase64 ng-model="thirdyaccount.editBankForm.src" eleid="editimg"-->
+            <!--style="width: 220px;display: inline-block;"></img-tobase64>-->
+            <img ng-src="{{thirdyaccount.editBankForm.img}}" style="width: 150px;float: right;padding-right: 80px;"
+                 id="editimage">
+          </div>
+        </div>
+        <div class="span6">
+
+          <!--<div class="control-group divinput">-->
+          <!--<label>-->
+          <!--{{$root.lagconfig['目前余额']}}:-->
+          <!--</label>-->
+          <!--<input ng-pattern="/^0\.([0-9]|\d[0-9])$|^[0-9]\d{0,8}\.\d{0,2}$|^[0-9]\d{0,8}$/"-->
+          <!--ng-model="thirdyaccount.editBankForm.amount" name="createBankFormpromptCredit" type="text"/>-->
+          <!--</div>-->
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['绑定电话']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.teleNumber" name="editBankFormTelephone" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['状态']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.editBankForm.state" name="banktypecardstatus"></select-list>
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.editBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['今日交易']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.dayamount" name="dayamount" type="text">
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.editBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['最低额度']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.lowlimit" name="lowlimit" type="text">
+            <!--<label>-->
+            <!--{{$root.lagconfig['最高额度']}}:-->
+            <!--</label>-->
+            <!--<input ng-model="thirdyaccount.editBankForm.hightlimit" name="hightlimit" type="text">-->
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.editBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['最高额度']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.hightlimit" name="hightlimit" type="text">
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.editBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['交易限额']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.daylimit" name="daylimit" type="text">
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.editBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['提现额度']}}:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.autowithrow" name="autowithrow" type="text">
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属平台']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.editBankForm.plaftfrom" name="platfromlist" type="0"></select-list>
+          </div>
+          <div class="control-group divinput" ng-show="thirdyaccount.editBankForm.type!=0">
+            <label>
+              {{$root.lagconfig['组别']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.editBankForm.wechatId" name="originlist" type="1"></select-list>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['固码类型']}}:
+            </label>
+            <select-list ng-model="thirdyaccount.editBankForm.payType" name="paytypes" type="0"></select-list>
+          </div>
+          <div class="control-group divinput" ng-if="thirdyaccount.editBankForm.type==0">
+            <label>
+              银行卡类型:
+            </label>
+            <!--<input ng-model="thirdyaccount.editBankForm.bankType" name="bankType" type="text">-->
+            <select-list ng-model="thirdyaccount.editBankForm.bankType" name="getbanktype" type="1"></select-list>
+          </div>
+          <div class="control-group divinput" ng-if="thirdyaccount.editBankForm.type==0">
+            <label>
+              卡质量:
+            </label>
+            <!--<input ng-model="thirdyaccount.editBankForm.bankType" name="bankType" type="text">-->
+            <select-list ng-model="thirdyaccount.editBankForm.payBanktype" name="paybanktypes" type="0"></select-list>
+          </div>
+          <div class="control-group divinput" ng-if="thirdyaccount.editBankForm.type==0">
+            <label>
+              所属卡商:
+            </label>
+            <input ng-model="thirdyaccount.editBankForm.belongKsname" name="belongKsname" type="text">
+            <!--<select-list ng-model="thirdyaccount.editBankForm.payType" name="paytypes" type="0"></select-list>-->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button click="user.creatdepart" data="user.departmentitem.numbers" value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+    </div>
+  </form>
+</div>
+<div id="clearAll" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="thirdyaccount.clearAll();" class="no-margin"
+        name="editMoneyBankForm">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4>
+        {{$root.lagconfig['批量清空']}}
+      </h4>
+    </div>
+    <div class="modal-body">
+      <input ng-model="bc.editBankForm.id" name="editBankFormId" type="hidden">
+      <div class="row-fluid">
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['今日交易']}}:</label>
+          <span><input ng-model="thirdyaccount.clear.dayamount" type="text"></span>
+          <input id="amountcheck" type="checkbox">
+          <!--<select-list ng-model="bc.editBankForm.bankId" name="banklist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['当前状态']}}:</label>
+          <select-list ng-model="thirdyaccount.clear.state" name="banktypecardstatus" type="1"></select-list>
+          <input id="statecheck" checked="true" type="checkbox">
+          <!--<input ng-model="bc.editBankForm.cardName" name="editBankFormCardName" type="text" readonly required>-->
+        </div>
+        <div class="control-group divinput">
+          <label>收款类型:</label>
+          <select-list ng-model="thirdyaccount.clear.payType" name="paytypes" type="1"></select-list>
+          <input id="paytypecheck" type="checkbox">
+          <!--<input ng-model="bc.editBankForm.cardName" name="editBankFormCardName" type="text" readonly required>-->
+        </div>
+        <div class="control-group divinput">
+          <label>成功提案:</label><span><input ng-model="thirdyaccount.clear.daysucces"
+                                                                  type="text"></span>
+          <input id="daysucces" type="checkbox">
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="bcplatformlist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>总提案号:</label><span><input ng-model="thirdyaccount.clear.daynumber"
+                                                                  type="text"></span>
+          <input id="daynumber" type="checkbox">
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="bcplatformlist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>连续笔数:</label><span><input ng-model="thirdyaccount.clear.nosucces"
+                                                                  type="text"></span>
+          <input id="nosucces" type="checkbox">
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="bcplatformlist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['交易限额']}}:</label><span><input ng-model="thirdyaccount.clear.daylimit"
+                                                                  type="text"></span>
+          <input id="limitcheck" checked="true" type="checkbox">
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="bcplatformlist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['最低额度']}}:</label><span><input ng-model="thirdyaccount.clear.lowlimit"
+                                                                  type="text"></span>
+          <input id="lowlimit" type="checkbox">
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="bcplatformlist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['最高额度']}}:</label><span><input ng-model="thirdyaccount.clear.hightlimit"
+                                                                  type="text"></span>
+          <input id="hightlimit" type="checkbox">
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="bcplatformlist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['提现额度']}}:</label><span><input ng-model="thirdyaccount.clear.autowithrow"
+                                                                  type="text"></span>
+          <input id="withrowcheck" checked="true" type="checkbox">
+        </div>
+        <div class="control-group divinput">
+          <label>
+            {{$root.lagconfig['组别']}}:
+          </label>
+          <select-list ng-model="thirdyaccount.clear.wechatId" name="originlist" type="1"></select-list>
+          <input id="wechatId" type="checkbox">
+        </div>
+        <div class="control-group divinput">
+          <label>
+            {{$root.lagconfig['所属平台']}}:
+          </label>
+          <select-list ng-model="thirdyaccount.clear.platfrom" name="platfromlist" type="1"></select-list>
+          <input id="platfrom" type="checkbox">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <click-button value="确认"></click-button>
+        <click-button data-dismiss="modal" value="取消"></click-button>
+      </div>
+    </div>
+  </form>
+</div>
+<!--<div id="de" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"-->
+<!--aria-hidden="false">-->
+
+<!--</div>-->
+<div id="editMoney" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="thirdyaccount.updateCreate();" class="no-margin"
+        name="editMoneyBankForm">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        ×
+      </button>
+      <h4>
+        {{$root.lagconfig['调整余额']}}
+      </h4>
+    </div>
+    <div class="modal-body">
+      <input ng-model="bc.editBankForm.id" name="editBankFormId" type="hidden">
+      <div class="row-fluid">
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['所属银行']}}:</label><span>{{thirdyaccount.editBankForm.type | nameTovalue:'id':'name':$root.banklist}}</span>
+          <!--<select-list ng-model="bc.editBankForm.bankId" name="banklist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['开户姓名']}}:</label><span>{{thirdyaccount.editBankForm.realName}}</span>
+          <!--<input ng-model="bc.editBankForm.cardName" name="editBankFormCardName" type="text" readonly required>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['所属平台']}}:</label><span>{{thirdyaccount.editBankForm.plaftfrom| nameTovalue:'id':'name':$root.platfromlist}}</span>
+          <!--<select-list ng-model="bc.editBankForm.platformId" name="bcplatformlist" canselect="1"></select-list>-->
+        </div>
+        <div class="control-group divinput">
+          <!--<label class="control-label pull-left dialoglabel">-->
+          <label>{{$root.lagconfig['银行账号']}}:</label><span>{{thirdyaccount.editBankForm.wechatName | itemTolish}}</span>
+          <!--</label>-->
+          <!--<input ng-model="bc.editBankForm.bankCard" type="text"-->
+          <!--name="editBankFormBankCard" readonly required>-->
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['目前余额']}}:</label><span>{{thirdyaccount.editBankForm.amount}}</span>
+          <!--<input ng-model="bc.editBankForm.credit" type="text" name="editBankFormBankCard" readonly>-->
+        </div>
+        <!--<div class="control-group divinput">-->
+        <!--<label>{{$root.lagconfig['添加扣除']}}:</label>-->
+        <!--<select-list ng-model="bc.bankCardCredit.action" change="bc.setAction" name="plusormultilist"></select-list>-->
+        <!--</div>-->
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['项目']}}:</label>
+          <!--<select style="margin-left: 20px" ng-options="item.name for item in thirdyaccount.valuelist"-->
+          <!--ng-model="thirdyaccount.valueitem"></select>-->
+          <select-list ng-model="thirdyaccount.moneyUpdate.type" name="valuelist" type="1"></select-list>
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['金额']}}:</label>
+          <input style="margin-left: 20px" ng-model="thirdyaccount.moneyUpdate.changeamount" name="addmoney"
+                 ng-pattern="/^0\.([0-9]|\d[0-9])$|^[0-9]\d{0,8}\.\d{0,2}$|^[0-9]\d{0,8}$/" type="text"/>
+        </div>
+        <div class="control-group divinput">
+          <label>{{$root.lagconfig['备注']}}:</label>
+          <input style="margin-left: 20px" ng-model="thirdyaccount.moneyUpdate.remark" name="addnote" type="text"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <click-button value="确认"></click-button>
+        <click-button data-dismiss="modal" value="取消"></click-button>
+      </div>
+    </div>
+  </form>
+</div>

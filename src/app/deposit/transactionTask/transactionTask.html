@@ -1,0 +1,156 @@
+<div class="tab-content" id="myTabContent">
+  <div ng-show="!$root.allbanklist.length" style="margin-top: 20px">
+    <span>{{$root.lagconfig['用户没绑定有效的收款卡']}}</span>
+  </div>
+  <div ng-show="$root.allbanklist.length">
+    <form class="form-inline am-form-query" name="queryForm">
+     <span>
+      <label class="control-label">{{$root.lagconfig['银行卡卡号']}}</label>
+      <select ng-model="deposit.select.BankCard" ng-options="item.bankCard for item in $root.allbanklist">
+        <option></option>
+      </select>
+       <!--<input ng-model="deposit.select.receiveBankCard" name="size" type="text" style="width: 150px;">-->
+    </span>
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['操作账号']}}</label>-->
+      <!--<input ng-model="deposit.select.userAccount" name="size" type="text" style="width: 50px;">-->
+      <!--</span>-->
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['申请单号']}}</label>-->
+      <!--<input ng-model="deposit.select.id" name="size" type="text" style="width: 50px;">-->
+      <!--</span>-->
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['状态']}}</label>-->
+      <!--<select-list ng-model="deposit.select.status" name="bankcardstatus"></select-list>-->
+      <!--&lt;!&ndash;<input ng-model="deposit.select.status" name="size" type="text" style="width: 50px;">&ndash;&gt;-->
+      <!--</span>-->
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['创建人']}}</label>-->
+      <!--&lt;!&ndash;<select-list ng-model="deposit.select.status" name="banktypecardstatus"></select-list>&ndash;&gt;-->
+      <!--<input ng-model="deposit.select.creatUser" name="size" type="text" style="width: 50px;">-->
+      <!--</span>-->
+      <button type="submit" class="departmentbutton btn btn-primary toselet" ng-click="deposit.getTranList(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+    <span>
+        <label class="control-label">{{$root.lagconfig['支付类型']}}</label>
+      <!--<select ng-model="deposit.platitemform"></select>-->
+        <select-list ng-model="deposit.select.paymentType" name="paytypelist" type="1"></select-list>
+      <!--<deposit-type style="width: 80px" ng-model="deposit.select.paymentType" type="1"></deposit-type>-->
+    </span>
+     <span>
+       <label class="control-label">{{$root.lagconfig['操作员']}}</label>
+       <!--<date-select selectid="hello" ng-model="deposit.select.startTime"></date-select>-->
+       <input type="text" ng-model="deposit.select.operator">
+         <!--<input id="hello" style="width: 150px" ng-model="deposit.select.startTime" class="laydate-icon" ng-click="deposit.chooseDate('hello')">-->
+    </span>
+    <span>
+    <label class="control-label">{{$root.lagconfig['存款时间']}}</label>
+       <date-select selectid="hello" ng-model="deposit.select.startTime"></date-select>
+      <!--<input id="hello" style="width: 150px" ng-model="deposit.select.startTime" class="laydate-icon" ng-click="deposit.chooseDate('hello')">-->
+    </span>
+    <span>
+    <label class="control-label">{{$root.lagconfig['到']}}</label>
+       <date-select selectid="hello1" ng-model="deposit.select.endTime"></date-select>
+      <!--<input id="hello1" style="width: 150px" ng-model="deposit.select.endTime" class="laydate-icon"  ng-click="deposit.chooseDate('hello1')">-->
+    </span>
+      <label>
+        {{$root.lagconfig['单页数量']}}:
+      </label>
+      <page-number ng-model="deposit.pagesize" dispaly="username"></page-number>
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['付款人']}}</label>-->
+      <!--<input ng-model="deposit.select.payer" name="merchantNo" type="text" style="width: 50px;">-->
+      <!--</span>-->
+
+
+    </form>
+    <div class="tabbleout">
+      <table class="table tableoutwidth">
+        <thead>
+        <tr ng-model="deposit.tranList"
+            data="[{id:'depositId'},{id:'platformName'},{id:'receiveBankCard'},{id:'depositAddress'},{id:'depositTime'},{id:'amount'},{id:'payer'},{id:'paymentType'},{id:'handCharge'},{id:'userAccount'},{id:'status'}]"
+            index="deposit.index" from-stryle>
+          <th>{{$root.lagconfig['提案单号']}}</th>
+          <th>{{$root.lagconfig['存款单号']}}</th>
+          <th>{{$root.lagconfig['所属平台']}}</th>
+          <th>{{$root.lagconfig['银行卡卡号']}}</th>
+          <th>{{$root.lagconfig['存款人城市']}}</th>
+          <th>{{$root.lagconfig['存款时间']}}</th>
+          <th>{{$root.lagconfig['存款金额']}}</th>
+          <th>{{$root.lagconfig['存款人姓名']}}</th>
+          <th>{{$root.lagconfig['支付类型']}}</th>
+          <th>{{$root.lagconfig['存款手续费']}}</th>
+          <th>{{$root.lagconfig['用户名']}}</th>
+          <th>{{$root.lagconfig['操作账号']}}</th>
+          <th>{{$root.lagconfig['状态']}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-class="{acolor:deposit.index == $index}" style="height: 50px" ng-click="deposit.clickItem($index)"
+            ng-repeat="item in deposit.tranList">
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.proposal_id}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.depositId | stringLeng:20}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.platformName |
+            nameTovalue:'id':'name':$root.platformlist}}
+          </td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.receiveBankCard|bankFormal}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.depositAddress}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.depositTime}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.amount}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.payer}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.paymentType |
+            nameTovalue:'id':'name':$root.paytypelist}}
+          </td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.handCharge}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.userAccount}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">{{item.operator}}</td>
+          <td ng-class="{colorwhite:deposit.index == $index}">
+            <type-style value="item.status" list="bankcardstatus">
+              <!--{{item.status | nameTovalue:'id':'name':$root.bankcardstatus}}-->
+            </type-style>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--<div class="pull-right buttonpost">-->
+    <!--<click-button style="padding-left: 250px" href="editDepositlist" value="更新"></click-button>-->
+    <!--&lt;!&ndash;<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" ng-click="bc.showeditBank()"&ndash;&gt;-->
+    <!--&lt;!&ndash;target="_self"&ndash;&gt;-->
+    <!--&lt;!&ndash;type="submit" role="button" data-toggle="modal" data-original-title=""&ndash;&gt;-->
+    <!--&lt;!&ndash;class="btn btn-primary">{{$root.lagconfig['更新']}}&ndash;&gt;-->
+    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" href="#createBank" target="_self"&ndash;&gt;-->
+    <!--&lt;!&ndash;type="submit"&ndash;&gt;-->
+    <!--&lt;!&ndash;role="button" data-toggle="modal" data-original-title=""&ndash;&gt;-->
+    <!--&lt;!&ndash;class="btn btn-primary">{{$root.lagconfig['创建']}}&ndash;&gt;-->
+    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;<button ng-disabled="bc.bankindex < 0" class="departmentbutton btn btn-primary" ng-click="bc.showeditMoney()"&ndash;&gt;-->
+    <!--&lt;!&ndash;target="_self"&ndash;&gt;-->
+    <!--&lt;!&ndash;type="submit" role="button" data-toggle="modal" data-original-title="">{{$root.lagconfig['调整余额']}}&ndash;&gt;-->
+    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div class="pull-right" style="margin: 10px;margin-right: 80px">-->
+    <!--<button ng-disabled="bc.bankindex < 0" class="btn btn-primary" ng-click="deposit.editItem()" target="_self"-->
+    <!--type="submit" role="button" data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['更新']}}-->
+    <!--</button>-->
+    <!--</div>-->
+    <!--<div class="pull-right" style="margin: 10px;">-->
+    <!--<button ng-disabled="bc.bankindex < 0" class="btn btn-primary" href="#createBank" target="_self" type="submit"-->
+    <!--role="button" data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['删除']}}-->
+    <!--</button>-->
+    <!--</div>-->
+    <!--<div class="pull-right" style="margin: 10px;">-->
+    <!--<button ng-disabled="bc.bankindex < 0" class="btn btn-primary" ng-click="bc.showeditMoney()" target="_self"-->
+    <!--type="submit" role="button" data-toggle="modal" data-original-title=""-->
+    <!--class="btn btn-primary">{{$root.lagconfig['调整余额']}}-->
+    <!--</button>-->
+    <!--</div>-->
+    <pagination page="deposit.transactionpage" total="deposit.transactiontotal" size="deposit.pagesize"
+                trigger="deposit.getTranList(page)"></pagination>
+  </div>
+</div>
+<div ng-include="'app/deposit/transactionTask/transactionTask.popup.html'"></div>

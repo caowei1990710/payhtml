@@ -1,0 +1,279 @@
+<div class="tab-content">
+  <!--<div style="width: 100%;background: #457e88;height: 70px;">-->
+  <!--background-color: #457e88;-->
+  <div>
+    <div class="row-fluid show-animation" ng-show="cashin.cardOrder">
+      <form class="form-horizontal am-form-query" name="cashoutForm" style="line-height: 35px">
+        <div class="span5" style="border-right: 1px solid  #999999;">
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['申请单号']}}:
+            </label>
+            <span class="boldtext">
+              {{cashin.cardOrder.proposalId}}
+            </span>
+            <!--<div class="controls">-->
+            <!--<input ng-model="cashin.cardOrder.proposalId" name="createBankFormBankCard" type="text" readonly required>-->
+            <!--&lt;!&ndash;{{cashin.cardOrder.proposalId}}  :&ndash;&gt;-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['所属平台']}}:
+            </label>
+            <span class="boldtext">
+              {{cashin.cardOrder.platformId| nameTovalue:'id':'name':$root.platformlist}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.platformId" name="cashoutFormPlatformName" type="text" required>&ndash;&gt;-->
+            <!--&lt;!&ndash;{{cashin.cardOrder.platformId| nameTovalue:'id':'name':$root.platformlist}}&ndash;&gt;-->
+            <!--</div>-->
+          </div>
+          <!--<div class="control-group">-->
+          <!--<label class="control-label">-->
+          <!--{{$root.lagconfig['会员等级']}}  :-->
+          <!--</label>-->
+          <!--<div class="controls">-->
+          <!--<input ng-model="cashin.cardOrder.rowState" name="createBankFormBankCard" type="text" required>-->
+          <!--<div class="has-error" ng-messages="cashoutForm.createBankFormBankCard.$error"-->
+          <!--ng-if="cashoutForm.createBankFormBankCard.$touched">-->
+          <!--<div ng-message="required"><span style="color: red;" translate>ERROR_REQUIRED</span></div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['开户地址']}}:
+            </label>
+            <span class="boldtext">
+              {{cashin.cardOrder.bankAddress | itemTolish}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.bankName" name="cashoutFormBankName" type="text" required>&ndash;&gt;-->
+            <!--{{cashin.cardOrder.bankName | itemTolish}}-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['所在地']}}:
+            </label>
+            <span class="boldtext">
+              {{cashin.cardOrder.accountCity | itemTolish}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.bankName" name="cashoutFormBankName" type="text" required>&ndash;&gt;-->
+            <!--{{cashin.cardOrder.bankName | itemTolish}}-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['创建时间']}}:
+            </label>
+            <span class="boldtext">
+              {{cashin.cardOrder.createTime | dateFormate}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.bankName" name="cashoutFormBankName" type="text" required>&ndash;&gt;-->
+            <!--{{cashin.cardOrder.bankName | itemTolish}}-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['所属银行']}}:
+            </label>
+            <span class="boldtext">
+              {{cashin.cardOrder.bankName| nameTovalue:'id':'name':$root.banklist}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.accountNo" name="cashoutFormAccountNo" type="text" required>&ndash;&gt;-->
+            <!--{{cashin.cardOrder.accountNo}}-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['银行账号']}}:
+            </label>
+            <span class="boldtext" selectid="bankCard" selecttext="cashin.cardOrder.accountNo" text-copye>
+              {{cashin.cardOrder.accountNo}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.accountNo" name="cashoutFormAccountNo" type="text" required>&ndash;&gt;-->
+            <!--{{cashin.cardOrder.accountNo}}-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['开户姓名']}}:
+            </label>
+            <span class="boldtext" selectid="accountName" selecttext="cashin.cardOrder.accountName" text-copye>
+              {{cashin.cardOrder.accountName}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.accountName" name="cashoutFormAccountName" type="text" required>&ndash;&gt;-->
+            <!--{{cashin.cardOrder.accountName}}-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['提款金额']}}:
+            </label>
+            <span class="boldtext red" selecttext="cashin.cardOrder.amount" selectid="amount" text-copye>
+              {{cashin.cardOrder.amount}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.amount" name="cashoutFormAmount" type="text" required>&ndash;&gt;-->
+            <!--{{cashin.cardOrder.amount}}-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['操作员']}}:
+            </label>
+            <span class="boldtext">
+              {{$root.user.account}}
+            </span>
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.amount" name="cashoutFormAmount" type="text" required>&ndash;&gt;-->
+            <!--{{cashin.cardOrder.amount}}-->
+            <!--</div>-->
+          </div>
+          <div class="divinput">
+            <label>
+              {{$root.lagconfig['当前状态']}}:
+            </label>
+            <type-style value="cashin.cardOrder.status" list="cashouttype"></type-style>
+          </div>
+          <!--<label style="text-align: left;font-weight: bold" class="control-label">-->
+          <!--&lt;!&ndash;{{cashin.cardOrder.status| nameTovalue:'id':'name':$root.cashouttype}}&ndash;&gt;-->
+          <!--{{cashin.cardOrder.status}}-->
+          <!--</label>-->
+          <!--<div class="controls">-->
+          <!--&lt;!&ndash;<input ng-model="cashin.cardOrder.status" name="createBankFormBankCard" type="text" required>&ndash;&gt;-->
+          <!--{{cashin.cardOrder.status| nameTovalue:'id':'name':$root.cashouttype}}-->
+          <!--</div>-->
+
+          <!--<button type="submit" style="margin-left: 100px" class="btn btn-primary"-->
+          <!--ng-click="cashin.cancelTask()">{{$root.lagconfig['取消任务']}}-->
+          <!--</button>-->
+        </div>
+
+      </form>
+      <div class="span7">
+        <div style="height: 30px">
+          <label class="span3 textcenter no-margin boldtext">
+            {{$root.lagconfig['银行账号']}}
+          </label>
+          <label class="span3 textcenter no-margin boldtext">
+            {{$root.lagconfig['提款金额']}}
+          </label>
+          <label class="span3 textcenter no-margin boldtext">
+            {{$root.lagconfig['手续费']}}
+          </label>
+          <label class="span3 textcenter no-margin boldtext">
+            {{$root.lagconfig['账号余额']}}
+          </label>
+        </div>
+
+        <!--<div class="controls"  style="float: left;width: 150px" style="display: inline-block">-->
+        <!--<input ng-model="cashin.amount" name="createBankFormBankCard" type="text" required>-->
+        <!--</div>-->
+        <div ng-repeat="item in cashin.querys" style="padding: 5px 0px">
+          <!--<li ng-repeat="item in cashin.querys">-->
+          <!--<input ng-model="cashin.amount" name="createBankFormBankCard" type="text" required>-->
+          <input class="inputcheck no-margin" type="checkbox" ng-model="item.check">
+          <span class="no-margin" style="font-size: 18px">{{item.bankCard}}</span>
+          <input class="span3 no-margin"  ng-focus="cashin.getCredit($index)" ng-change="cashin.setCredit($index)" ng-model="item.paymentamount" name="createBankFormBankCard" type="text"
+                 required>
+          <input class="span3 no-margin" ng-change="cashin.setCredit($index)" ng-model="item.handCredit" name="createBankFormBankCard" type="text" required>
+          <input class="span3 no-margin" ng-model="item.src_balance" name="createBankFormBankCard" type="text" required>
+        </div>
+        <click-button click="cashin.finishTask" value="完成"></click-button>
+        <!--<button type="submit" class="btn btn-primary" style="margin-left: 300px" ng-click="cashin.finishTask()">-->
+        <!--{{$root.lagconfig['完成']}}-->
+        <!--</button>-->
+        <div class="textcenter" style="padding-top: 10px">
+          {{$root.lagconfig['(确认给用户汇款后，请在此输入付款卡余额，再点击完成任务)']}}
+        </div>
+        <div>
+          <span style="padding-left: 145px">{{$root.lagconfig['备注']}}</span>
+          <!--<input style="width: 470px" ng-model="cashin.cancelItem.remark" name="remark" type="text">-->
+          <select ng-model="cashin.cancelItem.remark" ng-options="item for item in cashin.cancelLists"
+                  style="width: 470px" name="remark"></select>
+          <click-button click="cashin.cancelTask" value="取消"></click-button>
+          <!--<button style="margin-left: 290px" type="submit" class="btn btn-danger" ng-click="cashin.cancelTask()">-->
+          <!--{{$root.lagconfig['取消']}}-->
+          <!--</button>-->
+        </div>
+
+      </div>
+    </div>
+    <div class="span6 show-animation" ng-show="cashin.show">
+      <div class="cashin-cd">
+        <h1>{{cashin.countNo}}</h1>
+        <h4>{{$root.lagconfig['获取数据中']}}</h4>
+      </div>
+      <div class="uil-ring-css" style="transform:scale(0.6);">
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="!cashin.querys" style="margin-top: 20px">
+    <span>{{$root.lagconfig['用户没绑定有效的付款卡']}}</span>
+  </div>
+  <div class="manualcashincontent" ng-show="cashin.querys">
+
+    <!--<input ng-model="cashin.deviceList.name" name="createBankFormBankCard" type="text" readonly required>-->
+    <!--<span style="color: white;float: left;font-size: 20px">{{$root.lagconfig['设备号']}}:{{$root.device.name}}</span>-->
+    <!--<span  style="color: white;float: left">{{$root.lagconfig['改设备已经签入']}}:{{$root.device.name}}</span>-->
+    <ul id="Extras">
+      <li ng-repeat="item in cashin.querys">
+        <input class="inputcheck no-margin" ng-show="cashin.cardstatus == 0" type="checkbox" id="query_{{$index}}">
+        <span style="width: 150px;display: inline-block">{{item.bankCard | bankFormal}}</span>
+        <span class="control-label" style="padding-left: 20px">{{$root.lagconfig['输入余额']}}</span>
+        <input class="no-margin" type="text" name="credit" ng-model="item.inputCredit">
+      </li>
+    </ul>
+    <click-button click="cashin.deviceTask" value="签入" style="float: right" ng-show="cashin.todo=='签入'"></click-button>
+    <click-button click="cashin.deviceTask" value="签出" style="float: right" ng-show="cashin.todo=='签出'"></click-button>
+    <!--<button type="submit" class="btn btn-primary contentmargin" style="float: right" innervalue="cashin.todo" ng-click="cashin.deviceTask()">
+      {{cashin.todo}}
+    </button>-->
+  </div>
+  <!--</div>-->
+  <!--<li class="submenu">-->
+  <!--<a  class="selected" data-original-title="">-->
+  <!--<div class="icon">-->
+  <!--<span class="fs1" aria-hidden="true"></span>-->
+  <!--</div>-->
+  <!--Extras-->
+  <!--</a>-->
+  <!--<ul id="Extras">-->
+
+  <!--<ul style="display: inline-block">-->
+  <!--<li ng-repeat="item in cashin.querys">-->
+  <!--<input type="checkbox" id="query_{{$index}}">-->
+  <!--<label style="width: 180px">{{item.bankCard}}</label>-->
+  <!--<label class="control-label">{{$root.lagconfig['输入余额']}}</label>-->
+  <!--<input type="text" name="credit" ng-model="cashin.query.credit"-->
+  <!--ng-disabled="cashin.query.state == 1">-->
+  <!--</li>-->
+
+  <!--</ul>-->
+  <!--<select ng-model="cashin.query" name="bankCard" ng-options="item.bankCard for item in cashin.querys"></select>-->
+  <!--<select ng-model="cashin.query.bankCard" name="bankCard"-->
+
+  <!--ng-disabled="cashin['bankList' + cashin.query.bankCard].state == 1">-->
+  <!--<option ng-repeat="item in $root.bankList" ng-selected="cashin.query.bankCard == item.bankCard"-->
+  <!--value="{{item.bankCard}}">{{cashin['bankTypeList' + item.bankId].name}} - {{item.bankCard}} - -->
+  <!--{{item.cardName}}-->
+  <!--</option>-->
+  <!--</select>-->
+  <!--<button type="submit" class="btn btn-primary" ng-click="cashin.updateState(1);"-->
+  <!--ng-show="cashin.query.state == 0;">{{$root.lagconfig['签入']}}-->
+  <!--</button>-->
+  <!--<button type="submit" class="btn btn-primary" ng-click="cashin.updateState(0);"-->
+  <!--ng-show="cashin.query.state == 1;">{{$root.lagconfig['签出']}}-->
+  <!--</button>-->
+</div>

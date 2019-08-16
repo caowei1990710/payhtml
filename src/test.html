@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Zero Clipboard Test</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <script type="text/javascript" src="ZeroClipboard.js"></script>
+  <script type="text/javascript" src="ZeroClipboard.js"></script>
+  <script type="text/javaScript" src="black-forest/js/jquery.min.js"></script>
+  <script type="text/javaScript" src="black-forest/js/select2.js"></script>
+  <link href="black-forest/css/select2.css" rel="stylesheet">
+  <script>
+    function init() {
+      var html;
+      $.ajax({
+        type: "POST",
+        dataType: "html",
+        processData: false,
+        url: "https://api.github.com/markdown/raw",
+        data: "Hell Wrold goolgle.com **cool**,and #1!",
+        contentType: "text/plain"
+      }).success(function (data) {
+        $('body').append(data);
+//        html = data;
+//        alert("data:"+data);
+      });
+    };
+    $(document).ready(function(){
+//      var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+      $("#add_pjk_id").select2({
+//        data: data,
+//        placeholder:'请选择',
+        allowClear:true
+      })
+//      $('#add_pjk_id').select2({
+//        placeholder: '请输入商户名称',
+//        data:data,
+//        multiple: true
+//      });
+    })
+    //  var clip = null;
+    ////  function $(id) { return document.getElementById(id); }
+    //  function init() {
+    //  	clip = new ZeroClipboard.Client();
+    //  	clip.setHandCursor(true);
+    //  	clip.addEventListener('mouseOver', function (client) {
+    //    // update the text on mouse over
+    //    clip.setText( $('#fe_text').value );
+    //  	});
+    //
+    //  	clip.addEventListener('complete', function (client, text) {
+    //    //debugstr("Copied text to clipboard: " + text );
+    //    alert("该地址已经复制，你可以使用Ctrl+V 粘贴。");
+    //  	});
+    //
+    //  	clip.glue('clip_button', 'clip_container' );
+    ////  	clip.glue('clip_buttons', 'clip_containers' );
+    //  }
+  </script>
+</head>
+<body>
+<select style="width: 300px" id="add_pjk_id">
+  <option></option>
+  <optgroup label="江苏">
+    <option value="option1">南京</option>
+    <option value="option2">苏州</option>
+  </optgroup>
+  <optgroup label="安徽">
+    <option value="option1">合肥</option>
+    <option value="option2">马鞍山</option>
+  </optgroup>
+  <optgroup label="浙江">
+    <option value="option1">杭州</option>
+    <option value="option2">温州</option>
+  </optgroup>
+</select>
+<!--<input class="from-control" id="add_pjk_id" value=""/>-->
+<!--<input id="fe_text" value="复制内容文本">-->
+<!--<span id="clip_container"><span id="clip_button"><strong>复制</strong></span></span>-->
+<!--<span id="clip_containers"><span id="clip_buttons"><strong>复制</strong></span></span>-->
+</body>
+<!-- 　详细介绍见：　http://www.admin10000.com/Document/35.html -->
+</html>

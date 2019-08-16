@@ -1,0 +1,28 @@
+.bank-block {
+    width: 24%;
+    height: 100px;
+    display: inline-block;
+    background-color: #67C0FA;
+    vertical-align: top;
+    margin: 4px;
+}
+
+.bank-block-l1 {
+    display: inline-block;
+    width: 30%;
+    padding: 10px 20px;
+}
+
+.bank-block-l2 {
+    display: inline-block;
+    width: 100%;
+}
+.bank-content{
+  padding: 10px;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}

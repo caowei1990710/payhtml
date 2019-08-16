@@ -1,0 +1,97 @@
+<div class="tab-content">
+    <form class="form-inline am-form-query" name="queryForm">
+        <span>
+            <label class="control-label">{{$root.lagconfig['名称']}}</label>
+            <input ng-model="merchant.query.name" name="name" type="text">
+        </span>
+        <span>
+            <label class="control-label">{{$root.lagconfig['商户号']}}</label>
+            <!--<select-list ng-model="merchant.query.merchantNo"  type="1" name="merchantlists"></select-list>-->
+            <input ng-model="merchant.query.merchantNo" name="merchantNo" type="text">
+        </span>
+        <span>
+            <label class="control-label">{{$root.lagconfig['商户支付类型']}}</label>
+            <select-list ng-model="merchant.query.topUpType" name="paymenttype" type="1"></select-list>
+            <!--<input ng-model="merchant.query.merchantType" name="merchantType" type="text">-->
+        </span>
+        <span>
+            <label class="control-label">{{$root.lagconfig['状态']}}</label>
+            <select-list ng-model="merchant.query.status" name="merchantstatus" type="1"></select-list>
+            <!--<input ng-model="merchant.query.status" name="status" type="text">-->
+        </span>
+        <span>
+            <label class="control-label">{{$root.lagconfig['商户类型']}}</label>
+            <!--<merchant-type-dropdown ng-model="merchant.query.merchantType" name="merchantType" type></merchant-type-dropdown>-->
+            <select-list ng-model="merchant.query.merchantType" name="merchanttypelist" type="1" required></select-list>
+        </span>
+      <button type="submit" class="departmentbutton btn btn-primary toselet" ng-click="merchant.getMerchantList(1);">{{$root.lagconfig['查询']}}</button>
+        <span>
+            <label class="control-label">{{$root.lagconfig['所属平台']}}</label>
+            <select-list ng-model="merchant.query.platformId" name="platformlist" type="1"></select-list>
+        </span>
+        <span>
+            <label class="control-label">单页数量</label>
+            <!--<input ng-model="merchant.sizePerPage" name="size" type="text" style="width: 50px;">-->
+            <page-number ng-model="merchant.sizePerPage" dispaly="username"></page-number>
+        </span>
+    </form>
+  <div class="tabbleout ">
+    <table class="table tableoutwidth">
+        <thead>
+            <tr ng-model = "merchant.notificationList" data="[{id:'name'},{id:'merchantNo'},{id:'merchantAddress'},{id:'type'},{id:'limit'},{id:'platform'},{id:'remark'},{id:'status'},{id:'lastTime'}]" index="merchant.index" from-stryle>
+                <th>{{$root.lagconfig['名称']}}</th>
+                <th>{{$root.lagconfig['商户号']}}</th>
+                <!--<th>{{$root.lagconfig['付款类型']}}</th>-->
+                <th>{{$root.lagconfig['商户地址']}}</th>
+                <th>{{$root.lagconfig['商户类型']}}</th>
+                <th>{{$root.lagconfig['交易限额']}}</th>
+                <th>{{$root.lagconfig['所属平台']}}</th>
+                <th>{{$root.lagconfig['备注']}}</th>
+              <th>{{$root.lagconfig['状态']}}</th>
+              <!--<th>{{$root.lagconfig['银行账号']}}</th>-->
+              <th>{{$root.lagconfig['最后使用时间']}}</th>
+                <!--<th>详细信息</th>-->
+                <!--<th>{{$root.lagconfig['操作']}}</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in merchant.notificationList" ng-class="{acolor:merchant.index == $index}" ng-click="merchant.index = $index">
+                <td ng-class="{colorwhite:merchant.index == $index}">
+                    <a href="" ng-click="merchant.editMode = false; merchant.getMerchantDetails(item.name);" target="_self" type="submit" role="button" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-original-title="" class="">{{item.name}}</a>
+                </td>
+                <td ng-class="{colorwhite:merchant.index == $index}">{{item.merchantNo}}</td>
+                <!--<td>{{item.topUpType}}</td>-->
+                <td ng-class="{colorwhite:merchant.index == $index}">
+                    <a ng-href="{{item.merchantAddress}}" target="_blank">{{item.merchantAddress}}
+                    </a>
+                </td>
+                <td ng-class="{colorwhite:merchant.index == $index}">{{item.type}}</td>
+                <td ng-class="{colorwhite:merchant.index == $index}"><span style="cursor: pointer" html="item.limit" type="merchat" alert-povper>{{item.limit}}</span></td>
+                <td ng-class="{colorwhite:merchant.index == $index}">{{item.platform}}</td>
+                <td ng-class="{colorwhite:merchant.index == $index}">{{item.remark}}</td>
+                <td ng-class="{colorwhite:merchant.index == $index}"><type-style value="item.status" list="merchantstatus"></td>
+              <!--<th>{{item.bankCard}}</th> </type-style>{{item.status| nameTovalue:'id':'name':$root.merchantstatus}}-->
+              <td ng-class="{colorwhite:merchant.index == $index}">{{item.lastTime}}</td>
+                <!--<td>
+                    <a href="" ng-click="merchant.editMode = false; merchant.getMerchantDetails(item.name);" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary btn-small">查询</a>
+                </td>-->
+                <!--<td>-->
+                    <!--<a href="" ng-click="merchant.editMode = true; merchant.editMerchant(item.name);" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary btn-small">{{$root.lagconfig['修改']}}</a>-->
+                    <!--<a href="" ng-click="merchant.deleteMerchant(item.name);" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-danger btn-small">{{$root.lagconfig['删除']}}</a>-->
+                <!--</td>-->
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  <div class="pull-right buttonpost">
+    <click-button click="merchant.deleteMerchant" data="user.roleitem" value="删除"></click-button>
+    <click-button click="merchant.openCreateMerchantForm" data="user.roleitem" ng-show="!$root.isAcc" value="创建"></click-button>
+    <click-button click="merchant.editMerchant" value="更新"></click-button>
+    <!--<a href="" ng-click="merchant.openCreateMerchantForm();" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['创建']}}</a>-->
+  </div>
+  <pagination page="merchant.page" total="merchant.total" size="merchant.sizePerPage" trigger="merchant.getMerchantList(page)"></pagination>
+</div>
+<div class="modal-big">
+    <div ng-include="'app/merchant/merchantManagement/merchantManagement.createMerchant.html'"></div>
+    <div ng-include="'app/merchant/merchantManagement/merchantManagement.editMerchant.html'"></div>
+</div>

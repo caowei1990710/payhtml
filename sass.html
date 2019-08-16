@@ -1,0 +1,19 @@
+{
+// Default options
+'functions': true,
+'variableNameTransforms': ['dasherize']
+}
+
+{{#extend "sass"}}
+{{#content "sprites"}}
+.syin
+display: inline-block
+$imageurl: ''
+{{#each sprites}}
+${{strings.name}}: ({{px.x}}, {{px.y}}, {{px.offset_x}}, {{px.offset_y}}, {{px.width}}, {{px.height}}, {{px.total_width}}, {{px.total_height}}, ($imageurl + '{{{escaped_image}}}'), 'syin-{{name}}')
+{{/each}}
+{{/content}}
+{{#content "spritesheet"}}
+${{spritesheet_info.strings.name_sprites}}: ({{#each sprites}}${{strings.name}}, {{/each}})
+{{/content}}
+{{/extend}}

@@ -1,0 +1,37 @@
+.cashin-cd {
+  background-image: url(/assets/images/ring.gif);
+  background-repeat: no-repeat;
+  height: 150px;
+  background: #493c8d transparent;
+  position: relative;
+  margin: auto;
+  width: 120px;
+}
+
+.cashin-cd h1 {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.cashin-cd h4 {
+  padding-top: 40px;
+  text-align: center;
+}
+
+.manualcashincontent {
+  margin: 0px 20px 20px;
+  padding: 10px 10%;
+  background-color: #68c0f9;
+  line-height: 50px;
+}
+
+.manualcashincontent ul {
+  padding-left: 60px;
+  display: inline-block
+}
+.contentmargin{
+  margin: 10px;
+}
+:focus{
+  outline: none;
+}

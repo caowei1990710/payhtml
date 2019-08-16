@@ -1,0 +1,27 @@
+<div class="tab-content">
+    <table class="table container-fluid">
+        <thead>
+            <tr>
+                <th>{{$root.lagconfig['设备名称']}}</th>
+                <th>{{$root.lagconfig['所属平台']}}</th>
+                <th>{{$root.lagconfig['创建日期']}}</th>
+                <th>{{$root.lagconfig['操作']}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in sm.deviceList">
+                <td>{{item.name}}</td>
+                <td>{{sm['platformList'+item.platformId].name;}}</td>
+                <td>{{item.createDate|dateFormate}}</td>
+                <td>
+                    <a href="" ng-click="sm.editDevice($index,item.id);" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary btn-small">{{$root.lagconfig['修改']}}</a>
+                    <!--<a href="" ng-click="merchant.deleteMerchant(item.name);" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-danger btn-small">删除</a>-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="#createDeviceitem" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary pull-right">{{$root.lagconfig['添加']}}</a>
+
+    <pagination page="sm.page" total="sm.total" trigger="sm.getDevicelist(page,10)"></pagination>
+</div>
+<div ng-include="'app/systemManagement/device/device.popup.html'"></div>

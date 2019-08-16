@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<script type="text/javascript" src="http://static.runoob.com/assets/qrcode/qrcode.min.js"></script>
+<script type=text/javascript src=jquery.min.js></script>
+<script type="text/javascript" src="md5.js"></script>
+<body>
+<div align="center" id="qr" class="margin-top" style="display:none;text-align: center"></div>
+
+</body>
+<script>
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+  var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+  var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+  var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+  var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+  var bIsAndroid = sUserAgent.match(/android/i) == "android";
+  var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+  var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+  var ismobel = false;
+  if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+//    alert("您是手机登录");
+    ismobel = true
+  }
+  function gopay() {
+    var apiQuery = {
+      "CustomerId": "2_16542132",
+      "OrderType": "1",
+      "UserId": "shunfu001",
+    }
+    var result = "CustomerId=" + apiQuery.CustomerId + "&OrderType=1&UserId" + apiQuery.UserId
+      + "&Key=a7925f7886bd2451";
+//    var result = "BankCode=" + apiDeposit.BankCode + "&CallBackUrl=" + apiDeposit.CallBackUrl + "&CustomerId" + apiDeposit.CustomerId
+//      + "&Message=" + apiDeposit.Message + "&Mode=" + apiDeposit.Mode + "&Money=" + apiDeposit.Money + "&ReturnUrl=" + apiDeposit.ReturnUrl + "&UserId=" + apiDeposit.UserId + "&Key="
+//      + "a7925f7886bd2451";
+    console.log("result:" + result + " sign:" + hex_md5(result));
+    apiQuery.sign = hex_md5(result);
+//    $.ajax({
+//      type: 'post',
+//      url: 'http://api.wandapay88.com/api_query',
+//      data: apiQuery,
+//      success: function (data) {
+//        console.log(data);
+//        if (data.code != 200) {
+////            playMusic();
+////            var utterThis = new window.SpeechSynthesisUtterance('没有可用的商户，请注意及时处理！');
+////            window.speechSynthesis.speak(utterThis);
+//          alert(data.msg);
+//          return
+//        }
+//      },
+//      error: function (data) {
+//      }
+//    })
+  }
+  gopay();
+  var qrcode = new QRCode(document.getElementById("qr"), {
+    width: 300,
+    height: 300
+  });
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) {
+        return pair[1];
+      }
+    }
+    return (false);
+  }
+  //  $.ajax({
+  //    type: "GET",
+  //    url: "http://zhifudemo.com:8081/getPosal?userRemark=17845119&merchaant_no=TEST",
+  //    success: function (data) {
+  //      console.log(data);
+  //      if (ismobel) {
+  //        window.open(data.msg)
+  //      } else {
+  //        qrcode.makeCode(data.msg);
+  //        $("#qr").css("display", "inline");
+  ////      alert(data);
+  //        $("#qr").css("display", "inline");
+  //      }
+  //
+  //    }
+  //  })
+  //  function checkDeposit(result) {
+  //    if (result == true)
+  //      return;
+  //    var userRemark = getQueryVariable("userRemark");
+  //    if (!userRemark)
+  //      return;
+  //    var url = "http://zhifudemo.com:8081/getProposal?page=1&size=500&beginTime=0&endTime=0&payAccont=&depositNumber=" + userRemark + "&platfrom=&state=";
+  //    setTimeout(function () {
+  //      $.ajax({
+  //        type: "GET",
+  //        url: url,
+  //        success: function (data) {
+  //          console.log(data);
+  //          checkDeposit(data.data[0].state == "EXECUTED")
+  ////          if ("default" == data.msg) {
+  ////            setTimeout(function () {
+  ////              var index = i + 1;
+  ////              getQr(index);
+  ////            }, 2000);
+  ////          } else {
+  ////            if (ismobel) {
+  ////              window.open(data.msg)
+  ////            } else {
+  ////              qrcode.makeCode(data.msg);
+  ////              setTimeout(function () {
+  ////                $("#qr").css("display", "block");
+  ////                $("#qr img").css("display", "inline")
+  ////              }, 1000);
+  ////
+  //////      alert(data);
+  ////            }
+  ////          }
+  //        }
+  //      })
+  //    }, 2000);
+  //  }
+  function checkpay() {
+    var userRemark = getQueryVariable("userRemark");
+    $.ajax({
+      type: "GET",
+//      url: "http://zhifudemo.com:8081/getPosal?userRemark=" + userRemark,
+      url: "http://api.wandapay88.com/getPosal?userRemark=" + userRemark,
+      success: function (data) {
+        console.log(data);
+        if (data.msg.split("&")[1] == "EXECUTED") {
+          alert("付款已完成")
+          window.close();
+          return
+        } else if (data.msg.split("&")[1] == "OVERTIME") {
+          alert("提案已超时")
+          window.close();
+          return
+        }
+        setTimeout(function () {
+          checkpay();
+        }, 2000)
+      }
+    })
+
+  }
+  function getQr(i) {
+    if (i > 10) {
+      alert("服务器繁忙，请稍后再试");
+      return
+    }
+    var userRemark = getQueryVariable("userRemark");
+//    if ("default" != msg)
+//        return
+    $.ajax({
+      type: "GET",
+//      url: "http://zhifudemo.com:8081/getPosal?userRemark=" + userRemark,
+      url: "http://api.wandapay88.com/getPosal?userRemark=" + userRemark,
+      success: function (data) {
+        console.log(data + " 和" + data.msg.split("&")[0]);
+        if (data.code != 200)
+          alert(data.msg);
+        if (data.msg.split("&")[0].indexOf("pay.html?userRemark") != -1) {
+          setTimeout(function () {
+            if (data.msg.split("&")[1] == "EXECUTED") {
+              alert("付款已完成")
+              window.close();
+              return
+            } else if (data.msg.split("&")[1] == "OVERTIME") {
+              alert("提案已超时")
+              window.close();
+              return
+            }
+            var index = i + 1;
+            getQr(index);
+          }, 5000);
+        } else {
+          if (ismobel) {
+//            alert("url:" + data.msg.split("_")[0]);
+            window.open(data.msg.split("&")[0])
+          } else {
+            qrcode.makeCode(data.msg.split("&")[0]);
+//            checkDeposit(false);
+            setTimeout(function () {
+              $("#qr").css("display", "block");
+              $("#qr img").css("display", "inline")
+            }, 1000);
+            checkpay();
+//      alert(data);
+          }
+        }
+      }
+    })
+  }
+  getQr(0);
+</script>
+</html>

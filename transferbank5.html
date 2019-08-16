@@ -1,0 +1,586 @@
+<!-- saved from url=(0054)http://pay.hc555.net/payment/bank/mains.php?is_login=1 -->
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="bankdeposith5_files/layer.css" id="layuicss-layer">
+</head>
+<body style="width: 100%;">
+<meta name="viewport"
+      content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
+<title>银行卡充值</title>
+<!-- 引入 FrozenUI -->
+<link rel="stylesheet" href="bankdeposith5_files/frozenui.css">
+<link rel="stylesheet" href="bankdeposith5_files/style.css">
+<script src="bankdeposith5_files/jquery-1.7.2.min.js"></script>
+<script src="bankdeposith5_files/clipboard.js"></script>
+<script src="bankdeposith5_files/layer.js"></script>
+<script src="bankdeposith5_files/TouchSlide.1.1.js"></script>
+<script>
+  var href = "http://www.wandapay88.com";
+  //  var href = "http://www.hp168168.com";
+  var a = document.body.innerHTML;
+  document.body.innerHTML = a.replace(/\ufeff/g, '');
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var str = getval, bankcard, bankname, bankaddress, bankType;
+  if (!str) {
+    alert("请先登录");
+//    window.close();
+    //    window.location.href = 'http://www.hp168168.com/bankDeposit.html';
+  }
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var bIsIpad = sUserAgent.match(/ipad/i) == 'ipad';
+  var bIsIphoneOs = sUserAgent.match(/iphone os/i) == 'iphone os';
+  var bIsMidp = sUserAgent.match(/midp/i) == 'midp';
+  var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == 'rv:1.2.3.4';
+  var bIsUc = sUserAgent.match(/ucweb/i) == 'web';
+  var bIsCE = sUserAgent.match(/windows ce/i) == 'windows ce';
+  var bIsWM = sUserAgent.match(/windows mobile/i) == 'windows mobile';
+  var bIsAndroid = sUserAgent.match(/android/i) == 'android';
+  var ismobel = false;
+  var index = 1, gotopaydemo;
+  var strs = new Array();
+  var mobiletype = 0;
+  strs = str.split(","); //字符分割
+  if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+//    alert("您是手机登录");
+    //  window.location.href = 'http://download.wandapay88.com/bankh5.html?id=' + strs[0];
+    ismobel = true
+  }
+  if (bIsAndroid) {
+    mobiletype = 1;
+//      alert("卓用户请把支付宝后台线程杀掉，刷新支付页面，如果不能跳转，请扫码支付!");
+  }
+  else {
+    if (ismobel)
+      mobiletype = 2;
+  }
+  $.ajax({
+    type: 'GET',
+    // url: "http://192.168.11.128:8081/" + url,
+    url: "http://www.wandapay88.com:8081/updateDevice?depositNumber=" + strs[0] + "&mobiletype=" + mobiletype,
+    success: function (data) {
+//          todo(data);
+    },
+    error: function (data) {
+    }
+  });
+
+  //  function addmore() {
+  //    window.location.href = href + "/addbank.html?id=" + getval;
+  //  }
+  //  $.ajax({
+  //    type: "POST",
+  //    dataType: "json",
+  //    // url: "http://localhost:8081/getbank?userName=" + strs[0],
+  //    url: href + ":8081/getbank",
+  //    data: {
+  //      "userName": strs[0]
+  //    },
+  //    success: function (result) {
+  //      //                alert(result.msg);
+  //      if (!result.data) {
+  //        alert("未绑定银行卡,去添加银行卡");
+  //        window.location.href = href + "/addbank.html?id=" + getval;
+  //      }
+  //      if (result.data.realName != null) {
+  //        $('#first').css("display", "block")
+  //        $('#realName').html(result.data.realName);
+  //        $('#bankCard').html(result.data.bankName + "(" + result.data.bankCard + ")");
+  //      }
+  //      if (result.data.secondrealName != null) {
+  //        $('#second').css("display", "block")
+  //        $('#secondrealName').html(result.data.secondrealName);
+  //        $('#secondbankCard').html(result.data.secondbankName + "(" + result.data.secondbankCard + ")");
+  //      }
+  //      if (result.data.thirdrealName != null) {
+  //        $('#third').css("display", "block")
+  //        $('#addmore').css("display", "none")
+  //        $('#thirdrealName').html(result.data.thirdrealName);
+  //        $('#thirdbankCard').html(result.data.thirdbankName + "(" + result.data.thirdbankCard + ")");
+  //      }
+  //      $('#account').html(strs[0]);
+  //      if (strs.length > 1) {
+  //        $('#userAccount').html(strs[0]);
+  //        $('#userMoney').html(strs[1]);
+  //      }
+  //      $.ajax({
+  //        type: "PUT",
+  //        dataType: "json",
+  //        url: href + ":8081/updateuser",
+  //        data: {
+  //          "userName": strs[0],
+  //          "orderno": strs[2],
+  //          "callbackurl": strs[3]
+  //        },
+  //        success: function (result) {
+  ////            alert(result.msg);
+  //        }
+  //      })
+  //      $('#moneyamount').html(strs[1]);
+  //      $(".amountcopy12").attr('data-clipboard-text',strs[1])
+  //    }
+  //  })
+  //  $.ajax({
+  //    type: "GET",
+  //    dataType: "json",
+  //    // url: "http://localhost:8081/getbank?userName=" + strs[0],
+  //    url: href + ":8081/getbankitemstate?state=NORMAL",
+  //    success: function (result) {
+  //      console.log(result);
+  //      if (result.data.length == 2) {
+  //        TouchSlide({
+  //          slideCell: "#tabBox1",
+  //          endFun: function (i) { //高度自适应
+  //            var bd = document.getElementById("tabBox1-bd");
+  //            bd.parentNode.style.height = bd.children[i].children[0].offsetHeight + "px";
+  //            if (i > 0) bd.parentNode.style.transition = "200ms";//添加动画效果
+  //          }
+  //        });
+  //        $("#morebank").css("display", "table-cell");
+  //        $("#copy1").css("display", "inline-block");
+  //        $("#copy1").css("display", "inline-block");
+  //        $("#copy").html(result.data[0].bankType);
+  //        $("#copy1").html(result.data[1].bankType);
+  //        $("#copy_1").html(result.data[0].bankname);
+  //        $("#copy_11").html(result.data[1].bankname);
+  //        $("#copy_2").html(result.data[0].bankcard);
+  //        $("#copy_12").html(result.data[1].bankcard);
+  //        $("#copy_3").html(result.data[0].bankType);
+  //        $("#copy_13").html(result.data[1].bankType);
+  //        $("#copy_4").html(result.data[0].bankaddress);
+  //        $("#copy_14").html(result.data[1].bankaddress);
+  //        $("#copy").html(result.data.bankType);
+  //        $(".copy0").attr('data-clipboard-text', result.data[0].bankname)
+  //        $(".copy1").attr('data-clipboard-text', result.data[0].bankcard);
+  //        $(".copy2").attr('data-clipboard-text', result.data[0].bankType);
+  //        $(".copy3").attr('data-clipboard-text', result.data[0].bankaddress);
+  //        $(".copy10").attr('data-clipboard-text', result.data[1].bankname)
+  //        $(".copy11").attr('data-clipboard-text', result.data[1].bankcard);
+  //        $(".copy12").attr('data-clipboard-text', result.data[1].bankType);
+  //        $(".copy13").attr('data-clipboard-text', result.data[1].bankaddress);
+  //        //   copy0
+  //      } else if (result.data.length == 1) {
+  //        $("#copy").html(result.data[0].bankType);
+  //        $("#copy_1").html(result.data[0].bankname);
+  //        $("#copy_2").html(result.data[0].bankcard);
+  //        $("#copy_3").html(result.data[0].bankType);
+  //        $("#copy_4").html(result.data[0].bankaddress);
+  //        $(".copy0").attr('data-clipboard-text', result.data[0].bankname)
+  //        $(".copy1").attr('data-clipboard-text', result.data[0].bankcard);
+  //        $(".copy2").attr('data-clipboard-text', result.data[0].bankType);
+  //        $(".copy3").attr('data-clipboard-text', result.data[0].bankaddress);
+  //      } else {
+  //        alert("暂无收款卡号");
+  //        window.location.href = "https://www.baidu.com/";
+  //      }
+  //      //copy,copy_1,copy1,copy_11
+  //
+  //    }
+  //  })
+  //  $.ajax({
+  //    type: "GET",
+  //    dataType: "json",
+  //    // url: "http://localhost:8081/getbank?userName=" + strs[0],
+  //    url: "http://d1186.com:8081/getNotice?title=ads",
+  //    success: function (result) {
+  //      $('#content').html(result.data.content);
+  //    }
+  //  })
+  //  $('#content').html("支付金额一定要和提交的金额相符，否则不会自动到账！（仅支持手机银行APP或电脑网银转账！）");
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    // url: "http://localhost:8081/getbank?userName=" + strs[0],
+    url: href + ":8081/getProposaldeposit?depositNumber=" + strs[0],
+    success: function (result) {
+//        $('#content').html(result.data.content);
+      console.log("result:" + result);
+      var contentlist = result.data.result.split(",")
+      $("#copy").html(decodeURI(contentlist[3]));
+      $("#copy_1").html(decodeURI(contentlist[1]));
+      $("#copy_2").html(contentlist[0]);
+      $("#copy_3").html(decodeURI(contentlist[3]));
+      $(".copy0").attr('data-clipboard-text', decodeURI(contentlist[1]))
+      $(".copy1").attr('data-clipboard-text', contentlist[0]);
+      $(".copy2").attr('data-clipboard-text', decodeURI(contentlist[3]));
+      $('#moneyamount').html(contentlist[2]);
+      $(".amountcopy12").attr('data-clipboard-text', contentlist[2])
+      $('#content').html("支付金额一定是<span style='color:red'>" + result.data.money + "</span>到账金额<span style='color:red'>" + result.data.propsalNumber + "</span>，否则不会自动到账！（仅支持手机银行APP或电脑网银转账！）")
+//      $("#copy_4").html(result.data[0].bankaddress);
+    }
+  })
+  //  $.ajax({
+  //    type: "GET",
+  //    dataType: "json",
+  //    // url: "http://localhost:8081/getbank?userName=" + strs[0],
+  //    url: "http://www.hp168168.com/bankcard.json",
+  //    success: function (result) {
+  //      console.log(result);
+  //      //bankcard,bankname,bankaddress,bankType;
+  //      bankcard = result.bankcard;
+  //      bankname = result.bankname;
+  //      bankaddress = result.bankaddress;
+  //      bankType = result.bankType;
+  //      $("#copy_1").html(bankname);
+  //      $("#copy_2").html(bankcard);
+  //      $("#copy_3").html(bankType);
+  //      $("#copy_4").html(bankaddress);
+  //      $("#recivebankcard").html(bankname);
+  //    }
+  //  })
+  function gotobankcard(index) {
+    window.location.href = href + "/addbank.html?id=" + getval + "," + index;
+  }
+</script>
+<div class="header" style="width: 100%;">
+  <div class="back" onclick="javascript:history.back(-1);">
+    <img src="bankdeposith5_files/back.png">
+  </div>
+  <div class="title">
+    <span>大额充值</span>
+  </div>
+  <!--<div class="tool">-->
+  <!--<span class="exit" onclick="gobay()">退出</span>-->
+  <!--</div>-->
+</div>
+<div class="content">
+  <div class="next-header">
+    <span class="line"></span>
+    <span class="intro">付款银行卡</span>
+    <!--<p class="add"><a onclick="addmore()" id="addmore">添加</a></p>-->
+  </div>
+  <ul class="ui-list ui-list-single ui-list-link ui-border-tb">
+
+    <li class="ui-border-t" onclick="gotobankcard(0)" id="first" style="display:none">
+      <div class="ui-list-info banklist">
+        <h4 class="ui-nowrap" id="bankCard">中国工商银行<span class="card">（尾号2722
+						）</span></h4>
+        <div class="ui-txt-info" id="realName">李昊奇<span class="bang">(已绑定)</span></div>
+      </div>
+    </li>
+    <li class="ui-border-t" onclick="gotobankcard(1)" id="second" style="display:none">
+      <div class="ui-list-info banklist">
+        <h4 class="ui-nowrap" id="secondbankCard">中国工商银行<span class="card">（尾号2722
+						）</span></h4>
+        <div class="ui-txt-info" id="secondrealName">李昊奇<span class="bang">(已绑定)</span></div>
+      </div>
+    </li>
+    <li class="ui-border-t" onclick="gotobankcard(2)" id="third" style="display:none">
+      <div class="ui-list-info banklist">
+        <h4 class="ui-nowrap" id="thirdbankCard">中国工商银行<span class="card">（尾号2722
+						）</span></h4>
+        <div class="ui-txt-info" id="thirdrealName">李昊奇<span class="bang">(已绑定)</span></div>
+      </div>
+    </li>
+    <!--<li class="ui-border-t" onclick="javascript:location.href=&#39;banklist.php?username=cs8520&#39;;">-->
+    <!--<div class="ui-list-info banklist">-->
+    <!--<h4 class="ui-nowrap">招商银行<span class="card">（尾号-->
+    <!--6221-->
+    <!--）</span></h4>-->
+    <!--<div class="ui-txt-info">张三<span class="bang">(已绑定)</span></div>-->
+    <!--</div>-->
+    <!--</li>-->
+  </ul>
+  <button style="display:none;" class="ui-btn-lg more"
+          onclick="javascript:location.href=&#39;banklist.php?username=cs8520&#39;;">更多
+  </button>
+  <div class="tooltip mt0" style="display:none;">
+    <p><i class="info_1"></i>存在未验证的银行卡，成功转账一次即可验证成功！</p>
+  </div>
+  <div class="o-header">
+    <span class="line"></span>
+    <span class="intro">充值<span style="color:red" id="moneyamount">100</span><div
+      style="float:none;display:inline-block"
+      class="weui-cell__ft copy amountcopy12"
+      data-clipboard-text="" onclick="">复制</div>元到</span>
+    <!--<p class="zhanghu"><i class="info_2"></i><span style="color: #333333">会员账号：</span>-->
+    <!--<sapn id="account">cs8520</sapn>-->
+    <!--</p>-->
+  </div>
+  <div class="s-header">
+    <span class="line"></span>
+    <span class="intro">使用付款银行卡转账到下面的银行<span class="s-header-desc">（转账成功自动到账）</span></span>
+  </div>
+  <div class="table">
+    <div class="table-header">
+      <div class="table-header-item">
+        <span>1</span>
+        <p>打开网银APP</p>
+      </div>
+      <div class="table-header-item">
+        <img src="bankdeposith5_files/jiantou.png" width="15px;" height="15px;">
+      </div>
+      <div class="table-header-item">
+        <span>2</span>
+        <p>转账到下面银行</p>
+      </div>
+      <!--<div class="table-header-info">-->
+      <!--<p>注:使用已绑定的卡</p>-->
+      <!--</div>-->
+    </div>
+    <style>
+    </style>
+    <!-- Tab切换（高度自适应示范） -->
+    <div id="tabBox1" class="tabBox">
+      <div class="hd">
+        <ul>
+          <li class="on"><a href="javascript:void(0)"><span id="copy">农业银行</span></a></li>
+          <li><a href="javascript:void(0)"><span id="copy1" style="display:none">建设银行</sapn></a></li>
+        </ul>
+      </div>
+      <!--<div class="hd">-->
+      <!--<ul>-->
+      <!--<li class="on"><a href="javascript:void(0)">农业银行</a></li>-->
+      <!--</ul>-->
+      <!--</div>-->
+      <div class="tempWrap" style="overflow: hidden; position: relative; height: 161px;">
+        <div class="bd" id="tabBox1-bd"
+             style="width: 375px; position: relative; overflow: hidden; padding: 0px; margin: 0px; transition-duration: 200ms; transform: translate(0px, 0px) translateZ(0px);">
+          <!-- 添加id，js用到 -->
+          <div class="con" style="display: table-cell; vertical-align: top; width: 375px;"><!-- 高度自适应需添加外层 -->
+            <ul>
+              <div class="weui-cell">
+                <div class="weui-cell__hd">入款姓名</div>
+                <div class="weui-cell__bd" id="copy_1"></div>
+                <div class="weui-cell__ft copy copy0" data-clipboard-text="" onclick="">复制</div>
+              </div>
+              <div class="weui-cell">
+                <div class="weui-cell__hd">银行账户</div>
+                <div class="weui-cell__bd" id="copy_2"></div>
+                <div class="weui-cell__ft copy copy1" data-clipboard-text="" onclick="">复制</div>
+              </div>
+              <div class="weui-cell">
+                <div class="weui-cell__hd">入款银行</div>
+                <div class="weui-cell__bd" id="copy_3"></div>
+                <div class="weui-cell__ft copy copy2" data-clipboard-text="" onclick="">复制</div>
+              </div>
+              <!--<div class="weui-cell">-->
+              <!--<div class="weui-cell__hd">银行地址</div>-->
+              <!--<div class="weui-cell__bd" id="copy_4"></div>-->
+              <!--<div class="weui-cell__ft copy copy3" data-clipboard-text="" onclick="">复制</div>-->
+              <!--</div>-->
+            </ul>
+          </div>
+          <!--<div class="con" style="display: table-cell; vertical-align: top; width: 375px;" >&lt;!&ndash; 高度自适应需添加外层 &ndash;&gt;-->
+          <div class="con" id="morebank" style="display: none; vertical-align: top; width: 375px;"><!-- 高度自适应需添加外层 -->
+            <ul>
+              <div class="weui-cell">
+                <div class="weui-cell__hd">入款姓名</div>
+                <div class="weui-cell__bd" id="copy_11"></div>
+                <div class="weui-cell__ft copy copy10" data-clipboard-text="" onclick="">复制</div>
+              </div>
+              <div class="weui-cell">
+                <div class="weui-cell__hd">银行账户</div>
+                <div class="weui-cell__bd" id="copy_12"></div>
+                <div class="weui-cell__ft copy copy11" data-clipboard-text="" onclick="">复制</div>
+              </div>
+              <div class="weui-cell">
+                <div class="weui-cell__hd">入款银行</div>
+                <div class="weui-cell__bd" id="copy_13"></div>
+                <div class="weui-cell__ft copy copy12" data-clipboard-text="" onclick="">复制</div>
+              </div>
+              <div class="weui-cell">
+                <div class="weui-cell__hd">银行地址</div>
+                <div class="weui-cell__bd" id="copy_14"></div>
+                <div class="weui-cell__ft copy copy13" data-clipboard-text="" onclick="">复制</div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<script type="text/javascript">-->
+
+    <!--</script>-->
+
+
+    <div class="tooltip">
+      <p><i class="info_1"></i>注意：①：每次转账时请按照此页面显示的收款方为准进行转账。<br>
+        ②：务必使用此充值方式所绑定的银行卡进行转账。</p>
+    </div>
+  </div>
+  <ul class="notice-n">
+    <li>
+      <div class="ui-nowrap ui-whitespace ui-txt-warning tip" style="color:red">
+        入款卡更新通知，请您认清最新入款卡进行充值
+      </div>
+      <div class="time ui-txt-muted">06-19</div>
+    </li>
+    <!--<button class="ui-btn-lg more" onclick="javascript:location.href=&#39;wzlist.php&#39;;">更多</button>-->
+  </ul>
+  <!--<div class="more_desc">请在10分钟内完成转账 剩余 <span id="title">09 : 24</span></div>-->
+  <div class="help"><span class="liucheng" style="margin-right:20px;">大额充值到账流程</span> <i class="info_3"></i>
+    <a href="https://tb.53kf.com/code/client/10196792/1" target="_blank"></a></div>
+  <div class="ui-dialog dialog">
+    <div class="ui-dialog-cnt">
+      <div class="ui-dialog-bd">
+        <h3>收款账号更换通知</h3>
+        <!--<p class="dialog-l">尊敬的会员：</p>
+        <p class="dialog-p">由于银行每日23.50- -次日00:02
+        需要进行账目清算，在此时间段进行
+        维护，不能及时收到款项，无法及时
+        入款!请先使用其他充值方式入款，
+        请互相告知。给您带来不便敬请谅
+        解,谢谢。</p>-->
+        <p class="dialog-l" style="white-space: normal;">尊敬的会员：</p>
+        <p class="dialog-p" style="white-space: normal;" id="content"></p>
+        <p><br></p>
+      </div>
+      <div class="ui-dialog-ft">
+        <button type="button" data-role="button" class="button">确定</button>
+      </div>
+    </div>
+  </div>
+  <div class="ui-dialog liulog">
+    <div class="ui-dialog-cnt">
+      <div class="ui-dialog-bd">
+        <h3>大额充值到账流程</h3>
+        <p><b style="color: #12B7F5;">第一步：</b>通过银行APP或网银转账至大额充值专用账户</p>
+        <p><b style="color: #12B7F5;">第二步：</b>核实转账，等待银行处理</p>
+        <p><b style="color: #12B7F5;">第三步：</b>充值成功 <br><span style="color:#999999; font-size:14px;">完成银行转账后，一般1 - 3 分钟内充值到账，具体以银行收到款项时间为准</span>
+        </p>
+      </div>
+      <div class="ui-dialog-ft">
+        <button type="button" data-role="button" class="button liuclose">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  //  window.onload = function () {
+  //    var m = 9;  //分
+  //    var s = 59;  //秒
+  //    var countdown = document.getElementById("title");
+  //    getCountdown();
+  //    setInterval(function () {
+  //      getCountdown()
+  //    }, 1000);
+  //    function getCountdown() {
+  //      countdown.innerHTML = '0' + m + " : " + s;
+  //      if (m == 0 && s == 0) {
+  //        layer.msg('倒计时结束');
+  //        m = 9;
+  //        s = 59;
+  //      } else if (m >= 0) {
+  //        if (s > 0) {
+  //          s--;
+  //        } else if (s == 0) {
+  //          m--;
+  //          s = 59;
+  //        }
+  //      }
+  //    }
+  //
+  document.querySelector(".dialog").classList.add('show');
+
+  document.querySelector(".button").addEventListener("click", function () {
+    document.querySelector(".dialog").classList.remove('show');
+  });
+  //
+  var clp = new ClipboardJS('.copy');
+  clp.on('success', function (e) {
+    layer.msg('复制成功');
+  });
+  clp.on('error', function (e) {
+    console.log(e);
+  });
+  //
+  //  }
+
+
+  document.querySelector(".liucheng").addEventListener("click", function () {
+    document.querySelector(".liulog").classList.add('show');
+  });
+
+  document.querySelector(".liuclose").addEventListener("click", function () {
+    document.querySelector(".liulog").classList.remove('show');
+  });
+
+  var browser = {
+    versions: function () {
+      var u = navigator.userAgent, app = navigator.appVersion;
+      return {     //移动终端浏览器版本信息
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+        iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+        iPad: u.indexOf('iPad') > -1, //是否iPad
+        webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+      };
+    }(),
+    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+  }
+  if (browser.versions.mobile) {//判断是否是移动设备打开。browser代码在下面
+    document.querySelector("body").style.width = '100%';
+    document.querySelector(".header").style.width = '100%';
+  }
+  else {
+    document.querySelector("body").style.width = '750px';
+    document.querySelector(".header").style.width = '750px';
+  }
+
+</script>
+<script>
+  function gobay() {
+    window.location.href = 'http://www.hp168168.com/bankDeposit.html';
+//    $.ajax({
+//      //几个参数需要注意一下
+//      type: "POST",//方法类型
+//      dataType: "json",//预期服务器返回的数据类型
+//      url: "ajax.php",//url
+//      data: {act: "bay"},
+//      success: function (result) {
+//        if (result.ret == "1") {
+//          layer.msg('退出登陆', {
+//            icon: 1,
+//            time: 2000,
+//            end: function () {
+//              location.href = 'user_login.php';
+//            }
+//          });
+//        }
+//      },
+//      error: function () {
+//        alert("异常！");
+//      }
+//    });
+  }
+
+
+  //  function oderquery(t) {
+  //    var bid = '71623';
+  //
+  ////
+  ////    $.ajax({
+  ////      //几个参数需要注意一下
+  ////      type: "POST",//方法类型
+  ////      dataType: "json",//预期服务器返回的数据类型
+  ////      url: "ajax.php",//url
+  ////      data: {bid: bid, act: "re_bid"},
+  ////      success: function (result) {
+  ////        if (result.ret == "1") {
+  ////          //alert(3);
+  ////          window.location.href = '../success_wap2.php?orderid=' + result.order_id + '&paytype=1';
+  ////        }
+  ////      },
+  ////      error: function () {
+  ////        //alert("异常！");
+  ////      }
+  ////    });
+  //
+  //
+  ////    t = t + 1;
+  ////    setTimeout('oderquery(' + t + ')', 1500);
+  //  }
+  //
+  //  setTimeout('oderquery(1)', 1500);
+
+
+</script>
+</body>
+</html>

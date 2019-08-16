@@ -1,0 +1,158 @@
+<!-- Modal -->
+<div id="createBankType" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['创建银行类型']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" w5c-submit="sm.addBank();" role="form" class="no-margin" name="createBankTypeForm">
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属银行']}}:
+            </label>
+            <input name="createBankTypeFormName" type="text" ng-model="sm.createBankTypeForm.name" required/>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['优先等级']}}:
+            </label>
+            <input name="createBankTypeFormPriority" type="text" ng-model="sm.createBankTypeForm.priority" />
+          </div>
+        </div>
+        <div class="span6">
+          <!--<div class="control-group">-->
+          <!--<label class="control-label">-->
+          <!--银行LOGO-->
+          <!--</label>-->
+          <!--<div class="controls">-->
+          <!--<upload-file name="createBankTypeFormLogoUrl" ng-model="sm.createBankTypeForm.logoUrl"></upload-file>-->
+          <!--</div>-->
+          <!--</div>-->
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['银行代码']}}:
+            </label>
+            <input name="createBankTypeFormCode" type="text" ng-model="sm.createBankTypeForm.code" required/>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <click-button data="user.departmentitem.numbers" value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary" ng-click="sm.addBank();">-->
+      <!--确认-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--取消-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="editBankType" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4> {{$root.lagconfig['修改银行类型']}}</h4>
+  </div>
+  <!--<div class="modal-body">-->
+  <!--<form class="no-margin" name="editBankTypeForm">-->
+  <!--<input name="editBankTypeFormId" type="hidden" ng-model="sm.editBankTypeForm.id" />-->
+  <!--<div class="row-fluid">-->
+  <!--<div class="span6">-->
+  <!--<div class="control-group">-->
+  <!--<label class="control-label">-->
+  <!--{{$root.lagconfig['所属银行']}}-->
+  <!--</label>-->
+  <!--<div class="controls">-->
+  <!--<input name="editBankTypeFormName" type="text" ng-model="sm.editBankTypeForm.name" />-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="control-group">-->
+  <!--<label class="control-label">-->
+  <!--{{$root.lagconfig['优先等级']}}-->
+  <!--</label>-->
+  <!--<input name="editBankTypeFormPriority" type="text" ng-model="sm.editBankTypeForm.priority" />-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="span6">-->
+  <!--&lt;!&ndash;<div class="control-group">&ndash;&gt;-->
+  <!--&lt;!&ndash;<label class="control-label">&ndash;&gt;-->
+  <!--&lt;!&ndash;银行LOGO&ndash;&gt;-->
+  <!--&lt;!&ndash;</label>&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="controls">&ndash;&gt;-->
+  <!--&lt;!&ndash;<upload-file name="editBankTypeFormLogoUrl" ng-model="sm.editBankTypeForm.logoUrl"></upload-file>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--<div class="control-group">-->
+  <!--<label class="control-label">-->
+  <!--{{$root.lagconfig['银行代码']}}-->
+  <!--</label>-->
+  <!--<input name="editBankTypeFormCode" type="text" ng-model="sm.editBankTypeForm.code" />-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--</div>-->
+  <!--</form>-->
+  <!--</div>-->
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="sm.updateBank();" class="no-margin"
+        name="updateBankTypeForm">
+    <div class="modal-body">
+      <input name="editBankTypeFormId" type="hidden" ng-model="sm.editBankTypeForm.id"/>
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['所属银行']}}:
+            </label>
+            <input name="createBankTypeFormName" type="text" ng-model="sm.editBankTypeForm.name" required/>
+          </div>
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['优先等级']}}:
+            </label>
+            <input name="createBankTypeFormPriority" type="text" ng-model="sm.editBankTypeForm.priority"/>
+          </div>
+        </div>
+        <div class="span6">
+          <!--<div class="control-group">-->
+          <!--<label class="control-label">-->
+          <!--银行LOGO-->
+          <!--</label>-->
+          <!--<div class="controls">-->
+          <!--<upload-file name="createBankTypeFormLogoUrl" ng-model="sm.createBankTypeForm.logoUrl"></upload-file>-->
+          <!--</div>-->
+          <!--</div>-->
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['银行代码']}}:
+            </label>
+            <input name="createBankTypeFormCode" type="text" ng-model="sm.editBankTypeForm.code" required/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button data="user.departmentitem.numbers" value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary" click="sm.updateBank" ng-click="sm.updateBank();">-->
+      <!--确认-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--取消-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>

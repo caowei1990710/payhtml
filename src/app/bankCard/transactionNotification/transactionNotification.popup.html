@@ -1,0 +1,145 @@
+<!-- Modal -->
+<div id="createTask" style="width: 800px;left: 40%;" class="modal hide fade in" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4 id="">
+      {{$root.lagconfig['生成转账任务']}}
+    </h4>
+  </div>
+  <div class="modal-body">
+    <form class="no-margin" name="createTaskForm">
+      <div class="row-fluid">
+        <div class="span6">
+          <div class="control-group divinput">
+            <!--<label class="control-label span3 pull-left">-->
+            <label>{{$root.lagconfig['所属银行']}}:</label><span></label>{{bc.createTaskForm.bankId | nameTovalue:'id':'name':$root.banklist}}</span>
+            <!--</label>-->
+            <!--{{bc.createTaskForm.bankId | nameTovalue:'id':'name':$root.banklist}}-->
+            <!--<select-list ng-model="bc.editBankForm.bankId" name="banklist" canselect="1"></select-list>-->
+            <!--<select-list ng-model="bc.createTaskForm.bankId" name=""></select-list>-->
+            <!--<div class="controls">-->
+            <!--<bankcard-dropdown ng-model="bc.createTaskForm.fromBankId" name="createTaskFormFromBankId" ng-disabled="true"></bankcard-dropdown>-->
+            <!--</div>-->
+          </div>
+          <div class="control-group divinput">
+            <!--<label class="control-label span3 pull-left">-->
+            <label>{{$root.lagconfig['银行账号']}}:</label><span>{{bc.createTaskForm.bankCard | bankFormal}}</span>
+            <!--</label>-->
+            <!--<div class="controls">-->
+            <!--{{bc.createTaskForm.bankCard | bankFormal}}-->
+            <!--<input ng-model="bc.createTaskForm.bankCard" name="createTaskFormFromBankCard" type="text" readonly/>-->
+            <!--</div>-->
+          </div>
+          <div class="control-group divinput">
+            <!--<label class="control-label span3 pull-left">-->
+            <label>{{$root.lagconfig['开户姓名']}}:</label><span>{{bc.createTaskForm.cardName | itemTolish}}</span>
+            <!--</label>-->
+            <!--<div class="controls">-->
+            <!--{{bc.createTaskForm.cardName | itemTolish}}-->
+            <!--<input ng-model="bc.createTaskForm.cardName" name="createTaskFormFromCardName" type="text" readonly/>-->
+            <!--</div>-->
+          </div>
+          <!--<div class="control-group">-->
+          <!--<label class="control-label">-->
+          <!--手续费-->
+          <!--</label>-->
+          <!--<div class="controls">-->
+          <!--<input ng-model="bc.handservice" name="createTaskFormFromCredit" type="number" />-->
+          <!--</div>-->
+          <!--</div>-->
+          <div class="control-group divinput">
+            <label>
+              {{$root.lagconfig['转账额度']}}:
+            </label>
+            <input ng-pattern="/^0\.([1-9]|\d[1-9])$|^[1-9]\d{0,8}\.\d{0,2}$|^[1-9]\d{0,8}$/"
+                   ng-model="bc.translatecredit" name="createTaskFormFromCredit" type="text"/>
+
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group divinput">
+            <!--<label class="control-label span3 pull-left">-->
+            <label>{{$root.lagconfig['所属平台']}}:</label><span>{{bc.createTaskForm.platformId | nameTovalue:'id':'name':$root.platformlist}}</span>
+            <!--</label>-->
+            <!--<div class="controls">-->
+            <!--<select-list ng-model="merchant.createTaskForm.platformId" name="platformlist"-->
+            <!--canselect="1"></select-list>-->
+            <!--{{bc.createTaskForm.platformId | nameTovalue:'id':'name':$root.platformlist}}-->
+            <!--<platform-dropdown ng-model="bc.createTaskForm.PlatformId" name="createTaskFormPlatformId" ng-disabled="true"></platform-dropdown>-->
+            <!--</div>-->
+          </div>
+          <div class="control-group divinput">
+            <!--<label class="control-label span3 pull-left">-->
+            <label>{{$root.lagconfig['目前余额']}}:</label> <span style="color: red">{{bc.createTaskForm.credit}}</span>
+            <!--</label>-->
+            <!--<div class="controls" style="color: red">-->
+            <!--{{bc.createTaskForm.credit| currency : '￥'}}-->
+            <!--&lt;!&ndash;<input ng-model="bc.createTaskForm.credit" name="createTaskFormFromCredit" type="text" />&ndash;&gt;-->
+            <!--</div>-->
+          </div>
+          <div class="control-group divinput">
+            <!--<label class="control-label span3 pull-left">-->
+            <label>{{$root.lagconfig['余额限制']}}:</label><span>{{bc.createTaskForm.promptCredit}}</span>
+            <!--</label>-->
+            <!--<div class="controls">-->
+            <!--&lt;!&ndash;{{bc.createTaskForm.promptCredit}}&ndash;&gt;-->
+            <!--<input ng-model="bc.createTaskForm.promptCredit" name="createTaskFormFromLimitCredit" type="text"-->
+            <!--readonly/>-->
+            <!--</div>-->
+          </div>
+        </div>
+
+      </div>
+      <div>
+        <div class="departmentbutton"
+             style="width: 100%;text-align: center;line-height: 50px;font-weight: bold;color: white;" type="button"
+             ng-click="bc.subAlertLoadingBankCard();">
+          {{$root.lagconfig['请选择转账到指定账号']}}
+        </div>
+        <div style="margin-left: 0px;height: 200px;overflow: auto">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>{{$root.lagconfig['所属平台']}}</th>
+              <th>{{$root.lagconfig['所属类型']}}</th>
+              <th>{{$root.lagconfig['银行类型']}}</th>
+              <th>{{$root.lagconfig['银行账号']}}</th>
+              <th>{{$root.lagconfig['开户姓名']}}</th>
+              <th>{{$root.lagconfig['付款金额']}}</th>
+              <th>{{$root.lagconfig['今日交易']}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in bc.subList" ng-class="{acolor:bc.index == $index}"
+                ng-click="bc.selectReceiver($index);">
+              <td ng-class="{colorwhite:bc.index == $index}">{{item.platformId |
+                nameTovalue:'id':'name':$root.platformlist}}
+              </td>
+              <td ng-class="{colorwhite:bc.index == $index}">{{item.type | nameTovalue:'id':'name':$root.cardtype}}</td>
+              <td ng-class="{colorwhite:bc.index == $index}">{{item.bankId| nameTovalue:'id':'name':$root.banklist}}
+              </td>
+              <td ng-class="{colorwhite:bc.index == $index}">{{item.bankCard | bankFormal}}</td>
+              <td ng-class="{colorwhite:bc.index == $index}">{{item.cardName}}</td>
+              <td style="color: red">{{item.credit}}</td>
+              <td ng-class="{colorwhite:bc.index == $index}">{{item.transactionForToday}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <click-button click="bc.createTransferTaskBankCard" data="user.departmentitem.numbers" value="确认"></click-button>
+    <click-button data-dismiss="modal" value="取消"></click-button>
+    <!--<button class="btn btn-primary" ng-click="bc.createTransferTaskBankCard();">-->
+    <!--{{$root.lagconfig['确认']}}-->
+    <!--</button>-->
+    <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+    <!--{{$root.lagconfig['取消']}}-->
+    <!--</button>-->
+  </div>
+</div>

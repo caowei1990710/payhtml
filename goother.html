@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>付款中</title>
+</head>
+
+<body>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+<script type=text/javascript src=jquery.min.js></script>
+<script>
+  //id=2088232912789773,140EB20ECE344DDAD38,500.0
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var reflush = true;
+  var bIsAndroid = sUserAgent.match(/android/i) == 'android';
+  //alert(getval);
+  var index = 1;
+  var str = getval;
+
+  var strs = new Array();
+
+  strs = str.split(","); //字符分割
+
+  function returnApp() {
+//    AlipayJSBridge.call('toast', {content: "返回到了付款页面"});
+    AlipayJSBridge.call("exitApp");
+  }
+
+  function ready(a) {
+    window.AlipayJSBridge ? a && a() : document.addEventListener("AlipayJSBridgeReady", a, false);
+  }
+
+  ready(function () {
+//    ap.redirectTo('alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s":"money","u":"' + strs[0] + '","a":"' + strs[2] + '","m":"' + strs[1] + '"}')
+//    document.querySelector('scaner').addEventListener('click', function () {
+//      ap.alert("开始支付");
+//      console.log("开始支付");
+//      AlipayJSBridge.call('scan', {
+//        type: 'qr',
+//        actionType: 'scanAndRoute'
+//      }, function (result) {
+//        alert(JSON.stringify(result));
+//      });
+//    });
+    try {
+      var a = {
+        actionType: "scan",
+        u: strs[0],
+        a: strs[2],
+        m: strs[1],
+        biz_data: {
+          s: "money",
+          u: strs[0],
+          a: strs[2],
+          m: strs[1]
+        }
+      }
+    } catch (b) {
+
+    }
+    AlipayJSBridge.call("startApp", {
+      appId: "20000123",
+      param: a
+    });
+
+//    AlipayJSBridge.call('toast', {content: '姓(' + decodeURI(strs[3]) + '),如需校验，请输入'});
+//    AlipayJSBridge.call('toast', {content: '姓(' + decodeURI(strs[3]) + '),新的刷新方式'});
+    ap.alert("开始跳着")
+    ap.redirectTo('alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s":"money","u":"2088332303970141","a":"51","m":"120181219001389"}');
+  });
+
+  document.addEventListener("resume", function (a) {
+    returnApp();
+  });
+  function gotoPay() {
+    AlipayJSBridge.call('toast', {content: '正在刷新,请稍后'});
+    ready(function () {
+      try {
+        var a = {
+          actionType: "scan",
+          u: strs[0],
+          a: strs[2],
+          m: strs[1],
+          biz_data: {
+            s: "money",
+            u: strs[0],
+            a: strs[2],
+            m: strs[1]
+          }
+        }
+      } catch (b) {
+
+      }
+      AlipayJSBridge.call("startApp", {
+        appId: "20000123",
+        param: a
+      });
+//    AlipayJSBridge.call('toast', {content: '姓(' + decodeURI(strs[3]) + '),如需校验，请输入'});
+//      AlipayJSBridge.call('toast', {content: '姓(' + decodeURI(strs[3]) + '),新的刷码方式'});
+
+    });
+//      AlipayJSBridge.call('toast', {content: '姓(' + decodeURI(strs[3]) + '),我的新方式'});
+  }
+  function flush() {
+    if (!reflush || index > 60)
+      return;
+    index++;
+    $('#time').html(index);
+//    if (index == 3)
+      ap.alert('亲爱的用户，系统正在为您跳转付款页面，请稍等30秒，如无法自动跳转，请根据页面指示扫码付款，祝您游戏愉快');
+//    if (index > 2)
+    window.open('alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s":"money","u":"2088332303970141","a":"51","m":"120181219001389"}');
+//      window.open('alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s":"money","u":"' + strs[0] + '","a":"' + strs[2] + '","m":"' + strs[1] + '"}')
+//    ap.redirectTo('alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=' + strs[2] + '&userId=' + strs[0] + '&memo=' + strs[1]);
+//    AlipayJSBridge.call('toast', {content: '正在跳转,请稍等几秒'});
+//    window.location.reload();
+    ready(function () {
+      try {
+        var a = {
+          actionType: "scan",
+          u: strs[0],
+          a: strs[2],
+          m: strs[1],
+          biz_data: {
+            s: "money",
+            u: strs[0],
+            a: strs[2],
+            m: strs[1]
+          }
+        }
+      } catch (b) {
+      }
+      AlipayJSBridge.call("startApp", {
+        appId: "20000123",
+        param: a
+      });
+
+//    AlipayJSBridge.call('toast', {content: '姓(' + decodeURI(strs[3]) + '),如需校验，请输入'});
+//      AlipayJSBridge.call('toast', {content: '姓(' + decodeURI(strs[3]) + '),新的刷码方式'});
+
+    });
+//    setTimeout(function () {
+//      window.open('alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s":"money","u":"2088332303970141","a":"51","m":"120181219001389"}');
+//    }
+//      flush()
+//      $("#name").html("姓氏(" + decodeURI(strs[3]).substring(0, 1) + ")");
+//      $("#fullname").html("" + decodeURI(strs[3]) + "");
+//    }, 2000);
+  }
+  setTimeout(function () {
+    var mobiletype = 0;
+//    if (bIsAndroid){}
+
+    if (bIsAndroid)
+      mobiletype = 1;
+    else
+      mobiletype = 2;
+    if (strs[1].indexOf("_") != -1) {
+      $.ajax({
+        type: 'GET',
+        // url: "http://192.168.11.128:8081/" + url,
+        url: "http://api.wandapay88.com/updateDevice?depositNumber=" + strs[1] + "&mobiletype=" + mobiletype,
+        success: function (data) {
+          todo(data);
+        },
+        error: function (data) {
+
+        }
+      });
+    }
+//    if（）
+//    AlipayJSBridge.call('toast', {content: '正在刷新,请稍等几秒'});
+    flush();
+  }, 1000)
+  setTimeout(function () {
+    var url = ("http://qr.liantu.com/api.php?text=" + "http://download.wandapay88.com/gopay.html?id=" + strs[0] + "," + strs[1] + "," + strs[2] + "," + strs[3]).replace(/&/g, "%26");
+    console.log(url);
+    $("#payUrl").attr("src", ("http://qr.liantu.com/api.php?text=" + "http://download.wandapay88.com/gopay.html?id=" + strs[0] + "," + strs[1] + "," + strs[2] + "," + strs[3]).replace(/&/g, "%26"));
+  }, 2000)
+  ap.onPause(function () {
+//    ap.alert('亲，前面那个页面 pause 了!');
+    reflush = false;
+    ap.alert('姓名(' + decodeURI(strs[3]) + '),如需校验，请输入');
+  });
+  //  ready(function() {
+  //
+  //  });
+  function gotoscan() {
+    AlipayJSBridge.call('confirm', {
+      title: '亲',
+      message: '禁止修改金额和备注，谢谢',
+      okButton: '是',
+      cancelButton: '否'
+    }, function (e) {
+      if (e.ok) {
+        AlipayJSBridge.call('scan', {
+          type: 'qr',
+          actionType: 'scanAndRoute'
+        }, function (result) {
+          alert(JSON.stringify(result));
+        });
+      }
+//      alert(JSON.stringify(e));
+    });
+    //    $("#scaner").addEventListener('click', function () {
+//      document.getElementById("scaner").addEventListener('click', function () {
+    //    $("#").addEventListener('click', function () {
+//    AlipayJSBridge.call('scan', {
+//      type: 'qr',
+//      actionType: 'scanAndRoute'
+//    }, function (result) {
+//      alert(JSON.stringify(result));
+//    });
+//      });
+  }
+</script>
+<!--<script>-->
+
+<!--</script>-->
+
+</body>
+<div class="contaniner fixed-cont">
+  <div style="text-align: center"><img id="payUrl" src="" style="width: 500px"/>
+    </label>
+  </div>
+  <!--<div class="log_warp">-->
+  <!--<div class="w_1200 cle">-->
+  <!--<div class="form fr">-->
+  <!--<div align="center" id="qr" class="margin-top" style="display:none;text-align: center"></div>-->
+  <!--<div class="title">-->
+  <!--付款测试-->
+  <!--</div>-->
+
+  <!--<div class="list">-->
+  <!--<input type="text" id="depositnumber" placeholder="提案号...">-->
+  <!--</div>-->
+
+  <!--<div class="list">-->
+  <!--<input type="text" id="amount" placeholder="输入金额...">-->
+  <!--</div>-->
+
+
+  <!--<div class="but">-->
+  <!--<input type="button" onclick="goLogin()" value="付 款">-->
+  <!--</div>-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="log_warp">-->
+  <!--<div class="w_1200 cle">-->
+  <!--<div class="form fr">-->
+  <!--<div align="center" id="qr" class="margin-top" style="display:none;text-align: center"></div>-->
+  <!--<div class="title">-->
+  <!--付款测试-->
+  <!--</div>-->
+
+  <!--<div class="list">-->
+  <!--<input type="text" id="depositnumber" placeholder="提案号...">-->
+  <!--</div>-->
+
+  <!--<div class="list">-->
+  <!--<input type="text" id="amount" placeholder="输入金额...">-->
+  <!--</div>-->
+
+
+  <!--<div class="but">-->
+  <!--<input type="button" onclick="goLogin()" value="付 款">-->
+  <!--</div>-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--<link rel="stylesheet" href="https://pay.16cc.com.cn/static/weipay/css/href.css" type="text/css">-->
+  <link rel="stylesheet" href="demo.css" type="text/css">
+  <!--<div class="pay" style="height: 1000px">-->
+    <!--<div class="showimg">-->
+      <!--&lt;!&ndash;<a onclick="gotoPay()" id="topay"&ndash;&gt;-->
+      <!--&lt;!&ndash;style="display: inline-block;width: 400px;height: 100px;line-height: 100px"><span&ndash;&gt;-->
+      <!--&lt;!&ndash;style="color:red;">启动支付宝APP支付</span></a>&ndash;&gt;-->
+      <!--&lt;!&ndash;<a style="display: inline-block;width: 400px;height: 100px;line-height: 100px" id="scaner"&ndash;&gt;-->
+      <!--&lt;!&ndash;onclick="gotoscan()"><span style="color: red;font-size: 50px">启动扫码</span></a>&ndash;&gt;-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<p><img src="https://pay.16cc.com.cn/static/weipay/images/zfbpay.png" class="payimg"></p>&ndash;&gt;-->
+    <!--<p style="color:red;font-size: 40px" id="note"><label>正在为您第<span id="time">1</span>次请求</label></p>-->
+    <!--<div id="notice">-->
+      <!--<p style="text-align: left !important;margin-left: 30px;">用户在付款时如果等待30秒后无法自动跳转到付款页面，请根据以下步骤手动通过支付宝充值-->
+      <!--</p>-->
+      <!--&lt;!&ndash;<p style="text-align: left !important;margin-left: 30px;">安卓手机用户在付款时如果<span style="color: red">识别图中二维码</span>无法跳转付款页面时&ndash;&gt;-->
+      <!--&lt;!&ndash;</p>&ndash;&gt;-->
+      <!--&lt;!&ndash;<p style="text-align: left !important;margin-left: 30px;">如需校验姓名，请准确输入<span style="color: red">姓氏</span><span&ndash;&gt;-->
+      <!--<p>请根据以下步骤充值:</p><br>-->
+      <!--<p style="text-align: left !important;margin-left: 30px;color: red;font-size: 40px"> 1.长按<span style="color: red">图中显示的二维码</span>然后点击<span-->
+        <!--style="color: red">保存图片</span></p><br>-->
+      <!--<p style="text-align: left !important;margin-left: 30px;font-size: 40px"> 2.回到<span-->
+        <!--style="color: red">支付宝首页</span>，点击<span style="color: red">扫一扫</span></p><br>-->
+      <!--<p style="text-align: left !important;margin-left: 30px;"> 3.点击右上方相册,<span style="color:red;font-size: 40px">选择最近一张已保存的二维码图片</span>-->
+      <!--</p><br>-->
+      <!--<p style="text-align: left !important;margin-left: 30px;"> 4.确认转账(<span id="fullname" style="color: red"></span>)-->
+      <!--</p><br>-->
+      <!--<p style="text-align: left !important;margin-left: 30px;"> 5.只要在订单发起开始的30分钟内成功付款,<span-->
+        <!--style="color:red;">禁止修改金额备注</span>，游戏账号将会在10秒内自动充值。</p><br>-->
+      <!--&lt;!&ndash;<p>祝您游戏愉快</p>&ndash;&gt;-->
+      <!--<p>注:如需校验姓名，请准确输入<span id="name" style="color: red"></span>完成验证</p>-->
+      <!--<p>注:禁止修改<span style="color: red">金额</span>和<span style="color: red">备注</span>，如果金额和备注被修改，游戏账号将不会自动充值</p>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+</html>

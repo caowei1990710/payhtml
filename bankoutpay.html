@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>付款中</title>
+  <script src="qrcode.min.js"></script>
+</head>
+
+<body>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+<script type=text/javascript src=jquery.min.js></script>
+<script type="text/javascript" src="qrcode.min.js"></script>
+<script>
+
+  //id=2088232912789773,140EB20ECE344DDAD38,500.0
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var str = getval;
+  var strs = new Array();
+  strs = str.split(","); //字符分割
+  //  alert(getval);
+  //  window.open("alipays://platformapi/startapp?appId=10000007&qrcode=http://download.wandapay88.com/gopay.html?id=" + getval);
+  var reflush = true;
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var bIsIpad = sUserAgent.match(/ipad/i) == 'ipad';
+  var bIsIphoneOs = sUserAgent.match(/iphone os/i) == 'iphone os';
+  var bIsMidp = sUserAgent.match(/midp/i) == 'midp';
+  var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == 'rv:1.2.3.4';
+  var bIsUc = sUserAgent.match(/ucweb/i) == 'web';
+  var bIsCE = sUserAgent.match(/windows ce/i) == 'windows ce';
+  var bIsWM = sUserAgent.match(/windows mobile/i) == 'windows mobile';
+  var bIsAndroid = sUserAgent.match(/android/i) == 'android';
+  var ismobel = false;
+  var index = 1,gotopaydemo;
+
+  if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+//    alert("您是手机登录");
+    //  window.location.href = 'http://download.wandapay88.com/bankh5.html?id=' + strs[0];
+    ismobel = true
+  }
+  //alert(getval);
+
+  //      AlipayJSBridge.call('toast', {content: '姓(' + decodeURI(strs[3]) + '),我的新方式'});
+  setTimeout(function () {
+    var mobiletype = 0;
+//    if (bIsAndroid){}
+
+    if (bIsAndroid) {
+      mobiletype = 1;
+//      alert("卓用户请把支付宝后台线程杀掉，刷新支付页面，如果不能跳转，请扫码支付!");
+    }
+    else {
+      if (ismobel)
+        mobiletype = 2;
+    }
+//    alert("请扫码支付");
+    if (strs && strs[0].indexOf("_") != -1) {
+      $.ajax({
+        type: 'GET',
+        // url: "http://192.168.11.128:8081/" + url,
+        url: "http://www.wandapay88.com:8081/updateDevice?depositNumber=" + strs[0] + "&mobiletype=" + mobiletype,
+        success: function (data) {
+
+//          todo(data);
+        },
+        error: function (data) {
+
+        }
+      });
+    }
+//    if（）
+//    AlipayJSBridge.call('toast', {content: '正在刷新,请稍等几秒'});
+  }, 1000)
+  setTimeout(function () {
+    $.ajax({
+      type: 'GET', url: 'http://www.wandapay88.com:8081/getProposaldeposit?depositNumber=' + strs[0], dataType: 'json',
+      success: function (str) {
+        console.log(str);
+//        $.ajax({
+//            type:"POST",
+//            url:"http://www.hp168168.com:8081/setTurnOn",
+//            data:{
+//                  "depositNumber":strs[0],
+//                  "remark":str.data.remark
+//            },
+//           success:function(data){
+//
+//           }
+//        })
+//        if (str.data.state == 'EXECUTED') {
+//          alert('提案已执行');
+//          window.location.href = 'https://www.baidu.com/';
+//        } else if (str.data.state == 'OVERTIME') {
+//          alert('提案已超时');
+//          window.location.href = 'https://www.baidu.com/';
+//        }
+        if (ismobel)
+//          window.location.href = 'http://download.wandapay88.com/bankh5.html?id=' + strs[0];
+          window.location.href = 'http://www.hp168168.com/bankh5.html?id=' + strs[0];
+        else
+          alert("订单金额:" + str.data.propsalNumber + ",实付金额:" + str.data.money + ",请勿修改带入金额，祝您游戏愉快;");
+        strs[1] = str.data.cardNo;
+        strs[2] = str.data.propsalNumber;
+        strs[3] = str.data.bankAccount;
+        strs[4] = str.data.cardIndex;
+        strs[5] = '';
+        strs[6] = str.data.money;
+        strs[7] = str.data.transerfee;
+        strs[8] = str.data.bankCode;
+        $('#proposalTime').html(str.data.lockTime);
+        $('#name').html(strs[3]);
+        $('#bankcard').html(strs[1]);
+        $('#transferamount').html(strs[6]);
+        $('#name').bind('click', function () {
+          copyresult(str.data.bankAccount, "复制成功名字:" + str.data.bankAccount)
+        })
+        $('#bankcard').bind('click', function () {
+          copyresult(str.data.cardNo, "复制成功卡号:" + str.data.cardNo)
+        })
+        $('#transferamount').bind('click', function () {
+          copyresult(str.data.money, "复制成功金额" + str.data.money)
+        })
+        gotopaydemo = str.data.result;
+        $.ajax({
+          type: 'GET',
+          // url: "http://192.168.11.128:8081/" + url,
+          url: "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?cardNo=" + strs[1] + "&cardBinCheck=true",
+          success: function (data) {
+//        $("#payUrl").attr("src", "http://qr.liantu.com/api.php?text=" + ("https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=" + strs[1] + "&bankAccount=" + strs[3] + "&money=&amount=" + strs[2] + "&bankMark=" + data.bank + "&bankName=银行").replace(/&/g, "%26"));
+//        $("#payUrl").attr("src", "http://qr.liantu.com/api.php?text=" + ("https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=" + strs[1] + "&bankAccount=" + strs[3] + "&money=&amount=" + strs[2] + "&bankMark=" + data.bank + "&bankName=银行").replace(/&/g, "%26"));
+            //https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=623052****3077&bankAccount=苏聪&money=0.1&amount=0.1&bankMark=ABC&bankName=中国农业银行&cardIndex=1901121842671037887&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from
+            var cardNo = strs[1];
+            if (strs[1].indexOf("*") == -1)
+              cardNo = strs[1].substring(0, 6) + '****' + strs[1].substring(strs[1].length - 4, strs[1].length);
+//        $("#payUrl").attr("src", "http://qr.liantu.com/api.php?text=" + ("https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=" + strs[1] + "&bankAccount=" + strs[3] + "&money=" + strs[2] + "&amount=" + strs[2] + "&bankMark=" + data.bank + "&bankName=银行").replace(/&/g, "%26"));
+//        $("#topay").attr("href", ("https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=" + strs[1] + "&bankAccount=" + strs[3] + "&money=" + strs[2] + "&amount=" + strs[2] + "&bankMark=" + data.bank + "&bankName=银行"));
+//        var go_url = "https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=" + cardNo + "&bankAccount=" + strs[3] + "&money=" + strs[6] + "&amount=" + strs[6] + "&bankMark=" + strs[8] + "&bankName=" + strs[5] + "&cardIndex=" + strs[4] + "&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from";
+//        var go_url = "https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=" + cardNo + "&bankAccount=" + strs[3] + "&money=" + strs[6] + "&amount=" + strs[6] + "&bankMark=" + strs[8] + "&bankName=" + strs[5] + "&cardIndex=" + strs[4] + "&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from";
+//        var go_url = "http://www.morepic.club/phone.php?command=morepcbank&cardNo=621799****0858&bankAccount=葛景芳&money=51.0&bankMark=PSBC&bankName=邮政银行&cardIndex=1901201931418421200";
+//            var go_url = "http://www.morepic.club/phone.php?command=morepcbank&cardNo=" + cardNo + "&bankAccount=" + decodeURIComponent(strs[3]) + "&money=" + strs[6] + "&bankMark=" + strs[8] + "&bankName=" + decodeURIComponent(strs[5]) + "&cardIndex=" + strs[4];
+//            var weblist = ["http://www.wandapay88.com", "http://www3.shunfu.me", "http://www1.wangdapay.com","http://aliaytopay.me","http://aliaytopay.com","http://gotopay.me"];
+            var weblist = ["http://wanslewanloe.com", "http://wannanwanloe.com", "http://wannanswanloe.com", "http://wannanslewanloe.com", "http://aliaytopay.com", "http://gotopay.me"];
+            var go_url = weblist[parseInt(Math.random() * 4)] + '/gotopaydemo.html?id=' + gotopaydemo;
+            $.ajax({
+              type: 'GET',
+              // url: "http://192.168.11.128:8081/" + url,
+              url: "http://www.wandapay88.com:8081/updateDevice?depositNumber=" + strs[0] + "&qrUrl=" + go_url + "&mobiletype=" + mobiletype,
+              success: function (data) {
+//          todo(data);
+              },
+              error: function (data) {
+              }
+            });
+//            $("#payUrl").attr("src", "http://qr.liantu.com/api.php?text=" + go_url.replace(/&/g, "%26"));
+//        $("#topay").attr("href", ("https://www.alipay.com/?appId=09999988&actionType=toCard&sourceId=bill&cardNo=" + cardNo + "&bankAccount=" + strs[3] + "&money=" + strs[6] + "&amount=" + strs[6] + "&bankMark=" + strs[8] + "&bankName=" + strs[5] + "&cardIndex=" + strs[4] + "&cardNoHidden=true&cardChannel=HISTORY_CARD&orderSource=from"));
+        var qrcode = new QRCode(document.getElementById("qr"), {
+          width: 500,
+          height: 500
+        });
+        qrcode.makeCode(go_url);
+//            $("#payUrl").css("display", "inline-block");
+          },
+          error: function (data) {
+
+          }
+        });
+//    $("#payUrl").attr("src", "http://qr.liantu.com/api.php?text=");
+        //"http://qr.liantu.com/api.php?text=" + data.data.scannerUrl.replace(/&/g, "%26")
+        mobiletype = 0;
+        if (bIsAndroid)
+          mobiletype = 1;
+        else if (ismobel)
+          mobiletype = 2;
+        if (strs[0].indexOf("_") != -1) {
+          $.ajax({
+            type: 'GET',
+            // url: "http://192.168.11.128:8081/" + url,
+            url: "http://www.wandapay88.com:8081/updateDevice?depositNumber=" + strs[0] + "&mobiletype=" + mobiletype,
+            success: function (data) {
+            },
+            error: function (data) {
+
+            }
+          });
+        }
+        if (!ismobel) {
+//      alert("填入金额" + strs[2] + "点击转账");
+          $("#topay").css("display", "none");
+        }
+        $("#fullmoney").html(strs[6]);
+        $("#realmoney").html(strs[2]);
+        $("#tranfeemoney").html(strs[7]);
+        $("#content").css("display", "block");
+        // str.data.money
+      }
+
+    }, 1000)
+  });
+  //  ready(function() {
+  //
+  //  });
+  function copyresult(message, result) {
+    var input = document.createElement("input");
+    //input.type = 'hidden';
+    input.value = message;
+    document.body.appendChild(input);
+    input.select();
+    input.setSelectionRange(0, input.value.length),
+//      setTimeout(function () {
+      document.execCommand('Copy');
+    alert(result, "text");
+//      }, 1000)
+    // document.body.removeChild(input);
+  }
+  function gotoscan() {
+    AlipayJSBridge.call('confirm', {
+      title: '亲',
+      message: '禁止修改金额和备注，谢谢',
+      okButton: '是',
+      cancelButton: '否'
+    }, function (e) {
+      if (e.ok) {
+        AlipayJSBridge.call('scan', {
+          type: 'qr',
+          actionType: 'scanAndRoute'
+        }, function (result) {
+          alert(JSON.stringify(result));
+        });
+      }
+    });
+  }
+</script>
+<!--<script>-->
+
+<!--</script>-->
+
+</body>
+<div class="contaniner fixed-cont" style="margin-top: 0rem">
+  <p style="text-align: center !important;margin-left: 30px;"> 出现跳转异常,手动向名字:<span style="color: red" id="name">张三</span>卡号:<span
+    style="color: red" id="bankcard">123456</span>转账<span style="color: red" id="transferamount">300</span>，转账到银行卡。
+  <div style="text-align: center"><img id="payUrl" src="" style="width: 500px;display: none"/>
+    </label>
+  </div>
+  <!--<div id="qrcode" style="text-align:center">-->
+  <!--<canvas width="200" height="200"></canvas>-->
+  <!--</div>-->
+  <div style="text-align: center">
+    <div align="center" id="qr" class="margin-top" style="text-align: center;display: inline-block"></div>
+  </div>
+
+  <link rel="stylesheet" href="demo.css" type="text/css">
+  <div class="pay" id="content" style="height: 1000px;display: none">
+    <div class="showimg">
+      <a id="topay"
+         style="width: 400px;height: 100px;line-height: 100px;display: none;"><span
+        style="color:red;font-size: 40px">启动支付宝APP支付</span></a>
+      <!--<a style="display: inline-block;width: 400px;height: 100px;line-height: 100px" id="scaner"-->
+      <!--onclick="gotoscan()"><span style="color: red;font-size: 50px">启动扫码</span></a>-->
+    </div>
+    <!--<p><img src="https://pay.16cc.com.cn/static/weipay/images/zfbpay.png" class="payimg"></p>-->
+    <!--<p style="color:red;font-size: 40px"><label>安卓用户请把支付宝后台线程杀掉，刷新支付页面</label></p>-->
+    <!--<p style="color:red;font-size: 40px;text-align: left;margin-left: 60px"><label>苹果用户请扫码支付</label></p>-->
+    <div id="notice">
+      <!--<p style="text-align: left !important;margin-left: 30px;">用户在付款时如果等待无法自动跳转到付款页面，请根据以下步骤手动通过支付宝充值-->
+      <!--</p>-->
+      <!--<p style="text-align: left !important;margin-left: 30px;">安卓手机用户在付款时如果<span style="color: red">识别图中二维码</span>无法跳转付款页面时-->
+      <!--</p>-->
+      <!--<p style="text-align: left !important;margin-left: 30px;">如需校验姓名，请准确输入<span style="color: red">姓氏</span><span-->
+      <!--<p>手机端玩家请根据以下步骤手动充值:</p><br>-->
+      <!--<p style="color:#3A90DB;">方法(1):使用另一部手机将获取的二维码拍摄，通过支付宝扫一扫直接对准二维码到付款页面，然后付款即可。这种付款方式是100%能成功付款上分的哦</p><br>-->
+      <!--<p><span style="color:#3A90DB;">方法(2):</span>长按<span style="color: red">图中显示的二维码</span>然后点击<span-->
+      <!--style="color: red">“识别二维码”</span>，若<span style="color: red">无法自动跳转到付款页面</span>，则此方法不适用。</p><br>-->
+      <!--<p style="color:#3A90DB;">方法(3):</p>-->
+      <!--<p style="text-align: left !important;margin-left: 30px;">1.长按<span style="color: red">图中显示的二维码</span>然后点击<span-->
+      <!--style="color: red">保存图片</span>-->
+      <!--</p>-->
+      <p style="text-align: left !important;margin-left: 30px;">1.打开手机支付宝首页，点击“扫一扫”</span>
+      </p>
+      <!--<p style="text-align: left !important;margin-left: 30px;">3.点击右上方相册，<span-->
+      <!--style="color: red">选择最近一张已保存的二维码图片</span>-->
+      <!--</p>-->
+      <p style="text-align: left !important;margin-left: 30px;"> 2.转账(<span
+        style="color: red" id="fullmoney">金额</span>),实际到账(<span
+        style="color: red" id="realmoney">金额</span>)元,<span style="color: red">手续费(<span id="tranfeemoney"></span>)我们承担</span>然后下一步<span
+        style="color: red"></span></p>
+      <!--<p style="text-align: left !important;margin-left: 30px;font-size: 40px"> 2.<span-->
+      <!--style="color: red">备注</span>填入<span style="color: red">游戏账号</span></p><br>-->
+      <p style="text-align: left !important;margin-left: 30px"> 3.确认转账</p><br>
+      <!--<p> 如以上步骤出现<span style="color:red;">"对方帐户存在风险,暂时无法收款ALIN42490"</span>时。则此方式不适用。需使用方法（1）付款。</p>-->
+      <!--<p>-->
+      <!--解决方式：<span-->
+      <!--style="color: red">使用另一部手机将获取的二维码拍摄，通过支付宝""扫一扫""直接对准二维码就会自动跳转到付款页面，然后付款即可。这种付款方式是100%能成功付款上分的哦~</span></p>-->
+      <p style="text-align: left !important;margin-left: 30px;"> 只要在订单发起开始的<span id="proposalTime">30</span>分钟内成功付款，游戏账号将会在<span
+        style="color:red;">3分钟</span>内自动充值。
+      </p><br>
+      <p>祝您游戏愉快</p><br>
+
+      </p>
+      <p style="text-align: left !important;margin-left: 30px;"> 注:禁止修改<span style="color: red">金额</span>，如果金额或备注被修改，游戏账号将无法自动充值。
+      </p>
+      <p style="text-align: left !important;margin-left: 30px;"> 注:如付款时<span
+        style="color:red;">支付宝出现风险提示（用户标记涉嫌诈欺），请放心付款</span>，只要成功付款,游戏账号将会在3分钟内自动充值。
+      </p><br>
+      <!--<p>祝您游戏愉快</p>-->
+    </div>
+  </div>
+</div>
+</html>

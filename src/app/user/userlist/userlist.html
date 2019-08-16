@@ -1,0 +1,119 @@
+<!--<div class="tab-content">-->
+<!--<table class="table">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>状态</th>-->
+<!--<th>用户名</th>-->
+<!--<th>邮箱</th>-->
+<!--<th>部门</th>-->
+<!--<th>角色</th>-->
+<!--<th>操作</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr ng-repeat="item in user.userList">-->
+<!--<td><input type="checkbox"></td>-->
+<!--<td>{{item.username}}</td>-->
+<!--<td>{{item.email}}</td>-->
+<!--<td>{{item.departmentId}}</td>-->
+<!--<td>{{item.roles.description}}</td>-->
+<!--<td>-->
+<!--<a href="#editUser" ng-click="user.editUser($index,item.id);" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">修改</a>-->
+<!--<a href="" ng-click="user.deleteUser(item.username);" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-danger">删除</a></td>-->
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+<!--<pagination page="user.page" total="user.total" size="user.size" trigger="user.retrieveUser(page)"></pagination>-->
+<!--<div class="pull-right" style="margin-top: 30px;">-->
+<!--<a href="#createUser" target="_self" type="submit" role="button" data-toggle="modal" data-original-title="" class="btn btn-primary">创建</a>-->
+<!--</div> ng-click="user.setAble($index,1)"-->
+<!--</div>-->
+<!--<div ng-include="'app/user/userlist/userlist.popup.html'"></div>-->
+<div class="tab-content">
+  <div class="row-fluid pull-left">
+    <div class="span3" style="padding-right: 130px">
+      <!--<div id="accordion1" class="accordion no-margin">-->
+        <!--<div class="accordion-group">-->
+          <!--<div class="accordion-heading">-->
+            <!--<a href="#collapseOne" data-parent="" data-toggle="collapse" class="accordion-toggle" target="_self"-->
+               <!--data-original-title="">-->
+              <!--<i class="icon-user icon-white">-->
+              <!--</i> 部门-->
+            <!--</a>-->
+          <!--</div>-->
+          <!--<div class="accordion-body in collapse" id="collapseOne" style="height: auto;">-->
+            <!--<div class="accordion-inner department">-->
+              <!--<ul class="dep-list">-->
+                <!--<li ng-repeat="item in user.userList" style="height: 50px;text-align: center;padding-top: 20px"-->
+                    <!--ng-class="{acolor:user.devlopindex == $index}">-->
+                  <!--<a href="#collapsetwo" data-parent="" data-toggle="collapse" class="accordion-toggle" target="_self"-->
+                     <!--data-original-title="">-->
+                    <!--{{item.name}}-->
+                  <!--</a>-->
+                  <!--<div class="accordion-body in collapse" id="collapsetwo" style="height: auto;">-->
+                    <!--<div class="accordion-inner department">123</div>-->
+                  <!--</div>-->
+                <!--</li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <deparat-ment data="user.departmentlist"></deparat-ment>
+    </div>
+    <div>
+      <form class="form-inline am-form-query" name="queryForm">
+<span>
+<label class="control-label">{{$root.lagconfig['用户名']}}</label>
+<input ng-model="user.query.username" type="text">
+</span>
+        <label class="control-label">{{$root.lagconfig['创建者']}}</label>
+        <input ng-model="user.query.creator" type="text">
+        </span>
+        <button type="submit" class="btn btn-primary toselet" style="margin-right: 150px" ng-click="user.select(1);">
+          {{$root.lagconfig['查询']}}
+        </button>
+      </form>
+      <table style="width: 70%" class="table">
+        <thead>
+        <tr>
+          <th>{{$root.lagconfig['用户名']}}</th>
+          <th>{{$root.lagconfig['密码']}}</th>
+          <th>{{$root.lagconfig['昵称']}}</th>
+          <th>{{$root.lagconfig['创建时间']}}</th>
+          <th>{{$root.lagconfig['创建者']}}</th>
+          <th ng-show="false">{{$root.lagconfig['功能']}}</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="outline: none" ng-repeat="item in user.alluserList" ng-class="{acolor:user.bankindex == $index}"
+            ng-click="user.editUser($index)">
+          <td ng-class="{colorwhite:user.bankindex == $index}"><span style="cursor: pointer" html="123" alert-povper>{{item.username}}</span>
+          </td>
+          <td ng-class="{colorwhite:user.bankindex == $index}">{{item.password}}</td>
+          <td ng-class="{colorwhite:user.bankindex == $index}">{{item.nickname}}</td>
+          <td ng-class="{colorwhite:user.bankindex == $index}">{{item.createDate}}</td>
+          <td ng-class="{colorwhite:user.bankindex == $index}">{{item.creator}}</td>
+          <td ng-show="false" ng-class="{colorwhite:user.bankindex == $index}">
+            <div style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:160px">{{item.function}}</div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <pagination page="user.page" style="padding-left: 300px;display: block" total="user.total" size="user.size"
+                  trigger="user.select(page)"></pagination>
+      <a ng-click="user.showCreatuser()" style="margin-left: 1000px" target="_self" type="submit"
+         role="button" data-toggle="modal" data-original-title=""
+         class="btn btn-primary">{{$root.lagconfig['创建']}}</a>
+      <a ng-click="user.showEdituser()" target="_self" type="submit"
+         role="button" data-toggle="modal" data-original-title=""
+         class="btn btn-primary">{{$root.lagconfig['更新']}}</a>
+      <a ng-click="user.setAble(1,2)" target="_self" type="submit" role="button"
+         data-toggle="modal" data-original-title=""
+         class="btn btn-primary">{{$root.lagconfig['修改权限']}}</a>
+
+    </div>
+  </div>
+</div>
+<div ng-include="'app/user/user.popup.html'"></div>

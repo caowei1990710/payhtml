@@ -1,0 +1,674 @@
+<!-- Modal -->
+<div id="createDepartment" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4 id="myModalLabel1">
+      {{$root.lagconfig['创建部门']}}
+    </h4>
+  </div>
+  <div class="modal-body">
+    <div>
+      <input type="checkbox" id="0_0"><span>{{$root.lagconfig['用户']}}</span>
+    </div>
+    <div>
+      <input type="checkbox" id="1_0"><span>{{$root.lagconfig['账号管理']}}</span>
+      <input type="checkbox" id="1_1"><span>{{$root.lagconfig['转账提醒']}}</span>
+    </div>
+    <div>
+      <input type="checkbox" id="2_0"><span>{{$root.lagconfig['商户号']}}</span>
+    </div>
+    <div>
+      <input type="checkbox" id="3_0"><span>{{$root.lagconfig['手工收款']}}</span>
+      <input type="checkbox" id="3_1"><span>{{$root.lagconfig['收款明细']}}</span>
+    </div>
+    <div>
+      <input type="checkbox" id="4_0"><span>{{$root.lagconfig['手工付款']}}</span>
+      <input type="checkbox" id="4_1"><span>{{$root.lagconfig['自动付款']}}</span>
+      <input type="checkbox" id="4_2"><span>{{$root.lagconfig['转账任务']}}</span>
+      <input type="checkbox" id="4_3"><span>{{$root.lagconfig['付款详情']}}</span>
+    </div>
+    <div>
+      <input type="checkbox" id="5_0"><span>{{$root.lagconfig['自动匹配']}}</span>
+      <input type="checkbox" id="5_1"><span>{{$root.lagconfig['手工匹配']}}</span>
+    </div>
+    <div style="display: none">
+      <input type="checkbox" id="6_0"><span>{{$root.lagconfig['报表']}}</span>
+    </div>
+    <div>
+      <input type="checkbox" id="7_0"><span>{{$root.lagconfig['银行类型']}}</span>
+      <input type="checkbox" id="7_1"><span>{{$root.lagconfig['商户类型']}}</span>
+      <input type="checkbox" id="7_2"><span>{{$root.lagconfig['收付款设置']}}</span>
+      <input type="checkbox" id="7_3"><span>{{$root.lagconfig['设备管理']}}</span>
+      <input type="checkbox" id="7_4" style="display: none"><span
+      style="display: none">{{$root.lagconfig['客户端管理']}}</span>
+      <input type="checkbox" id="7_5" style="display: none"><span
+      style="display: none">{{$root.lagconfig['奖品管理']}}</span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="user.getPopuable();">
+      {{$root.lagconfig['确认']}}
+    </button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">
+      {{$root.lagconfig['取消']}}
+    </button>
+  </div>
+</div>
+<div id="userRole" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['创建用户']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="thirdyuser.createnewuser();" class="no-margin"
+        name="creatUserForm">
+    <div class="modal-body">
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['用户名']}}:
+        </label>
+        <input ng-model="thirdyuser.creatuseritem.name" name="username" type="text" required>
+      </div>
+      <!--<div class="control-group divinput">-->
+      <!--<label>-->
+      <!--{{$root.lagconfig['密码']}}:-->
+      <!--</label>-->
+      <!--<input ng-model="user.creatuseritem.password" name="password" type="text" required>-->
+      <!--</div>-->
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['密码']}}:
+        </label>
+        <input ng-model="thirdyuser.creatuseritem.password" name="createBankFormCardName" type="password" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['备注']}}:
+        </label>
+        <input ng-model="thirdyuser.creatuseritem.remark" name="username" type="text">
+      </div>
+      <!--<div class="control-group divinput">-->
+      <!--<label>-->
+      <!--{{$root.lagconfig['所属平台']}}:-->
+      <!--</label>-->
+      <!--<select-list ng-model="user.creatuseritem.platformId" type="1" name="platformlist"></select-list>-->
+      <!--</div>-->
+      <!--<div ng-show="user.create" style="margin-left: 150px" class="control-group">-->
+      <!--<label>-->
+      <!--{{$root.lagconfig['角色']}}:-->
+      <!--</label>-->
+      <!--<div style="display: inline-block;padding: 10px" ng-repeat="item in user.rolelist track by $index">-->
+      <!--<input type="checkbox" class="pull-left" ng-model="user.userRole[$index]"><span> {{item.name}}</span>-->
+      <!--</div>-->
+      <!--<div class="controls">-->
+      <!--<select-list ng-model="user.creatuseritem.function" name="userole"></select-list>-->
+      <!--&lt;!&ndash;<input ng-model="bc.createBankForm.bankCard" name="createBankFormBankCard" ng-pattern="/^(\d{16}|\d{19})$/" type="number" required>&ndash;&gt;-->
+      <!--</div>-->
+      <!--</div>-->
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary" ng-click="user.createnewuser()" ng-disabled="createBankForm.$invalid">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="createOptear" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['创建操作员']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="user.createOpeart();" class="no-margin"
+        name="creatOptearForm">
+    <div class="modal-body">
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['用户名']}}:
+        </label>
+        <input ng-model="user.creatOpeart.operatorName" name="operatorName" type="text" required>
+        <!--<label>-->
+        <!--{{$root.lagconfig['密码']}}:-->
+        <!--</label>-->
+        <!--<input ng-model="user.creatOpeart.password" name="password" type="text">-->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+    </div>
+  </form>
+</div>
+<div id="updateOptear" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['修改操作员']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" class="no-margin" w5c-submit="user.editOpeart();"
+        name="updateOptearForm">
+    <div class="modal-body">
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['用户名']}}:
+        </label>
+        <input ng-model="user.updateOpeart.operatorName" name="operatorName" type="text" required>
+      </div>
+      <!--<div class="control-group divinput">-->
+      <!--<label>-->
+      <!--{{$root.lagconfig['密码']}}:-->
+      <!--</label>-->
+      <!--<input ng-model="user.updateOpeart.password" name="password" type="text" required>-->
+      <!--</div>-->
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+    </div>
+  </form>
+</div>
+<div id="optearList" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['操作员列表']}}
+    </h4>
+  </div>
+  <div class="modal-body">
+    <div style="margin-left: 0px;height: 200px;overflow: auto">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>{{$root.lagconfig['用户名']}}</th>
+          <th>{{$root.lagconfig['操作员姓名']}}</th>
+          <!--<th>{{$root.lagconfig['密码']}}</th>-->
+          <th>{{$root.lagconfig['创建时间']}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in user.operatorlist" ng-class="{acolor:user.editopeartindex == $index}"
+            ng-click="user.editopeartindex = $index">
+          <td ng-class="{colorwhite:user.editopeartindex == $index}">{{item.userName}}</td>
+          <td ng-class="{colorwhite:user.editopeartindex == $index}">{{item.operatorName}}</td>
+          <!--<td ng-class="{colorwhite:user.editopeartindex == $index}">{{item.password}}</td>-->
+          <td ng-class="{colorwhite:user.editopeartindex == $index}">{{item.createDate}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <click-button click="user.showCreateopeart" value="创建"></click-button>
+    <click-button click="user.setDefault" value="重置密码"></click-button>
+    <click-button click="user.showUpdateopeart" value="更新"></click-button>
+    <!--<button class="btn btn-primary" ng-click="user.updateRole()">-->
+    <!--{{$root.lagconfig['确认']}}-->
+    <!--</button>-->
+    <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+    <!--{{$root.lagconfig['取消']}}-->
+    <!--</button>-->
+  </div>
+</div>
+<div id="updatePlatform" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['修改游戏方']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="thirdyagent.editAgentupdate();" class="no-margin"
+        name="updateAgentForm">
+    <div class="modal-body">
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['用户名']}}:
+        </label>
+        <input ng-model="thirdyagent.editAgent.name" name="agentname" type="text" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['密码']}}:
+        </label>
+        <input ng-model="thirdyagent.editAgent.password" name="agentpwd" type="text" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['秘钥']}}:
+        </label>
+        <input ng-model="thirdyagent.editAgent.sign" name="sign" type="text">
+      </div>
+      <div class="control-group divinput">
+        <label>
+          卡层次
+        </label>
+        <select-list ng-model="thirdyagent.editAgent.payBanktype" name="paybanktypes" type="0"></select-list>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['支付密码']}}:
+        </label>
+        <input ng-model="thirdyagent.editAgent.payword" name="payword" type="text"></input>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['谷歌开关']}}:
+        </label>
+        <select-list ng-model="thirdyagent.editAgent.paySafe" name="googleenable" type="1"></select-list>
+        <!--<input ng-model="thirdyagent.editAgent.paySafe"  name="paySafe" type="text"></input>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['所属代理']}}:
+        </label>
+        <input ng-model="thirdyagent.editAgent.agentName" name="agentName" type="text"></input>
+      </div>
+      <!--<div class="control-group divinput">-->
+      <!--<label>-->
+      <!--{{$root.lagconfig['回调地址']}}:-->
+      <!--</label>-->
+      <!--<input ng-model="thirdyagent.editAgent.callbackurl"  name="callbackurl" type="text"></input>-->
+      <!--</div>-->
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['状态']}}:
+        </label>
+        <select-list ng-model="thirdyagent.editAgent.state" name="banktypecardstatus" type="1"></select-list>
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['费率']}}:
+        </label>
+        <input ng-model="thirdyagent.editAgent.itemPayfee" name="payfee" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          微信费率:
+        </label>
+        <input ng-model="thirdyagent.editAgent.wechatpayfee" name="wechatpayfee" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          云闪付费率:
+        </label>
+        <input ng-model="thirdyagent.editAgent.yunshanpayfee" name="yunshanpayfee" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          网银费率:
+        </label>
+        <input ng-model="thirdyagent.editAgent.banktranfee" name="banktranfee" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          备注:
+        </label>
+        <input ng-model="thirdyagent.editAgent.remark" name="remark" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          谷歌验证码:
+        </label>
+        <input ng-model="thirdyagent.editAgent.code" name="code" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group" style="margin-left: 150px">
+        <!--<label>-->
+        <!--{{$root.lagconfig['角色']}}:-->
+        <!--</label>-->
+        <!--<div style="display: inline-block;padding: 10px" ng-repeat="item in user.rolelist track by $index">-->
+        <!--<input class="pull-left" type="checkbox" ng-model="user.userRole[$index]"><span> {{item.name}}</span>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<select-list ng-model="user.creatuseritem.function" name="userole"></select-list>-->
+        <!--&lt;!&ndash;<input ng-model="bc.createBankForm.bankCard" name="createBankFormBankCard" ng-pattern="/^(\d{16}|\d{19})$/" type="number" required>&ndash;&gt;-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary" ng-click="user.createnewuser()" ng-disabled="createBankForm.$invalid">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="createPlatform" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['新增游戏方']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="thirdyagent.createAgent();" class="no-margin"
+        name="createAgentForm">
+    <div class="modal-body">
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['用户名']}}:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.name" name="name" type="text" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['密码']}}:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.password" name="password" type="password" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['秘钥']}}:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.sign" name="sign" type="text">
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['费率']}}:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.itemPayfee" name="payfee" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          微信费率:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.wechatpayfee" name="wechatpayfee" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          云闪付费率:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.yunshanpayfee" name="yunshanpayfee" type="text" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          网银费率:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.banktranfee" name="banktranfee" type="text" required>
+        <!--<select-list ng-model="thirdyagent.createAgent.payfee" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['所属代理']}}:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.agentName" name="agentName" type="text"></input>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['回调地址']}}:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.callbackurl" name="callbackurl" type="text">
+        <!--<select-list ng-model="thirdyagent.createAgent.callbackurl" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <div class="control-group divinput">
+        <label>
+          谷歌验证码:
+        </label>
+        <input ng-model="thirdyagent.createAgentitem.code" name="code" type="text">
+        <!--<select-list ng-model="thirdyagent.createAgent.callbackurl" name="banktypecardstatus" type="1"></select-list>-->
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <!--<div class="control-group divinput">-->
+      <!--<label>-->
+      <!--{{$root.lagconfig['所属平台']}}:-->
+      <!--</label>-->
+      <!--<select-list ng-model="user.edituseritem.platformId" type="1" name="platformlist"></select-list>-->
+      <!--</div>-->
+      <div class="control-group" style="margin-left: 150px">
+        <!--<label>-->
+        <!--{{$root.lagconfig['角色']}}:-->
+        <!--</label>-->
+        <!--<div style="display: inline-block;padding: 10px" ng-repeat="item in user.rolelist track by $index">-->
+        <!--<input class="pull-left" type="checkbox" ng-model="user.userRole[$index]"><span> {{item.name}}</span>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<select-list ng-model="user.creatuseritem.function" name="userole"></select-list>-->
+        <!--&lt;!&ndash;<input ng-model="bc.createBankForm.bankCard" name="createBankFormBankCard" ng-pattern="/^(\d{16}|\d{19})$/" type="number" required>&ndash;&gt;-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary" ng-click="user.createnewuser()" ng-disabled="createBankForm.$invalid">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="updateUser" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['修改用户']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="thirdyuser.edituser();" class="no-margin"
+        name="updateUserForm">
+    <div class="modal-body">
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['用户名']}}:
+        </label>
+        <input ng-model="thirdyuser.edituseritem.name" disabled name="name" type="text" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['密码']}}:
+        </label>
+        <input ng-model="thirdyuser.edituseritem.password" name="password" type="password" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['备注']}}:
+        </label>
+        <input ng-model="thirdyuser.edituseritem.remark" name="remark" type="text">
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['状态']}}:
+        </label>
+        <select-list ng-model="thirdyuser.edituseritem.state" name="state" type="1"></select-list>
+        <!--<input ng-model="thirdyuser.edituseritem.state" name="createBankFormCardName" type="text" required>-->
+      </div>
+      <!--<div class="control-group divinput">-->
+      <!--<label>-->
+      <!--{{$root.lagconfig['所属平台']}}:-->
+      <!--</label>-->
+      <!--<select-list ng-model="user.edituseritem.platformId" type="1" name="platformlist"></select-list>-->
+      <!--</div>-->
+      <div class="control-group" style="margin-left: 150px">
+        <!--<label>-->
+        <!--{{$root.lagconfig['角色']}}:-->
+        <!--</label>-->
+        <!--<div style="display: inline-block;padding: 10px" ng-repeat="item in user.rolelist track by $index">-->
+        <!--<input class="pull-left" type="checkbox" ng-model="user.userRole[$index]"><span> {{item.name}}</span>-->
+        <!--</div>-->
+        <!--<div class="controls">-->
+        <!--<select-list ng-model="user.creatuseritem.function" name="userole"></select-list>-->
+        <!--&lt;!&ndash;<input ng-model="bc.createBankForm.bankCard" name="createBankFormBankCard" ng-pattern="/^(\d{16}|\d{19})$/" type="number" required>&ndash;&gt;-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary" ng-click="user.createnewuser()" ng-disabled="createBankForm.$invalid">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="createRoler" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['创建角色']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="user.creatRole();" class="no-margin"
+        name="createRoleForm">
+    <div class="modal-body">
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['名称']}}:
+        </label>
+        <input ng-model="user.createroleitem.name" name="username" type="text" required>
+      </div>
+      <div class="control-group divinput">
+        <label>
+          {{$root.lagconfig['说明']}}:
+        </label>
+        <input ng-model="user.createroleitem.description" name="password" type="text" required>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button ng-click="user.creatRole" class="btn btn-primary">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="updateRoler" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['修改角色']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="user.updateRole();" class="no-margin"
+        name="updateRoleForm">
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="control-group divinput">
+          <label>
+            {{$root.lagconfig['名称']}}:
+          </label>
+          <input ng-model="user.roleitem.name" name="username" type="text" required>
+        </div>
+        <div class="control-group divinput">
+          <label>
+            {{$root.lagconfig['说明']}}:
+          </label>
+          <input ng-model="user.roleitem.description" name="password" type="text" required>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button class="btn btn-primary" ng-click="user.updateRole()">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>
+<div id="createDeparment" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig['创建部门']}}
+    </h4>
+  </div>
+  <form w5c-form-validate="validateOptions" role="form" w5c-submit="user.creatdepart();" class="no-margin"
+        name="createdepartmentForm">
+    <div class="modal-body">
+      <div class="row-fluid">
+        <div class="control-group divinput">
+          <label>
+            {{$root.lagconfig['名称']}}:
+          </label>
+          <input ng-model="user.departmentitem.name" name="username" type="text" required>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <click-button data="user.departmentitem.numbers" value="确认"></click-button>
+      <click-button data-dismiss="modal" value="取消"></click-button>
+      <!--<button ng-click="user.creatdepart()" class="btn btn-primary">-->
+      <!--{{$root.lagconfig['确认']}}-->
+      <!--</button>-->
+      <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+      <!--{{$root.lagconfig['取消']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+</div>

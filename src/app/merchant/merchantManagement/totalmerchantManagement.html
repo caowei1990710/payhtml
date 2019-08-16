@@ -1,0 +1,162 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <!--<label class="control-label textright">{{$root.lagconfig['所属类型']}}</label>-->
+      <!--<select-list ng-model="merchant.query.status" name="cardtype" type="1"></select-list>-->
+      <label class="control-label textright">{{$root.lagconfig['绑定商户号']}}</label>
+      <input ng-model="merchant.query.merchantName" name="merchanttotals" type="1"/>
+      <label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>
+      <select-list ng-model="merchant.query.status" name="merchanttotals" type="1"></select-list>
+      <label class="control-label textright">{{$root.lagconfig['单号']}}</label>
+      <input ng-model="merchant.query.proposalId" name="bankCard" type="text">
+      <!--<select-list ng-model="bc.query.bankId" name="banklist" type="1"></select-list>-->
+      <!--<bank-list ng-model="bc.query.bankId"></bank-list>-->
+      <!--<select ng-model="bc.query.bankId" name="bankId">-->
+      <!--<option></option>-->
+      <!--<option ng-repeat="item in bc.bankTypeList" ng-selected="bc.query.bankId == item.id" value="{{item.id}}">{{item.name}}</option>-->
+      <!--</select>-->
+      <!--</span>-->
+      <label class="control-label textright">{{$root.lagconfig['账号']}}</label>
+      <input ng-model="merchant.query.username" name="bankCard" type="text">
+
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="merchant.loading(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <label class="control-label textright">{{$root.lagconfig['流水号']}}</label>
+      <input ng-model="merchant.query.billNo" name="bankCard" type="text">
+      <!--<label class="control-label textright">{{$root.lagconfig['付款方式']}}</label>-->
+      <!--<select-list ng-model="merchant.query.topUpType" name="paymenttype"></select-list>-->
+      <!--<platform-list ng-model="bc.query.platformId"></platform-list>-->
+      <!--<select ng-model="bc.query.platformId" name="platformId">-->
+      <!--<option></option>-->
+      <!--<option ng-repeat="item in bc.platformList" ng-selected="bc.query.platformId == item.id" value="{{item.id}}">{{item.name}}</option>-->
+      <!--</select>-->
+
+
+      <!--<chang-listitem ng-model="bc.query.mentchatId" data="bc.merchantlists" type="name" ids="querymerchatlists"></chang-listitem>-->
+      <!--<input ng-model="bc.query.time" name="bankCard" type="text">-->
+      <label class="control-label textright">{{$root.lagconfig['开始时间']}}</label>
+      <!--<input ng-model="bc.query.time" name="bankCard" type="text">-->
+      <date-select selectid="hello" init="1" ng-model="merchant.query.startTime"></date-select>
+      <label class="control-label textright">{{$root.lagconfig['结束时间']}}</label>
+      <date-select selectid="hello1" init="2" ng-model="merchant.query.endTime"></date-select>
+      <label>
+        {{$root.lagconfig['单页数量']}}:
+      </label>
+      <page-number ng-model="merchant.sizePerPage" dispaly="username"></page-number>
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['单页数量']}}</label>-->
+      <!--<input ng-model="bc.sizePerPage" name="size" type="text" style="width: 60px;">-->
+      <!--</span>-->
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="merchant.onlineList"
+          data="[{id:'proposalId'},{id:'billNo'},{id:'merchantName'},{id:'status'},{
+          id:'realName'},{id:'username'},{id:'amount'},{id:'createTime'},{id:'user'},{id:'processTime'},{id:'mode'}]"
+          index="bc.bankindex" from-stryle>
+        <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+        <th>{{$root.lagconfig['单号']}}</th>
+        <th>{{$root.lagconfig['流水号']}}</th>
+        <!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+        <th>{{$root.lagconfig['商户号']}}</th>
+        <th>{{$root.lagconfig['当前状态']}}</th>
+        <th>{{$root.lagconfig['新开户']}}</th>
+        <th>{{$root.lagconfig['账号']}}</th>
+        <th>{{$root.lagconfig['金额']}}</th>
+        <th>{{$root.lagconfig['加入时间']}}</th>
+        <th>{{$root.lagconfig['电话呼出']}}</th>
+        <th>{{$root.lagconfig['返回处理时间']}}</th>
+        <th>{{$root.lagconfig['第三方订单号退回']}}</th>
+        <!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <!--<th>{{$root.lagconfig['当前状态']}}</th>-->
+        <!--<th>{{$root.lagconfig['创建时间']}}</th>-->
+        <!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+
+        <!--<th>{{$root.lagconfig['备注']}}</th>-->
+      </tr>
+      </thead>
+      <!--<tbody data="bc.bankindex" ng-model="bc.bankList" index="bc.bankindex" move-change>-->
+      <tbody data="bc.bankindex" ng-model="merchant.onlineList" index="bc.bankindex">
+      <tr ng-repeat="item in merchant.onlineList track by $index" ng-class="{acolor:bc.bankindex == $index}"
+          ng-click="bc.editBank($index)" class="repeat-animation">
+        <td ng-class="{colorwhite:bc.bankindex == $index}">
+          {{item.proposalId}}
+          <!--{{item.bankTypeCode}}-->
+          <!--{{bc['bankTypeList' + item.bankId].name;}}-->
+        </td>
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">{{item.brance}}</td>-->
+        <td ng-class="{colorwhite:bc.bankindex == $index}">{{item.billNo}}</td>
+        <td ng-class="{colorwhite:bc.bankindex == $index}">{{item.merchantName}}</td>
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">{{item.deviceId| nameTovalue:'id':'name':$root.devicelist}}-->
+        <!--</td>-->
+        <td>
+          <type-style value="item.status" list="merchanttotals"></type-style>
+        </td>
+        <td ng-class="{colorred:item.credit>item.promptCredit}">{{item.realName}}</td>
+        <td ng-class="{colorred:item.transactionForToday > 800000}">{{item.username}}</td>
+        <td ng-class="{colorwhite:bc.bankindex == $index}">
+          {{item.amount}}
+        </td>
+        <td ng-class="{colorwhite:bc.bankindex == $index}">
+          {{item.createTime}}
+        <td ng-class="{colorwhite:bc.bankindex == $index}">{{item.user.id |
+          nameTovalue:'id':'username':$root.userlists}}
+        <td ng-class="{colorwhite:bc.bankindex == $index}">
+          {{item.processTime}}
+        </td>
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">{{item.telephone}}</td>-->
+        <td ng-if="item.mode == 1">{{$root.lagconfig['手动补单']}}</td>
+        <td ng-if="item.mode == 0">{{$root.lagconfig['第三方回调']}}</td>
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">{{item.processTime}}</td>-->
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">-->
+        <!--{{item.createDate}}-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">-->
+        <!--<span type="accountManage" html="item.merchant.id" alert-povper>{{item.merchant.name}}</span>-->
+        <!--&lt;!&ndash;{{item.merchant.name}}&ndash;&gt;-->
+        <!--</td>-->
+
+        <!--<td ng-class="{colorwhite:bc.bankindex == $index}">-->
+        <!--{{item.remark | stringLeng}}-->
+        <!--</td>-->
+        <!--<a href="#editBank" ng-click="bc.editBank($index,item.bankId);" target="_self" type="submit" role="button"-->
+        <!--data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a></td>-->
+      </tr>
+      <!--<tr style="outline: none" ng-repeat="item in bc.bankList" ng-class="{acolor:bc.bankindex == $index}" ng-click="bc.editBank($index)"  class="repeat-animation">-->
+      <!--<td>-->
+      <!--{{item.bankId | nameTovalue:'id':'name':$root.banklist | itemTolish}}-->
+      <!--&lt;!&ndash;{{item.bankTypeCode}}&ndash;&gt;-->
+      <!--&lt;!&ndash;{{bc['bankTypeList' + item.bankId].name;}}&ndash;&gt;-->
+      <!--</td>-->
+
+      <!--<td>{{item.bankCard | bankFormal}}</td>-->
+      <!--<td>{{item.deviceId| nameTovalue:'id':'name':$root.devicelist}}</td>-->
+      <!--<td>{{item.cardName}}</td>-->
+      <!--<td>{{item.telephone}}</td>-->
+      <!--<td>{{item.transactionForToday}}</td>-->
+      <!--<td style="color: red">{{item.credit | currency : '￥'}}</td>-->
+      <!--<td>-->
+      <!--{{item.platformId | nameTovalue:'id':'name':$root.platformlist}}-->
+      <!--</td>-->
+      <!--<td ng-class="{colorwhite:bc.bankindex == $index}">-->
+      <!--{{item.type | nameTovalue:'id':'name':$root.cardtype | itemTolish}}-->
+      <!--</td >-->
+      <!--<td>-->
+      <!--<type-style value="item.flag" list="bankcardstatus"></type-style>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--&lt;!&ndash;<a href="#editBank" ng-click="bc.editBank($index,item.bankId);" target="_self" type="submit" role="button"&ndash;&gt;-->
+      <!--&lt;!&ndash;data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a></td>&ndash;&gt;-->
+      <!--</tr>-->
+      </tbody>
+    </table>
+    <pagination page="merchant.page" total="merchant.total" size="merchant.sizePerPage"
+                trigger="merchant.loading(page)"></pagination>
+  </div>
+  {{$root.lagconfig['总计']}}:<span style="color: red">{{merchant.totalsum}}</span>
+  {{$root.lagconfig['小计']}}:<span style="color: red">{{merchant.Subtotal}}</span>
+</div>

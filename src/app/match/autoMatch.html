@@ -1,0 +1,97 @@
+<div class="tab-content">
+  <div class="container-fluid">
+    <form class="form-inline am-form-query" name="queryForm">
+    <span>
+        <label class="control-label">{{$root.lagconfig['所属银行']}}</label>
+        <select-list ng-model="match.query.bankId" name="banklist" type="1"></select-list>
+    </span>
+      </span>
+    <span>
+        <label class="control-label">{{$root.lagconfig['所属平台']}}</label>
+        <select-list ng-model="match.query.platformId" name="platformlist" type="1"></select-list>
+    </span>
+    <span>
+        <label class="control-label">{{$root.lagconfig['银行账号']}}</label>
+        <input ng-model="match.query.bankCard" name="bankCard" type="text">
+    </span>
+      <!--<span>-->
+      <!--<label class="control-label">{{$root.lagconfig['单页数量']}}</label>-->
+      <!--<input ng-model="match.sizePerPage" name="size" type="text" style="width: 50px;">-->
+      <!--</span>-->
+    <label>
+      {{$root.lagconfig['单页数量']}}:
+    </label>
+    <page-number ng-model="match.sizePerPage" dispaly="username"></page-number>
+    <button type="submit" class="departmentbutton btn btn-primary toselet" ng-click="match.toSelect(1);">
+      {{$root.lagconfig['查询']}}
+    </button>
+    </form>
+  </div>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr>
+        <th colspan="1">
+          <label class="control-label matchdeposit">
+            {{$root.lagconfig['提交存款单']}}
+          </label></th>
+        <!--<th colspan="7"></th>-->
+        <!--<th colspan="1"><label class="control-label matchbankdeposit">-->
+        <!--{{$root.lagconfig['银行存款单']}}-->
+        <!--</label></th>-->
+      </tr>
+      <tr ng-model="match.automatchlists"
+          data="[{id:'depositRecord'},{id:'proposalId'},{id:'bankId'},{id:'bankCard'},{id:'cardName'},{id:'platformId'},{id:'amount'},{id:'remark'}]"
+          index="match.bankindex"
+          from-stryle>
+        <th>{{$root.lagconfig['存款单号']}}</th>
+        <th>{{$root.lagconfig['提交单号']}}</th>
+        <th>{{$root.lagconfig['所属银行']}}</th>
+        <th>{{$root.lagconfig['银行账号']}}</th>
+        <th>{{$root.lagconfig['付款人姓名']}}</th>
+        <th>{{$root.lagconfig['所属平台']}}</th>
+        <th>{{$root.lagconfig['付款金额']}}</th>
+        <th>{{$root.lagconfig['备注']}}</th>
+        <th></th>
+        <!--<th>{{$root.lagconfig['付款银行']}}</th>-->
+        <!--<th>{{$root.lagconfig['银行账号']}}</th>-->
+        <!--<th>{{$root.lagconfig['开户姓名']}}</th>-->
+        <!--<th>{{$root.lagconfig['操作方式']}}</th>-->
+        <!--<th>{{$root.lagconfig['收款金额']}}</th>-->
+        <!--<th>{{$root.lagconfig['备注']}}</th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="outline: none;height: 50px" ng-repeat="item in match.automatchlists"
+          ng-class="{acolor:match.bankindex == $index}"
+          ng-click="match.bankindex = $index">
+        <td ng-class="{colorwhite:match.bankindex == $index}">{{item.depositRecord.depositId | stringLeng}}</td>
+        <td ng-class="{colorwhite:match.bankindex == $index}">{{item.proposalId}}</td>
+        <td ng-class="{colorwhite:match.bankindex == $index}">{{item.bankId| nameTovalue:'id':'name':$root.banklist}}
+        </td>
+        <td ng-class="{colorwhite:match.bankindex == $index}">{{item.bankCard}}</td>
+        <td ng-class="{colorwhite:match.bankindex == $index}">{{item.cardName}}</td>
+        <td ng-class="{colorwhite:match.bankindex == $index}">{{item.platformId |
+          nameTovalue:'id':'name':$root.platformlist}}
+        </td>
+        <td style="color: red">{{item.amount}}</td>
+        <!--<td ng-class="{colorwhite:match.bankindex == $index}">-->
+        <!--<span class="badge badge-info ng-binding" ng-if="item.depositRecord">{{$root.lagconfig['成功']}}</span>-->
+        <!--<span ng-if="!item.depositRecord" class="badge badge-important ng-binding">{{$root.lagconfig['失败']}}</span>-->
+        <!--</td>-->
+
+        <td ng-class="{colorwhite:match.bankindex == $index}">{{item.remark}}</td>
+        <!--<td ng-class="{colorwhite:match.bankindex == $index}">{{item.depositRecord.depositBankCard}}</td>-->
+        <!--<td ng-class="{colorwhite:match.bankindex == $index}">{{item.depositRecord.payer}}</td>-->
+        <!--<td ng-class="{colorwhite:match.bankindex == $index}">{{item.depositRecord.paymentType}}</td>-->
+        <!--<td ng-class="{colorwhite:match.bankindex == $index}">{{item.depositRecord.amount}}</td>-->
+        <!--<td ng-class="{colorwhite:match.bankindex == $index}">{{item.depositRecord.remark}}</td>-->
+        <!--<a href="#editBank" ng-click="bc.editBank($index,item.bankId);" target="_self" type="submit" role="button"-->
+        <!--data-toggle="modal" data-original-title="" class="btn btn-primary">{{$root.lagconfig['更新']}}</a></td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination page="match.page" total="match.total" size="match.sizePerPage"
+              trigger="match.toSelect(page)"></pagination>
+</div>

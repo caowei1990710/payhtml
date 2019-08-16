@@ -1,0 +1,52 @@
+<div class="cont_warp">
+  <div class="title">结算管理</div>
+  <div class="m7 m7s">
+    <div class="child_nav cle">
+      <a class="fl on" id="changepwd" ng-click="four.display(1)">修改登陆密码</a>
+      <a class="fl" id="changpaypwd" ng-click="four.display(2)">修改支付密码</a>
+      <!--<a class="fl" id="changegoogle" ng-click="four.display(3)">绑定谷歌验证</a>-->
+    </div>
+    <ul ng-show="four.bankindex==1"  style="line-height: 35px">
+      <li class="cle">
+        <span class="fl">旧密码</span>
+        <input type="password" ng-model="four.changepwd.oldpwd" class="text">
+      </li>
+      <li class="cle">
+        <span class="fl">新密码</span>
+        <input type="password" ng-model="four.changepwd.newpwd" class="text">
+      </li>
+      <li class="cle">
+        <span class="fl">重复密码</span>
+        <input type="password" ng-model="four.changepwd.repwd" class="text">
+      </li>
+    </ul>
+    <ul ng-show="four.bankindex==2" style="line-height: 35px">
+      <li class="cle">
+        <span class="fl">旧密码</span>
+        <input type="password" ng-model="four.changepaypwd.oldpwd" class="text">
+      </li>
+      <li class="cle">
+        <span class="fl">新密码</span>
+        <input type="password" ng-model="four.changepaypwd.newpwd" class="text">
+      </li>
+      <li class="cle">
+        <span class="fl">重复密码</span>
+        <input type="password" ng-model="four.changepaypwd.repwd" class="text">
+      </li>
+    </ul>
+    <!--<div ng-show="four.bankindex==3">-->
+      <!--<span ng-show="$root.user.paySafe =='on'">-->
+          <!--该商户已经开通谷歌验证。-->
+      <!--</span>-->
+      <!--<span ng-show="$root.user.paySafe !='on'">-->
+          <!--该商户未开通谷歌验证，请联系7x24小时在线客服。-->
+      <!--</span>-->
+
+    <!--</div>-->
+  </div>
+  <div class="m5" ng-show="four.bankindex!=3">
+    <input type="button" value="提交" ng-click="four.changpwd()" class="i1">
+    <input type="button" value="清空" class="i2">
+  </div>
+
+</div>

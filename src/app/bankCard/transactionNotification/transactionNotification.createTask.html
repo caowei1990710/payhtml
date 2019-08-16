@@ -1,0 +1,95 @@
+<!-- Modal -->
+<div id="createTask" style="width: 800px;left: 40%;" class="modal hide fade in" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4 id="">
+      生成转账任务
+    </h4>
+  </div>
+  <div class="modal-body">
+    <form class="no-margin" name="createTaskForm">
+      <div class="row-fluid" style="padding: 0px 20px 0px 20px;">
+        <div class="span6">
+          <div class="control-group">
+            <label class="control-label">
+              所属银行: {{thridyoutput.bankType| nameTovalue:'id':'name':$root.banklist}}
+            </label>
+
+          </div>
+          <div class="control-group">
+            <label style="float: left" class="control-label">
+              银行账号:
+            </label>
+            <input type="text" name="bankCard" ng-model="thridyoutput.fromBank">
+            <button ng-click="thridyoutput.blur()" style="margin-bottom: 10px">获取</button>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <label class="control-label">
+              目前余额: {{thridyoutput.bankAmount}}
+            </label>
+            <!--<div class="controls" style="color: red">-->
+            <!--</div>-->
+          </div>
+          <div class="control-group">
+            <label class="control-label" style="float: left">
+              转账额度:
+            </label>
+            <input ng-model="thridyoutput.translatecredit" name="createTaskFormFromCredit" type="number"/>
+          </div>
+        </div>
+      </div>
+      <div class="row-fluid" style="margin: 30px 0 50px;">
+        <div class="span12">
+          <button class="btn btn-large btn-info btn-block" type="button" ng-click="bc.subAlertLoadingBankCard();">
+            请选择转账到指定账号
+          </button>
+        </div>
+      </div>
+      <div class="row-fluid" style="padding: 0px 20px 0px 20px;">
+        <div class="span6">
+          <div class="control-group">
+            <label class="control-label">
+              所属银行: {{thridyoutput.destbankType| nameTovalue:'id':'name':$root.banklist}}
+            </label>
+
+          </div>
+          <div class="control-group">
+            <label style="float: left" class="control-label">
+              银行账号:
+            </label>
+            <input type="text" name="destbankCard" ng-model="thridyoutput.destbankCard">
+            <button ng-click="thridyoutput.destblur()" style="margin-bottom: 10px">获取</button>
+          </div>
+        </div>
+        <div class="span6">
+          <div class="control-group">
+            <label class="control-label">
+              目前余额: {{thridyoutput.destbankAmount}}
+            </label>
+          </div>
+          <div class="control-group">
+            <label class="control-label" style="float: left">
+              手续费:
+            </label>
+            <input ng-model="thridyoutput.payfee" name="payfee" type="number"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <click-button click="thridyoutput.createTransferTaskBankCard" value="确认"></click-button>
+    <click-button data-dismiss="modal" value="取消"></click-button>
+    <!--<button class="btn btn-primary" ng-click="bc.createTransferTaskBankCard();">-->
+    <!--确认-->
+    <!--</button>-->
+    <!--<button class="btn" data-dismiss="modal" aria-hidden="true">-->
+    <!--取消-->
+    <!--</button>-->
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <label class="control-label">{{$root.lagconfig['提案单号']}}</label>
+    <input ng-model="cashin.query.taskId" type="text">
+    <!---->
+    <!--<select ng-model="deposit.query.bankId" name="bankId">-->
+    <!--<option ng-repeat="item in deposit.bankTypeList" ng-selected="bc.query.bankId == item.id" value="{{item.id}}">-->
+    <!--{{item.name}}-->
+    <!--</option>-->
+    <!--</select>-->
+    </span>
+  <span>
+    <label class="control-label">{{$root.lagconfig['开户姓名']}}</label>
+     <input ng-model="cashin.query.destOwner" type="text">
+  </span>
+  <span>
+  <label class="control-label">{{$root.lagconfig['银行账号']}}</label>
+    <input ng-model="cashin.query.destbankcard" type="text">
+  </span>
+  <span>
+      <label class="control-label">{{$root.lagconfig['所属平台']}}</label>
+     <select-list ng-model="cashin.query.platformId" name="platformlist" type="1"></select-list>
+  </span>
+  <span>
+      <label class="control-label">{{$root.lagconfig['状态']}}</label>
+     <select-list ng-model="cashin.query.status" name="autopaystate" type="1"></select-list>
+  </span>
+
+    <!--<span>-->
+    <!--<label class="control-label">单页数量</label>-->
+    <!--<input ng-model="bc.sizePerPage" name="size" type="text" style="width: 50px;">-->
+    <!--</span>-->
+    <button type="submit" class="departmentbutton btn btn-primary toselet" ng-click="cashin.getPayment(1);">
+      {{$root.lagconfig['查询']}}
+    </button>
+    <label>
+      {{$root.lagconfig['单页数量']}}:
+    </label>
+    <page-number ng-model="cashin.pagesize" dispaly="username"></page-number>
+  </form>
+  <div class="tabbleout">
+    <table class="table">
+      <thead>
+      <tr ng-model="cashin.payList"
+          data="[{id:'transactionId'},{id:'createtime'},{id:'platformName'},{id:'destBankCard'},{id:'destOwner'},{id:'amount'},{id:'srcBankCard'},{id:'lockstate'}]"
+          from-stryle>
+        <th>{{$root.lagconfig['提款单号']}}</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['所属平台']}}</th>
+        <th>{{$root.lagconfig['银行账号']}}</th>
+        <th>{{$root.lagconfig['开户姓名']}}</th>
+        <th>{{$root.lagconfig['申请额度']}}</th>
+        <!--<th>{{$root.lagconfig['付款所属银行']}}</th>-->
+        <th>{{$root.lagconfig['付款银行账号']}}</th>
+        <!--<th>{{$root.lagconfig['付款开户姓名']}}</th>-->
+        <th>{{$root.lagconfig['当前状态']}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in cashin.payList">
+        <td>{{item.taskId}}</td>
+        <td>{{item.createtime}}</td>
+        <td>{{item.platformName}}</td>
+        <td>{{item.destBankCard}}</td>
+        <td>{{item.destOwner}}</td>
+        <td>{{item.amount}}</td>
+        <!--<td>{{item.srcBankId| nameTovalue:'id':'name':$root.banklist}}</td>-->
+        <td>{{item.srcBankCard}}</td>
+        <!--<td>{{item.srcOwner}}</td>-->
+        <td>
+          <type-style value="item.status" list="autopaystate">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination page="cashin.page" total="cashin.total" size="cashin.sizePerPage"
+              trigger="cashin.getPayment(page)"></pagination>
+</div>

@@ -1,0 +1,104 @@
+<div>
+  <div style="display: inline-block;padding: 20px;margin:30px;width: 300px; border-style: solid;
+    border-color: black;">
+    <img src="assets/images/people.png" style="width: 200px;margin: 10px;"/>
+    <div><label style="font-size: 15px">用户名:{{$root.user.name}}</label></div>
+    <div><label style="font-size: 15px"><span ng-if="$root.user.callbackurl=='www.baidu.com'">返点:</span><span
+      ng-if="$root.user.callbackurl!='www.baidu.com'">手续费:</span>{{$root.user.payfee}}</label></div>
+    <div>
+      <label style="font-size: 15px">可用余额:{{$root.user.amount}}元</label>
+      <button ng-click="shunpayhomeaccount.showWithred()">提现</button>
+      <button ng-click="shunpayhomeaccount.reflush()">刷新</button>
+    </div>
+    <div>
+      <label style="font-size: 15px">冻结额度:{{$root.user.lockMoney}}元</label>
+      <button ng-click="shunpayhomeaccount.showeditpwd()">修改密码</button>
+      <button ng-click="shunpayhomeaccount.showcahout()">修改取款密码</button>
+    </div>
+    <div>
+      <label style="font-size: 15px">谷歌验证:<span>{{$root.user.paySafe}}</span></label>
+      <button ng-click="shunpayhomeaccount.change()">on/off</button>
+    </div>
+    <div>
+      <label style="font-size: 15px">类别:</label>
+      <input style="width: 150px;margin: 0" type="text" ng-model="$root.user.bankCardType" disabled>
+    </div>
+    <div>
+      <label style="font-size: 15px">卡号:</label><input style="width: 150px;margin: 0" type="text"
+                                                       ng-model="$root.user.bankCard" disabled>
+    </div>
+    <div>
+      <label style="font-size: 15px">名字:</label><input style="width: 150px;margin: 0" type="text"
+                                                       ng-model="$root.user.bankCardName" disabled>
+    </div>
+    <button style="margin-top:10px" ng-click="shunpayhomeaccount.showeditBank()"><span
+      ng-if="!$root.user.bankCard">绑定</span><span ng-if="$root.user.bankCard">解绑</span></button>
+    <button style="margin-top:10px" ng-click="shunpayhomeaccount.logout()">登出</button>
+  </div>
+  <div style="display: inline-block;padding: 20px;margin:30px;width: 300px; border-style: solid;border-color: black;"
+       ng-show="shunpayhomeaccount.withraw">
+    <div>
+      <label>类别:<input type="text" style="margin: 0" width="200px"
+                       ng-model="shunpayhomeaccount.user.bankCardType"></label>
+    </div>
+    <div>
+      <label>卡号:<input type="text" style="margin: 0" width="200px" ng-model="shunpayhomeaccount.user.bankCard"></label>
+    </div>
+    <div>
+      <label>名字:<input type="text" style="margin: 0" width="200px"
+                       ng-model="shunpayhomeaccount.user.bankCardName"></label>
+    </div>
+    <div>
+      <label>金额:<input type="text" style="margin: 0" width="200px"
+                       ng-model="shunpayhomeaccount.withrawitem.amount"></label>
+    </div>
+    <button ng-click="shunpayhomeaccount.withrawCreate()">确定</button>
+  </div>
+  <div style="display: inline-block;padding: 20px;margin:30px;width: 300px; border-style: solid;border-color: black;"
+       ng-show="shunpayhomeaccount.showedit">
+    <div>
+      <label>类别:<input type="text" style="margin: 0" width="200px"
+                       ng-model="shunpayhomeaccount.user.bankCardType"></label>
+    </div>
+    <div>
+      <label>卡号:<input type="text" style="margin: 0" width="200px" ng-model="shunpayhomeaccount.user.bankCard"></label>
+    </div>
+    <div>
+      <label>名字:<input type="text" style="margin: 0" width="200px"
+                       ng-model="shunpayhomeaccount.user.bankCardName"></label>
+    </div>
+    <button ng-click="shunpayhomeaccount.update()">确定</button>
+  </div>
+  <div style="display: inline-block;padding: 20px;margin:30px;width: 300px; border-style: solid;border-color: black;"
+       ng-show="shunpayhomeaccount.showeditpwdwindow">
+    <div>
+      <label>原密码:<input type="password" style="margin: 0;margin-left: 10px" width="200px"
+                        ng-model="shunpayhomeaccount.updateUser.oldpwd"></label>
+    </div>
+    <div>
+      <label>新密码:<input type="password" style="margin: 0;margin-left: 10px" width="200px"
+                        ng-model="shunpayhomeaccount.updateUser.newpwd"></label>
+    </div>
+    <div>
+      <label>确认密码:<input type="password" style="margin: 0" width="200px"
+                         ng-model="shunpayhomeaccount.updateUser.suerpwd"></label>
+    </div>
+    <button ng-click="shunpayhomeaccount.updatepwd()">确定</button>
+  </div>
+  <div style="display: inline-block;padding: 20px;margin:30px;width: 300px; border-style: solid;border-color: black;"
+       ng-show="shunpayhomeaccount.showcashout">
+    <div>
+      <label>原密码:<input type="password" style="margin: 0;margin-left: 10px" width="200px"
+                        ng-model="shunpayhomeaccount.updateUser.oldcashoutpwd"></label>
+    </div>
+    <div>
+      <label>新密码:<input type="password" style="margin: 0;margin-left: 10px" width="200px"
+                        ng-model="shunpayhomeaccount.updateUser.newcashoutpwd"></label>
+    </div>
+    <div>
+      <label>确认密码:<input type="password" style="margin: 0" width="200px"
+                         ng-model="shunpayhomeaccount.updateUser.suercashoutpwd"></label>
+    </div>
+    <button ng-click="shunpayhomeaccount.updateCashoutpwd()">确定</button>
+  </div>
+</div>

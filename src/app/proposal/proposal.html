@@ -1,0 +1,167 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <label class="control-label textright">{{$root.lagconfig['银行账号']}}</label>
+      <input ng-model="thirdyproposal.query.payAccont" name="name" type="text">
+      <label class="control-label textright">{{$root.lagconfig['所属ip']}}</label>
+      <input ng-model="thirdyproposal.query.ip" name="name" type="text">
+      <label class="control-label textright">{{$root.lagconfig['提案号']}}</label>
+      <input ng-model="thirdyproposal.query.depositNumber" name="name" type="text">
+      <!--<input ng-model="thridyoutput.query.fromBank" name="bankCard" type="text">-->
+      <label class="control-label textright">{{$root.lagconfig['所属平台']}}</label>
+      <select-list ng-model="thirdyproposal.query.platfrom" name="platfromlist" type="1">
+      </select-list>
+      <!--<select ng-model="usepic.query.nickName" name="nickName" type="text">-->
+      <!--<option></option>-->
+      <!--<option>可用</option>-->
+      <!--<option>不可用</option>-->
+      <!--</select>-->
+      <!--<input ng-model="thridyoutput.query.nickName" name="nickName" type="text">-->
+
+      <!--<select ng-model="usepic.query.qrurl" name="nickName" type="text">-->
+      <!--<option></option>-->
+      <!--<option>没有</option>-->
+      <!--<option>赋值</option>-->
+      <!--</select>-->
+
+      <!--<span>-->
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thirdyproposal.get(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <label class="control-label">{{$root.lagconfig['创建时间']}}</label>
+      <date-select selectid="proposal" init="1" ng-model="thirdyproposal.query.beginTime"></date-select>
+      </span>
+      <span>
+      <label class="control-label">{{$root.lagconfig['到']}}</label>
+      <date-select selectid="proposal1" init="2" ng-model="thirdyproposal.query.endTime"></date-select>
+      </span>
+      <label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>
+      <select-list ng-model="thirdyproposal.query.state" name="proposalstate" type="1">
+      </select-list>
+      <label class="control-label textright">设备类型</label>
+      <select-list ng-model="thirdyproposal.query.mobiletype" name="mobiletypes" type="1"></select-list>
+      <!--<label class="control-label textright">收款类型</label>-->
+      <!--<select-list ng-model="thirdyproposal.query.getpaytype" name="paytypes" type="1"></select-list>-->
+      <label class="control-label textright">类型</label>
+      <select-list ng-model="thirdyproposal.query.payType" name="proposaltype" type="1"></select-list>
+      <label class="control-label textright">自动刷新</label>
+      <select-list ng-model="thirdyproposal.query.flush" name="flushstate" type="0"></select-list>
+      <div style="width:50px"></div>
+      <label class="control-label textright">区间段</label>
+      <select ng-model="thirdyproposal.query.duanAmount">
+        <option></option>
+        <option>300</option>
+        <option>500</option>
+        <option>1000</option>
+        <option>2000</option>
+        <option>5000</option>
+        <option>10000</option>
+      </select>
+      <!--<select-list ng-model="thirdyproposal.query.duanAmount" name="flushstate" type="0"></select-list>-->
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="thirdyproposal.bankList"
+          data="[{id:'payAccont'},{id:'depositNumber'},{id:'amount'},{id:'creatTime'},{id:'overTime'},{id:'platfrom'},{
+          id:'payUrl'},{id:'ip'},{id:'state'},{id:'mobiletype'},{id:'getpaytype'}]"
+          index="bc.bankindex" from-stryle>
+        <th>{{$root.lagconfig['银行账号']}}</th>
+        <th>{{$root.lagconfig['提案号']}}</th>
+        <th>类型</th>
+        <th>{{$root.lagconfig['金额']}}</th>
+        <th>实际金额</th>
+        <th>手续费</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['超时时间']}}</th>
+        <!--<th>{{$root.lagconfig['修改时间']}}</th>-->
+        <th>{{$root.lagconfig['所属平台']}}</th>
+        <th>{{$root.lagconfig['所属ip']}}</th>
+        <th>{{$root.lagconfig['当前状态']}}</th>
+        <th>设备类型</th>
+        <!--<th>收款类型</th>-->
+        <th>{{$root.lagconfig['付款链接']}}</th>
+      </tr>
+      </thead>
+      <!--<tbody data="bc.bankindex" ng-model="bc.bankList" index="bc.bankindex" move-change>-->
+      <tbody data="usepic.bankindex" ng-model="usepic.bankList" index="usepic.bankindex">
+
+      <tr ng-repeat="item in thirdyproposal.bankList track by $index"
+          ng-class="{acolor:thirdyproposal.bankindex == $index}"
+          ng-click="thirdyproposal.editBank($index)" class="repeat-animation">
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">
+          {{item.payAccont}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.depositNumber}}
+        </td>
+        <!--<td ng-if="item.payType=='1'">支付宝</td>-->
+        <!--<td ng-if="item.payType=='2'">微信</td>-->
+        <td>
+          <type-style value="item.payType" list="proposaltype"></type-style>
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.amount}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.realAmount}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.payFee}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.creatTime}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.overTime}}
+        </td>
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">-->
+        <!--{{item.updateTime}}-->
+        <!--</td>-->
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.platfrom| nameTovalue:'id':'name':$root.platfromlist}}
+        </td>
+
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.realUrl}}</td>-->
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}"><label-->
+        <!--style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 200px">{{item.payUrl}}</label>-->
+        <!--</td>-->
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.ip}}</td>
+        </td>
+        <td>
+          <type-style value="item.state" list="proposalstate"></type-style>
+        </td>
+        <td ng-if="item.mobiletype=='0'">电脑pc</td>
+        <td ng-if="item.mobiletype=='1'">安卓</td>
+        <td ng-if="item.mobiletype=='2'">苹果</td>
+        <td ng-if="item.mobiletype==null">未付款</td>
+        <!--<td>-->
+        <!--<type-style value="item.getpaytype" list="paytypes"></type-style>-->
+        <!--</td>-->
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.qrUrl| stringLeng:20}}
+        </td>
+        <!--<td ng-if="item.getpaytype=='1'">动态</td>-->
+        <!--<td ng-if="item.getpaytype=='3'">多图</td>-->
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.state|-->
+        <!--nameTovalue:'id':'name':$root.depositstate}}-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">-->
+        <!--{{item.remark | stringLeng}}-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.createUser}}</td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: center">总计{{thirdyproposal.totalSum}}小计{{thirdyproposal.bankList.length}}</div>
+  <pagination page="thirdyproposal.page" total="thirdyproposal.totalSum" size="thirdyproposal.sizePerPage"
+              trigger="thirdyproposal.get(thirdyproposal.page)"></pagination>
+  <div class="pull-right buttonpost">
+    <click-button href="createTask" data="user.roleitem" value="创建"></click-button>
+    <!--<click-button click="bc.showeditMoney" value="调整余额"></click-button>-->
+  </div>
+</div>
+<div ng-include="'app/bankCard/transactionNotification/transactionNotification.createTask.html'"></div>

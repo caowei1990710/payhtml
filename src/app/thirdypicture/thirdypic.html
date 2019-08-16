@@ -1,0 +1,87 @@
+<div class="tab-content">
+  <div class="tabbleout" ng-show="thirdypic.picture==1">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="thirdypic.bankList"
+          data="[{id:'bankId'},{id:'type'},{id:'wechatName'},{id:'nickName'},{
+          id:'ip'},{id:'realName'},{id:'amount'},{id:'teleNumber'},{id:'belongbankCard'},{id:'state'},{id:'plaftfrom'},{id:'dayamount'},{id:'daylimit'},{id:'wechatId'},{id:'autowithrow'},{id:'remark'}]"
+          index="bc.bankindex" from-stryle>
+        <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+        <th>{{$root.lagconfig['所属银行']}}</th><!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+        <th>{{$root.lagconfig['银行账号']}}</th>
+        <th ng-if="thirdypic.query.type!=0">{{$root.lagconfig['昵称']}}</th>
+        <th ng-if="thirdypic.query.type==0">{{$root.lagconfig['银行类型']}}</th>
+        <th>{{$root.lagconfig['所属ip']}}</th>
+        <th>{{$root.lagconfig['真实姓名']}}</th>
+        <th>{{$root.lagconfig['目前余额']}}</th>
+        <!--<th>{{$root.lagconfig['绑定电话']}}</th>-->
+        <!--<th ng-if="thirdypic.query.type!=0">{{$root.lagconfig['绑定银行卡']}}</th>-->
+        <!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <!--<th>{{$root.lagconfig['当前状态']}}</th>-->
+        <!--<th>{{$root.lagconfig['所属平台']}}</th>-->
+        <!--<th ng-if="thirdypic.query.type!=0">{{$root.lagconfig['组别']}}</th>-->
+        <!--<th>{{$root.lagconfig['提现额度']}}</th>-->
+        <!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <th>{{$root.lagconfig['备注']}}</th>
+        <th>{{$root.lagconfig['图片']}}</th>
+      </tr>
+      </thead>
+      <tbody data="thirdypic.bankindex" ng-model="thirdypic.bankList" index="thirdypic.bankindex">
+      <tr ng-repeat="item in thirdypic.bankList track by $index"
+          ng-class="{acolor:thirdypic.bankindex == $index}"
+          ng-click="thirdypic.editBank($index)" class="repeat-animation">
+        <td ng-class="{colorwhite:thirdypic.bankindex == $index}">
+          {{item.type | nameTovalue:'id':'name':$root.banklist}}
+        </td>
+        <td ng-class="{colorwhite:thirdypic.bankindex == $index}">{{item.wechatName | bankFormal}}</td>
+        <td ng-class="{colorwhite:thirdypic.bankindex == $index}">{{item.nickName}}</td>
+        <td ng-class="{colorwhite:thirdypic.bankindex == $index}">{{item.ip}}</td>
+        <td ng-class="{colorwhite:thirdypic.bankindex == $index}">{{item.realName}}</td>
+        <td ng-class="{colorwhite:thirdypic.bankindex == $index}">{{item.amount}}</td>
+        <!--<td ng-class="{colorwhite:thirdypic.bankindex == $index}">{{item.teleNumber}}</td>-->
+        <!--<td ng-class="{colorwhite:thirdypic.bankindex == $index}" ng-if="thirdypic.query.type!=0">-->
+        <!--{{item.belongbankCard}}-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<type-style value="item.state" list="banktypecardstatus"></type-style>-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:thirdypic.bankindex == $index}">{{item.plaftfrom|-->
+        <!--nameTovalue:'id':'name':$root.platfromlist}}-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:thirdypic.bankindex == $index}" ng-if="thirdypic.query.type!=0">-->
+        <!--{{item.wechatId |-->
+        <!--nameTovalue:'id':'name':$root.originlist}}-->
+        <!--</td>-->
+        <!--<td ng-class="{colorwhite:thirdypic.bankindex == $index}">{{item.autowithrow}}</td>-->
+        <td ng-class="{colorwhite:thirdypic.bankindex == $index}">
+          {{item.remark | stringLeng}}
+        </td>
+        <td ng-class="{colorwhite:thirdypic.bankindex == $index}">
+          <button ng-click="thirdypic.create($index)">生成</button>
+          <button ng-click="thirdypic.select($index)">查看</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="width:1100px;margin: auto" ng-show="thirdypic.picture!=1">
+    <div>
+      <button ng-click="thirdypic.back()">返回</button>
+    </div>
+    <div ng-repeat="item in thirdypic.picturelist" style="width: 200px;height: 320px;display: inline-block">
+      <img ng-src={{item.src}}>
+      {{item.imageName}}
+      <input ng-model="item.qrurl" placeholder="二维码扫描之后的结果">
+      <button ng-click="thirdypic.update($index)">提交</button>
+    </div>
+  </div>
+  <!--<pagination page="thirdypic.page" total="thirdypic.totalSum" size="thirdypic.sizePerPage"-->
+  <!--trigger="thirdypic.get(page)"></pagination>-->
+  <!--<div class="pull-right buttonpost">-->
+  <!--<click-button click="thirdypic.delete" value="删除" style="display: none"></click-button>-->
+  <!--<click-button click="thirdypic.showClear" value="批量清空"></click-button>-->
+  <!--<click-button click="thirdypic.showeditBank" data="user.roleitem" value="更新"></click-button>-->
+  <!--<click-button href="createBank" data="user.roleitem" value="创建"></click-button>-->
+  <!--<click-button click="thirdypic.showeditMoney" value="调整余额"></click-button>-->
+  <!--</div>-->
+</div>

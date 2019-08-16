@@ -1,0 +1,137 @@
+<!-- Modal -->
+<div id="editDevice" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     touchout="true"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig["更改设备名称"]}}
+
+    </h4>
+  </div>
+  <div class="modal-body">
+    <form class="no-margin" name="createBankTypeForm" style="line-height: 30px">
+          <div class="control-group">
+            <label class="control-label pull-left span2">
+              {{$root.lagconfig["原设备名称"]}}：
+            </label>
+            <span>{{$root.device.name}}</span>
+          </div>
+          <div class="control-group">
+            <label class="control-label pull-left span2">
+              {{$root.lagconfig["设备名称"]}}：
+            </label>
+            <!--<div class="controls">-->
+            <!--<input name="createBankTypeFormPriority" type="text" ng-model="sm.createBankTypeForm.priority" />-->
+            <!--</div>-->
+            <select-list ng-model="vm.deviceId" name="devicelist"></select-list>
+            <!--<device-list ng-model="vm.devicelist.id"></device-list>-->
+            <!--<select ng-model="vm.devicelist" ng-options="item.name for item in vm.deviceList"></select>-->
+            <!--<select ng-model="$root.device" name="deviceId">-->
+            <!--<option ng-repeat="item in vm.deviceList" value="{{item.id}}">{{item.name}}</option>-->
+            <!--</select>-->
+          </div>
+          <div class="control-group">
+            <label class="control-label pull-left span2">
+              {{$root.lagconfig["权限密码"]}}：
+            </label>
+            <input name="createBankTypeFormName" type="password" ng-model="vm.password"/>
+          </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="vm.updateDevicenow();">
+      {{$root.lagconfig["确认"]}}
+    </button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">
+      {{$root.lagconfig["取消"]}}
+    </button>
+  </div>
+</div>
+<div id="editDevices" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="false">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      ×
+    </button>
+    <h4>
+      {{$root.lagconfig["加入处理设备"]}}
+    </h4>
+  </div>
+  <div class="modal-body">
+    <form class="no-margin" name="createBankTypeForm">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="control-group">
+            <ul class="control-label">
+              <li ng-click="vm.getDevicelist($index)" ng-repeat="item in vm.deviceList" style="padding: 10px">
+                {{item.name}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="span8">
+          <div class="control-group">
+            <ul class="control-label">
+              <li style="padding: 10px">
+                <span style="padding: 10px">{{$root.lagconfig["所属银行"]}}：</span><span style="padding: 10px">{{$root.lagconfig["银行账号"]}}：</span>
+                <span style="padding: 10px">{{$root.lagconfig["开户姓名"]}}：</span>
+              </li>
+              <li ng-click="vm.changeClick($index)" ng-repeat="item in $root.bankList" style="padding: 10px"
+                  ng-class="{selected:vm.index == item.id}">
+                <span style="padding: 10px">{{item.bankId}}</span><span style="padding: 10px">{{item.bankCard}}</span>
+                <span style="padding: 10px">{{item.cardName}}</span>
+              </li>
+              <!--<li ng-repeat="item in $root.bankList" style="padding: 10px">{{item.bankCard}}</li>-->
+              <!--<li ng-repeat="item in $root.bankList" style="padding: 10px">{{item.cardName}}</li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="vm.addNew();">
+      {{$root.lagconfig["确认"]}}
+    </button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">
+      {{$root.lagconfig["取消"]}}
+    </button>
+  </div>
+</div>
+<div id="setDevice" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     touchout="true"
+     aria-hidden="false">
+  <div class="modal-header">
+    <h4>
+      {{$root.lagconfig["设置设备名称"]}}：
+    </h4>
+  </div>
+  <div class="modal-body">
+    <form class="no-margin" name="createBankTypeForm">
+      <div>
+          <div class="control-group">
+            <label class="control-label pull-left span2">
+              {{$root.lagconfig["设备名称"]}}：：
+            </label>
+            <select-list ng-model="login.deviceId" name="devicelist"></select-list>
+          </div>
+          <div class="control-group ">
+            <label class="control-label pull-left span2">
+              {{$root.lagconfig["权限密码"]}}：：
+            </label>
+            <div class="controls">
+              <input ng-model="login.password" name="createBankTypeFormName" type="password"/>
+            </div>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="login.setDevice();">
+      {{$root.lagconfig["确认"]}}
+    </button>
+  </div>
+</div>

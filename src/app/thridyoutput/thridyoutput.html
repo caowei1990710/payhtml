@@ -1,0 +1,126 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <label class="control-label textright">{{$root.lagconfig['源卡信息']}}</label>
+      <input ng-model="thridyoutput.query.fromBank" name="bankCard" type="text">
+      <label class="control-label textright">{{$root.lagconfig['目标卡信息']}}</label>
+      <input ng-model="thridyoutput.query.destBank" name="bankCard" type="text">
+      <label class="control-label textright">{{$root.lagconfig['存款单号']}}</label>
+      <input ng-model="thridyoutput.query.depositNumber" name="bankCard" type="text">
+      <!--<label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>-->
+      <!--<select-list ng-model="thridyoutput.query.state" name="depositstate" type="1"></select-list>-->
+      <span>
+        <label class="control-label">{{$root.lagconfig['创建时间']}}</label>
+        <date-select selectid="allhello" init="1" ng-model="thridyoutput.query.beginTime"></date-select>
+      </span>
+      <span>
+        <label class="control-label">{{$root.lagconfig['到']}}</label>
+        <date-select selectid="allhello1" init="2" ng-model="thridyoutput.query.endTime"></date-select>
+      </span>
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thridyoutput.get(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <label class="control-label textright">{{$root.lagconfig['所属平台']}}</label>
+      <select-list ng-model="thridyoutput.query.platfrom" name="platfromlist" type="1"></select-list>
+      <!--<button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"-->
+      <!--ng-click="thridyoutput.create();">-->
+      <!--{{$root.lagconfig['创建']}}-->
+      <!--</button>-->
+      <label class="control-label textright">{{$root.lagconfig['源卡类型']}}</label>
+      <select-list ng-model="thridyoutput.query.fromBankType" name="banklist" type="1"></select-list>
+      <!--<label>-->
+      <!--{{$root.lagconfig['用户名']}}:-->
+      <!--</label>-->
+      <!--<select-list ng-model="bc.query.userid" dispaly="username" name="userlists" type="1"></select-list>-->
+      <!--<label>-->
+      <!--{{$root.lagconfig['单页数量']}}:-->
+      <!--</label>-->
+      <!--<button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"-->
+              <!--ng-click="thridyoutput.outList();">-->
+        <!--{{$root.lagconfig['导出']}}-->
+      <!--</button>-->
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr ng-model="thridyoutput.recrodList"
+          data="[{id:'depositNumber'},{id:'fromBank'},{id:'ip'},{id:'fromBankType'},{id:'destBank'},{id:'destBankType'},{
+          id:'amount'},{id:'payfee'},{id:'plaftfrom'},{id:'state'},{id:'createTime'}]"
+          index="bc.bankindex" from-stryle>
+        <th>{{$root.lagconfig['存款单号']}}</th>
+        <th>{{$root.lagconfig['所属平台']}}</th>
+        <th>{{$root.lagconfig['源卡信息']}}</th>
+        <th>{{$root.lagconfig['所属ip']}}</th>
+        <th>{{$root.lagconfig['源卡类型']}}</th>
+        <th>{{$root.lagconfig['目标卡信息']}}</th>
+        <th>{{$root.lagconfig['目标卡类型']}}</th>
+        <th>{{$root.lagconfig['所属类型']}}</th>
+        <th>{{$root.lagconfig['真实姓名']}}</th>
+        <th>{{$root.lagconfig['金额']}}</th>
+        <th>{{$root.lagconfig['手续费']}}</th>
+
+        <th>{{$root.lagconfig['所属平台']}}</th>
+        <th>{{$root.lagconfig['当前状态']}}</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['创建人']}}</th>
+      </tr>
+      </thead>
+      <!--<tbody data="bc.bankindex" ng-model="bc.bankList" index="bc.bankindex" move-change>-->
+      <tbody data="thirdyaccount.bankindex" ng-model="thirdyaccount.bankList" index="thirdyaccount.bankindex">
+
+      <tr ng-repeat="item in thridyoutput.recrodList track by $index"
+          ng-class="{acolor:thirdyrplist.bankindex == $index}"
+          ng-click="thirdyaccount.editBank($index)" class="repeat-animation">
+        <td ng-class="{colorwhite:thirdyrplist.bankindex == $index}">
+          {{item.depositNumber}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.platfrom | nameTovalue:'id':'name':$root.platfromlist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.fromBank}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.ip}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.fromBankType| nameTovalue:'id':'name':$root.banklist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.destBank}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.destBankType| nameTovalue:'id':'name':$root.banklist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.destNickname}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">
+          {{item.destName}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.amount}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.payfee}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.plaftfrom|
+          nameTovalue:'id':'name':$root.platfromlist}}
+        </td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.state}}</td>
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.createTime}}</td>
+        <!--<td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">-->
+        <!--{{item.remark | stringLeng}}-->
+        <!--</td>-->
+        <td ng-class="{colorwhite:thirdyaccount.bankindex == $index}">{{item.createUser}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: center">总计{{thridyoutput.totalSum}}小计{{thridyoutput.nowSum}}</div>
+  <pagination page="thridyoutput.page" total="thridyoutput.total" size="thridyoutput.sizePerPage"
+              trigger="thridyoutput.get(page)"></pagination>
+  <div class="pull-right buttonpost">
+    <click-button href="createTask" data="user.roleitem" value="创建"></click-button>
+    <!--<click-button click="bc.showeditMoney" value="调整余额"></click-button>-->
+  </div>
+</div>
+<div ng-include="'app/bankCard/transactionNotification/transactionNotification.createTask.html'"></div>

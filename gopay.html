@@ -1,0 +1,263 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="zh-cn">
+  <meta name="apple-mobile-web-app-capable" content="no">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <meta http-equiv="Cache" content="no-cache">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>支付宝付款</title>
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    html {
+      /* 以逻辑分辨率是375*667、
+       * 物理分辨率是750*1334来适配，
+       * 以100px作为root的font-size参照系：
+       * 由于px=视口*vm/100 > vw=100/750*100
+       *  */
+      font-size: 13.333vw;
+    }
+
+    body {
+      font-size: 0.3rem;
+      line-height: 1.5;
+      color: #333;
+      font-family: Helvetica Neue, Helvetica, STHeiTi, sans-serif, "微软雅黑";
+    }
+
+    .head-part {
+      height: 0.8rem;
+      line-height: 0.8rem;
+      font-size: 0.34rem;
+      text-align: center;
+      border-bottom: 1px solid #E3E3E3;
+    }
+
+    .user-info {
+      line-height: 0.3rem;
+      text-align: center;
+      font-size: 0.3rem;
+      margin-top: 0.6rem;
+    }
+
+    .money-part {
+      height: 1.0rem;
+      line-height: 1.0rem;
+      width: 7rem;
+      margin: 0.1rem auto 0;
+      color: #000000;
+      text-align: center;
+    }
+
+    .money-part .maney-sign {
+      font-size: 0.6rem;
+    }
+
+    .money-part .money-num {
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .pay-btn {
+      height: 0.9rem;
+      line-height: 0.9rem;
+      width: 7rem;
+      margin: 0.5rem auto 0;
+      text-align: center;
+      border-radius: 0.06rem;
+      color: #FFFFFF;
+      font-size: 0.34rem;
+      background: #07A0F8;
+    }
+
+    .pay-btn-other {
+      height: 0.9rem;
+      line-height: 0.9rem;
+      width: 7rem;
+      margin: 0.5rem auto 0;
+      text-align: center;
+      border-radius: 0.06rem;
+      color: #FFFFFF;
+      font-size: 0.34rem;
+      background: #07A0F8;
+    }
+  </style>
+</head>
+
+
+<body style="zoom: 1;">
+
+<div class="user-info">
+  <img src="https://t.alipayobjects.com/images/T1HHFgXXVeXXXXXXXX.png" style="text-align:center" width="160"
+       height="40">
+</div>
+<p style="color: red;text-align:center;margin-top: 40;">转账金额</p>
+<div class="money-part">
+  <span class="maney-sign">￥</span>
+  <span class="money-num" id="money"></span>
+</div>
+<!-- <p style="color: red;text-align:center;margin-top: 30;">如果不想等待，可截屏保存二维码到相册，</p>
+<p style="color: red;text-align:center;">在支付宝中扫一扫相册中选择这张二维码支付</p> -->
+<p style="color: red;text-align:left;margin-top: 20;"><!-- 1.【切换到微信】或【点击HOME键】,然后回到支付宝</p>
+        <p style="color: red;text-align:left;"> 2. 先按步骤一操作再点击按钮</p> -->
+</p>
+<div class="pay-btn" onclick="refreshPage()">点击后请耐心等待3秒</div>
+<p style="color: red;text-align:center;margin-top: 30;"></p>
+<div id="qrcode" style="text-align:center">
+  <canvas width="200" height="200"></canvas>
+</div>
+<a href="alipayqr://platformapi/startapp?saId=10000007">
+  <d id="btn_click"></d>
+</a>
+
+<script>
+  var strs = new Array();
+  var thisURL = document.URL;
+  var getval = thisURL.split('id=')[1];
+  var str = getval;
+  strs = str.split(",");
+  window.times = 30;
+  var go_url = 'alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s": "money","u": "' + strs[0] + '","a": "' + strs[2] + '","m": "' + strs[1] + '"}';
+  if (strs[0].indexOf('https') != -1)
+    go_url = strs[0];
+  var po_url = 'http://mqpost.bailifu.co/pay/setorinfo';
+  var or = "1545992709994";
+  $("#money").html(strs[2]);
+  jQuery(function ($) {
+
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+    if (isAndroid) {
+      var op_type = 'android';
+    } else if (isiOS) {
+      var op_type = 'ios';
+    } else {
+      var op_type = 'other';
+    }
+//    if (strs[1].indexOf("_") != -1) {
+//      $.ajax({
+//        type: 'GET',
+//        // url: "http://192.168.11.128:8081/" + url,
+//        url: "http://api.wandapay88.com/updateDevice?depositNumber=" + strs[1] + "&mobiletype=" + op_type,
+//        success: function (data) {
+////          todo(data);
+//        },
+//        error: function (data) {
+//
+//        }
+//      });
+//    }
+    $.ajax({
+      url: po_url,
+      type: 'GET',
+      dataType: "json",
+      timeout: 30000,
+      data: {or: or, op_type: op_type}
+    });
+
+    window.is_resume = false;
+    document.addEventListener("resume", function (a) {
+      window.is_resume = true;
+    });
+
+    if (!window.is_resume) {
+      location.href = go_url;
+    }
+
+    var uu = strs[0];
+    var aa = strs[2];
+    var mm = strs[1];
+
+    // $('.pay-btn').click(function(){
+
+    //     try {
+    //         var a = {
+    //             actionType: "scan",
+    //             u: uu,
+    //             a: aa,
+    //             m: mm,
+    //             biz_data: {
+    //                 s: "money",
+    //                 u: uu,
+    //                 a: aa,
+    //                 m: mm
+    //             }
+    //         }
+    //     } catch (b) {
+    //         returnApp()
+    //     }
+    //     AlipayJSBridge.call("startApp", {
+    //         appId: "20000123",
+    //         param: a
+    //     }, function (a) {});
+    // });
+
+    var qrcode = $('#qrcode').qrcode({  //生成二维码
+      width: 200,
+      height: 200,
+      text: go_url
+    });
+  });
+
+  function returnApp() {
+    AlipayJSBridge.call("exitApp");
+  }
+
+  function ready(a) {
+    window.__a = a;
+    window.AlipayJSBridge ? a && a() : document.addEventListener("AlipayJSBridgeReady", a, !1);
+  }
+
+  // window.myTimer_stop = false;
+  // window.myTimer = window.setInterval(function () {
+  //     if( window.times <= 0){
+  //         $(".pay-btn").html("获得授权");
+  //         $(".pay-btn").css("pointer-events",'');
+  //         window.myTimer_stop = true;
+  //         clearInterval( window.myTimer);
+  //         return;
+  //     }
+  //     if( window.myTimer_stop){
+  //         return;
+  //     }
+  //     $(".pay-btn").html('预计'+window.times+'秒后获得授权');
+  //     window.times--;
+  // }, 1000);
+
+
+  function startSecondPage() {
+    clearInterval(window.myTimer);
+    window.location.href = go_url;
+  }
+
+  function refreshPage() {
+    $('#btn_click').trigger("click");
+    window.myTimer = window.setInterval(function () {
+      window.location.reload();
+    }, 1000);
+  }
+
+</script>
+
+</body>
+</html>

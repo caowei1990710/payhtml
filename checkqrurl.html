@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type=text/javascript src=jquery.min.js></script>
+<script type=text/javascript src=md5.js></script>
+<script>
+  function getImg () {
+    $.ajax({
+      type: 'GET',
+      // url: 'http://midpaydemo.com:8080/midpay',
+      // url: 'http://103.205.121.9:8081/midpay',
+//        url: 'http://www.shunfu68.com:8089/midpay',
+      url: 'http://zhifukaui111.info:8081/wechatitem?name='+$("#account").val()+'&ip=&type=&state&page=1&size=500&amount=0&nickName=',
+      success: function (data) {
+        console.log(data);
+        if (data.code != 200) {
+
+//            playMusic();
+//          var utterThis = new window.SpeechSynthesisUtterance('没有可用的商户，请注意及时处理！');
+//          window.speechSynthesis.speak(utterThis);
+//          alert(data.msg);
+          return
+        }
+        var result = data.data;
+        for (var i = 0; i < result.length; i++) {
+          $('#content').append("<a style='margin: 20px;display: inline-block' href=" + result[i].qrurl + ">"+result[i].imageName+"</a>")
+        }
+      },
+      error: function (data) {
+      }
+    })
+  }
+</script>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <input type="text" id="account">
+  <button onclick="getImg()">获取</button>
+  <div id="content"style="width: 500px"></div>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<div>
+  <!--<div style="position: relative">-->
+  <!--<div class="downloading" style="float: left"></div>-->
+  <div style="display: inline-block;width: 200px;text-align: center">
+    <img src="http://zhifudemo.com/images/alipy.png"/>
+    <span style="font-size: 18px">支付宝版本10.0.0.15</span>
+  </div>
+  <div style="display: inline-block;width: 200px;text-align: center">
+    <img src="http://zhifudemo.com/images/wechat.png"/>
+    <span style="font-size: 18px">微信版6.6.7</span>
+  </div>
+  <div style="display: inline-block;width: 200px;text-align: center">
+    <img src="http://zhifudemo.com/images/kuaifu.png"/>
+    <span style="font-size: 18px">收录系统378</span>
+  </div>
+  <!--<div class="downloading" style="float: right"></div>-->
+</div>
+<div style="margin: 50px">
+  <div style="display: inline-block;margin: 20px" ng-repeat="item in test.list track by $index">
+    <input id="app_{{$index}}" type="checkbox">{{item.name}}
+  </div>
+  <!--<button ng-click="test.start()">开始</button>-->
+</div>
+

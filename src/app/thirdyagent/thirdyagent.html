@@ -1,0 +1,116 @@
+<div class="tab-content">
+  <form class="form-inline am-form-query" name="queryForm">
+    <div class="textleft">
+      <label class="control-label textright">{{$root.lagconfig['游戏放名称']}}</label>
+      <input ng-model="thirdyagent.query.name" name="name" type="text">
+      <!--<select-list ng-model="thirdyagent.query.name" name="banklist" type="1"></select-list>-->
+      <label class="control-label textright">{{$root.lagconfig['所属代理']}}</label>
+      <input ng-model="thirdyagent.query.agentName" name="agentName" type="text">
+      <button type="submit" class="departmentbutton btn btn-primary toselet" style="margin-right: 10px"
+              ng-click="thirdyagent.get(1);">
+        {{$root.lagconfig['查询']}}
+      </button>
+      <label class="control-label textright">{{$root.lagconfig['当前状态']}}</label>
+      <select-list ng-model="thirdyagent.query.state" name="banktypecardstatus" type="1"></select-list>
+    </div>
+  </form>
+  <div class="tabbleout">
+    <table class="table tableoutwidth">
+      <thead>
+      <tr>
+        <!--data="[{id:'bankId'},{id:'bankCard'},{id:'deviceId'},{id:'cardName'},{id:'telephone'},{id:'transactionForToday'},{id:'credit'},{id:'platformId'},{id:'type'}]"-->
+        <th>{{$root.lagconfig['游戏放名称']}}</th><!--<th>{{$root.lagconfig['银行网点']}}</th>-->
+        <th>{{$root.lagconfig['费率']}}</th>
+        <th>微信汇率</th>
+        <th>云闪付汇率</th>
+        <th>网银汇率</th>
+        <th>卡层次</th>
+        <th>{{$root.lagconfig['目前余额']}}</th>
+        <th>{{$root.lagconfig['锁定金额']}}</th>
+        <th>{{$root.lagconfig['状态']}}</th>
+        <th>{{$root.lagconfig['备注']}}</th><!--<th>{{$root.lagconfig['绑定商户号']}}</th>-->
+        <th>{{$root.lagconfig['所属代理']}}</th>
+        <th>{{$root.lagconfig['创建时间']}}</th>
+        <th>{{$root.lagconfig['登录时间']}}</th>
+        <th>支付宝</th>
+        <th>微信</th>
+        <th>网银转账</th>
+        <th>最低付款</th>
+        <th>最低提款</th>
+        <th>类型</th>
+        <th>提案时间</th>
+        <th>谷歌验证码</th>
+        <th>谷歌url</th>
+      </tr>
+      </thead>
+      <tbody data="thirdyagent.bankindex" ng-model="thirdyagent.bankList" index="thirdyagent.bankindex">
+      <tr ng-repeat="item in thirdyagent.bankList track by $index" ng-click="thirdyagent.editBank($index)"
+          ng-class="{acolor:thirdyagent.bankindex == $index}">
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          {{item.name}}
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.itemPayfee}}</td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.wechatpayfee}}</td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.yunshanpayfee}}</td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.banktranfee}}</td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.payBanktype |
+          nameTovalue:'id':'name':$root.paybanktypes}}
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.amount}}</td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.lockMoney}}</td>
+        <td>
+          <type-style value="item.state" list="banktypecardstatus"></type-style>
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.remark}}</td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.agentName}}</td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.crateTime}}</td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">{{item.lastLoginTime}}</td>
+        <!--<td></td>-->
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          <select-list ng-model="item.canAlipay" name="canpaystate" type="1"></select-list>
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          <select-list ng-model="item.canWechat" name="canpaystate" type="1"></select-list>
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          <select-list ng-model="item.canBanktran" name="canpaystate" type="1"></select-list>
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          <input type="text" ng-model="item.payless" style="width: 50px;text-align: center;">
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          <input type="text" ng-model="item.withrowAmountlow" style="width: 50px;text-align: center;">
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          <select-list ng-model="item.payType" name="payitemtypes" type="1"></select-list>
+          <!--<button ng-click="thirdyagent.update($index)">修改</button>-->
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          <input type="text" ng-model="item.proposalLockTime" style="width: 50px;text-align: center;">
+          <!--{{item.proposalLockTime}}-->
+          <!--<select-list ng-model="item.payType" name="payitemtypes" type="1"></select-list>-->
+          <button ng-click="thirdyagent.update($index)">修改</button>
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          <button ng-click="thirdyagent.setPayQr(item.name)" ng-if="!item.payqr">生成</button>
+        </td>
+        <td ng-class="{colorwhite:thirdyagent.bankindex == $index}">
+          {{item.payqr}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: center">
+    总计{{thirdyagent.totalSum}}小计{{thirdyagent.bankList.length}}金额总计{{thirdyagent.totalamount}}金额小计{{thirdyagent.pageamount}}
+  </div>
+  <pagination page="thirdyagent.page" total="thirdyagent.totalSum" size="thirdyagent.sizePerPage"
+              trigger="thirdyagent.get(page)"></pagination>
+  <div class="pull-right buttonpost">
+    <click-button click="thirdyagent.showeditAgent" data="user.roleitem" value="更新"></click-button>
+    <click-button href="createPlatform" data="user.roleitem" value="创建"></click-button>
+    <!--<click-button click="bc.showeditMoney" value="调整余额"></click-button>-->
+  </div>
+</div>
+
+<div ng-include="'app/user/user.popup.html'"></div>

@@ -1,0 +1,64 @@
+.navbar-logo {
+  background-color: transparent;
+}
+
+.navbar-title {
+  color: black;
+}
+
+.acolor {
+  background-color: #999!important;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.notiycolor{
+  background-color: rgba(226, 218, 40, 0.97);
+}
+
+.redcolor{
+  background-color: #c7253a;
+}
+
+.colorwhite {
+  color: white;
+}
+
+.colorhover {
+  background-color: #67BEF7;
+}
+
+/*.department li:focus{*/
+/*background-color: #67BEF7;*/
+/*}*/
+.colorclick {
+  background-color: #288BE0;
+}
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  font-size: 12px;
+}
+.bigsize{
+  font-size: 12px;
+}
+.navbar .nav > li {
+  float: left;
+  margin-right: 12px;
+}
+
+.departmentli {
+  line-height: 60px;
+  text-align: left
+}
+
+.departmentlihover {
+  background-color: #68c0f9;
+}
+
+.departmentbutton{
+  padding: 0px !important;
+  width: 122px;
+  height: 50px;
+  background: #288ce2 !important;
+}

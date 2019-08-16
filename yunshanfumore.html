@@ -1,0 +1,116 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>云闪付支付测试</title>
+  <meta name="keywords" content="">
+  <meta name="description">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=yes">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/project.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+
+  <link rel="stylesheet" href="css/css3.css">
+  <script type="text/javascript" src="http://static.runoob.com/assets/qrcode/qrcode.min.js"></script>
+  <script type="text/javascript" src="js/jQuery.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/Calendar.js"></script>
+
+  <script>
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == 'ipad';
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == 'iphone os';
+    var bIsMidp = sUserAgent.match(/midp/i) == 'midp';
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == 'rv:1.2.3.4';
+    var bIsUc = sUserAgent.match(/ucweb/i) == 'web';
+    var bIsCE = sUserAgent.match(/windows ce/i) == 'windows ce';
+    var bIsWM = sUserAgent.match(/windows mobile/i) == 'windows mobile';
+    var bIsAndroid = sUserAgent.match(/android/i) == 'android';
+    var ismobel = false;
+
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+//    alert("您是手机登录");
+      ismobel = true
+    }
+
+    var sign = "a7925f7886bd2451"//商户签名
+    var merchat = {
+    }
+    function toPay() {
+      merchat.amount = $('#amount').val();
+      merchat.proposalId = $('#depositnumber').val();
+      //    merchat.RealName ="张三";
+//    console.log(merchat.version + merchat.MerchaantNo + merchat.type + merchat.payer + sign);
+        $.ajax({
+          type: 'post',
+          url: 'http://www.hp168168.com:8081/setProposal',
+          data: merchat,
+          success: function (data) {
+            console.log(data);
+            if (data.code != 200) {
+              alert(data.msg);
+              return
+            }else
+              window.location.href = "http://www.hp168168.com/yunsahnfuqr.html?id="+$('#depositnumber').val();
+          },
+          error: function (data) {
+          }
+        })
+    }
+  </script>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="md5.js"></script>
+</head>
+
+
+<body>
+<style>
+  html,
+  body {
+    background: #fff;
+  }
+</style>
+<!--<div class="log_head cle">-->
+<!--<img src="img/img5.jpg" class="fl">-->
+<!--</div>-->
+<div style="
+    text-align: right;
+    margin-right: 250px;
+">
+  <img id="payUrl"
+       style=""
+       src=""/>
+</div>
+<div class="log_warp">
+  <div class="w_1200 cle">
+    <div class="form fr">
+      <div align="center" id="qr" class="margin-top" style="display:none;text-align: center"></div>
+      <div class="title">
+        付款测试
+      </div>
+      <div class="list">
+        <input type="text" id="depositnumber" placeholder="提案号...">
+      </div>
+
+      <div class="list">
+        <input type="text" id="amount" placeholder="输入金额...">
+      </div>
+
+
+      <div class="but">
+        <input type="button" onclick="toPay()" value="付 款">
+      </div>
+      <!--<div style="text-align: center"><img id="payUrl" src="" style="width: 500px"/>-->
+      <!--</label>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
